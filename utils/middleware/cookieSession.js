@@ -1,0 +1,44 @@
+// Adapted from https://github.com/zeit/next.js/blob/canary/examples/with-firebase-authentication
+
+"use strict";
+
+import cookieSession from "cookie-session";
+
+export const addSession = (req, res) => {
+  // Ensure that session secrets are set
+  if (
+    !(process.env.SESSION_SECRET_CURRENT && process.env.SESSION_SECRET_PREVIOUS)
+  ) {
+    throw new Error(
+      "Session secrets must be set as env vars `SESSION_SECRET_CURRENT` and `SESSION_SECRET_PREVIOUS`."
+    );
+  }
+
+  // Use an array for rotating secrets without invalidating old sessions. The
+  // first will be used to sign cookies, the rest to validate them.
+  // https://github.com/expressjs/cookie-session#keys
+  const sessionSecrets = [
+    process.env.SESSION_SECRET_CURRENT,
+    process.env.SESSION_SECRET_PREVIOUS
+  ];
+
+  // Example: https://github.com/billymoon/micro-cookie-session
+  const includeSession = cookieSession({
+    keys: sessionSecrets,
+    // Consider setting other options, such as "secure", "sameSite", etc.
+    // https://github.com/expressjs/cookie-session#cookie-options
+    maxAge: 604800000, // 1 week
+    httpOnly: true,
+    overwrite: true
+  });
+  includeSession(req, res, () => {});
+};
+
+export default handler => (req, res) => {
+  try {
+    addSession(req, res);
+  } catch (e) {
+    return res.status(500).json({ error: "Could not get user session." });
+  }
+  return handler(req, res);
+};

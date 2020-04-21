@@ -1,0 +1,26 @@
+"use strict";
+
+import React from "react";
+import { Media, Image } from "react-bootstrap";
+
+export default ({ photoSrc, name, greeting }) => {
+  const defaultGreeting =
+    "Greetings! Have a look around my home's site and be sure to check out the common questions section below. Still have questions unanswered? Feel free to post a no-commitment question and I will respond as soon as possible.";
+
+  return (
+    <Media style={{ clear: "left" }}>
+      <Image
+        width={95}
+        height={95}
+        className="mr-3"
+        src={photoSrc}
+        alt={`Homeowner ${name}`}
+        rounded
+      />
+      <Media.Body>
+        <h5>{name}, Homeowner</h5>
+        <p className="mb-0" style={{ fontSize: "0.9em" }}>{greeting || defaultGreeting}</p>
+      </Media.Body>
+    </Media>
+  );
+};

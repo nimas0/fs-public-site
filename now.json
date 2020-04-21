@@ -1,0 +1,20 @@
+{
+  "build": {
+    "env": {
+      "API_KEY": "@api-key",
+      "AUTH_DOMAIN": "@auth-domain",
+      "DATABASE_URL": "@database-url",
+      "PROJECT_ID": "@project-id",
+      "STORAGE_BUCKET": "@storage-bucket",
+      "MESSAGING_SENDER_ID": "@messaging-sender-id",
+      "APP_ID": "@app-id",
+      "MEASUREMENT_ID": "@measurement-id",
+      "PRIVATE_KEY": "@fs-private-key",
+      "CLIENT_EMAIL": "@fs-client-email",
+      "SESSION_SECRET_CURRENT": "@fs-session-secret-current",
+      "SESSION_SECRET_PREVIOUS": "@fs-session-secret-previous",
+      "HOST": "@fs-host"
+    }
+  },
+  "public": false
+}

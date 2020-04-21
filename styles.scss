@@ -1,0 +1,122 @@
+// Ant Design import
+@import '~antd/dist/antd.css';
+
+// Bootstrap responsive font sizes
+$enable-responsive-font-sizes: true;
+
+// Fonts: Open Sans & Nunito first, then falling back on system fonts
+$font-family-sans-serif: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Open Sans',
+   'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+   'Segoe UI Symbol', 'Noto Color Emoji';
+$headings-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+   'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+   'Segoe UI Symbol', 'Noto Color Emoji';
+
+// Bootstrap import
+@import '~bootstrap/scss/bootstrap.scss';
+
+// Fix Ant Design Steps component
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+   color: $success;
+}
+.ant-steps-item-finish .ant-steps-item-title {
+   @extend .font-weight-bold;
+}
+.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-tail::after {
+   background-color: $success;
+}
+.ant-steps-item-custom.ant-steps-item-process .ant-steps-item-icon > .ant-steps-icon {
+   color: $success;
+}
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-tail::after {
+   background-color: rgba($black, 0.125);
+}
+.ant-steps-item-content {
+   @extend .mt-1;
+}
+
+// Enables footer to stick to bottom when content height is shorter than screen
+#__next {
+   position: absolute;
+   min-height: 100%;
+   width: 100%;
+   @extend .d-flex;
+   @extend .flex-column;
+}
+
+// Icon styles
+.h1-icon {
+   @include font-size($h1-font-size);
+}
+.h4-icon {
+   @include font-size($h4-font-size);
+}
+.h6-icon {
+   @include font-size($h6-font-size);
+}
+.d1-icon {
+   @include font-size($display1-size);
+}
+.d4-icon {
+   @include font-size($display4-size);
+}
+.expand-button {
+   @include button-outline-variant($secondary);
+   background-color: white;
+   &.disabled,
+   &:disabled {
+      background-color: white;
+   }
+   border-radius: 50%;
+}
+
+// Navbar styles
+.navbar-brand {
+   font-family: $headings-font-family;
+}
+.navbar-text {
+   font-family: $headings-font-family;
+   @include font-size($h4-font-size);
+}
+.profile-icon {
+   @extend .h4-icon;
+}
+
+// Photo grid styles
+.hover-focus-opacity-90 {
+   &:hover,
+   &:focus {
+      opacity: 0.9;
+   }
+}
+
+// Home details styles
+@include media-breakpoint-up(sm) {
+   #home-details {
+      column-count: 2;
+      column-gap: 3rem;
+   }
+}
+
+// Scheduling widget styles
+.display-5 {
+   @include font-size(2.5rem);
+   font-weight: 300;
+   line-height: $display-line-height;
+}
+
+// react-images lightbox backdrop bug fix (https://github.com/jossmac/react-images/issues/351#issuecomment-590745505)
+.react-images__view {
+   display: flex;
+   height: 100vh;
+   align-items: center;
+   justify-content: center;
+}
+
+// upload-box drag n drop
+.upload-box {
+   height: 11em;
+   border-width: 2px;
+   border-style: dashed;
+   border-color: lightgrey;
+}
