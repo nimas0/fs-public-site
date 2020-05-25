@@ -46,7 +46,7 @@ export default ({
         as="section"
         id="tour-this-home"
         aria-labelledby="tour-this-home-heading"
-        className={`py-3 px-2 mx-n2 mx-md-n3 mx-lg-0 mb-5${
+        className={`schedulingShadow py-5 px-4 mx-n2 mx-md-n3 mx-lg-0 mb-5${
           breakpoint.up.lg ? " position-sticky" : ""
         }`}
         style={
@@ -55,9 +55,9 @@ export default ({
       >
         <h2
           id="tour-this-home-heading"
-          className={clsx("text-center mb-3", breakpoint.lg && "h3")}
+          className={clsx("text-center text-info mb-5", breakpoint.lg && "h3")}
         >
-          Go Tour This Home
+          Tour This Home
         </h2>
 
         <DatePicker
@@ -76,11 +76,11 @@ export default ({
           }}
         />
 
-        <div className="text-center mb-1">
+        <div className="text-center mb-1 mt-2">
           {/* Schedule Tour */}
           <Link href={tourLinkHref} as={tourLinkAs} passHref>
             <Button
-              variant="info"
+              variant="primary"
               onClick={
                 AuthUser
                   ? false
@@ -89,7 +89,7 @@ export default ({
                       showLoginModal();
                     }
               }
-              className={clsx(breakpoint.down.md && "px-5")}
+              className={clsx(breakpoint.down.md && "px-5", 'buttonShadow')}
               style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
             >
               Schedule Tour

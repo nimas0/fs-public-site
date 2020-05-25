@@ -33,6 +33,7 @@
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
+    "react-firebase-hooks": "^2.1.1",
     "react-firebaseui": "^4.1.0",
     "react-images": "^1.1.0-beta.3",
     "rfdc": "^1.1.4",

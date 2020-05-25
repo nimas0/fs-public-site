@@ -170,10 +170,10 @@ export default ({ photos, tilesWide, address }) => {
       <Accordion.Toggle
         eventKey="0"
         as={Button}
-        variant="outline-secondary"
+        variant='info'
         ref={toggleButton}
-        className="float-left position-relative h4-icon expand-button"
-        style={Object.assign({ borderRadius: "50%" }, toggleButtonPosition)}
+        className="navShadow border-0 float-left position-relative h4-icon"
+        style={Object.assign(toggleButtonPosition)}
         onClick={toggleExpanded}
         aria-label={(expanded ? "Collapse" : "Expand") + " photo grid"}
       >

@@ -18,7 +18,7 @@ export default ({
 
   return (
     <Button
-      variant="outline-dark"
+      variant="outline-info"
       className="mr-1"
       style={Object.assign(
         { width: small ? "4.7rem" : "7rem" },

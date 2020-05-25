@@ -1,0 +1,55 @@
+.fill {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   max-height: 250px;
+
+   border-bottom:#d3d3d3;
+   border-bottom-width: 3px;
+   border-bottom-style: solid;
+}
+
+.header {
+   background-color: rgb(247, 247, 247);
+   border: 1px solid #d3d3d3;
+}
+
+.headerBack:hover {
+   background-color: rgb(154, 216, 159, 0.2);
+}
+
+.interestImage {
+   flex-shrink: 0;
+   width: 100%;
+   max-height: 100%;
+}
+
+.docBody {
+   border: 0;
+   border-style: solid;
+}
+
+.doc {
+   max-height: 11rem;
+   overflow-y: scroll;
+}
+
+
+.listGroupItem {
+   margin: 0.25em;
+}
+
+.listGroupItem:hover {
+   background-color: lightgray;
+   margin: 0.25em;
+   cursor: pointer;
+}
+
+.listGroupItem:global(.active) {
+   background-color: white;
+   color: darkgreen;
+   border: none;
+   margin: 0.25em;
+   cursor: pointer;
+}

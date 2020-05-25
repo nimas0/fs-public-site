@@ -54,6 +54,7 @@ export default ComposedComponent => {
         } else {
           // Use the default (unauthed) user info if there's no data
           AuthUserInfo = createAuthUserInfo();
+          
         }
       } catch (e) {
         // If there's some error, use the default (unauthed) user info

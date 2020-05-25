@@ -249,6 +249,7 @@ export default ({ shown, hide, AuthUser }) => {
     // Validate phone number
     if (values.phone && !isValidPhoneNumber(values.phone)) {
       setFieldError("phone", "Not a valid phone number.");
+      
     } else {
       // Disable form
       setSending(true);

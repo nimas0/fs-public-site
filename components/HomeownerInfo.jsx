@@ -8,7 +8,7 @@ export default ({ photoSrc, name, greeting }) => {
     "Greetings! Have a look around my home's site and be sure to check out the common questions section below. Still have questions unanswered? Feel free to post a no-commitment question and I will respond as soon as possible.";
 
   return (
-    <Media style={{ clear: "left" }}>
+    <Media style={{ clear: "left", marginTop: 40 }}>
       <Image
         width={95}
         height={95}

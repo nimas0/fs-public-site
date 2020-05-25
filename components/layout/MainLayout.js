@@ -3,13 +3,14 @@ import Nav from '../Nav';
 import MainNav from '../navigation/MainNav';
 import Head from 'next/head'
 
-const MainLayout = (props) => (
+
+const MainLayout = ({ AuthUser, showLoginModal, children }) => (
   <>
     <Head>
       <body />
     </Head>
-    <MainNav search={true} />
-    {props.children}
+    <MainNav search={true} AuthUser={AuthUser} showLoginModal={showLoginModal} />
+    {children}
     <style jsx global>{`
         body {
          background-color: #ededed

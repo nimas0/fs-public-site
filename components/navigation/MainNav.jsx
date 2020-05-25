@@ -19,11 +19,16 @@ export default ({ address, search, AuthUser, showLoginModal }) => {
    };
 
    return (
-      <Navbar expand='sm' sticky='top' className='bg-light border-bottom shadow-sm d-flex px-5  pt-3 pb-2 mb-4'>
-         <Container fluid className='px-5'>
+      <Navbar
+         expand='sm'
+         sticky='top'
+         className='bg-white border-bottom border-top-2 navShadow d-flex px-1  pt-3 pb-2 mb-4'>
+         <Container bsPrefix='container-md' className='px-1'>
             <div className='order-1'>
                <Link href='/' passHref>
-                  <Navbar.Brand className='font-italic'>findingSpaces</Navbar.Brand>
+                  <Navbar.Brand className='font-italic'>
+                     <img  src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-small.png?alt=media&token=03c1d0a0-7e97-4035-bbc7-5ddc44493efa' />
+                  </Navbar.Brand>
                </Link>
             </div>
             <Nav className='ml-4 mr-auto w-25 order-2 float-left'>

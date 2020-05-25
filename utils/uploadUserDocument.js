@@ -6,9 +6,9 @@ import firebaseInit from "./firebaseInit";
 
 firebaseInit();
 
-export default async (file, userId) => {
+export default async (file, filePath) => {
   // Connect to user's storage ref
-  const storageRef = firebase.storage().ref(`users/${userId}`);
+  const storageRef = firebase.storage().ref(filePath);
 
   try {
     // Upload file with metadata

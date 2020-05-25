@@ -20,6 +20,7 @@ export const createAuthUser = firebaseUser => {
   } else {
     return {
       id: get(firebaseUser, "uid"),
+      displayName: get(firebaseUser, 'displayName'),
       email: get(firebaseUser, "email"),
       emailVerified: has(firebaseUser, "emailVerified")
         ? get(firebaseUser, "emailVerified") // Firebase JS SDK

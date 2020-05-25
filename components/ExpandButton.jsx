@@ -70,8 +70,8 @@ const ExpandButton = ({
   return (
     <Button
       ref={button}
-      variant="outline-secondary"
-      className={clsx("expand-button", hidden && "invisible", className)}
+      variant="primary"
+      className={clsx(hidden && "invisible", className)}
       style={{ ...sizeStyle, ...overlapStyle }}
       onClick={onClick}
       disabled={disabled}

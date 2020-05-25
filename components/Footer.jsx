@@ -16,7 +16,7 @@ export default () => (
     <hr className="mt-0 mb-4" />
 
     <Container fluid>
-      <Row className="mb-3 mb-lg-0">
+      <Row className="info mb-3 mb-lg-0">
         <Col xs={12} sm={6} lg={4} className="text-center mb-4 mb-sm-3">
           <div className="h3">Contact us</div>
           <div>Finding Spaces</div>
