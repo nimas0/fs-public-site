@@ -25,7 +25,7 @@ import DocumentUpload from '../../../../components/buyers/interest/DocumentUploa
 firebaseInit();
 
 
-const Interest = ({ AuthUserInfo, showLoginModal }) => {
+const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) => {
     const { AuthUser = null } = AuthUserInfo;
     const router = useRouter();
     const interestId = router.query.interestId;

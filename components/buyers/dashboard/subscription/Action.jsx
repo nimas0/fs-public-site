@@ -57,12 +57,12 @@ const Action = ({
                <Button
                   size='sm'
                   onClick={() =>
-                     status === 'pending' || 'approved' ? router.push('/buyer/interest') : setModalShow(true)
+                     status === 'pending' || 'approved' ? router.push('/buyer/offer/123') : setModalShow(true)
                   } // TODO: route to submit offer page
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
                   className='mb-1'
                   block>
-                  Submit Offer
+                  Propose Offer
                </Button>
                <Button
                   onClick={() =>
