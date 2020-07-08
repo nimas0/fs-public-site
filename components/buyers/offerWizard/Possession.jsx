@@ -5,7 +5,16 @@ import Body from '../../generic/Dialog/Body';
 import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 
-const Possession = ({ errors, touched, handleChange, values, handleBlur, sending, ...rest }) => {
+const Possession = ({
+   errors,
+   touched,
+   handleChange,
+   values,
+   handleBlur,
+   sending,
+   dirty,
+   ...rest
+}) => {
    return (
       <div data-test='step-possession'>
          <Row>
@@ -19,15 +28,20 @@ const Possession = ({ errors, touched, handleChange, values, handleBlur, sending
                         </b>
                      </Form.Label>
                      <Form.Group controlId='exampleForm.SelectCustom'>
-                        <Form.Control as='select' custom>
-                           <option>I accept possession terms as is.</option>
-                           <option>I accept, but would like a sooner date if possible</option>
-                           <option>I need to negotiate another possession time frame</option>
+                        <Form.Control
+                           name='possession'
+                           value={values.possession}
+                           onChange={handleChange}
+                           className='rounded-sm w-100'
+                           style={{ display: 'block' }}
+                           as='select'
+                           custom>
+                           <option label='Choose an option' />
+                           {Object.entries(rest.possessionOptions).map((option) => (
+                              <option value={option[1]} label={option[1]} />
+                           ))}
                         </Form.Control>
                      </Form.Group>
-                     <Form.Control.Feedback type='invalid'>
-                        {errors.possession}
-                     </Form.Control.Feedback>
                   </Form.Group>
                </div>
             </Body>
@@ -37,7 +51,12 @@ const Possession = ({ errors, touched, handleChange, values, handleBlur, sending
                enabled={true}
             />
          </Row>
-         <Footer {...rest} />
+         <Footer
+            disabledNext={
+               !(values.possession.length > 0) || (touched.possession && !!errors.possession)
+            }
+            {...rest}
+         />
       </div>
    );
 };

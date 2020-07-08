@@ -5,7 +5,16 @@ import Body from '../../generic/Dialog/Body';
 import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 
-const Contingency = ({ errors, touched, handleChange, values, handleBlur, sending, ...rest }) => {
+const Contingency = ({
+   errors,
+   touched,
+   handleChange,
+   values,
+   handleBlur,
+   sending,
+   dirty,
+   ...rest
+}) => {
    return (
       <div data-test='step-contingency'>
          <Row>
@@ -13,20 +22,24 @@ const Contingency = ({ errors, touched, handleChange, values, handleBlur, sendin
                <div className='w-75'>
                   <Form.Group controlId='formGridAddress1'>
                      <Form.Label className='pb-2' data-test='step-contingency-header'>
-                        <b>
-                           Do you need to sell your home first?
-                        </b>
+                        <b>Do you need to sell your home first?</b>
                      </Form.Label>
                      <Form.Group controlId='exampleForm.SelectCustom'>
-                        <Form.Control as='select' custom>
-                           <option>Yes, I have my home listed online</option>
-                           <option>Yes, I need to list my home</option>
-                           <option>No, I am able to purchase home right away</option>
+                        <Form.Control
+                           name='contingency'
+                           value={values.contingency}
+                           onChange={handleChange}
+                           onBlur={handleBlur}
+                           className='rounded-sm w-100'
+                           style={{ display: 'block' }}
+                           as='select'
+                           custom>
+                           <option label='Choose an option' />
+                           {Object.entries(rest.contingencyOptions).map((option) => (
+                              <option value={option[1]} label={option[1]} />
+                           ))}
                         </Form.Control>
                      </Form.Group>
-                     <Form.Control.Feedback type='invalid'>
-                        {errors.contingency}
-                     </Form.Control.Feedback>
                   </Form.Group>
                </div>
             </Body>
@@ -36,7 +49,12 @@ const Contingency = ({ errors, touched, handleChange, values, handleBlur, sendin
                enabled={true}
             />
          </Row>
-         <Footer {...rest} />
+         <Footer
+            disabledNext={
+               !(values.contingency.length > 0) || (touched.contingency && !!errors.contingency)
+            }
+            {...rest}
+         />
       </div>
    );
 };

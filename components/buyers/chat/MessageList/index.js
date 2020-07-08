@@ -8,6 +8,7 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import firebaseInit from '../../../../utils/firebaseInit';
 import './MessageList.css';
+import MessageProposal from '../Message/MessageProposal';
 
 
 // Initialize Firebase app
@@ -55,6 +56,7 @@ export default function MessageList(props) {
       let previous = messages[i - 1];
       let current = messages[i];
       let next = messages[i + 1];
+      let isProposal = messages[i].proposalId && messages[i].proposalId
       let isMine = current.author === MY_USER_ID;
       let currentMoment = moment(current.timestamp);
       let prevBySameAuthor = false;
@@ -87,16 +89,37 @@ export default function MessageList(props) {
         }
       }
 
-      tempMessages.push(
-        <Message
-          key={i}
-          isMine={isMine}
-          startsSequence={startsSequence}
-          endsSequence={endsSequence}
-          showTimestamp={showTimestamp}
-          data={current}
-        />
-      );
+
+
+
+      if (isProposal) {
+        const proposalId = current.proposalId;
+        console.log(current.proposalId)
+        tempMessages.push(
+          <MessageProposal
+            handleToggleSidebar={props.handleToggleSidebar}
+            data={current}
+            proposalId={proposalId}
+            isMine={isMine}
+            startsSequence={startsSequence}
+            endsSequence={endsSequence}
+            showTimestamp={showTimestamp}
+          />
+        )
+      } else {
+        tempMessages.push(
+          <Message
+            key={i}
+            isMine={isMine}
+            startsSequence={startsSequence}
+            endsSequence={endsSequence}
+            showTimestamp={showTimestamp}
+            data={current}
+          />
+        );
+      }
+
+
 
       // Proceed to the next message.
       i += 1;
@@ -109,8 +132,8 @@ export default function MessageList(props) {
     <div className="message-list">
 
 
-      <div className="message-list-container">{renderMessages()} 
-      <div ref={messagesEndRef} />
+      <div className="message-list-container">{renderMessages()}
+        <div ref={messagesEndRef} />
       </div>
 
 

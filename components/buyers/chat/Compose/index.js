@@ -7,7 +7,6 @@ import firebaseInit from '../../../../utils/firebaseInit';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form } from 'react-bootstrap';
-import useKeyPress from '../../../../utils/hooks/keypress';
 
 // Initialize Firebase app
 firebaseInit();

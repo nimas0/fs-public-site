@@ -10,10 +10,31 @@ const Action = ({
       listingMainPhotoUrl,
       listingId,
       buyer: { buyerUid },
+      proposal,
    },
 }) => {
    const router = useRouter();
    const [modalShow, setModalShow] = React.useState(false);
+
+   const isActive = status === 'pending' || status === 'approved';
+   console.log('isActive', isActive);
+   const isProposed = proposal && proposal.state === 'active';
+   console.log('proposal', isProposed);
+   const handleClick = () => {
+      if (isActive) {
+         isProposed
+            ? router.push(
+                 `/buyer/interest?interestId=${listingId}_${buyerUid}`,
+                 `/buyer/interest/${listingId}_${buyerUid}`
+              )
+            : router.push(
+                 `/buyer/offer/[offer]`,
+                 `/buyer/offer/${listingId}_${buyerUid}`
+              );
+      } else if (!isActive) {
+         setModalShow(true);
+      }
+   };
 
    return (
       <>
@@ -26,18 +47,14 @@ const Action = ({
             </Col>
             <Col>
                <Button
-                  onClick={() =>
-                     router.push(
-                        `/buyer/interest?interestId=${listingId}_${buyerUid}`,
-                        `/buyer/interest/${listingId}_${buyerUid}`
-                     )
-                  }
                   size='sm'
-                  variant='primary'
-                  className='mb-1 '
+                  onClick={handleClick} // TODO: route to submit offer page
+                  variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
+                  className='mb-1'
                   block>
-                  View Docs
+                  {isActive && isProposed ? 'View Proposals' : 'Propose Offer'}
                </Button>
+
                <Button
                   onClick={() =>
                      status === 'pending' || 'approved'
@@ -55,24 +72,25 @@ const Action = ({
                </Button>
 
                <Button
-                  size='sm'
-                  onClick={() =>
-                     status === 'pending' || 'approved' ? router.push('/buyer/offer/123') : setModalShow(true)
-                  } // TODO: route to submit offer page
-                  variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1'
-                  block>
-                  Propose Offer
-               </Button>
-               <Button
-                  onClick={() =>
-                     status === 'pending' || 'approved' ? router.push('/buyer/interest') : setModalShow(true)
-                  } //TODO: route to request showing modal
+                  onClick={handleClick} //TODO: route to request showing modal
                   size='sm'
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
                   className='mb-1 '
                   block>
                   Request Showing
+               </Button>
+               <Button
+                  onClick={() =>
+                     router.push(
+                        `/buyer/interest?interestId=${listingId}_${buyerUid}`,
+                        `/buyer/interest/${listingId}_${buyerUid}`
+                     )
+                  }
+                  size='sm'
+                  variant='primary'
+                  className='mb-1 '
+                  block>
+                  View Docs
                </Button>
             </Col>
          </Row>

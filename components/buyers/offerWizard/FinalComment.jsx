@@ -16,11 +16,16 @@ const FinalComment = ({ errors, touched, handleChange, values, handleBlur, sendi
                         Please enter any comments or additional requests here:
                      </Form.Label>
                      <Form.Group controlId='exampleForm.ControlTextarea1'>
-                        <Form.Control as='textarea' rows='3' />
+                        <Form.Control
+                           name='comment'
+                           type='text'
+                           onChange={handleChange}
+                           value={values.comment}
+                           as='textarea'
+                           rows='7'
+                           onBlur={handleBlur}
+                        />
                      </Form.Group>
-                     <Form.Control.Feedback type='invalid'>
-                        {errors.comment}
-                     </Form.Control.Feedback>
                   </Form.Group>
                </div>
             </Body>

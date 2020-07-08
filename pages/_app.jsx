@@ -6,6 +6,7 @@ import ErrorPage from 'next/error';
 import '../styles.scss';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 config.autoAddCss = false;
 
 export default ({ Component, pageProps }) => {
@@ -32,7 +33,11 @@ export default ({ Component, pageProps }) => {
          {pageProps.statusCode ? (
             <ErrorPage statusCode={pageProps.statusCode} />
          ) : (
-            <Component {...pageProps} />
+            <>
+               <ToastProvider autoDismiss autoDismissTimeout={6000} placement='bottom-right'>
+                  <Component {...pageProps} />
+               </ToastProvider>
+            </>
          )}
       </>
    );

@@ -5,7 +5,7 @@ import "firebase/firestore";
 import firebaseInit from "../../utils/firebaseInit";
 
 firebaseInit();
-
+// Add user uploaded document to intersted collection in database
 /// POST only
 export default async (req, res) => {
     const { documentURL, interestId, name, type } = req.body;

@@ -13,7 +13,7 @@ const Documents = ({ docs, loading, error, setUploadView }) => {
             <div className='mt-5'>
                <Card className='p-0 docBody'>
                   <Card.Header className=' text-muted header border-left-0 border-right-0 d-flex justify-content-between rounded-0'>
-                     <h4 className='pt-3'>Documents</h4>
+                     <h4 className='pt-2'>Documents</h4>
                      <Button
                         onClick={() => setUploadView((prevState) => !prevState)}
                         size='md'
