@@ -180,3 +180,89 @@ html {
 .buttonShadow {
    @include card(1);
 }
+
+/* ******************************
+:: 4.0 COMMON CSS
+****************************** */
+.fw-3 {
+   font-weight: 300;
+}
+
+.fw-4 {
+   font-weight: 400;
+}
+
+.fw-5 {
+   font-weight: 500;
+}
+
+.fw-6 {
+   font-weight: 600;
+}
+
+.fw-7 {
+   font-weight: 700;
+}
+
+.op-5 {
+   opacity: 0.5;
+}
+
+.avatar-sm {
+   height: 3rem;
+   width: 3rem;
+}
+
+.avatar-md {
+   height: 4rem;
+   width: 4rem;
+}
+
+.avatar-lg {
+   height: 5rem;
+   width: 5rem;
+}
+
+.text-underlined,
+.text-underlined:hover,
+.text-underlined:focus {
+   text-decoration: underline;
+}
+
+.text-primary {
+   color: #7c4fe0 !important;
+}
+
+.text-secondary {
+   color: #666 !important;
+}
+
+.featured-icon > span::before {
+   font-size: 4.25rem;
+   line-height: 1;
+   color: #777;
+   margin: 0;
+}
+
+.radius-100 {
+   border-radius: 100px !important;
+}
+
+.h-100vh {
+   height: 100vh;
+}
+
+.inner-pages .h-100vh {
+   height: 100vh !important;
+}
+
+.owl-carousel .owl-item img {
+   width: auto;
+}
+
+.owl-prev:focus,
+.owl-next:focus {
+   outline: none;
+}
+
+

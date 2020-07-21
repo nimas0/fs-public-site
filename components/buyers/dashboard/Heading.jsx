@@ -25,7 +25,7 @@ const Heading = () => {
                         size='lg'
                         variant='link'
                         onClick={() => router.push('/buyer/assistants')}>
-                        <FontAwesomeIcon className='align-top ' icon={faUserPlus} />
+                        <FontAwesomeIcon className='align-top text-primary' icon={faUserPlus} />
                      </Button>
                   </span>
                </Col>

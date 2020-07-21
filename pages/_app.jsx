@@ -4,10 +4,12 @@ import React from 'react';
 import Head from 'next/head';
 import ErrorPage from 'next/error';
 import '../styles.scss';
+import '../style.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 config.autoAddCss = false;
+
 
 export default ({ Component, pageProps }) => {
    return (
@@ -21,6 +23,7 @@ export default ({ Component, pageProps }) => {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <link rel="stylesheet" href="/node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"

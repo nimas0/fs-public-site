@@ -30,7 +30,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .doc(AuthUser.id)
     );
 
-//TODO : clean up return. getting messy with error && error statments
+    //TODO : clean up return. getting messy with error && error statments
 
     return (
         <>
