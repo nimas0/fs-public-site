@@ -76,8 +76,7 @@ let custom = {
 //validation
 const offerSchema = Yup.object().shape({
    deposit: Yup.number()
-      .required('Please enter an amount or select opt out (not recommended)')
-      .positive('Must be a positive number.'),
+      .required('Please enter an amount or select opt out (not recommended)'),
    amount: Yup.number()
       .required('Must enter a purchase offer amount to continue.')
       .positive('Must be a positive number.'),
@@ -125,13 +124,14 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                   comment: '',
                }}
                validationSchema={offerSchema}
+
                onSubmit={(values) => submitProposal(values)}>
                {({ handleSubmit, ...props }) => (
                   <Form noValidate onSubmit={handleSubmit} >
                      <Container fluid='md' className='p-5 '>
                         <Card className='shadow '>
                            <StepWizard
-                              initialStep={1}
+                              initialStep={5}
                               transitions={custom}
                               nav={
                                  <Header
@@ -172,7 +172,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
             body: JSON.stringify({ interestId, offerDetails: values, displayName }),
          });
 
-  
+
 
          // Set up message object, create key, and post to firebase real time //
          const { amount, deposit } = values;

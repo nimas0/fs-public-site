@@ -9,6 +9,7 @@ import { Card, Container, Row, Col, FormControl, Form, Button } from 'react-boot
 import $ from 'jquery';
 import FadeIn from 'react-fade-in';
 import { useRouter } from 'next/router';
+import './homepage.module.css';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -91,7 +92,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                key={props.index}
                // isInvalid={!!props.errors[`input${props.index}`]}
                name={`input${props.index}`}
-               className={`rounded  defaultCard m-3 ${
+               className={`rounded form-control1  defaultCard m-3 ${
                   submitting ? 'afterSubmitStyle' : 'beforeSubmitStyle'
                }`}
                style={{
@@ -180,41 +181,6 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
          <div className='d-flex justify-content-center mt-auto pb-3'>
             <small className='text-muted'> FindingSpaces, LLC - Copyright © 2020</small>
          </div>
-         <style jsx global>{`
-            body {
-               background: #f5f5f5;
-            }
-            input {
-               border-top-style: hidden;
-               border-right-style: hidden;
-               border-left-style: hidden;
-               border-bottom-style: groove;
-            }
-            .form-control {
-               font-size: 5rem;
-               text-align: center;
-            }
-            .form-control:focus {
-               color: transparent;
-               text-shadow: 0 1px 1px #589938;
-               outline: none;
-               -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-               box-shadow: 5 5px 5px rgba(0, 0, 0, 0.2);
-            }
-            beforeSubmitStyle {
-               backgroundcolor: #fff;
-               -webkit-transition: all 0.3s ease-in-out 0s;
-               transition: all 0.3s ease-in-out 0s;
-            }
-            afterSubmitStyle {
-               backgroundcolor: #f5f5f5;
-               -webkit-transition: all 0.3s ease-in-out 0s;
-               transition: all 0.3s ease-in-out 0s;
-            }
-         `}</style>
-         {/* <Link href='/listing/[listingId]' as='/listing/KDfFS1FtGblMYSrzLDCZ'>
-         <a>Test listing</a>
-      </Link> */}
       </>
    );
 };

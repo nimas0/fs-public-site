@@ -33,7 +33,7 @@ const Footer = (props) => {
                <Button
                   disabled={props.disabledBack}
                   onClick={props.previousStep}
-                  className='rounded-lg'
+                  className='rounded-lg text-dark'
                   variant='light'>
                   BACK
                </Button>

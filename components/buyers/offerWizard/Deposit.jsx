@@ -1,9 +1,9 @@
 import React from 'react';
-import { Row, Form, FormControl } from 'react-bootstrap';
+import { Row, Form, FormControl, Button, FormLabel } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
 import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
-
+import { Divider } from 'antd';
 import NumberFormat from 'react-number-format';
 
 const Deposit = ({
@@ -61,14 +61,24 @@ const Deposit = ({
                            touched.deposit = true;
                         }}
                         prefix={'$'}
-                        value={values.floatValue}
+                        value={values.deposit}
                         onBlur={handleBlur}
                         isValid={touched.deposit && !errors.deposit}
                      />
 
                      <Form.Control.Feedback type='invalid'>{errors.deposit}</Form.Control.Feedback>
                   </Form.Group>
-                  <a className='text-warning'>Opt out of deposit</a>
+                  <Divider className='my-4' />
+                  <h6 className='pl-2 text-secondary'>
+                     NOTICE: You may choose to opt out of the deposit, however, this is not a best practice and
+                     could make your offer less attractive.
+                  </h6>
+                  <Button
+                     onClick={() => setFieldValue('deposit', 0)}
+                     variant='light'
+                     className='mt-2 text-info'>
+                     Opt Out the Deposit
+                  </Button>
                </div>
             </Body>
             <SideBar
