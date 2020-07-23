@@ -35,8 +35,12 @@ import FinalComment from '../../../../components/buyers/offerWizard/FinalComment
 import { useToasts } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { objectToStringHomeAddress } from '../../../../utils/helpers';
+
 // Initialize Firebase app
 firebaseInit();
+
 
 
 const stepTitles = {
@@ -107,6 +111,18 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
       router.push('/buyer/dashboard');
    }
 
+   //Grab listing address and display on header
+   const [value, loading, error] = useDocument(
+      firebase
+         .firestore()
+         .collection('interest')
+         .doc(interestId)
+   );
+
+
+   if (!error || !loading) {
+      console.log(value)
+   }
    if (sending) <Spinner animation="grow" />
 
    return (
@@ -131,12 +147,18 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                      <Container fluid='md' className='p-5 '>
                         <Card className='shadow '>
                            <StepWizard
-                              initialStep={5}
+                              initialStep={1}
                               transitions={custom}
                               nav={
                                  <Header
                                     headerText='Propose an Offer'
-                                    subHeaderText='1234 Main Street Phoenix AZ'>
+                                    subHeaderText={error && <strong>Error Displaying Address</strong> ||
+                                       loading && <span>Loading...</span> ||
+                                       value && (
+                                          objectToStringHomeAddress(value.data().listingSnapshot)
+
+                                       )
+                                    }>
                                     <Nav titles={stepTitles} />
                                  </Header>
                               }>
@@ -236,6 +258,8 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
       }
    }
 };
+
+
 
 
 

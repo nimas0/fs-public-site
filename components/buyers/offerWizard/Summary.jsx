@@ -47,7 +47,7 @@ const Summary = ({
 
                   <b className='mb-5'>Please Review Offer before submitting:</b>
                   <br />
-                  <Table className='mt-1' striped borderless hover variant='dark' responsive>
+                  <Table className='mt-1' borderless hover variant='light' responsive>
                      <thead>
                         <tr>
                            {Object.keys(values).map((title) => (
