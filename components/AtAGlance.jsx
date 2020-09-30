@@ -23,6 +23,7 @@ export default ({
   return (
     <section id="at-a-glance" aria-label="Home at a Glance" className="mb-5">
       <QuickStats
+        address={address}
         activity={activity}
         price={price}
         beds={beds}

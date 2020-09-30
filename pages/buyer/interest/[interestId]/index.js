@@ -96,7 +96,7 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                             </Link>
                                         </Col>
                                         <Col xs={toggle ? 5 : 9}>
-                                            <h5 className='ml-4 text-muted d-flex text-center pt-2'>{!toggle && objectToStringHomeAddress(data.listingSnapshot)}</h5>
+                                            <h5 className='ml-4 text-muted d-flex text-center pt-2'>{!toggle && data.address[0]}</h5>
                                         </Col>
                                         <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>
                                             <Link href={`/listing/${data.listingId}`}>
@@ -125,7 +125,7 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                                     <img className='interestImage' src={data.listingMainPhotoUrl} />
                                                 </div>
                                             </div>
-                                            <QuickFacts quickFacts={data.listingSnapshot.quickFacts} />
+                                            <QuickFacts quickFacts={data.quickFacts} />
                                             {
 
                                                 !toggle && (

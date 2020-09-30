@@ -31,6 +31,7 @@ const Possession = ({
    // interestId is formatted as listingId_buyerId
    const interestId = router.query.offer;
 
+   console.log(interestId);
    // break apart the interest id into its individual components ie. listingId_buyerId
    const { listingId, buyerId } = Object.fromEntries(
       interestId.split('_').map((a, index) => {

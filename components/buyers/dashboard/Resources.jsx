@@ -7,7 +7,7 @@ const Resources = () => {
    return (
       <Row>
          <Col>
-            <Card className='defaultCard'>
+            <Card className='border-0 defaultCard'>
                <Card.Header className='py-5' as='h4'>
                   Buyer's Resources
                </Card.Header>

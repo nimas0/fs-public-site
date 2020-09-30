@@ -5,9 +5,9 @@ import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
 
-const HomeLayout = ({ AuthUser, showLoginModal, children }) => (
+const HomeLayout = ({ AuthUser, showLoginModal, logoActive = false, children }) => (
    <>
-      <HomeNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
+      <HomeNav AuthUser={AuthUser} showLoginModal={showLoginModal} logoActive={logoActive} />
       {children}
    </>
 );

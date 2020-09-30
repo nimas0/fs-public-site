@@ -30,8 +30,8 @@ export default ({ as, questions, limit, AuthUser }) => {
       },
       <>
          {createElement(
-            as === 'main' ? 'h1' : 'h2',
-            { id: 'questions-and-answers-heading', className: 'mb-4' },
+            as === 'main' ? 'h3' : 'h4',
+            { id: 'questions-and-answers-heading', className: 'mb-4 text-uppercase font-weight-light p-3' },
             <>Questions &amp; Answers</>
          )}
 
@@ -53,12 +53,12 @@ export default ({ as, questions, limit, AuthUser }) => {
             )}
 
             <Button
-               variant='info'
+               variant='primary'
                size='lg'
                block
                onClick={showModal}
                aria-describedby='question-help'
-               className='mb-1'>
+               className='mb-1 text-uppercase'>
                Ask a question
             </Button>
             <div

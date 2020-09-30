@@ -27,10 +27,7 @@ const Action = ({
                  `/buyer/interest?interestId=${listingId}_${buyerUid}`,
                  `/buyer/interest/${listingId}_${buyerUid}`
               )
-            : router.push(
-                 `/buyer/offer/[offer]`,
-                 `/buyer/offer/${listingId}_${buyerUid}`
-              );
+            : router.push(`/buyer/offer/[offer]`, `/buyer/offer/${listingId}_${buyerUid}`);
       } else if (!isActive) {
          setModalShow(true);
       }
@@ -43,7 +40,7 @@ const Action = ({
          </Row>
          <Row>
             <Col>
-               <Image height='150' src={listingMainPhotoUrl} />
+               <Image width='225' src={listingMainPhotoUrl} />
             </Col>
             <Col>
                <Button

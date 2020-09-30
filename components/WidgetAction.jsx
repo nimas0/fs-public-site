@@ -1,13 +1,28 @@
-"use strict";
+'use strict';
 
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'react-bootstrap';
 
-export default ({ label, icon, href, title }) => (
-  <a className="text-info" href={href} title={title}>
-    <div className="h1-icon">
-      <FontAwesomeIcon icon={icon} />
-    </div>
-    {label && <div style={{ fontSize: "80%" }}>{label}</div>}
-  </a>
+const Widget = ({ handleClick, label, icon, title, isSubscribed }) => (
+   <>
+      <Button
+         style={{
+            backgroundColor: 'green',
+            '&:hover': {
+               backgroundColor: '#fffff',
+            },
+            boxShadow: ' 0px 0px 0px ',
+         }}
+         onClick={handleClick}
+         className='text-info bg-transparent'
+         title={title}>
+         <div className='h1-icon'>
+            <FontAwesomeIcon color={isSubscribed ? 'green' : ''} icon={icon} />
+         </div>
+      </Button>
+      {label && <div style={{ fontSize: '80%' }}>{label}</div>}
+   </>
 );
+
+export default Widget;

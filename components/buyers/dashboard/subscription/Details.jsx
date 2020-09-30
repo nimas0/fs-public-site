@@ -2,34 +2,35 @@ import React from 'react';
 import { Table, Row, Container, Col } from 'react-bootstrap';
 const Details = ({ quickFacts }) => {
    // TODO: improve experience so when data is uploaded page doesnt change to action tab
+
    return (
       <Container>
          <Row className='pb-4'>
             <Col>
-               <h4>{`$${quickFacts.listPrice}`}</h4>
+               <h4>{quickFacts.currentPrice}</h4>
             </Col>
          </Row>
          <Row className='d-flex justify-content-between'>
             <Col className=''>
                <h6>
                   <b>Beds: </b>
-                  {quickFacts.beds}
+                  {quickFacts.bedrooms}
                </h6>
             </Col>
             <Col className=''>
                <h6>
                   <b>Bath: </b>
-                  {quickFacts.bath}
+                  {quickFacts.fullBaths + quickFacts.halfBaths}
                </h6>
             </Col>
             <Col className=''>
                <h6>
                   <b>Sq/ft: </b>
-                  {quickFacts.sqft}
+                  {quickFacts.totalFinishedSqFt}
                </h6>
             </Col>
          </Row>
-         <Row className='d-flex justify-content-between'>
+         {/* <Row className='d-flex justify-content-between'>
             <Col className=''>
                <h6>
                   <b>Built: </b>
@@ -68,7 +69,7 @@ const Details = ({ quickFacts }) => {
                   {quickFacts.fireplace ? 'Yes' : 'No'}
                </h6>
             </Col>
-         </Row>
+         </Row> */}
       </Container>
    );
 };

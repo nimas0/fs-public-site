@@ -11,17 +11,7 @@ const MainLayout = ({ AuthUser, showLoginModal, children }) => (
     </Head>
     <MainNav search={true} AuthUser={AuthUser} showLoginModal={showLoginModal} />
     {children}
-    <style jsx global>{`
-        body {
-         background-color: #ededed
-        }
-        h1 {
-          font-weight: 700;
-        }
-        p {
-          margin-bottom: 10px;
-        }
-      `}</style>
+    
   </>
 )
 

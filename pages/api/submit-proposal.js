@@ -15,13 +15,21 @@ export default async (req, res) => {
 
 
     // break apart the interest id into its individual components ie. listingId_buyerId
-    const { listingId, buyerId } = Object.fromEntries(interestId.split("_").map((a, index) => {
-        if (index === 0) {
-            return ['listingId', a]
-        } else if (index === 1) {
-            return ['buyerId', a]
-        }
-    }));
+    // const { listingId, buyerId } = Object.fromEntries(interestId.split("_").map((a, index) => {
+    //     if (index === 0) {
+    //         return ['listingId', a]
+    //     } else if (index === 1) {
+    //         return ['buyerId', a]
+    //     }
+    // }));
+
+    const splitId = interestId.split('_');
+    console.log(splitId)
+    const listingId = splitId[0]
+    const buyerId = splitId[1]
+
+    console.log('listingId', listingId)
+    console.log('buyerId', buyerId)
 
     // stores the actual proposal denormalized or seperate from interested collection
     const proposalRef = firebase

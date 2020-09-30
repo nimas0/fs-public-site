@@ -1,41 +1,44 @@
 import React, { Component } from 'react';
+import { faUserPlus, faGraduationCap, faTasks, faFileSignature, faComments, faHandsHelping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const initData = {
-    heading: "Express Functionality",
-    headingText: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum obcaecati dignissimos quae quo ad iste ipsum officiis deleniti asperiores sit.",
-    headingTexttwo: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum obcaecati."
+    heading: "SELL YOUR HOME",
+    headingText: "Finding Spaces provides the tools and professional guidance for you to list your property, negotiate offers and manage tasks through closing, all online. ",
+    headingTexttwo: "All legal documents needed for the process are included for FREE!"
 }
 
 const data = [
     {
-        image: "/img/featured_image_1.png",
-        title: "Fully functional",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+        icon: faUserPlus,
+        title: "Sign up",
+        content: "Create a listing website in under 5 minutes. Upon creation, a unique property code gets assigned to the home. Potential buyers need this code to search for your website, book a showing, or make offers."
     },
     {
-        image: "/img/featured_image_2.png",
-        title: "Live Chat",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+        icon: faGraduationCap,
+        title: "Preparation",
+        content: "Finding Spaces provides optional real estate services, such as photography, yard signs, inspections, appraisals, etc. to make sure your home gets fully prepared for the selling process."
     },
     {
-        image: "/img/featured_image_3.png",
-        title: "Secure Data",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+        icon: faTasks,
+        title: "Task Management",
+        content: "The property dashboard will walk you through every step from start to finish of the selling process, while also providing helpful tips along the way."
     },
     {
-        image: "/img/featured_image_4.png",
-        title: "Easy to Customize",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+        icon: faComments,
+        title: "Negotiate offers",
+        content: "After visiting FindingSpaces.com, buyers can access your property page by typing the 5-digit code. Once on the property page, the buyer can submit offers. You can counter, negotiate, and accept offers on your property dashboard. "
     },
     {
-        image: "/img/featured_image_5.png",
-        title: "Responsive Design",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+        icon: faFileSignature,
+        title: "Professional Sales Contract",
+        content: "A free purchase agreement (drafted by and reviewed by attorneys in Arizona and meet all the requirements of a binding contract) will be provided for completion. Once completed and signed we will send to the title company selected by you and the buyer. Once completed and signed we will send to the title company selected by you and the buyer."
     },
     {
-        image: "/img/featured_image_6.png",
-        title: "Help Documentation",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis culpa expedita dignissimos."
+        icon: faHandsHelping,
+        title: "Closing",
+        content: "Once all of the terms of the purchase agreement are fulfilled, it's time for closing! Finding Spaces will make sure you know what to do to prepare for your big day!"
+
     }
 ]
 
@@ -52,35 +55,36 @@ class FeatureSection extends Component {
     }
     render() {
         return (
-            <section id="features" className="section features-area style-two overflow-hidden ptb_100">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 col-md-10 col-lg-6">
+            <section id="features" className="section mb-0 features-area style-two overflow-hidden ptb_100">
+                <div className="container ">
+                    <div className="d-flex justify-content-center row">
+                        <div className="col-12 col-md-10 col-lg-10">
                             {/* Section Heading */}
-                            <div className="section-heading">
+                            <div className="my-5">
                                 {/* <span className="d-inline-block rounded-pill shadow-sm fw-5 px-4 py-2 mb-3">
                                     <i className="far fa-lightbulb text-primary mr-1" />
                                     <span className="text-primary">{this.state.initData.preHeading}</span>
                                     {this.state.initData.preHeadingspan}
                                 </span> */}
-                                <h2>{this.state.initData.heading}</h2>
-                                <p className="d-none d-sm-block mt-4">{this.state.initData.headingText}</p>
-                                <p className="d-block d-sm-none mt-4">{this.state.initData.headingTexttwo}</p>
+                                <h1 className='d-flex justify-content-center text-dark font-weight-bold'>{this.state.initData.heading}</h1>
+                                <h5 className='pt-2 text-center' >{this.state.initData.headingText}</h5>
+                                {/* <h4 className='text-center' >{this.state.initData.headingTexttwo}</h4> */}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         {this.state.data.map((item, idx) => {
                             return (
-                                <div key={`ffd_${idx}`} className="col-12 col-md-6 col-lg-4 my-3 res-margin">
+                                <div key={`ffd_${idx}`} className="col-12 col-md-6 col-lg-4 my-4 res-margin">
                                     {/* Image Box */}
                                     <div className="image-box text-center icon-1 p-5">
                                         {/* Featured Image */}
-                                        <div className="featured-img mb-3">
-                                            <img className="avatar-sm" src={item.image} alt="" />
+                                        <div className="featured-img mb-3 text-primary">
+                                            {/* <img className="avatar-sm" src={item.image} alt="" /> */}
+                                            <FontAwesomeIcon size='2x' color='text-primary' icon={item.icon} />
                                         </div>
                                         {/* Icon Text */}
-                                        <div className="icon-text">
+                                        <div className="icon-text ">
                                             <h3 className="mb-2">{item.title}</h3>
                                             <p>{item.content}</p>
                                         </div>

@@ -10,8 +10,11 @@ import * as Yup from 'yup';
 import withAuthUser from '../../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../../utils/pageWrappers/withLoginModal';
+import Nav from '../../../../components/Nav';
 
-const upload = () => {
+const upload = ({ AuthUserInfo, showLoginModal }) => {
+   const { AuthUser = null } = AuthUserInfo;
+
    const SubmitButton = ({ handleSubmit }) => (
       <Button className='rounded-sm' type='button' onClick={handleSubmit} disabled={sending}>
          {sending ? (
@@ -44,7 +47,14 @@ const upload = () => {
    const [uploadFailure, setUploadFailure] = useState(false);
 
    return (
-      <MainLayout>
+      <>
+         <Nav
+            sticky={true}
+            solidBackground={true}
+            AuthUser={AuthUser}
+            showLoginModal={showLoginModal}
+            logoActive={true}
+         />
          <Formik
             initialValues={{
                loanType: '',
@@ -193,7 +203,7 @@ const upload = () => {
                </InfoGeneralComp>
             )}
          </Formik>
-      </MainLayout>
+      </>
    );
 
    async function submitVerification(values, { resetForm, setFieldError }) {

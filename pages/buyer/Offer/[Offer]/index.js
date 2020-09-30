@@ -18,6 +18,8 @@ import Possession from '../../../../components/buyers/offerWizard/Possession';
 import Nav from '../../../../components/buyers/offerWizard/Nav';
 import Summary from '../../../../components/buyers/offerWizard/Summary';
 
+import MainNav from '../../../../components/Nav';
+
 // Form Control
 import { Formik } from 'Formik';
 import * as Yup from 'yup';
@@ -36,7 +38,7 @@ import { useToasts } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import { objectToStringHomeAddress } from '../../../../utils/helpers';
+
 
 // Initialize Firebase app
 firebaseInit();
@@ -123,10 +125,11 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    if (!error || !loading) {
       console.log(value)
    }
-   if (sending) <Spinner animation="grow" />
+
 
    return (
-      <MainLayout AuthUser={AuthUser} showLoginModal={showLoginModal}>
+      <>
+         <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
 
          <div data-test='offer-wizard'>
             <Formik
@@ -155,7 +158,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                                     subHeaderText={error && <strong>Error Displaying Address</strong> ||
                                        loading && <span>Loading...</span> ||
                                        value && (
-                                          objectToStringHomeAddress(value.data().listingSnapshot)
+                                          value.data().address[0]
 
                                        )
                                     }>
@@ -168,7 +171,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                               <Contingency {...props} contingencyOptions={contingencyOptions} cancelAction={cancelAction} />
                               <Possession {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} />
                               <FinalComment {...props} cancelAction={cancelAction} />
-                              <Summary {...props} handleSubmit={handleSubmit} possessionOptions={possessionOptions} contingencyOptions={contingencyOptions} cancelAction={cancelAction} />
+                              <Summary {...props} handleSubmit={handleSubmit} possessionOptions={possessionOptions} contingencyOptions={contingencyOptions} cancelAction={cancelAction} sending={sending} />
                            </StepWizard>
                         </Card>
                      </Container>
@@ -176,7 +179,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                )}
             </Formik>
          </div>
-      </MainLayout >
+      </>
    )
 
    async function submitProposal(values) {
@@ -232,10 +235,12 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
 
          if (response.ok) {
             // Move on
+
+
+            await router.push('/buyer/dashboard')
+            addToast(`Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`, { appearance: 'success' })
             setSending(false);
             setSuccess(true);
-            addToast(`Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`, { appearance: 'success' })
-            router.push('/buyer/dashboard')
             console.log('upload successful');
          } else {
             // https://github.com/developit/unfetch#caveats

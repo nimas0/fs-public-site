@@ -56,6 +56,9 @@
 @import url(slick.css);
 @import url(fancybox.min.css);
 
+body {
+   background: #f5f5f5;
+}
 
 .fw-3 {
    font-weight: 300;
@@ -103,7 +106,7 @@
 }
 
 .text-primary {
-    color: #006400 !important;
+   color: #006400 !important;
 }
 
 /* .text-secondary {
@@ -227,7 +230,7 @@
 
 .btnnn.sApp-btnnn:before {
    position: absolute;
-   content: "";
+   content: '';
    height: calc(100% + 4px);
    width: calc(100% + 4px);
    top: -2px;
@@ -240,7 +243,7 @@
 
 .btnnn.sApp-btnnn:after {
    position: absolute;
-   content: "";
+   content: '';
    height: 100%;
    width: 100%;
    top: 0;
@@ -255,7 +258,7 @@
 .btnnn.sApp-btnnn:hover:after,
 .btnnn.sApp-btnnn:focus:after {
    opacity: 0;
-   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+   -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
 }
 .btn {
    font-size: 14px;
@@ -352,10 +355,8 @@
 .store-buttons.store-black img {
    max-width: 170px;
    margin-bottom: 10px;
-} */ */
-
-BG SHAPE
-.shapes-container {
+} */
+*/ BG SHAPE .shapes-container {
    position: absolute;
    top: 0;
    left: 0;
@@ -388,21 +389,21 @@ BG SHAPE
 }
 
 /*SHAPE DIVIDER*/
-.shape-bottom {
+/* .shape-bottom {
    position: absolute;
    top: auto;
    bottom: -5px;
    left: 0;
    right: 0;
-}
+} */
 
-.homepage-5 .shape-bottom svg {
+/* .homepage-5 .shape-bottom svg {
    overflow: hidden;
    width: 100%;
    line-height: 0;
    direction: ltr;
    transform: rotate(180deg);
-}
+} */
 
 /*BACKGROUND OVERLAY*/
 .bg-overlay,
@@ -422,7 +423,7 @@ BG SHAPE
 }
 
 .bg-overlay::after {
-   opacity: 0.94;
+   opacity: 0.8;
    z-index: -1;
 }
 
@@ -435,17 +436,16 @@ BG SHAPE
 
 /*BACKGROUND COLORS*/
 .bg-gray {
-   background-color: #f6f9fe;
+   background-color: #f5f5f5;
 }
 .bg-inherit {
    background: inherit !important;
 }
 
-
 .bg-overlay::after,
-.benifits-item:after {
-   background: linear-gradient(-47deg, #177913 0%, #0c5819 100%);
-}
+/* .benifits-item:after {
+   background: linear-gradient(-47deg, #F5F5F5 0%, #F5F5F5 50%);
+} */
 
 /*SOCIAL ICONS*/
 .social-icons > a {
@@ -491,9 +491,9 @@ BG SHAPE
 
 /*BACKGROUND IMAGES*/
 .welcome-area {
-   background: rgba(0, 0, 0, 0)
-      url('https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/loginBanner.jpg?alt=media&token=55091324-5176-4690-8b55-c6ec9bba9133')
-      no-repeat scroll center center / cover;
+   background: rgba(0, 0, 0, 0);
+   /* url('https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/loginBanner.jpg?alt=media&token=55091324-5176-4690-8b55-c6ec9bba9133')
+      no-repeat scroll center center / cover; */
 }
 
 .homepage-3 .welcome-area {
@@ -505,9 +505,9 @@ BG SHAPE
 }
 
 .homepage-5 .welcome-area {
-   background: rgba(0, 0, 0, 0)
-      url('https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/loginBanner.jpg?alt=media&token=55091324-5176-4690-8b55-c6ec9bba9133')
-      no-repeat scroll center top / cover;
+   background: rgb(245, 245, 245)
+      url('https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/websiteimages%2FFamily%20moving%20boxes.png?alt=media&token=67fde286-6da8-40f7-8f7d-83346247c909')
+      no-repeat scroll center bottom / 51%;
 }
 
 .homepage-6 .welcome-area {
@@ -1268,7 +1268,7 @@ BG SHAPE
 
 .slick-dots .slick-active button,
 .testimonial-area .owl-carousel button.owl-dot.active {
-   box-shadow: 0 1px 5px
+   box-shadow: 0 1px 5px;
 }
 
 /* ******************************
@@ -1548,7 +1548,7 @@ BG SHAPE
    outline: none;
    padding-left: 20px;
    border-radius: 8px;
-   -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+   -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -2020,7 +2020,6 @@ BG SHAPE
 .contact-box button {
    height: 60px;
    border-radius: 8px;
-
 }
 
 /*Map Area*/

@@ -30,7 +30,7 @@ export default ({ Component, pageProps }) => {
         />
 
         {/* Fonts */}
-        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700|Open+Sans:300,400,600,700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700|Roboto:300,400,600,700&display=swap" rel="stylesheet" />
       </Head>
 
          {pageProps.statusCode ? (

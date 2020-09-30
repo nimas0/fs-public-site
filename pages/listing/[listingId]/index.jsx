@@ -1,5 +1,4 @@
 'use strict';
-
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -19,6 +18,7 @@ import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
 
+import { useRouter } from 'next/router';
 // URL to test: http://localhost:3000/listing/KDfFS1FtGblMYSrzLDCZ
 
 const Listing = ({
@@ -34,7 +34,7 @@ const Listing = ({
    const breakpoint = useMediaBreakpoints();
    const { timeZone } = listing;
    LuxonSettings.defaultZoneName = timeZone;
-
+   const router = useRouter();
    // Convert schedules to Intervals
    const schedules = {
       listing: stringSchedules.listing.map((tour) =>
@@ -46,6 +46,10 @@ const Listing = ({
          ),
       }),
    };
+
+
+
+
 
    // Listing tour availability
    const { days: dayAvailability } = listing.generalAvailability;
@@ -166,6 +170,7 @@ const Listing = ({
                {breakpoint.up.lg && (
                   <Col lg='auto'>
                      <SchedulingWidget
+                        listing={listing}
                         firstAvailableDate={tourFirstAvailableDate}
                         firstDate={tourFirstDate}
                         setFirstDate={setTourFirstDate}
@@ -184,7 +189,7 @@ const Listing = ({
             </Row>
          </Container>
 
-         <Footer />
+         {/* <Footer /> */}
 
          <style jsx global>{`
             body {
@@ -197,7 +202,6 @@ const Listing = ({
                margin-bottom: 10px;
             }
          `}</style>
-         
       </>
    );
 };

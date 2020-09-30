@@ -15,40 +15,35 @@ import Subscribe from '../../components/public/SubscribeSection/Subscribe';
 import Team from '../../components/public/TeamSection/Team';
 import ContactSection from '../../components/public/ContactSection/Contact';
 import FooterSection from '../../components/public/FooterSection/Footer';
+import HomeLayout from '../../components/layout/HomeLayout';
+import withAuthUser from '../../utils/pageWrappers/withAuthUser';
+import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
+import withLoginModal from '../../utils/pageWrappers/withLoginModal';
+import Nav from '../../components/Nav';
+const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
+   const { AuthUser = null } = AuthUserInfo;
 
-class ThemeFive extends Component {
-   render() {
-      return (
-         <div className='homepage-5'>
-            {/*====== Scroll To Top Area Start ======*/}
-            <div id='scrollUp' title='Scroll To Top'>
-               <i className='fas fa-arrow-up' />
-            </div>
-            {/*====== Scroll To Top Area End ======*/}
-            <div className='main'>
-               <Header
-                  imageData={
-                     'https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336'
-                  }
-               />
-               <HeroSection />
-               <FeatureSection />
-               <DiscoverSection />
-               <ServiceSection />
-               <Work />
-               {/* <ScreenshotSection /> */}
-               <ReviewSection />
-               <PricingSection />
-               <FaqSection />
-               <Team />
-               <Download />
-               <Subscribe />
-               <ContactSection />
-               <FooterSection />
-            </div>
+   return (
+      <div className='homepage-5'>
+         {/*====== Scroll To Top Area Start ======*/}
+         <div id='scrollUp' title='Scroll To Top'>
+            <i className='fas fa-arrow-up' />
          </div>
-      );
-   }
-}
+         {/*====== Scroll To Top Area End ======*/}
+         <div className='main'>
+            <Nav
+               
+            />
+            <HeroSection />
+            <FeatureSection />
+            <ReviewSection />
+            <DiscoverSection />
+            <FaqSection />
+            <Work />
+            {/* <FooterSection /> */}
+         </div>
+      </div>
+   );
+};
 
-export default ThemeFive;
+export default withAuthUser(withAuthUserInfo(withLoginModal(ThemeFive)));

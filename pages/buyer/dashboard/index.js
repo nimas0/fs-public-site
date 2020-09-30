@@ -14,6 +14,7 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import firebaseInit from '../../../utils/firebaseInit';
 import firebase from 'firebase/app';
 import "firebase/firestore";
+import Nav from '../../../components/Nav';
 
 // Initialize Firebase app
 firebaseInit();
@@ -34,42 +35,42 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
     return (
         <>
-            <MainLayout AuthUser={AuthUser} showLoginModal={showLoginModal}>
-                <Container fluid='xl' className='py-5'>
-                    <Row>
-                        <Col xs='5'>
+            <Nav solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal} />
+            <Container fluid='xl' className='pb-5'>
+                <Row>
+                    <Col xs='5'>
 
-                            <Heading />
-                            {
-                                errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
-                                    <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
-                            }
+                        <Heading />
+                        {
+                            errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
+                                <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                        }
 
 
-                            {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
-                            {loading && loadingUserDoc && <span>Loading...</span>}
-                            {(value && userDoc) && (
-                                <span>
-                                    {value.docs.map(doc => (
-                                        <React.Fragment key={doc.id}>
-                                            <SubscriptionCard verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
-                                        </React.Fragment>
-                                    ))}
-                                </span>
-                            )}
+                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
+                        {loading && loadingUserDoc && <span>Loading...</span>}
+                        {(value && userDoc) && (
+                            <span>
+                                {value.docs.map(doc => (
+                                    <React.Fragment key={doc.id}>
+                                        <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
+                                    </React.Fragment>
+                                ))}
+                            </span>
+                        )}
 
-                        </Col>
-                        <Col xs={{ span: 6, offset: 1 }}>
-                            <Row className='pb-5 mx-1'>
-                                <Button className='buttonShadow rounded-lg' variant="primary" size="md" block>
-                                    List your home
+                    </Col>
+                    <Col xs={{ span: 6, offset: 1 }}>
+                        <Row className='pb-5 mx-1'>
+                            <Button href='http://localhost:3001/showings' className='buttonShadow rounded-lg' variant="primary" size="md" block>
+                                {!loadingUserDoc && userDoc.data().defaultListingId ? 'GO TO SELLER DASHBOARD' : 'LIST YOUR HOME'}
                             </Button>
-                            </Row>
-                            <Resources />
-                        </Col>
-                    </Row>
-                </Container>
-            </MainLayout>
+                        </Row>
+                        <Resources />
+                    </Col>
+                </Row>
+            </Container>
+
         </>
     )
 

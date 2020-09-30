@@ -17,7 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
 import logout from '../../utils/auth/logout';
 
-export default ({ address, search, AuthUser, showLoginModal }) => {
+export default ({ address, search, AuthUser, showLoginModal, logoActive }) => {
    const router = useRouter();
    const logoutRefresh = async () => {
       try {
@@ -29,9 +29,21 @@ export default ({ address, search, AuthUser, showLoginModal }) => {
 
    return (
       <header className='navbar navbar-sticky navbar-expand-xl navbar-light'>
-         <Nav.Link className='text-muted' href='#home'>
-            <p>About</p>
-         </Nav.Link>
+         {logoActive ? (
+            <Link href='/' passHref>
+               <Navbar.Brand className='font-italic'>
+                  <img
+                     width={'50%'}
+                     src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336'
+                  />
+               </Navbar.Brand>
+            </Link>
+         ) : (
+            <Nav.Link className='text-muted' href='#home'>
+               <p>About</p>
+            </Nav.Link>
+         )}
+
          <div className='ml-auto position-relative'>
             <button
                className='navbar-toggler d-lg-none '
@@ -56,9 +68,9 @@ export default ({ address, search, AuthUser, showLoginModal }) => {
                         <Nav.Link href='/learnmore'>Learn More</Nav.Link>
                         {AuthUser && (
                            <>
-                              <Nav.Link href='/buyer/dashboard'>Buying Center</Nav.Link>
+                              <Nav.Link href='/buyer/dashboard'>Buying Dashboard</Nav.Link>
                               <Nav.Link href='http://localhost:3001/showings'>
-                                 Selling Center
+                                 Selling Dashboard
                               </Nav.Link>
                            </>
                         )}
@@ -102,13 +114,7 @@ export default ({ address, search, AuthUser, showLoginModal }) => {
                </Navbar>
             </div>
          </div>
-         <style jsx>
-            {`
-               .my-dropdown-toggle:after {
-                  display: none;
-               }
-            `}
-         </style>
+        
       </header>
    );
 };
