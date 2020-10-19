@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Form, FormControl, Button, FormLabel } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/Sidebar';
+// import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 import { Divider } from 'antd';
 import NumberFormat from 'react-number-format';
@@ -100,12 +100,12 @@ const Deposit = ({
                   </Button>
                </div>
             </Body>
-            <SideBar
+            {/* <SideBar
                sidebarHeader='Is a deposit neccessary?'
                subHeaderText={subHeaderText}
                enabled={true}
                links={links}
-            />
+            /> */}
          </Row>
          <Footer
             disabledNext={!touched.deposit || (touched.deposit && !!errors.deposit)}

@@ -13,7 +13,7 @@ import {
    Table,
 } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/Sidebar';
+// import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 import { useRouter } from 'next/router';
 import { toTitleCase } from '../../../utils/helpers';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, ListGroup, Button } from 'react-bootstrap';
+import { Col, Row, ListGroup } from 'react-bootstrap';
 
 const SideBar = ({ sidebarHeader, subHeaderText, enabled = false, links }) => {
    const renderedComponent = () =>
