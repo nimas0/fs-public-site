@@ -8,15 +8,15 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Modal, Button, Form, Spinner, ModalBody } from 'react-bootstrap';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
-import 'firebase/auth';
-import fetch from 'isomorphic-unfetch';
-import firebaseInit from '../utils/firebaseInit';
-import uploadUserDocument from '../utils/uploadUserDocument';
+// import 'firebase/auth';
+// import fetch from 'isomorphic-unfetch';
+// import firebaseInit from '../utils/firebaseInit';
+// import uploadUserDocument from '../utils/uploadUserDocument';
 import { useRouter } from 'next/router';
 import Countdown from 'react-countdown';
 
-// Initialize Firebase app
-firebaseInit();
+// // Initialize Firebase app
+// firebaseInit();
 
 export default ({ shown, setShown }) => {
    // FirebaseUI does not support server-side rendering
