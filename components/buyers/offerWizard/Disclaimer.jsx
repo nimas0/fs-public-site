@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 import { Col, Button, Spinner } from 'react-bootstrap';
 import Timer from '../../Timer';
@@ -11,6 +10,7 @@ const dataObject = {
    disclaimerHeader: 'Disclaimer: Non-Official Offer',
    disclaimerBody: 'alsdfjalsdfjfff',
    sidebar: false,
+   
 };
 
 const handleFooter = () => {};
