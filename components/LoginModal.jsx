@@ -182,7 +182,7 @@ export default ({ shown, setShown }) => {
 
                <Modal.Body>
                   <p>
-                     You have successfully created an account. If you did not upload a pre-approval
+                     You have successfully created an account! If you did not upload a pre-approval
                      you may still secure a time and date with this home. If you still have not
                      uploaded a pre-approval within 12 hours of the appointment, the appointment
                      will automatically be canceled.
