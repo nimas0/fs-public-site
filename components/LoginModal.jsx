@@ -5,13 +5,15 @@
 'use strict';
 
 import React, { useEffect, useState, useRef } from 'react';
-import { Modal, Button, Form, Spinner } from 'react-bootstrap';
+import { Modal, Button, Form, Spinner, ModalBody } from 'react-bootstrap';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
 import firebaseInit from '../utils/firebaseInit';
 import uploadUserDocument from '../utils/uploadUserDocument';
+import { useRouter } from 'next/router';
+import Countdown from 'react-countdown';
 
 // Initialize Firebase app
 firebaseInit();
@@ -25,6 +27,8 @@ export default ({ shown, setShown }) => {
          setRenderAuth(true);
       }
    }, []);
+
+   const router = useRouter();
 
    // File input
    const fileInput = useRef(0);
@@ -83,20 +87,27 @@ export default ({ shown, setShown }) => {
    };
 
    return (
-      <Modal show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
+      <Modal style={{color: '#ffff', opacity: 1}} className='border-0 m-4 '  centered show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
          {page === 'auth' ? (
             <>
-               <Modal.Header closeButton>
-                  <Modal.Title>Please Sign In</Modal.Title>
+               <Modal.Header  className='text-white bg-dark schedulingShadow' closeButton>
+                  <Modal.Title  className=' text-center '>Full Website Coming Soon</Modal.Title>
                </Modal.Header>
+      
 
-               <Modal.Body>
-                  {renderAuth ? (
+               <Modal.Body className='pt-5  bg-light px-3 text-center text-secondary'>
+                  {/* {renderAuth ? (
                      <StyledFirebaseAuth
                         uiConfig={firebaseAuthConfig}
                         firebaseAuth={firebase.auth()}
                      />
-                  ) : null}
+                  ) : null} */}
+                     Alpha version with all features is available in: <h2 className='mt-4'><Countdown date={new Date(2020, 10)} /></h2>
+               </Modal.Body>
+               <Modal.Body className='pb-5 px-5 pt-0 text-center text-secondary'>
+                  In the meantime, please visit our learn more page:
+
+                  <Button size='large' variant='outlined' className='text-primary ' onClick={() => router.push('/learnmore')}>LEARN MORE</Button>
                </Modal.Body>
             </>
          ) : page === 'authWait' ? (
