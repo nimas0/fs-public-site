@@ -21,7 +21,7 @@ import Summary from '../../../../components/buyers/offerWizard/Summary';
 import MainNav from '../../../../components/Nav';
 
 // Form Control
-import { Formik } from 'Formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 //Generic Header
