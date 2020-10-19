@@ -15,24 +15,29 @@ import MessageProposal from '../Message/MessageProposal';
 firebaseInit();
 
 
-export default function MessageList(props) {
+export default function MessageList({ messagesEndRef, ...props }) {
   const router = useRouter();
   const interestId = router.query.interestId;
 
+
+
   // interest id includes embed buyer id after '_' underscore
   const MY_USER_ID = interestId.split('_')[1];
-  console.log(MY_USER_ID)
+  // console.log(MY_USER_ID)
 
   let messages = [];
 
 
-  const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
+
     messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
   };
 
-  useEffect(scrollToBottom, [messages]);
+
+
+
+
 
   const [value, loading, error] = useListVals(firebase.database().ref(`interest_chat/${interestId}`));
 
@@ -40,12 +45,18 @@ export default function MessageList(props) {
     messages = [...value]
   }
 
+  useEffect((messagesEndRef) => {
+    scrollToBottom(messagesEndRef)
+    console.log('falsdfj')
 
+  }, [loading])
 
   const getMessages = () => {
     var tempMessages = []
     setMessages([...messages, ...tempMessages])
   }
+
+
 
   const renderMessages = () => {
     let i = 0;
@@ -94,7 +105,7 @@ export default function MessageList(props) {
 
       if (isProposal) {
         const proposalId = current.proposalId;
-        console.log(current.proposalId)
+        // console.log(current.proposalId)
         tempMessages.push(
           <MessageProposal
             handleToggleSidebar={props.handleToggleSidebar}
@@ -111,6 +122,7 @@ export default function MessageList(props) {
           <Message
             key={i}
             isMine={isMine}
+            messagesEndRef={messagesEndRef}
             startsSequence={startsSequence}
             endsSequence={endsSequence}
             showTimestamp={showTimestamp}

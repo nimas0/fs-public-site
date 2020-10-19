@@ -342,7 +342,7 @@ const Tour = ({
                 setSubmitting,
                 setConfirmed
               }}
-              userId={AuthUser && AuthUser.id}
+              user={AuthUser && AuthUser}
             />
           </main>
         )}

@@ -5,12 +5,18 @@ import Body from '../../generic/Dialog/Body';
 import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 
-const FinalComment = ({ errors, touched, handleChange, values, handleBlur, sending, ...rest }) => {
+const FinalComment = ({ errors, touched, handleChange, values, handleBlur, proposal, sending, ...rest }) => {
    return (
       <div data-test='step-comment'>
          <Row>
             <Body className='d-flex justify-content-center'>
                <div className='w-75'>
+               {proposal &&
+                  (<>
+                  <p>Homeowner left the following remarks</p>
+                  { proposal.offerDetails.comment}
+                  </>)
+               }
                   <Form.Group controlId='formGridAddress1'>
                      <Form.Label className='pb-2' data-test='step-comment-header'>
                         Please enter any comments or additional requests here:

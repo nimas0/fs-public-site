@@ -28,6 +28,7 @@ export default ({
          setScrolled(false);
       }
    });
+   
    console.log(isScrolled);
    //   useScrollDirection(direction => {
    //       console.log('direction', direction)
@@ -40,7 +41,7 @@ export default ({
       try {
          await logout();
       } finally {
-         router.replace(router.pathname, router.asPath);
+         //router.replace(router.pathname, router.asPath);
       }
    };
 
@@ -50,13 +51,13 @@ export default ({
             id={solidBackground && isScrolled ? 'navbar-scrolling' : 'navbar-custom'}
             fixed
             sticky='top'
-            className=' text-info  d-flex px-5 pt-3 pb-2 mb-5'>
+            className=' text-info  d-flex px-5 pt-3 pb-2 '>
             <>
                <div className='flex-grow-0 order-1'>
                   <Link href='/' passHref>
                      <>
                         {homepage ? (
-                           <Nav.Link variant='text-secondaryn\o9za' href='/learnmore'>
+                           <Nav.Link variant='text-secondary' href='/learnmore'>
                               Learn More
                            </Nav.Link>
                         ) : (
@@ -83,11 +84,19 @@ export default ({
                         {/* <Nav.Link as={Button} variant='link' href='/learnmore'>
                            Learn More
                         </Nav.Link> */}
-                        <Nav.Link as={Button} variant='link' href='/buyer/dashboard'>
-                           Buyer Dashboard
+                        <Nav.Link
+                           as={Button}
+                           className='p-3'
+                           variant='link'
+                           href='/buyer/dashboard'>
+                           Buying
                         </Nav.Link>
-                        <Nav.Link as={Button} variant='link' href='http://localhost:3001/showings'>
-                           Seller Dashboard
+                        <Nav.Link
+                           as={Button}
+                           className='p-3'
+                           variant='link'
+                           href='http://localhost:3001/showings'>
+                           Selling
                         </Nav.Link>
                      </>
                   ) : (
@@ -96,10 +105,10 @@ export default ({
                            Learn More
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Buyer Dashboard
+                           Buyer
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Seller Dashboard
+                           Seller
                         </Nav.Link>
                         {/* <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
                            Buying
@@ -110,7 +119,7 @@ export default ({
                   )}
                </Nav>
             </Navbar.Collapse>
-            <Nav className='mr-3 mr-sm-0 order-3 order-sm-5'>
+            <Nav className='mr-1 mr-sm-0 order-3 order-sm-5'>
                {AuthUser ? (
                   AuthUser.photoURL ? (
                      <NavDropdown

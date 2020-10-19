@@ -1,7 +1,7 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import MainLayout from '../../../components/layout/MainLayout';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import Heading from '../../../components/buyers/dashboard/Heading';
 import Approval from '../../../components/buyers/dashboard/approval/Approval';
 import SubscriptionCard from '../../../components/buyers/dashboard/subscription/SubscriptionCard';
@@ -10,6 +10,8 @@ import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+
+import SellerSignUp from '../../../components/buyers/dashboard/sellersignup/SellerSignUp'
 
 import firebaseInit from '../../../utils/firebaseInit';
 import firebase from 'firebase/app';
@@ -36,17 +38,24 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
     return (
         <>
             <Nav solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal} />
-            <Container fluid='xl' className='pb-5'>
+            <Container>
                 <Row>
-                    <Col xs='5'>
+                    <Col xs='6'>
 
                         <Heading />
+                        <Row className='pb-2 mx-1'>
+                            {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
+                                Seller's Dashboard
+                                       </Card.Header> */}
+                            {/* <Button href={!loadingUserDoc && userDoc.data().defaultListingId ? 'http://localhost:3001/showings' : '/learnmore'} className=' rounded-lg mx-3' variant="primary" size="md" block>
+                                {!loadingUserDoc && userDoc.data().defaultListingId ? 'Go to Seller\'s Dashboard' : 'Learn More: Sell Your Home Free'}
+                            </Button> */}
+                            <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                        </Row>
                         {
                             errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
                                 <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
                         }
-
-
                         {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
                         {loading && loadingUserDoc && <span>Loading...</span>}
                         {(value && userDoc) && (
@@ -60,17 +69,30 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                         )}
 
                     </Col>
-                    <Col xs={{ span: 6, offset: 1 }}>
-                        <Row className='pb-5 mx-1'>
-                            <Button href='http://localhost:3001/showings' className='buttonShadow rounded-lg' variant="primary" size="md" block>
-                                {!loadingUserDoc && userDoc.data().defaultListingId ? 'GO TO SELLER DASHBOARD' : 'LIST YOUR HOME'}
-                            </Button>
+                    <Col xs={{ span: 6 }}>
+
+                        <Row>
+                            <Col>
+                                <Card className='border-0 mb-2 bg-transparent'>
+                                    {/* <Card.Header className='bg-transparent py-4  border-0 ' as='h4'>
+                                       Search Using Home Code`
+                                       </Card.Header>  */}
+                                    <Card.Body className='text-center py-5'>
+
+                                        <Card.Text>
+                                            <small>
+                                                <i>Search Bar for Home</i>
+                                            </small>
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
                         </Row>
+
                         <Resources />
                     </Col>
                 </Row>
             </Container>
-
         </>
     )
 

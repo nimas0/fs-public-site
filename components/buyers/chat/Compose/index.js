@@ -12,7 +12,7 @@ import { Form } from 'react-bootstrap';
 firebaseInit();
 
 
-export default function Compose({ auth, rightItems }) {
+export default function Compose({ messagesEndRef, auth, rightItems, setProposalData }) {
   // get id from url
   const router = useRouter();
   const interestId = router.query.interestId;
@@ -32,7 +32,6 @@ export default function Compose({ auth, rightItems }) {
         message: message,
         timestamp: Date.now()
       }
-
       // Get a key for a new Post.
       let newPostKey = await firebase.database().ref().child('posts').push().key;
       let update = {};
@@ -40,7 +39,8 @@ export default function Compose({ auth, rightItems }) {
       console.log(newPostKey)
       await firebase.database().ref().update(update);
       resetForm();
-      messageRef.current.focus();
+      messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
+
     } catch (error) {
       console.log(error)
     }

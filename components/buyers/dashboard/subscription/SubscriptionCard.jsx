@@ -75,9 +75,9 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
    return (
       <Row>
          <Col>
-            <Card className='defaultCard'>
+            <Card  className='schedulingShadow border-0 bg-white mb-4'>
                <Tab.Container id='left-tabs-example' activeKey={key} onSelect={(k) => setKey(k)}>
-                  <Card.Header className='pt-4 text-muted mb-0' as='h5'>
+                  <Card.Header  className='pt-4  bg-white text-muted  mb-0' as='h5'>
                      <Row className=''>
                         <Col xs={11} className=' pb-4'>
                            {subscriptionData.address[0]}
@@ -100,21 +100,24 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
                         </Col>
                      </Row>
 
-                     <Nav fill variant='tabs' className='nav justify-content-center '>
-                        <Nav.Item>
+                     <Nav
+                        fill
+                        variant='tabs'
+                        className='border-0   border-bottom-0 nav justify-content-center '>
+                        <Nav.Item className=' border-bottom-0'>
                            {key === 'action' ? (
                               <Nav.Link
                                  key={key}
-                                 className='text-primary border-bottom border-primary border-top-0 border-left-0 border-right-0 small bg-transparent'
+                                 className='text-primary border-top-0 border-bottom-0 border-left-0 border-right-0 small bg-transparent'
                                  eventKey='action'>
-                                 Action
+                                 <b>Action</b>
                               </Nav.Link>
                            ) : (
                               <Nav.Link
                                  key={key}
-                                 className='text-dark border-bottom border-primary border-0 small bg-transparent'
+                                 className='text-dark border-0 small bg-transparent'
                                  eventKey='action'>
-                                 Action
+                                 <b>Action</b>
                               </Nav.Link>
                            )}
                         </Nav.Item>
@@ -122,14 +125,14 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
                            {key === 'details' ? (
                               <Nav.Link
                                  key={key}
-                                 className='text-primary border-bottom border-primary border-top-0 border-left-0 border-right-0 small bg-transparent'
+                                 className='text-primary border-top-0 border-left-0 border-right-0 small bg-transparent'
                                  eventKey='action'>
-                                 Details
+                                 <b>Details</b>
                               </Nav.Link>
                            ) : (
                               <Nav.Link
                                  key={key}
-                                 className='text-dark border-bottom border-primary border-0 small bg-transparent'
+                                 className='text-dark border-0 small bg-transparent'
                                  eventKey='details'>
                                  Details
                               </Nav.Link>

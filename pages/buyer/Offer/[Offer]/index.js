@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Card, Row, Col, Button, Form, Spinner } from 'react-bootstrap';
 import StepWizard from 'react-step-wizard';
 import fetch from 'isomorphic-unfetch';
@@ -38,6 +38,7 @@ import { useToasts } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import queryLatestProposal from '../../../../utils/queryLatestProposal';
 
 
 // Initialize Firebase app
@@ -98,6 +99,7 @@ const offerSchema = Yup.object().shape({
 
 const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) => {
    const { AuthUser = null } = AuthUserInfo;
+   const [proposal, setProposal] = useState(false)
    const { addToast } = useToasts()
    const router = useRouter();
    const interestId = router.query.offer;
@@ -122,11 +124,26 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    );
 
 
+   useEffect(async () => {
+      setProposal(await queryLatestProposal(interestId))
+      console.log('proposal', proposal)
+   }, [interestId])
+
+
+
    if (!error || !loading) {
       console.log(value)
+      // console.log('query', ((router.asPath).toString().split('?'))[1])
+      // const query = ((router.asPath).toString().split('?'))[1];
+
+      // console.log(JSON.parse('{"' + decodeURI(((router.asPath).toString().split('?'))[1].replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
+      // )
    }
 
+   // const query = ((router.asPath).toString().split('?'))[1];
+   // const queryObject = JSON.parse('{"' + decodeURI(((router.asPath).toString().split('?'))[1].replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
 
+   // console.log('offerDetails', queryObject)
    return (
       <>
          <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
@@ -150,7 +167,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                      <Container fluid='md' className='p-5 '>
                         <Card className='shadow '>
                            <StepWizard
-                              initialStep={1}
+                              initialStep={0}
                               transitions={custom}
                               nav={
                                  <Header
@@ -165,12 +182,12 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                                     <Nav titles={stepTitles} />
                                  </Header>
                               }>
-                              <Disclaimer {...props} cancelAction={cancelAction} />
-                              <Amount {...props} cancelAction={cancelAction} />
-                              <Deposit {...props} cancelAction={cancelAction} />
-                              <Contingency {...props} contingencyOptions={contingencyOptions} cancelAction={cancelAction} />
-                              <Possession {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} />
-                              <FinalComment {...props} cancelAction={cancelAction} />
+                              <Disclaimer  {...props} cancelAction={cancelAction} />
+                              <Amount proposal={proposal} {...props} cancelAction={cancelAction} />
+                              <Deposit proposal={proposal} {...props} cancelAction={cancelAction} />
+                              <Contingency proposal={proposal} {...props} contingencyOptions={contingencyOptions} cancelAction={cancelAction} />
+                              <Possession proposal={proposal} {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} />
+                              <FinalComment proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Summary {...props} handleSubmit={handleSubmit} possessionOptions={possessionOptions} contingencyOptions={contingencyOptions} cancelAction={cancelAction} sending={sending} />
                            </StepWizard>
                         </Card>

@@ -1,7 +1,7 @@
 'use strict';
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import fetch from 'isomorphic-unfetch';
 import { Settings as LuxonSettings, DateTime, Interval } from 'luxon';
 import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
@@ -32,6 +32,7 @@ const Listing = ({
 }) => {
    const { AuthUser = null } = AuthUserInfo;
    const breakpoint = useMediaBreakpoints();
+   const [isSubscribed, setSubscribed] = useState(false);
    const { timeZone } = listing;
    LuxonSettings.defaultZoneName = timeZone;
    const router = useRouter();
@@ -46,10 +47,6 @@ const Listing = ({
          ),
       }),
    };
-
-
-
-
 
    // Listing tour availability
    const { days: dayAvailability } = listing.generalAvailability;
@@ -105,20 +102,32 @@ const Listing = ({
                Finding Spaces – {listing.address[0]}, {listing.address[1]}
             </title>
          </Head>
-
          <Nav
+            solidBackground={true}
             address={breakpoint.up.lg ? listing.address[0] + ', ' + listing.address[1] : false}
             {...{ AuthUser, showLoginModal }}
          />
-
          {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-         <Container bsPrefix='container-md'>
+         <Container style={{ marginTop: '3%' }} bsPrefix='container-md'>
             {breakpoint.down.md && (
                <Row as='h1' className='h4 mx-auto mb-3' style={{ width: 'max-content' }}>
                   {listing.address[0]}
                   {breakpoint.xs ? <br /> : ', '}
                   {listing.address[1]}
                </Row>
+            )}
+
+            {isSubscribed && (
+               <Alert
+                  variant='secondary'
+                  className='py-2 px-4 mb-5 d-flex justify-content-between align-items-center'>
+                  <p className='pt-2'>
+                     You are subscribed to this listing. To view, chat, or submit an offer visit:
+                  </p>
+                  <Alert.Link href='/buyer/dashboard' className='text-primary '>
+                     BUYER DASHBOARD
+                  </Alert.Link>
+               </Alert>
             )}
 
             <Row as='main'>
@@ -170,6 +179,7 @@ const Listing = ({
                {breakpoint.up.lg && (
                   <Col lg='auto'>
                      <SchedulingWidget
+                        setSubscribed={setSubscribed}
                         listing={listing}
                         firstAvailableDate={tourFirstAvailableDate}
                         firstDate={tourFirstDate}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import MainLayout from '../../../../components/layout/MainLayout';
@@ -21,6 +21,7 @@ import Documents from '../../../../components/buyers/Documents';
 import DocumentUpload from '../../../../components/buyers/interest/DocumentUpload';
 
 import ViewProposal from '../../../../components/buyers/interest/ViewProposal';
+import Nav from '../../../../components/Nav';
 
 
 // Initialize Firebase app
@@ -33,6 +34,20 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
     const interestId = router.query.interestId;
     const [activeProposal, setActiveProposal] = React.useState(1);
     const [proposalData, setProposalData] = React.useState(null);
+
+    const messagesEndRef = useRef(null);
+    if (proposalData) {
+        console.log('serializedData', Object.entries(proposalData)
+            .map(
+                ([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`
+            )
+            .join("&"))
+
+
+
+        console.log('proposalData', proposalData)
+    }
+
     useEffect(() => {
         if (activeProposal !== 1) {
             let proposalsRef = firebase
@@ -66,17 +81,19 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
         }
     );
 
-    if (!docLoading) {
-        console.log(JSON.stringify(docs));
-    }
+    // if (!docLoading) {
+    //     console.log(JSON.stringify(docs));
+    // }
 
 
     const handleToggleSidebar = (proposalId) => {
-        setToggle((prevState) => !prevState)
+        if (proposalId.toString() === activeProposal) {
+            setToggle((prevState) => !prevState)
+        }
         setActiveProposal(proposalId.toString())
     }
 
-    console.log('active Proposal', activeProposal)
+    // console.log('active Proposal', activeProposal)
     const data = value && value.data();
 
     return (
@@ -84,7 +101,8 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
             {error && <strong>Error: {JSON.stringify(error)}</strong>}
             {loading && <span>Document: Loading...</span>}
             {value &&
-                <MainLayout AuthUser={AuthUser} showLoginModal={showLoginModal}>
+                <>
+                    <Nav AuthUser={AuthUser} showLoginModal={showLoginModal} />
                     <Row className=' d-flex'>
                         <Col noGutters>
                             <div className=' border'>
@@ -114,7 +132,7 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                         <Col className='d-flex align-items-stretch border-right pr-0'>
                                             {uploadView ?
                                                 <DocumentUpload interestId={interestId} setUploadView={setUploadView} /> :
-                                                <Messenger handleToggleSidebar={handleToggleSidebar} AuthUserInfo={AuthUserInfo} />
+                                                <Messenger messagesEndRef={messagesEndRef} setProposalData={setProposalData} activeProposal={activeProposal} proposalData={proposalData} handleToggleSidebar={handleToggleSidebar} AuthUserInfo={AuthUserInfo} />
 
                                             }
 
@@ -156,8 +174,7 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                         </Col>
                         <ViewProposal interestId={interestId} interestData={data} toggle={toggle} setToggle={setToggle} handleToggleSidebar={handleToggleSidebar} proposalData={proposalData} />
                     </Row>
-
-                </MainLayout>
+                </>
             }
         </>
 

@@ -20,6 +20,7 @@ import firebaseInit from '../utils/firebaseInit';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { useEffect } from 'react';
 
 // Initialize Firebase app
 firebaseInit();
@@ -36,6 +37,7 @@ const SchedulingWidget = ({
    timeZone,
    AuthUser,
    showLoginModal,
+   setSubscribed,
 }) => {
    const breakpoint = useMediaBreakpoints();
 
@@ -52,7 +54,7 @@ const SchedulingWidget = ({
    const [failure, setFailure] = React.useState(false);
    const [sending, setSending] = React.useState(false);
 
-   const buyerId = AuthUser.id;
+   const buyerId = AuthUser && AuthUser.id;
    const listingId = router.query.listingId;
    const interestId = `${listingId}_${buyerId}`;
    console.log('interestId', interestId);
@@ -66,6 +68,15 @@ const SchedulingWidget = ({
       console.log('listingId', value.data());
    }
 
+   useEffect(() => {
+      if (!loading && !error && value.data()) {
+         return setSubscribed(true);
+      }
+      if (!loading && !error) {
+         return setSubscribed(false);
+      }
+   }, [value]);
+
    const handleSubscribe = async () => {
       setSuccess(false);
       setFailure(false);
@@ -74,12 +85,30 @@ const SchedulingWidget = ({
       try {
          const { authId } = AuthUser;
 
-         // Send offer info through API
-         const response = await fetch('/api/subscribe-listing', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ listingId: router.query.listingId, AuthUser, listing }),
-         });
+         if (!!value.data()) {
+            // Send offer info through API
+            let interestId = `${router.query.listingId}_${AuthUser.id}`;
+            const response = await fetch('/api/unsubscribe-listing', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({ interestId }),
+            });
+            console.log('nope');
+         } else {
+            // Send offer info through API
+            const response = await fetch('/api/subscribe-listing', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({ listingId: router.query.listingId, AuthUser, listing }),
+            });
+         }
+
+         // // Send offer info through API
+         // const response = await fetch('/api/subscribe-listing', {
+         //    method: 'POST',
+         //    headers: { 'Content-Type': 'application/json' },
+         //    body: JSON.stringify({ listingId: router.query.listingId, AuthUser, listing }),
+         // });
 
          // Set up message object, create key, and post to firebase real time //
          // const { amount, deposit } = values;
@@ -171,7 +200,9 @@ const SchedulingWidget = ({
                                    }
                            }
                            className={clsx(breakpoint.down.md && 'px-5', 'buttonShadow')}
-                           style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}></Button>
+                           style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}>
+                           Schedule Tour
+                        </Button>
                      </Link>
                   </div>
                   <div
@@ -206,7 +237,7 @@ const SchedulingWidget = ({
                            href='#'
                         />
                      </Col>
-                     <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
+                     {/* <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
                         <WidgetAction
                            handleClick={handleSubscribe}
                            label='Start a Conversation'
@@ -221,7 +252,7 @@ const SchedulingWidget = ({
                            icon={faCommentsDollar}
                            href='#'
                         />
-                     </Col>
+                     </Col> */}
                   </Row>
                </Card>
 

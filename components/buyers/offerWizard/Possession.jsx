@@ -24,24 +24,27 @@ const Possession = ({
    handleBlur,
    sending,
    dirty,
+   proposal,
    ...rest
 }) => {
    const router = useRouter();
    // grab id from URL
    // interestId is formatted as listingId_buyerId
    const interestId = router.query.offer;
-
+   console.log(interestId);
    console.log(interestId);
    // break apart the interest id into its individual components ie. listingId_buyerId
-   const { listingId, buyerId } = Object.fromEntries(
-      interestId.split('_').map((a, index) => {
-         if (index === 0) {
-            return ['listingId', a];
-         } else if (index === 1) {
-            return ['buyerId', a];
-         }
-      })
-   );
+   // const { listingId, buyerId } = Object.fromEntries(
+   //    interestId.split('_').map((a, index) => {
+   //       if (index === 0) {
+   //          return ['listingId', a];
+   //       } else if (index === 1) {
+   //          return ['buyerId', a];
+   //       }
+   //    })
+   // );
+
+   const listingId = interestId.split('_')[0];
 
    const [doc, loadingDoc, errorDoc] = useDocumentData(
       firebase
@@ -54,6 +57,7 @@ const Possession = ({
    // now just need to wire up possession to UI
    let possession = [];
    if (!loadingDoc && !errorDoc) {
+      console.log(doc);
       possession = doc.homeFeatures.possession.filter((type) => type.value === true);
    }
 
@@ -65,8 +69,21 @@ const Possession = ({
                {loadingDoc && <span>Loading...</span>}
                {doc && (
                   <div className='w-75'>
+                     {
+                        proposal && (
+                           <>
+                              <p>Homeowner has indicated the following</p>
+                              <Form.Label className='pb-2' data-test='step-possession-header'>
+                                 {proposal.offerDetails.possession}
+                              </Form.Label>
+                           </>
+                        )
+                     }
+            
                      <Form.Group controlId='formGridAddress1'>
-                        <Form.Label className='pb-2' data-test='step-possession-header'>
+                     {
+                        !proposal && (
+                           <Form.Label className='pb-2' data-test='step-possession-header'>
                            The homeowner has indicated the following preferences for handing over
                            possession of the subject property:
                            <div className='m-2'>
@@ -77,6 +94,8 @@ const Possession = ({
                               ))}
                            </div>
                         </Form.Label>
+                        )
+                     }
                         <Form.Group controlId='exampleForm.SelectCustom'>
                            <Form.Control
                               name='possession'

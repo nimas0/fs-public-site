@@ -5,20 +5,20 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const Resources = () => {
    return (
-      <Row>
+      <Row className='bg-transparent'>
          <Col>
-            <Card className='border-0 defaultCard'>
-               <Card.Header className='py-5' as='h4'>
+            <Card className='bg-transparent border-0'>
+               {/* <Card.Header className='bg-transparent py-5' as='h4'>
                   Buyer's Resources
-               </Card.Header>
-               <ListGroup variant='flush'>
-                  <ListGroup.Item className='p-4 text-muted'>
-                     <i>
+               </Card.Header> */}
+               <ListGroup variant='flush bg-transparent'>
+                  <ListGroup.Item className='p-4 text-muted bg-transparent'>
+                     {/* <i>
                         Discover how to take buying into your own hands. It is easier than you
                         think!
-                     </i>
+                     </i> */}
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}>What to know when making an offer</Col>
                         <Col xs={1}>
@@ -26,7 +26,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}>Securing a loan</Col>
                         <Col xs={1}>
@@ -34,7 +34,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}>Steps when buying a home</Col>
                         <Col xs={1}>
@@ -42,7 +42,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> Steps when buying a home Before sheduling an appointment</Col>
                         <Col xs={1}>
@@ -50,7 +50,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> Look out for these 5 home issues</Col>
                         <Col xs={1}>
@@ -58,7 +58,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> Find a loan officer</Col>
                         <Col xs={1}>
@@ -66,7 +66,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> What are closing costs?</Col>
                         <Col xs={1}>
@@ -74,7 +74,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> Is it a seller market?</Col>
                         <Col xs={1}>
@@ -82,7 +82,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> What are closing costs?</Col>
                         <Col xs={1}>
@@ -90,7 +90,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> Is it a seller market?</Col>
                         <Col xs={1}>
@@ -98,7 +98,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> What are closing costs?</Col>
                         <Col xs={1}>
@@ -106,7 +106,7 @@ const Resources = () => {
                         </Col>
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4'>
+                  <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}> Is it a seller market?</Col>
                         <Col xs={1}>

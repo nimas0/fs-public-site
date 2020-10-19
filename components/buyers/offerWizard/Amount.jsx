@@ -17,6 +17,8 @@ const Amount = ({
    setFieldValue,
    sending,
    dirty,
+   queryObject,
+   proposal,
    ...rest
 }) => {
 
@@ -38,15 +40,41 @@ const Amount = ({
       },
    ];
 
+   // const counterOffer = queryObject && (
+   //    <>
+   //    {queryObject.}
+   //    </>
+   // )
+
+
+   console.log('amount', proposal)
    return (
       <div data-test='step-amount'>
          <Row>
             <Body className='d-flex justify-content-center'>
                <div className='w-75'>
                   <Form.Group controlId='formGridAddress1'>
-                     <Form.Label data-test='step-amount-header'>
-                        1.) Set a fair amount to offer
-                     </Form.Label>
+                     { proposal && (
+                     <>
+                        <h6 data-test='step-amount-header'>
+                           Homeowner has offered you: ${proposal && proposal.offerDetails.amount}
+                        </h6>
+                        <Form.Label data-test='step-amount-header'>
+                           Set a fair offer
+                        </Form.Label>
+                     </>
+                     )}
+
+                     {
+                        !proposal && (
+                           <>
+                              <Form.Label data-test='step-amount-header'>
+                                 Set a fair offer
+                              </Form.Label>
+                           </>
+                        )
+                     }
+
                      <NumberFormat
                         allowLeadingZeros={false}
                         data-test='step-amount-field'

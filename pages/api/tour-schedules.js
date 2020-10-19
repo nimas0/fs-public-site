@@ -22,57 +22,57 @@ export default async (req, res) => {
     // Get listing's future tour schedule
     const listingScheduleCheck = listingId
       ? new Promise(async (resolve, reject) => {
-          try {
-            const futureTours = await showings
-              .where("listingId", "==", listingId)
-              .orderBy("scheduled")
-              .startAt(firebase.firestore.Timestamp.now())
-              .get();
+        try {
+          const futureTours = await showings
+            .where("listingId", "==", listingId)
+            .orderBy("scheduled")
+            .startAt(firebase.firestore.Timestamp.now())
+            .get();
 
-            // Format array to just `start` and `durationInMinutes` fields and
-            // remove canceled listings
-            let scheduleArray = [];
-            futureTours.forEach(tour => {
-              if (tour.status === "pending" || tour.status === "approved") {
-                const start = tour.get("scheduled").toDate();
-                const durationInMinutes = tour.get("duration");
-                scheduleArray.push({ start, durationInMinutes });
-              }
-            });
+          // Format array to just `start` and `durationInMinutes` fields and
+          // remove canceled listings
+          let scheduleArray = [];
+          futureTours.forEach(tour => {
+            if (tour.status === "pending" || tour.status === "approved") {
+              const start = tour.get("scheduled").toDate();
+              const durationInMinutes = tour.get("duration");
+              scheduleArray.push({ start, durationInMinutes });
+            }
+          });
 
-            return resolve(scheduleArray);
-          } catch (err) {
-            return reject(err);
-          }
-        })
+          return resolve(scheduleArray);
+        } catch (err) {
+          return reject(err);
+        }
+      })
       : null;
 
     // Get user's future tour schedule
     const userScheduleCheck = userId
       ? new Promise(async (resolve, reject) => {
-          try {
-            const futureTours = await showings
-              .where("buyerUserId", "==", userId)
-              .orderBy("scheduled")
-              .startAt(firebase.firestore.Timestamp.now())
-              .get();
+        try {
+          const futureTours = await showings
+            .where("buyerUserId", "==", userId)
+            .orderBy("scheduled")
+            .startAt(firebase.firestore.Timestamp.now())
+            .get();
 
-            // Format array to just `start` and `durationInMinutes` fields and
-            // remove canceled listings
-            let scheduleArray = [];
-            futureTours.forEach(tour => {
-              if (tour.status === "pending" || tour.status === "approved") {
-                const start = tour.get("scheduled").toDate();
-                const durationInMinutes = tour.get("duration");
-                scheduleArray.push({ start, durationInMinutes });
-              }
-            });
+          // Format array to just `start` and `durationInMinutes` fields and
+          // remove canceled listings
+          let scheduleArray = [];
+          futureTours.forEach(tour => {
+            if (tour.status === "pending" || tour.status === "approved") {
+              const start = tour.get("scheduled").toDate();
+              const durationInMinutes = tour.get("duration");
+              scheduleArray.push({ start, durationInMinutes });
+            }
+          });
 
-            return resolve(scheduleArray);
-          } catch (err) {
-            return reject(err);
-          }
-        })
+          return resolve(scheduleArray);
+        } catch (err) {
+          return reject(err);
+        }
+      })
       : null;
 
     try {
@@ -107,7 +107,8 @@ export default async (req, res) => {
       startTime: startTimeJSON,
       durationInMinutes,
       listingId,
-      userId
+      userId,
+      user
     } = req.body;
     const startTime = parseJSON(startTimeJSON);
     const endTime = addMinutes(startTime, durationInMinutes);
@@ -191,6 +192,7 @@ export default async (req, res) => {
       await showings.add({
         listingId,
         buyerUserId: userId,
+        buyerUser: user,
         scheduled: startTime,
         duration: durationInMinutes,
         status: "pending",

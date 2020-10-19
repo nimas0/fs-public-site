@@ -219,10 +219,11 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                         <Row className='justify-content-center align-items-center'>
                            <Button
                               disabled={submitting}
+                              variant={'link text-dark'}
                               // ref={buttonRef}
                               onClick={() => submitSearch(elemRefs, setFieldValue, rest.submitForm)}
                               className='m-4'>
-                              Enter Home
+                              <b>Enter Home</b>
                            </Button>
 
                            <p className='text-warning'>{errors.submittionError}</p>

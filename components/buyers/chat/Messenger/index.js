@@ -5,13 +5,13 @@ import Compose from '../Compose';
 
 
 
-export default function Messenger({ AuthUserInfo, handleToggleSidebar }) {
+export default function Messenger({ messagesEndRef, AuthUserInfo, handleToggleSidebar, proposalData, activeProposal, setProposalData }) {
   return (
     <div className="messenger">
       <div className="scrollable content">
-        <MessageList handleToggleSidebar={handleToggleSidebar}/>
+        <MessageList messagesEndRef={messagesEndRef} activeProposal={activeProposal} proposalData={proposalData} handleToggleSidebar={handleToggleSidebar} />
       </div>
-      <Compose auth={AuthUserInfo} />
+      <Compose messagesEndRef={messagesEndRef} setProposalData={setProposalData} auth={AuthUserInfo} />
     </div>
   );
 }

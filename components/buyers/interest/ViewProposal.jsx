@@ -13,10 +13,21 @@ import Timer from '../../Timer';
 // Initialize Firebase app
 firebaseInit();
 
-const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, interestData, proposalData }) => {
+const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, interestData, proposalData = null }) => {
    // interest id includes embed buyer id after '_' underscore
    const MY_USER_ID = interestId.split('_')[1];
-   const isMine = interestData.proposal ? MY_USER_ID === interestData.proposal.offererId : '';
+   const LISTING_ID = interestId.split('_')[0];
+   const isMine = proposalData ?  MY_USER_ID === proposalData.offererId : false;
+   const isLatestProposal = (proposalData && interestData.proposal.latestQuickFacts.docId ===  proposalData.id) ;
+   console.log('isLatestProposal', isLatestProposal)
+
+   const router = useRouter();
+
+   console.log('proposalData',  proposalData)
+   console.log('interestData',  interestData)
+   console.log('offererId',  interestData.proposal.offererId)
+   console.log('isMine', isMine)
+   console.log('buyer User', MY_USER_ID)
 
    return (
       <>
@@ -118,6 +129,10 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
                         verbally agreeing to the terms.
                      </small>
                   </Row>
+
+            {
+
+               isLatestProposal &&
                   <div className='footer border border-top d-flex align-items-center'>
                      <Row noGutters className='  d-flex justify-content-center w-100'>
                         <Col
@@ -136,7 +151,14 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
                            as={Button}
                            variant='primary'
                            disabled={isMine}
-                           onClick={() => setToggle((prevState) => !prevState)}
+                           onClick={() => {
+                              const params =   Object.entries(proposalData)
+                              .map(
+                                ([key, val]) => `${encodeURIComponent(key)}=${encodeURIComponent(val)}`
+                              )
+                              .join("&")
+
+                              return router.push(`/buyer/offer/[offer]`, `/buyer/offer/${LISTING_ID}_${MY_USER_ID}?${params}`)}}
                            className='defaultCard bg-primary rounded-0 p-4 border-right justify-content-center d-flex '>
                            <div>
                               <h6 className='pt-2 text-white'>COUNTER</h6>
@@ -155,6 +177,8 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
                         </Col>
                      </Row>
                   </div>
+
+                  }
                </div>
             </Col>
          </Collapse>

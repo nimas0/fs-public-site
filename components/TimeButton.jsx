@@ -25,7 +25,7 @@ export default ({
 
   return (
     <Button
-      variant="outline-dark"
+      variant="dark"
       className="mr-1 py-2"
       style={Object.assign(
         { width: small ? "4.7rem" : "7rem" },

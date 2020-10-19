@@ -7,10 +7,10 @@ export const Pending = () => (
    <span className='mx-4'>
       <Row>
          <Col>
-            <Card className='defaultCard'>
-               <Card.Header className='py-4 text-muted' as='h5'>
+            <Card className='border-0 schedulingShadow bg-transparent'>
+               {/* <Card.Header className='py-4 bg-transparent border-0 text-muted' as='h5'>
                   Pre-Approval
-               </Card.Header>
+               </Card.Header> */}
                <Card.Body className='text-center py-5'>
                   <div className='text-success d-flex justify-content-start px-3 '>
                      <FontAwesomeIcon size='2x' icon={faCheck} />

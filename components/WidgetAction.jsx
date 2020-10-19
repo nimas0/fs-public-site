@@ -18,7 +18,7 @@ const Widget = ({ handleClick, label, icon, title, isSubscribed }) => (
          className='text-info bg-transparent'
          title={title}>
          <div className='h1-icon'>
-            <FontAwesomeIcon color={isSubscribed ? 'green' : ''} icon={icon} />
+            <FontAwesomeIcon size='xs' color={isSubscribed ? 'green' : ''} icon={icon} />
          </div>
       </Button>
       {label && <div style={{ fontSize: '80%' }}>{label}</div>}

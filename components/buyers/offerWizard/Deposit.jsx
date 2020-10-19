@@ -14,7 +14,9 @@ const Deposit = ({
    handleBlur,
    sending,
    dirty,
-   setFieldValue,
+   setFieldValue, 
+   queryObject,
+   proposal,
    ...rest
 }) => {
    const links = [
@@ -35,15 +37,32 @@ const Deposit = ({
       },
    ];
 
+
+   console.log(queryObject)
+
    return (
       <div data-test='step-amount'>
          <Row>
             <Body className='d-flex justify-content-center'>
                <div className='w-75'>
                   <Form.Group controlId='formGridAddress1'>
-                     <Form.Label data-test='step-deposit-header'>
-                        2.) How much can you deposit?
-                     </Form.Label>
+                     { proposal && 
+                     <>
+                        <p data-test='step-deposit-header'>
+                           Homeowner has offered ${proposal.offerDetails.deposit}
+                        </p>
+                          <Form.Label data-test='step-deposit-header'>
+                              2.) How much can you deposit?
+                          </Form.Label>
+                     </>
+                     }
+                     {
+                        !proposal && (
+                           <Form.Label data-test='step-deposit-header'>
+                              2.) How much can you deposit?
+                           </Form.Label>
+                        )
+                     }
                      <NumberFormat
                         allowLeadingZeros={false}
                         data-test='step-amount-field'

@@ -7,7 +7,7 @@ const Heading = () => {
    const router = useRouter();
    return (
       <>
-         <span className='mx-4 mt-0 pt-0'>
+         <span className='mt-0 pt-0'>
             {/* <Row>
                <Col className='mt-0 pt-0'>
                   <h3 className='text-muted mb-4 mt-0 pt-0'>
@@ -19,7 +19,7 @@ const Heading = () => {
                <Col xs='auto' className='mr-0 pr-0'>
                   <h2 className='text-info'>John SmitherField</h2>
                </Col>
-               <Col xs='2' className='align-items-top mt-n2 pl-1'>
+               <Col xs='2' className='align-items-top  pl-1'>
                   <span className='d-flex mr-auto '>
                      <Button
                         size='lg'

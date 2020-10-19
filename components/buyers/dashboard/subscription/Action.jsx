@@ -69,7 +69,7 @@ const Action = ({
                </Button>
 
                <Button
-                  onClick={handleClick} //TODO: route to request showing modal
+                  onClick={() => router.push(`/listing/${listingId}/tour`)}
                   size='sm'
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
                   className='mb-1 '
