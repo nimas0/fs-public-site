@@ -4,9 +4,9 @@ import StepWizard from 'react-step-wizard';
 import fetch from 'isomorphic-unfetch';
 
 //firebase initialization imports
-import firebase from 'firebase/app';
-import 'firebase/database';
-import firebaseInit from '../../../../utils/firebaseInit';
+// import firebase from 'firebase/app';
+// import 'firebase/database';
+// import firebaseInit from '../../../../utils/firebaseInit';
 
 
 // Step Components for Wizard
@@ -42,7 +42,7 @@ import queryLatestProposal from '../../../../utils/queryLatestProposal';
 
 
 // Initialize Firebase app
-firebaseInit();
+// firebaseInit();
 
 
 
@@ -98,47 +98,47 @@ const offerSchema = Yup.object().shape({
 });
 
 const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) => {
-   const { AuthUser = null } = AuthUserInfo;
-   const [proposal, setProposal] = useState(false)
-   const { addToast } = useToasts()
-   const router = useRouter();
-   const interestId = router.query.offer;
-   const [success, setSuccess] = React.useState(false);
-   const [failure, setFailure] = React.useState(false);
-   const [sending, setSending] = React.useState(false);
+   // const { AuthUser = null } = AuthUserInfo;
+   // const [proposal, setProposal] = useState(false)
+   // const { addToast } = useToasts()
+   // const router = useRouter();
+   // const interestId = router.query.offer;
+   // const [success, setSuccess] = React.useState(false);
+   // const [failure, setFailure] = React.useState(false);
+   // const [sending, setSending] = React.useState(false);
 
-   const onClick = () => {
-      addToast('test error', { appearance: 'error' })
-   }
+   // const onClick = () => {
+   //    addToast('test error', { appearance: 'error' })
+   // }
 
-   const cancelAction = () => {
-      router.push('/buyer/dashboard');
-   }
+   // const cancelAction = () => {
+   //    router.push('/buyer/dashboard');
+   // }
 
-   //Grab listing address and display on header
-   const [value, loading, error] = useDocument(
-      firebase
-         .firestore()
-         .collection('interest')
-         .doc(interestId)
-   );
-
-
-   useEffect(async () => {
-      setProposal(await queryLatestProposal(interestId))
-      console.log('proposal', proposal)
-   }, [interestId])
+   // //Grab listing address and display on header
+   // const [value, loading, error] = useDocument(
+   //    firebase
+   //       .firestore()
+   //       .collection('interest')
+   //       .doc(interestId)
+   // );
 
 
+   // useEffect(async () => {
+   //    setProposal(await queryLatestProposal(interestId))
+   //    console.log('proposal', proposal)
+   // }, [interestId])
 
-   if (!error || !loading) {
-      console.log(value)
-      // console.log('query', ((router.asPath).toString().split('?'))[1])
-      // const query = ((router.asPath).toString().split('?'))[1];
 
-      // console.log(JSON.parse('{"' + decodeURI(((router.asPath).toString().split('?'))[1].replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
-      // )
-   }
+
+   // if (!error || !loading) {
+   //    console.log(value)
+   //    // console.log('query', ((router.asPath).toString().split('?'))[1])
+   //    // const query = ((router.asPath).toString().split('?'))[1];
+
+   //    // console.log(JSON.parse('{"' + decodeURI(((router.asPath).toString().split('?'))[1].replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
+   //    // )
+   // }
 
    // const query = ((router.asPath).toString().split('?'))[1];
    // const queryObject = JSON.parse('{"' + decodeURI(((router.asPath).toString().split('?'))[1].replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
@@ -146,7 +146,8 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    // console.log('offerDetails', queryObject)
    return (
       <>
-         <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
+         <p>testing</p>
+         {/* <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
 
          <div data-test='offer-wizard'>
             <Formik
@@ -195,90 +196,90 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                   </Form>
                )}
             </Formik>
-         </div>
+         </div> */}
       </>
    )
 
-   async function submitProposal(values) {
-      setSuccess(false);
-      setFailure(false);
-      setSending(true);
-      try {
+   // async function submitProposal(values) {
+   //    setSuccess(false);
+   //    setFailure(false);
+   //    setSending(true);
+   //    try {
 
-         const { displayName, photoURL, id } = AuthUserInfo.AuthUser;
+   //       const { displayName, photoURL, id } = AuthUserInfo.AuthUser;
 
-         // Send offer info through API
-         const response = await fetch('/api/submit-proposal', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ interestId, offerDetails: values, displayName }),
-         });
-
-
-
-         // Set up message object, create key, and post to firebase real time //
-         const { amount, deposit } = values;
-         const responseJson = await response.json()
-         const docId = responseJson.docId;
-
-         // new message entry
-         let newMessage = {
-            displayName: displayName,
-            photoURL: photoURL,
-            author: id,
-            message: '',
-            timestamp: Date.now(),
-            proposalId: docId,
-            proposalDeposit: deposit,
-            proposalVerified: true,
-            proposalAmount: amount
-         }
-
-         // Get a key for a new Post.
-         let newPostKey = await firebase.database().ref().child('posts').push().key;
-         let update = {};
-         update[`/interest_chat/${interestId}/${newPostKey}`] = newMessage;
-         console.log(newPostKey)
-
-         // Post to firebase real time
-         await firebase.database().ref().update(update, (error) => {
-            if (error) {
-               throw error;
-            }
-         });
+   //       // Send offer info through API
+   //       const response = await fetch('/api/submit-proposal', {
+   //          method: 'POST',
+   //          headers: { 'Content-Type': 'application/json' },
+   //          body: JSON.stringify({ interestId, offerDetails: values, displayName }),
+   //       });
 
 
 
+   //       // Set up message object, create key, and post to firebase real time //
+   //       const { amount, deposit } = values;
+   //       const responseJson = await response.json()
+   //       const docId = responseJson.docId;
 
-         if (response.ok) {
-            // Move on
+   //       // new message entry
+   //       let newMessage = {
+   //          displayName: displayName,
+   //          photoURL: photoURL,
+   //          author: id,
+   //          message: '',
+   //          timestamp: Date.now(),
+   //          proposalId: docId,
+   //          proposalDeposit: deposit,
+   //          proposalVerified: true,
+   //          proposalAmount: amount
+   //       }
+
+   //       // Get a key for a new Post.
+   //       let newPostKey = await firebase.database().ref().child('posts').push().key;
+   //       let update = {};
+   //       update[`/interest_chat/${interestId}/${newPostKey}`] = newMessage;
+   //       console.log(newPostKey)
+
+   //       // Post to firebase real time
+   //       await firebase.database().ref().update(update, (error) => {
+   //          if (error) {
+   //             throw error;
+   //          }
+   //       });
 
 
-            await router.push('/buyer/dashboard')
-            addToast(`Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`, { appearance: 'success' })
-            setSending(false);
-            setSuccess(true);
-            console.log('upload successful');
-         } else {
-            // https://github.com/developit/unfetch#caveats
-            let error = new Error(response.statusText);
-            error.response = response;
-            throw error;
-         }
 
-      } catch (err) {
-         // Add upload failure message
-         setSuccess(false)
-         console.log(err)
-         console.error('Either a coding error or network issues', err.response);
-         addToast(`Sorry something went wrong. Please try again. If this error persists please contact customer support. ${err.response.status} ${err}`, {
-            appearance: 'error'
-         })
 
-         setSending(false);
+   //       if (response.ok) {
+   //          // Move on
 
-      }
-   }
+
+   //          await router.push('/buyer/dashboard')
+   //          addToast(`Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`, { appearance: 'success' })
+   //          setSending(false);
+   //          setSuccess(true);
+   //          console.log('upload successful');
+   //       } else {
+   //          // https://github.com/developit/unfetch#caveats
+   //          let error = new Error(response.statusText);
+   //          error.response = response;
+   //          throw error;
+   //       }
+
+   //    } catch (err) {
+   //       // Add upload failure message
+   //       setSuccess(false)
+   //       console.log(err)
+   //       console.error('Either a coding error or network issues', err.response);
+   //       addToast(`Sorry something went wrong. Please try again. If this error persists please contact customer support. ${err.response.status} ${err}`, {
+   //          appearance: 'error'
+   //       })
+
+   //       setSending(false);
+
+   //    }
+   // }
 };
 
 
