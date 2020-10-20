@@ -47,7 +47,7 @@ export default ({ shown, setShown }) => {
 
    // Firebase auth config
    const firebaseAuthConfig = {
-      signInFlow: 'popup',
+      signInFlow: 'popupp',
       // Auth providers
       signInOptions: [
          {
