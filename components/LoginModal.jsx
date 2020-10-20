@@ -13,7 +13,7 @@ import fetch from 'isomorphic-unfetch';
 import firebaseInit from '../utils/firebaseInit';
 import uploadUserDocument from '../utils/uploadUserDocument';
 
-// Initialize Firebase app
+// Initialize Firebase apppppp
 firebaseInit();
 
 export default ({ shown, setShown }) => {
