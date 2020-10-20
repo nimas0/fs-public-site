@@ -9,12 +9,15 @@
 /coverage
 /.vscode
 
+/pages/buyer/Offer
+
 # next.js
 /.next/
 /out/
 
 # production
 /build
+
 
 # misc
 .DS_Store
