@@ -13,34 +13,34 @@ import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 import SellerSignUp from '../../../components/buyers/dashboard/sellersignup/SellerSignUp'
 
-// import firebaseInit from '../../../utils/firebaseInit';
-// import firebase from 'firebase/app';
-// import "firebase/firestore";
+import firebaseInit from '../../../utils/firebaseInit';
+import firebase from 'firebase/app';
+import "firebase/firestore";
 import Nav from '../../../components/Nav';
 
-// // Initialize Firebase app
-// firebaseInit();
+// Initialize Firebase app
+firebaseInit();
 
 
-const Dashboard = () => {
+const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionData }) => {
 
-    // const { AuthUser = null } = AuthUserInfo;
-    // const [value, loading, error] = useCollection(firebase.firestore().collection('interest').where('buyer.buyerUid', '==', AuthUser.id));
-    // const [userDoc, loadingUserDoc, errorUserDoc] = useDocument(
-    //     firebase
-    //         .firestore()
-    //         .collection('users')
-    //         .doc(AuthUser.id)
-    // );
+    const { AuthUser = null } = AuthUserInfo;
+    const [value, loading, error] = useCollection(firebase.firestore().collection('interest').where('buyer.buyerUid', '==', AuthUser.id));
+    const [userDoc, loadingUserDoc, errorUserDoc] = useDocument(
+        firebase
+            .firestore()
+            .collection('users')
+            .doc(AuthUser.id)
+    );
 
     //TODO : clean up return. getting messy with error && error statments
 
     return (
         <>
-            {/* <Nav solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal} /> */}
+            <Nav solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal} />
             <Container>
                 <Row>
-                    <h2>sdfsdf</h2>
+                    <h2>testing</h2>
                 </Row>
             </Container>
         </>
@@ -88,4 +88,4 @@ const Dashboard = () => {
 //     }
 // }
 
-export default Dashboard;
+export default withAuthUser(withAuthUserInfo(withLoginModal(Dashboard)));
