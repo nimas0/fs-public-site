@@ -146,7 +146,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    // console.log('offerDetails', queryObject)
    return (
       <>
-         <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
+         {/* <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} /> */}
 
          <div data-test='offer-wizard'>
             <Formik
