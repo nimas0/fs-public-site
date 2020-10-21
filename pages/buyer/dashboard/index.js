@@ -105,7 +105,7 @@ Dashboard.getInitialProps = async (ctx) => {
     // Get profile data
 
 
-    const userProfileFetch = fetch(`www.fs-public-site.vercel.app/api/user?id=${userId}`, {
+    const userProfileFetch = fetch(`https://www.fs-public-site.vercel.app/api/user?id=${userId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
