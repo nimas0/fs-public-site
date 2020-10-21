@@ -33,7 +33,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .doc(AuthUser.id)
     );
     console.log('i made it!')
-     console.log(process.env.HOST)
+    //  console.log(process.env.HOST)
 
     //TODO : clean up return. getting messy with error && error statments
 
