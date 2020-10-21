@@ -109,7 +109,7 @@ Dashboard.getInitialProps = async (ctx) => {
     // Get profile data
 
 
-    const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
+    const userProfileFetch = fetch(`www.${process.env.HOST}/api/user?id=${userId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
