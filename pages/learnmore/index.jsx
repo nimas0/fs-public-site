@@ -46,4 +46,4 @@ const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
    );
 };
 
-export default withAuthUser(ThemeFive);
+export default withAuthUser(withAuthUserInfo(withLoginModal(ThemeFive)));

@@ -10,6 +10,7 @@ import { createAuthUser, createAuthUserInfo } from "../auth/user";
 // Get the authenticated user from the Firebase JS SDK, when client-side, or
 // from the request object, when server-side. Add the AuthUserInfo to context.
 export default ComposedComponent => {
+  console.log('asdljsdlfjsldfj')
   const WithAuthUserComp = ({ AuthUserInfo, ...otherProps }) => {
     // Use the authed user from client-side auth (Firebase JS SDK) when
     // available. On the server side, use the authed user from the session. This
