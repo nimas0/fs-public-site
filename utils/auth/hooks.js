@@ -3,13 +3,15 @@
 "use strict";
 
 import React, { useEffect, useState } from "react";
-import firebase from "firebase/app";
-import "firebase/auth";
+
+import firebase from "firebase/app"
+
+
 import firebaseInit from "../firebaseInit";
 import { setSession } from "./firebaseSessionHandler";
 import { createAuthUserInfo } from "./user";
 
-firebaseInit();
+firebaseInit()
 
 // https://benmcmahen.com/using-firebase-with-react-hooks/
 
