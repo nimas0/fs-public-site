@@ -32,7 +32,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .collection('users')
             .doc(AuthUser.id)
     );
-    // console.log(window.location.host)
+    console.log(window.location.host)
     // console.log(process.env.HOST)
 
     //TODO : clean up return. getting messy with error && error statments
