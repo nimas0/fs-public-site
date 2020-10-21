@@ -54,7 +54,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                         </Row>
                         {
                             errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
-                                <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                                <Approval key={userDoc} AuthUser={AuthUser} />
                         }
                         {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
                         {loading && loadingUserDoc && <span>Loading...</span>}

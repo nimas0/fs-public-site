@@ -3,7 +3,7 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 // import { Pending, Denied, Approved, Expired } from './Status';
 
-const Approval = ({ verification: { status }, AuthUser }) => {
+const Approval = ({ AuthUser }) => {
    const router = useRouter();
 
    const [uiState, resetState] = useState();
