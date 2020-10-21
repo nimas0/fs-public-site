@@ -15,6 +15,6 @@ export default async (req, res) => {
 
 
     console.log('the api connected!')
-
+    return { test: 'test' }
 
 }
