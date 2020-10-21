@@ -15,16 +15,43 @@ $headings-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
 // Bootstrap import
 @import '~bootstrap/scss/bootstrap.scss';
 
+$blue: #2b3b38 !default;
+$indigo: #015085 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #a02424 !default;
+$orange: #fd7e14 !default;
+$yellow: #fab92d !default;
 $green: #2e8c00 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
 
-$primary:       $green !default;
-$secondary:     $gray-600 !default;
-$success:       $indigo !default;
-$info:          $blue !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$primary: $green !default;
+$secondary: $gray-600 !default;
+$success: $indigo !default;
+$info: $blue !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+$theme-colors: map-merge(
+   (
+      'primary': $primary,
+      'secondary': $secondary,
+      'success': $success,
+      'info': $info,
+      'warning': $warning,
+      'danger': $danger,
+      'light': $light,
+      'dark': $dark,
+   ),
+   $theme-colors
+);
+
+$border-radius: 0.97rem !default;
+$border-radius-lg: 0.3rem !default;
+$border-radius-sm: 0.2rem !default;
 
 // Fix Ant Design Steps component
 .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
