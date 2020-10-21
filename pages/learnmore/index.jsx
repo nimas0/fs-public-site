@@ -33,7 +33,6 @@ const ThemeFive = () => {
          <div className='main'>
            
                
-            />
             <HeroSection />
             <FeatureSection />
             <ReviewSection />
