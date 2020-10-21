@@ -32,6 +32,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .collection('users')
             .doc(AuthUser.id)
     );
+    console.log(window.location.hostname)
 
     //TODO : clean up return. getting messy with error && error statments
 
@@ -113,21 +114,21 @@ Dashboard.getInitialProps = async (ctx) => {
 
 
     // change code from window to process.env once domain is enabled.
-    const userProfileFetch = fetch(`${window.location.hostname}/api/user?id=${userId}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
+    // const userProfileFetch = fetch(`${window.location.hostname}/api/user?id=${userId}`, {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' },
+    // });
 
 
-    try {
-        const [userProfileResponse] = await Promise.all([userProfileFetch]);
+    // try {
+    //     const [userProfileResponse] = await Promise.all([userProfileFetch]);
 
-    } catch (err) {
-        console.log(err)
-        return {
-            statusCode: (err.response && err.response.status) || err.statusCode || 500,
-        };
-    }
+    // } catch (err) {
+    //     console.log(err)
+    //     return {
+    //         statusCode: (err.response && err.response.status) || err.statusCode || 500,
+    //     };
+    // }
 }
 
 export default withAuthUser(withAuthUserInfo(withLoginModal(Dashboard)));
