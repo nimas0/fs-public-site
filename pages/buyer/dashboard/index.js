@@ -40,7 +40,57 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             <Nav solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal} />
             <Container>
                 <Row>
-                    <h2>testing</h2>
+                    <Col xs='6'>
+
+                        <Heading />
+                        <Row className='pb-2 mx-1'>
+                            {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
+                                Seller's Dashboard
+                                       </Card.Header> */}
+                            {/* <Button href={!loadingUserDoc && userDoc.data().defaultListingId ? 'http://localhost:3001/showings' : '/learnmore'} className=' rounded-lg mx-3' variant="primary" size="md" block>
+                                {!loadingUserDoc && userDoc.data().defaultListingId ? 'Go to Seller\'s Dashboard' : 'Learn More: Sell Your Home Free'}
+                            </Button> */}
+                            <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                        </Row>
+                        {
+                            errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
+                                <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                        }
+                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
+                        {loading && loadingUserDoc && <span>Loading...</span>}
+                        {(value && userDoc) && (
+                            <span>
+                                {value.docs.map(doc => (
+                                    <React.Fragment key={doc.id}>
+                                        <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
+                                    </React.Fragment>
+                                ))}
+                            </span>
+                        )}
+
+                    </Col>
+                    <Col xs={{ span: 6 }}>
+
+                        <Row>
+                            <Col>
+                                <Card className='border-0 mb-2 bg-transparent'>
+                                    {/* <Card.Header className='bg-transparent py-4  border-0 ' as='h4'>
+                                       Search Using Home Code`
+                                       </Card.Header>  */}
+                                    <Card.Body className='text-center py-5'>
+
+                                        <Card.Text>
+                                            <small>
+                                                <i>Search Bar for Home</i>
+                                            </small>
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        </Row>
+
+                        <Resources />
+                    </Col>
                 </Row>
             </Container>
         </>
@@ -49,43 +99,43 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 };
 
 
-Dashboard.getInitialProps = async (ctx) => {
+// Dashboard.getInitialProps = async (ctx) => {
 
-    const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
+//     const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
 
-    // Get profile data
-    const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
-
-
-    try {
-        const [userProfileResponse] = await Promise.all([userProfileFetch]);
-
-        if (userProfileResponse.ok) {
-            const { verification } = await userProfileResponse.json();
-            console.log(verification);
-            return {
-                verification: verification
-            }
-        } else if ([404, 503].includes(userProfileResponse.status)) {
-            return { statusCode: userProfileResponse.status };
-        } else {
-            // https://github.com/developit/unfetch#caveats
-            let error = new Error(userProfileResponse.statusText);
-            error.response = userProfileResponse;
-            throw error;
-        }
+//     // Get profile data
+//     const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
+//         method: 'GET',
+//         headers: { 'Content-Type': 'application/json' },
+//     });
 
 
+//     try {
+//         const [userProfileResponse] = await Promise.all([userProfileFetch]);
 
-    } catch (err) {
-        console.log(err)
-        return {
-            statusCode: (err.response && err.response.status) || err.statusCode || 500,
-        };
-    }
-}
+//         if (userProfileResponse.ok) {
+//             const { verification } = await userProfileResponse.json();
+//             console.log(verification);
+//             return {
+//                 verification: verification
+//             }
+//         } else if ([404, 503].includes(userProfileResponse.status)) {
+//             return { statusCode: userProfileResponse.status };
+//         } else {
+//             // https://github.com/developit/unfetch#caveats
+//             let error = new Error(userProfileResponse.statusText);
+//             error.response = userProfileResponse;
+//             throw error;
+//         }
+
+
+
+//     } catch (err) {
+//         console.log(err)
+//         return {
+//             statusCode: (err.response && err.response.status) || err.statusCode || 500,
+//         };
+//     }
+// }
 
 export default withAuthUser(withAuthUserInfo(withLoginModal(Dashboard)));
