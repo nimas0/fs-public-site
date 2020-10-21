@@ -20,8 +20,8 @@ import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
 import Nav from '../../components/Nav';
-const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
-   const { AuthUser = null } = AuthUserInfo;
+const ThemeFive = () => {
+
 
    return (
       <div className='homepage-5'>
@@ -31,9 +31,7 @@ const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
          </div>
          {/*====== Scroll To Top Area End ======*/}
          <div className='main'>
-            <Nav
-               
-            />
+
             <HeroSection />
             <FeatureSection />
             <ReviewSection />
@@ -46,4 +44,4 @@ const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
    );
 };
 
-export default withAuthUser(withAuthUserInfo(withLoginModal(ThemeFive)));
+export default ThemeFive;
