@@ -104,15 +104,15 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 Dashboard.getInitialProps = async (ctx) => {
 
     const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
-    console.log('ctx', ctx)
+    console.log('ctx', userId)
     console.log('process', process.env.HOST)
     // Get profile data
 
 
-    const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    });
+    // const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
+    //     method: 'GET',
+    //     headers: { 'Content-Type': 'application/json' },
+    // });
 
 
 
