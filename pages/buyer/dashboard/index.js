@@ -112,15 +112,15 @@ Dashboard.getInitialProps = async (ctx) => {
 
 
 
-    // try {
-    //     const [userProfileResponse] = await Promise.all([userProfileFetch]);
+    try {
+        const [userProfileResponse] = await Promise.all([userProfileFetch]);
 
-    // } catch (err) {
-    //     console.log(err)
-    //     return {
-    //         statusCode: (err.response && err.response.status) || err.statusCode || 500,
-    //     };
-    // }
+    } catch (err) {
+        console.log(err)
+        return {
+            statusCode: (err.response && err.response.status) || err.statusCode || 500,
+        };
+    }
 }
 
 export default withAuthUser(withAuthUserInfo(withLoginModal(Dashboard)));
