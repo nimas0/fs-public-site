@@ -32,8 +32,8 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .collection('users')
             .doc(AuthUser.id)
     );
-    console.log('sdlfjsdlfj')
-    // console.log(process.env.HOST)
+    console.log('i made it!')
+     console.log(process.env.HOST)
 
     //TODO : clean up return. getting messy with error && error statments
 
@@ -108,10 +108,10 @@ Dashboard.getInitialProps = async (ctx) => {
     // Get profile data
 
 
-    // const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
-    //     method: 'GET',
-    //     headers: { 'Content-Type': 'application/json' },
-    // });
+    const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    });
 
 
     // change code from window to process.env once domain is enabled.
