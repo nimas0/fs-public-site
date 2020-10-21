@@ -6,6 +6,8 @@ import firebaseInit from "./firebaseInit";
 
 firebaseInit();
 
+
+// you can delete this useless comment now
 export default async (file, filePath) => {
   // Connect to user's storage ref
   const storageRef = firebase.storage().ref(filePath);
