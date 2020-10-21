@@ -32,8 +32,6 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .collection('users')
             .doc(AuthUser.id)
     );
-    console.log('i made it!')
-    //  console.log(process.env.HOST)
 
     //TODO : clean up return. getting messy with error && error statments
 
@@ -104,12 +102,10 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 Dashboard.getInitialProps = async (ctx) => {
 
     const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
-    console.log('ctx', userId)
-    console.log('process', process.env.HOST)
     // Get profile data
 
 
-    const userProfileFetch = fetch(`www.${process.env.HOST}/api/user?id=${userId}`, {
+    const userProfileFetch = fetch(`http://www.${process.env.HOST}/api/user?id=${userId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
