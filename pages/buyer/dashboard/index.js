@@ -52,10 +52,10 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                             </Button> */}
                             <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
                         </Row>
-                        {/* {
+                        {
                             errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
                                 <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
-                        } */}
+                        }
                         {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
                         {loading && loadingUserDoc && <span>Loading...</span>}
                         {(value && userDoc) && (
@@ -111,7 +111,7 @@ Dashboard.getInitialProps = async (ctx) => {
     });
 
 
-
+    console.log(userProfileFetch)
     try {
         const [userProfileResponse] = await Promise.all([userProfileFetch]);
 
