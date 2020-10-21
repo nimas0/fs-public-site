@@ -136,6 +136,6 @@ Dashboard.getInitialProps = async (ctx) => {
 //             statusCode: (err.response && err.response.status) || err.statusCode || 500,
 //         };
 //     }
-// }
+}
 
 export default withAuthUser(withAuthUserInfo(withLoginModal(Dashboard)));
