@@ -20,8 +20,8 @@ import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
 import Nav from '../../components/Nav';
-const ThemeFive = () => {
-
+const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
+   const { AuthUser = null } = AuthUserInfo;
 
    return (
       <div className='homepage-5'>
@@ -46,4 +46,4 @@ const ThemeFive = () => {
    );
 };
 
-export default ThemeFive;
+export default withAuthUser(withAuthUserInfo(ThemeFive));
