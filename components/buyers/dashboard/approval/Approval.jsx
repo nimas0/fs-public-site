@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-// import { Pending, Denied, Approved, Expired } from './Status';
+import { Pending, Denied, Approved, Expired } from './Status';
 
 const Approval = ({ AuthUser }) => {
    const router = useRouter();
