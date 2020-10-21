@@ -15,16 +15,16 @@ const Approval = ({ AuthUser }) => {
       );
    };
 
-   // switch (status) {
-   //    case 'pending':
-   //       return <Pending />;
-   //    case 'approved':
-   //       return <Approved />;
-   //    case 'denied':
-   //       return <Denied reset={uploadPageRedirect} />;
-   //    case 'expired':
-   //       return <Expired uploadPageRedirect={uploadPageRedirect} />;
-   //    default:
+   switch (status) {
+      case 'pending':
+         return <Pending />;
+      case 'approved':
+         return <Approved />;
+      case 'denied':
+         return <Denied reset={uploadPageRedirect} />;
+      case 'expired':
+         return <Expired uploadPageRedirect={uploadPageRedirect} />;
+      default:
          return (
             <Row>
                <Col>
@@ -50,7 +50,7 @@ const Approval = ({ AuthUser }) => {
                </Col>
             </Row>
          );
-   // }
+   }
 };
 
 export default Approval;
