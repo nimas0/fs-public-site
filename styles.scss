@@ -15,6 +15,17 @@ $headings-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
 // Bootstrap import
 @import '~bootstrap/scss/bootstrap.scss';
 
+$green: #2e8c00 !default;
+
+$primary:       $green !default;
+$secondary:     $gray-600 !default;
+$success:       $indigo !default;
+$info:          $blue !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
 // Fix Ant Design Steps component
 .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
    color: $success;
@@ -84,7 +95,6 @@ $headings-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
 
 // [START] custom nav settings for learn more page
 #navbar-custom {
-
    box-shadow: 0 7px 2px -2px rgba(0, 0, 0, 0);
    transition: box-shadow 0.2s;
 }
