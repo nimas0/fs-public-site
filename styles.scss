@@ -14,6 +14,7 @@ $headings-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
 
 // Bootstrap import
 @import '~bootstrap/scss/bootstrap.scss';
+@import "node_modules/bootstrap/scss/variables";
 
 $blue: #2b3b38 !default;
 $indigo: #015085 !default;
