@@ -270,6 +270,11 @@ html {
 .schedulingShadow {
    @include card(4);
 }
+
+.anotherShadow {
+   @include card(2);
+}
+
 .navShadow {
    @include card(0.5);
 }

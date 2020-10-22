@@ -29,8 +29,8 @@ const Approval = ({ AuthUser }) => {
             <Row>
                <Col>
                   {/*  boxShadow: 'inset 4px 4px 15px #bdbdbd' */}
-                  <Card style={{}} className='schedulingShadow bg-transparent mb-4'>
-                     <Card.Header className='py-4 text-muted' as='h5'>
+                  <Card style={{}} className='border-0 schedulingShadow bg-light mb-4'>
+                     <Card.Header className='py-4 text-muted  bg-light' as='h5'>
                         Verification
                      </Card.Header>
                      <Card.Body className='text-center py-5'>

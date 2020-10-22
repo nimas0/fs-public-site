@@ -18,24 +18,14 @@ const SellerSignUp = () => {
 
     return (
 
-        <Card className='border-0  schedulingShadow bg-transparent w-100 mt-3'>
-            {/* <Card.Header className='py-4 bg-transparent border-0 text-muted' as='h5'>
-                  Pre-Approval
-               </Card.Header> */}
-            <Card.Body className='text-center py-4'>
-                <div className='text-success d-flex justify-content-between px-1 pt-2 '>
-                    <h5 className='ml-3 text-success '>Sell your home for free</h5>
-                    <h4 id='documents-heading' className=' font-wieght-light text-dark'>
+        <Card className='border-0 bg-transparent w-100 my-3'>
+            <Card.Body as={Button} variant='link' className='py-3'>
+                <div className=' d-flex justify-content-between px-0 pt-2'>
+                    <h5 className='ml-0 text-primary '>Sell Your Home for Free</h5>
+                    <h5 id='documents-heading'>
                         <FontAwesomeIcon icon={faChevronRight} color='green' />
-                    </h4>
+                    </h5>
                 </div>
-
-                {/* <Card.Text>
-                    <h6 className=' text-dark text-left px-4 pt-0 mt-0 pt-2'>
-                        Scheduling has been unlocked. You will be notified of your approval within 3
-                        hours of submittion.
-                     </h6>
-                </Card.Text> */}
             </Card.Body>
         </Card>
 

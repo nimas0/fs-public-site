@@ -51,7 +51,7 @@ export default ({
             id={solidBackground && isScrolled ? 'navbar-scrolling' : 'navbar-custom'}
             fixed
             sticky='top'
-            className=' text-info  d-flex px-5 pt-3 pb-2 '>
+            className=' text-info d-flex px-5 pt-3 pb-2 '>
             <>
                <div className='flex-grow-0 order-1'>
                   <Link href='/' passHref>
