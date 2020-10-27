@@ -117,8 +117,12 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                             <h5 className='ml-4 text-muted d-flex text-center pt-2'>{!toggle && data.address[0]}</h5>
                                         </Col>
                                         <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>
-                                            <Link href={`/listing/${data.listingId}`}>
-                                                <a target="_blank">Visit Listing Site </a>
+                                            <Link
+                                                as={Button}
+                                                className='p-3'
+                                                variant='link'
+                                                href='/buyer/dashboard'>
+                                                Buying
                                             </Link>
                                         </Col>
                                         <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>

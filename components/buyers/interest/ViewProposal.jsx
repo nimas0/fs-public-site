@@ -25,7 +25,7 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
 
    console.log('proposalData',  proposalData)
    console.log('interestData',  interestData)
-   console.log('offererId',  interestData.proposal.offererId)
+   //console.log('offererId',  interestData.proposal.offererId)
    console.log('isMine', isMine)
    console.log('buyer User', MY_USER_ID)
 
