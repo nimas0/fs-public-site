@@ -32,7 +32,7 @@ const data = [
     {
         icon: faFileSignature,
         title: "Professional Sales Contract",
-        content: "A free purchase agreement (drafted by and reviewed by attorneys in Arizona and meet all the requirements of a binding contract) will be provided for completion. Once completed and signed we will send to the title company selected by you and the buyer. Once completed and signed we will send to the title company selected by you and the buyer."
+        content: "A free purchase agreement (drafted by and reviewed by attorneys in Arizona and meet all the requirements of a binding contract) will be provided for completion. Once completed and signed we will send to the title company selected by you and the buyer."
     },
     {
         icon: faHandsHelping,

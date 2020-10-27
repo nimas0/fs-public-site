@@ -5,7 +5,7 @@ const initData = {
     subheading: "You have all the same tools they use.",
     content: "",
     btnText: "LEARN MORE",
-    formHeading: "SELL YOUR HOME FOR FREE",
+    formHeading: "Save Money, Eliminate Stress, Control the process",
     formText: "The platform and features are free to sign up.  Other items, such as yard signs and photography, are available for purchase.",
     formBtn: "GET STARTED",
     formBtnText: "By signing up, you accept our",
