@@ -12,6 +12,7 @@ import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
 import firebaseInit from '../utils/firebaseInit';
 import uploadUserDocument from '../utils/uploadUserDocument';
+import Countdown from 'react-countdown';
 
 // Initialize Firebase apppppp
 firebaseInit();
@@ -83,20 +84,37 @@ export default ({ shown, setShown }) => {
    };
 
    return (
-      <Modal show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
+      <Modal className='border-0' show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
          {page === 'auth' ? (
             <>
-               <Modal.Header closeButton>
-                  <Modal.Title>Please Sign In</Modal.Title>
+               <Modal.Header className='border-0 text-muted text-uppercase' closeButton>
+              
                </Modal.Header>
 
-               <Modal.Body>
-                  {renderAuth ? (
+               <Modal.Body className='pt-2 text-center border-0'>
+                  {/* {renderAuth ? (
                      <StyledFirebaseAuth
                         uiConfig={firebaseAuthConfig}
                         firebaseAuth={firebase.auth()}
                      />
-                  ) : null}
+                  ) : null} */}
+                      <h6>Login and Full Features Available in:</h6>
+                  <Countdown
+                  className='p-5 text-center text-bold'
+                     date={new Date('11/01/2020')}
+                     precision={1}
+                     renderer={props => <h5 className='p-2'><b>{`${props.days} days,   ${props.hours} hour(s),   ${props.minutes} minutes, ${props.seconds} seconds`}</b> </h5>}
+                  />
+               </Modal.Body>
+               <Modal.Body className='pb-5 text-center'>
+                  {/* {renderAuth ? (
+                     <StyledFirebaseAuth
+                        uiConfig={firebaseAuthConfig}
+                        firebaseAuth={firebase.auth()}
+                     />
+                  ) : null} */}
+                 
+                  <Button size='large' className=' px-5 py-3 text-uppercase text-primary text-bold' variant='outlined-primary'>Learn More</Button>
                </Modal.Body>
             </>
          ) : page === 'authWait' ? (
