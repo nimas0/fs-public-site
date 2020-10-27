@@ -114,7 +114,7 @@ export default ({ shown, setShown }) => {
                      />
                   ) : null} */}
                  
-                  <Button size='large' className=' px-5 py-3 text-uppercase text-primary text-bold' variant='outlined-primary'>Learn More</Button>
+                  <Button href='/learnmore' size='large' className=' px-5 py-3 text-uppercase text-primary text-bold' variant='outlined-primary'>Learn More</Button>
                </Modal.Body>
             </>
          ) : page === 'authWait' ? (

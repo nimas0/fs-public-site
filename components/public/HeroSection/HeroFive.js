@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
 const initData = {
     heading: "Pay a real estate agent... Why?",
-    subheading: "You have all the same tools they use.",
+    subheading: "Finding Spaces Makes selling without an agent effortless!",
     content: "",
     btnText: "LEARN MORE",
     formHeading: "SELL YOUR HOME FOR FREE",

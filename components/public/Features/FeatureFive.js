@@ -3,7 +3,7 @@ import { faUserPlus, faGraduationCap, faTasks, faFileSignature, faComments, faHa
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const initData = {
-    heading: "SELL YOUR HOME",
+    heading: "Save Money, Eliminate Stress, Control the Process",
     headingText: "Finding Spaces provides the tools and professional guidance for you to list your property, negotiate offers and manage tasks through closing, all online. ",
     headingTexttwo: "All legal documents needed for the process are included for FREE!"
 }
@@ -32,7 +32,7 @@ const data = [
     {
         icon: faFileSignature,
         title: "Professional Sales Contract",
-        content: "A free purchase agreement (drafted by and reviewed by attorneys in Arizona and meet all the requirements of a binding contract) will be provided for completion. Once completed and signed we will send to the title company selected by you and the buyer. Once completed and signed we will send to the title company selected by you and the buyer."
+        content: "A free purchase agreement (drafted by and reviewed by attorneys in Arizona and meet all the requirements of a binding contract) will be provided for completion. Once completed and signed we will send to the title company selected by you and the buyer."
     },
     {
         icon: faHandsHelping,
