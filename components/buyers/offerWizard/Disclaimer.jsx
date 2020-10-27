@@ -33,9 +33,9 @@ const Disclaimer = ({ ...props }) => {
    const renderCountDownFooter = () => (
       <>
          <Col xs='1' className='pl-1'>
-            <Button as='a' className='rounded-lg' variant='light'>
+            {/* <Button disabled={true} as='a' target="_blank" className='rounded-lg' variant='light'>
                CANCEL
-            </Button>
+            </Button> */}
          </Col>
          <Col className='d-flex justify-content-end mr-5'>
             <Spinner animation='grow' role='status' />

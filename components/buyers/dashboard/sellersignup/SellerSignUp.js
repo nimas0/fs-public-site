@@ -18,13 +18,13 @@ const SellerSignUp = () => {
 
     return (
 
-        <Card className='border-0  schedulingShadow bg-transparent w-100 mt-3'>
+        <Card style={{ cursor: 'pointer' }} onClick={() => router.push('/learnmore')} className='border-0  schedulingShadow bg-transparent w-100 mt-3'>
             {/* <Card.Header className='py-4 bg-transparent border-0 text-muted' as='h5'>
                   Pre-Approval
                </Card.Header> */}
             <Card.Body className='text-center py-4'>
                 <div className='text-success d-flex justify-content-between px-1 pt-2 '>
-                    <h5 className='ml-3 text-success '>Sell your home for free</h5>
+                    <h5 className='ml-3 text-primary '>Learn How To Sell Your Home for Free</h5>
                     <h4 id='documents-heading' className=' font-wieght-light text-dark'>
                         <FontAwesomeIcon icon={faChevronRight} color='green' />
                     </h4>

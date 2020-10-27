@@ -110,19 +110,15 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                     <div className='header d-flex align-items-center '>
                                         <Col xs={toggle ? 3 : 1} className='p-3 border-right justify-content-center d-flex headerBack'>
                                             <Link href="/buyer/dashboard">
-                                                <a>Back </a>
+                                                <a >Back </a>
                                             </Link>
                                         </Col>
                                         <Col xs={toggle ? 5 : 9}>
                                             <h5 className='ml-4 text-muted d-flex text-center pt-2'>{!toggle && data.address[0]}</h5>
                                         </Col>
                                         <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>
-                                            <Link
-                                                as={Button}
-                                                className='p-3'
-                                                variant='link'
-                                                href='/buyer/dashboard'>
-                                                Buying
+                                            <Link href={`/listing/${data.listingId}`}>
+                                                <a>Visit Listing Site </a>
                                             </Link>
                                         </Col>
                                         <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>

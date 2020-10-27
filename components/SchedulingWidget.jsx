@@ -188,7 +188,7 @@ const SchedulingWidget = ({
 
                   <div className='text-center mb-1 mt-2'>
                      {/* Schedule Tour */}
-                     <Link href={tourLinkHref} as={tourLinkAs} passHref>
+                     <Link target="_blank" href={tourLinkHref} as={tourLinkAs} passHref>
                         <Button
                            variant='primary'
                            onClick={
@@ -269,7 +269,7 @@ const SchedulingWidget = ({
                      }}>
                      <div className='d-flex justify-content-around align-items-center'>
                         {/* Schedule Tour */}
-                        <Link href={tourLinkHref} as={tourLinkAs} passHref>
+                        <Link href={tourLinkHref} as={tourLinkAs}  passHref>
                            <Button
                               variant='info'
                               onClick={

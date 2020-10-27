@@ -239,11 +239,12 @@ const Tour = ({
 
         <div className={clsx("mb-4", confirmed && breakpoint.sm && "ml-4")}>
           <Link
+            
             href="/listing/[listingId]"
             as={`/listing/${router.query.listingId}`}
             passHref
           >
-            <a>
+            <a target="_blank">
               <FontAwesomeIcon icon={faLongArrowAltLeft} className="mr-1" />
               Return to listing
             </a>
