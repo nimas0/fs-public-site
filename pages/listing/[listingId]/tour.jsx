@@ -244,7 +244,7 @@ const Tour = ({
             as={`/listing/${router.query.listingId}`}
             passHref
           >
-            <a >
+            <a target="_blank">
               <FontAwesomeIcon icon={faLongArrowAltLeft} className="mr-1" />
               Return to listing
             </a>
