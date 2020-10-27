@@ -17,27 +17,27 @@ const Heading = () => {
             </Row> */}
             <Row>
                <Col xs='auto' className='mr-0 pr-0'>
-                  <h2 className='text-info'>John SmitherField</h2>
+                  <h2 className='ml-2 text-info'>John SmitherField</h2>
                </Col>
                <Col xs='2' className='align-items-top  pl-1'>
                   <span className='d-flex mr-auto '>
-                     <Button
+                     {/* <Button
                         size='lg'
                         variant='link'
                         onClick={() => router.push('/buyer/assistants')}>
                         <FontAwesomeIcon className='align-top text-primary' icon={faUserPlus} />
-                     </Button>
+                     </Button> */}
                   </span>
                </Col>
             </Row>
             <Row className='pl-3 mb-1'>
-               <Badge className='mr-2' variant='secondary'>
+               {/* <Badge className='mr-2' variant='secondary'>
                   Jack Lemons (<i>pending</i>) <FontAwesomeIcon icon={faTimes} />
                </Badge>
     
                <Badge variant='secondary'>
                   Donna Wright  <FontAwesomeIcon icon={faTimes} />
-               </Badge>
+               </Badge> */}
     
             </Row>
          </span>

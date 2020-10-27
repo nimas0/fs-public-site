@@ -76,7 +76,7 @@ const Action = ({
                   block>
                   Request Showing
                </Button>
-               <Button
+               {/* <Button
                   onClick={() =>
                      router.push(
                         `/buyer/interest?interestId=${listingId}_${buyerUid}`,
@@ -88,7 +88,7 @@ const Action = ({
                   className='mb-1 '
                   block>
                   View Docs
-               </Button>
+               </Button> */}
             </Col>
          </Row>
          <GenericModal

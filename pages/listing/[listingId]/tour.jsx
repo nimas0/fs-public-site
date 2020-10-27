@@ -244,7 +244,7 @@ const Tour = ({
             as={`/listing/${router.query.listingId}`}
             passHref
           >
-            <a target="_blank">
+            <a >
               <FontAwesomeIcon icon={faLongArrowAltLeft} className="mr-1" />
               Return to listing
             </a>
@@ -349,7 +349,7 @@ const Tour = ({
         )}
       </Container>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

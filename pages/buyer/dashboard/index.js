@@ -77,14 +77,14 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                                     {/* <Card.Header className='bg-transparent py-4  border-0 ' as='h4'>
                                        Search Using Home Code`
                                        </Card.Header>  */}
-                                    <Card.Body className='text-center py-5'>
+                                    {/* <Card.Body className='text-center py-5'>
 
                                         <Card.Text>
                                             <small>
                                                 <i>Search Bar for Home</i>
                                             </small>
                                         </Card.Text>
-                                    </Card.Body>
+                                    </Card.Body> */}
                                 </Card>
                             </Col>
                         </Row>

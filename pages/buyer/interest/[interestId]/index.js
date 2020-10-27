@@ -116,20 +116,21 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                         <Col xs={toggle ? 5 : 9}>
                                             <h5 className='ml-4 text-muted d-flex text-center pt-2'>{!toggle && data.address[0]}</h5>
                                         </Col>
+                                      
+                                        <Col xs={toggle ? 2 : 1} className='p-3  justify-content-center d-flex '>
+                                            {/* <Link href="/buyer/dashboard">
+                                                <a>Unsubscribe </a>
+                                            </Link> */}
+
+                                        </Col>
                                         <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>
                                             <Link href={`/listing/${data.listingId}`}>
                                                 <a>Visit Listing Site </a>
                                             </Link>
                                         </Col>
-                                        <Col xs={toggle ? 2 : 1} className='p-3 border-left justify-content-center d-flex headerBack'>
-                                            <Link href="/buyer/dashboard">
-                                                <a>Unsubscribe </a>
-                                            </Link>
-
-                                        </Col>
                                     </div>
                                     <Row>
-                                        <Col className='d-flex align-items-stretch border-right pr-0'>
+                                        <Col className='d-flex  border-right pr-0'>
                                             {uploadView ?
                                                 <DocumentUpload interestId={interestId} setUploadView={setUploadView} /> :
                                                 <Messenger messagesEndRef={messagesEndRef} setProposalData={setProposalData} activeProposal={activeProposal} proposalData={proposalData} handleToggleSidebar={handleToggleSidebar} AuthUserInfo={AuthUserInfo} />
@@ -150,12 +151,12 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                                     <div className='d-flex justify-content-center mt-4 px-3'>
 
                                                         <>
-                                                            <Col xs={6}>
-                                                                <Button className='rounded-sm' block>Request Showing</Button>
+                                                            {/* <Col xs={6}>
+                                                                <Button  className='rounded-sm' block>Request Showing</Button>
                                                             </Col>
                                                             <Col xs={6}>
                                                                 <Button className='rounded-sm' block>Submit Offer</Button>
-                                                            </Col>
+                                                            </Col> */}
                                                         </>
                                                     </div>
                                                 )
