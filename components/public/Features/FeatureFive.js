@@ -3,7 +3,7 @@ import { faUserPlus, faGraduationCap, faTasks, faFileSignature, faComments, faHa
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const initData = {
-    heading: "SELL YOUR HOME",
+    heading: "Save Money, Eliminate Stress, Control the Process",
     headingText: "Finding Spaces provides the tools and professional guidance for you to list your property, negotiate offers and manage tasks through closing, all online. ",
     headingTexttwo: "All legal documents needed for the process are included for FREE!"
 }
@@ -105,7 +105,6 @@ class FeatureSection extends Component {
                     max-width: 290px;
                     margin: 0 auto;
                     }
-
                     .features-area.style-two .image-box {
                     position: relative;
                     -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.12);
@@ -116,7 +115,6 @@ class FeatureSection extends Component {
                     transition: transform 0.3s ease 0s;
                     transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
                     }
-
                     .features-area.style-two .image-box:hover {
                     -webkit-transform: translateY(-10px);
                     transform: translateY(-10px);

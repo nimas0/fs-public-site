@@ -41,11 +41,6 @@ class FaqSection extends Component {
                 "content": "Yes. Our purchase agreement has been drafted by and reviewed by attorneys in Arizona and meeting all the requirements of a binding contract"
             },
             {
-                "id": 6,
-                "title": "Is the Finding Spaces Contract A Legally Binding Document?",
-                "content": "Yes. Our purchase agreement has been drafted by and reviewed by attorneys in Arizona and meeting all the requirements of a binding contract"
-            },
-            {
                 "id": 7,
                 "title": "What Services Does Finding Spaces Provide?",
                 "content": "Finding Spaces provides a platform for buyers and sellers to complete the real estate process on their own. We’ll guide you through the process from start to finish. You’ll receive a personalized dashboard that walks the buyers and sellers through each step and provides real estate tools and resources along the way."
