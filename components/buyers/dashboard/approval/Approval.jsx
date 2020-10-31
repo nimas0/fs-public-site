@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import { Pending, Denied, Approved, Expired } from './Status';
+// import { Pending, Denied, Approved, Expired } from './Status';
 
-const Approval = ({ verification: { status }, AuthUser }) => {
+const Approval = ({ AuthUser }) => {
    const router = useRouter();
 
    const [uiState, resetState] = useState();
@@ -15,22 +15,22 @@ const Approval = ({ verification: { status }, AuthUser }) => {
       );
    };
 
-   switch (status) {
-      case 'pending':
-         return <Pending />;
-      case 'approved':
-         return <Approved />;
-      case 'denied':
-         return <Denied reset={uploadPageRedirect} />;
-      case 'expired':
-         return <Expired uploadPageRedirect={uploadPageRedirect} />;
-      default:
+   // switch (status) {
+   //    case 'pending':
+   //       return <Pending />;
+   //    case 'approved':
+   //       return <Approved />;
+   //    case 'denied':
+   //       return <Denied reset={uploadPageRedirect} />;
+   //    case 'expired':
+   //       return <Expired uploadPageRedirect={uploadPageRedirect} />;
+   //    default:
          return (
             <Row>
                <Col>
                   {/*  boxShadow: 'inset 4px 4px 15px #bdbdbd' */}
-                  <Card style={{}} className='schedulingShadow bg-transparent mb-4'>
-                     <Card.Header className='py-4 text-muted' as='h5'>
+                  <Card style={{}} className='border-0 schedulingShadow bg-light mb-4'>
+                     <Card.Header className='py-4 text-muted  bg-light' as='h5'>
                         Verification
                      </Card.Header>
                      <Card.Body className='text-center py-5'>
@@ -50,7 +50,7 @@ const Approval = ({ verification: { status }, AuthUser }) => {
                </Col>
             </Row>
          );
-   }
+   // }
 };
 
 export default Approval;

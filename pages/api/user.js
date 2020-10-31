@@ -10,6 +10,7 @@ firebaseInit();
 export default async (req, res) => {
   const { id } = req.query;
 
+  console.log('id', id)
   // Set up database connection
   const db = firebase.firestore();
 

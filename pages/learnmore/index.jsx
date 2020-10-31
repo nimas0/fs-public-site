@@ -32,8 +32,7 @@ const ThemeFive = ({ AuthUserInfo, showLoginModal }) => {
          {/*====== Scroll To Top Area End ======*/}
          <div className='main'>
             <Nav
-            AuthUser={AuthUser} 
-            showLoginModal={showLoginModal}  
+               solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal}
             />
             <HeroSection />
             <FeatureSection />

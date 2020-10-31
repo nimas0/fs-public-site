@@ -29,7 +29,7 @@ class Work extends Component {
     }
     render() {
         return (
-            <section className="section work-area bg-overlay overflow-hidden ptb_50 mt-3">
+            <section className="section work-area bg-overlay overflow-hidden pb-5 mb-3">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-lg-9">
