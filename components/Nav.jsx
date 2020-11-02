@@ -58,7 +58,7 @@ export default ({
                      <>
                         {homepage ? (
                            <Nav.Link variant='text-secondary' href='/learnmore'>
-                              Learn More
+       
                            </Nav.Link>
                         ) : (
                            <Navbar.Brand style={{ cursor: 'pointer' }} className='font-italic'>
