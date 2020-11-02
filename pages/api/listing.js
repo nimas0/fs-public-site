@@ -15,6 +15,7 @@ export default async (req, res) => {
 
   // Get current listing data
   const listingRef = db.collection("listings").doc(id);
+
   try {
     const listingSnapshot = await listingRef.get();
     if (listingSnapshot.exists) {
@@ -37,6 +38,7 @@ export default async (req, res) => {
         listing.homeDetails,
         "originalPrice"
       );
+      
       listing.currentPrice = findAndRemove(listing.homeDetails, "currentPrice");
       listing.bedrooms = findAndRemove(listing.homeDetails, "bedrooms");
       listing.fullBaths = findAndRemove(listing.homeDetails, "fullBaths");
