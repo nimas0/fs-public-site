@@ -6,7 +6,7 @@ const initData = {
     content: "",
     btnText: "LEARN MORE",
     formHeading: "SELL YOUR HOME FOR FREE",
-    formText: "The platform and features are free to sign up.  Other items, such as yard signs and photography, are available for purchase.",
+    formText: "Our services provided on this platform are in Beta stages of production. Please take note that Finding Spaces will provide FREE photography and yard signs for all beta users! The platform and features are also free to sign up.",
     formBtn: "GET STARTED",
     formBtnText: "By signing up, you accept our",
     formBtnText_2: "Terms",

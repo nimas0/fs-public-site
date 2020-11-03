@@ -5,7 +5,7 @@ import HomeLayout from '../components/layout/HomeLayout';
 import withAuthUser from '../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../utils/pageWrappers/withLoginModal';
-import { Card, Container, Row, Col, FormControl, Form, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, FormControl, Form, Button, Alert } from 'react-bootstrap';
 import $ from 'jquery';
 import FadeIn from 'react-fade-in';
 import { useRouter } from 'next/router';
@@ -225,9 +225,14 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                               className='m-4'>
                               <b>Enter Home</b>
                            </Button>
-
-                           <p className='text-warning'>{errors.submittionError}</p>
+                          
                         </Row>
+                        <Row className='justify-content-center align-items-center text-center'>
+                           <p className='text-warning text-center'>{errors.submittionError}</p>
+                        </Row>
+                        <Alert variant='primary' >
+                           <h6 className='text-center'>"Notice! Our services provided on this platform are in Beta stages of production. Please take note that Finding Spaces will provide FREE photography and yard signs for all beta users!"</h6>
+                        </Alert>
                      </Container>
                   </div>
                </Form>
