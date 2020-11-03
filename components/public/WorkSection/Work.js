@@ -102,9 +102,9 @@ class Work extends Component {
                                         <div className='d-inline font-weight-bold m-2'>
                                             Email: <h6 className='d-inline  m-2'>support@findingspaces.com</h6>
                                         </div>
-                                        <div className='d-inline font-weight-bold m-2'>
+                                        {/* <div className='d-inline font-weight-bold m-2'>
                                             Call: <h6 className='d-inline  m-2'>1-800-700-0000</h6>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                   
