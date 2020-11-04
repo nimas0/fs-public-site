@@ -120,11 +120,11 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                // cant use validation because it causes issues with autoTab() funcitons after submittion
                // isInvalid={props.errors && Boolean(props.errors[`input${props.index}`])}
                name={`input${props.index}`}
-               className={`rounded form-control1  defaultCard ${breakpoint.up.lg ? 'm-3' : 'm-1'} ${
+               className={`rounded   defaultCard ${breakpoint.up.lg ? 'm-3 form-control1' : 'm-1 form-control-mobile'} ${
                   submitting ? 'afterSubmitStyle' : 'beforeSubmitStyle'
                }`}
                style={{
-                  width: breakpoint.up.lg ? '10rem' : '3rem',
+                  width: breakpoint.up.lg ? '10rem' : '4rem',
                   height: breakpoint.up.lg ? '14rem' :  '5rem',
                }}
                data-index={props.index}
@@ -147,8 +147,8 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
             return (
                <>
                   <FadeIn delay={1000}>
-                     <span key={index + 345} className='px-3 '>
-                        <h2 className='text-muted'>-</h2>
+                     <span key={index + 345} className=' '>
+                       {breakpoint.up.lg ? <h2 className='text-muted'>-</h2> : <h2 className='text-muted'>-</h2>}
                      </span>
                   </FadeIn>
                   <Input key={index} index={index} autoTab={autoTab} error={errors} />

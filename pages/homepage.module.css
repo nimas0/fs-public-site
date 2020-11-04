@@ -11,7 +11,19 @@ input {
    font-size: 5rem;
    text-align: center;
 }
+.form-control-mobile {
+   font-size: 1.5rem;
+   text-align: center;
+}
 .form-control1:focus {
+   color: transparent;
+   text-shadow: 0 1px 1px #589938;
+   outline: none;
+   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: 5 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-control-mobile:focus {
    color: transparent;
    text-shadow: 0 1px 1px #589938;
    outline: none;
