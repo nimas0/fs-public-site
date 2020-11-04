@@ -124,8 +124,8 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                   submitting ? 'afterSubmitStyle' : 'beforeSubmitStyle'
                }`}
                style={{
-                  width: breakpoint.up.lg ? '10rem' : '4rem',
-                  height: breakpoint.up.lg ? '14rem' :  '5rem',
+                  width: breakpoint.up.lg ? '10rem' : '3rem',
+                  height: breakpoint.up.lg ? '14rem' :  '4rem',
                }}
                data-index={props.index}
                ref={ref}
