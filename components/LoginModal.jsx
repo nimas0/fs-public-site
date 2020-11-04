@@ -14,6 +14,7 @@ import firebase from 'firebase/app';
 // import uploadUserDocument from '../utils/uploadUserDocument';
 import { useRouter } from 'next/router';
 import Countdown from 'react-countdown';
+import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 
 // // Initialize Firebase app
 // firebaseInit();
@@ -22,6 +23,9 @@ export default ({ shown, setShown }) => {
    // FirebaseUI does not support server-side rendering
    // https://github.com/firebase/firebaseui-web/issues/213
    const [renderAuth, setRenderAuth] = useState(false);
+   const breakpoint = useMediaBreakpoints();
+
+
    useEffect(() => {
       if (typeof window !== 'undefined') {
          setRenderAuth(true);
@@ -87,9 +91,9 @@ export default ({ shown, setShown }) => {
    // };
 
    return (
-      <Modal style={{color: '#ffff', opacity: 1}} className='border-0 m-4 '  centered show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
+      <Modal style={{color: '#ffff', opacity: 1}} className='border-0 '  centered show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
             <>
-               <Modal.Header  className='text-white bg-dark schedulingShadow' closeButton>
+               <Modal.Header  className='text-white bg-dark border-0 schedulingShadow' closeButton>
                   <Modal.Title  className=' text-center '>Full Website Coming Soon</Modal.Title>
                </Modal.Header>
       

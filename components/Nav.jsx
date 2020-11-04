@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import logout from '../utils/auth/logout';
 import { useScrollDirection, useScrollPosition } from '../utils/hooks/scrolldirection';
+import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 
 export default ({
    address,
@@ -19,7 +20,9 @@ export default ({
 }) => {
    const router = useRouter();
 
+
    const [isScrolled, setScrolled] = useState(false);
+   const breakpoint = useMediaBreakpoints();
 
    useScrollPosition((position) => {
       if (position !== 0) {
@@ -49,11 +52,12 @@ export default ({
       <>
          <Navbar
             id={solidBackground && isScrolled ? 'navbar-scrolling' : 'navbar-custom'}
-            fixed
-            sticky='top'
+            fixed={breakpoint.lg.up ? true : false}
+            sticky={breakpoint.lg.up ? 'top' : false}
             expand="lg"
             className=' text-info d-flex px-5 pt-3 pb-2 '>
             <>
+            <Navbar.Toggle className='border-0 ' aria-controls="basic-navbar-nav" />
                <div className='flex-grow-0 order-1'>
                   <Link href='/' passHref>
                      <>
@@ -145,13 +149,16 @@ export default ({
                      </Nav.Link>
                   )
                ) : (
-                  <Nav.Link
+                  breakpoint.up.lg && (
+                     <Nav.Link
                      as={Button}
                      variant='inherit'
                      onClick={showLoginModal}
                      className='profile-icon'>
                      <FontAwesomeIcon size='2x' icon={faUserCircle} />
                   </Nav.Link>
+                  )
+                 
                )}
             </Nav>
          </Navbar>
