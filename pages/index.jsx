@@ -147,7 +147,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
             return (
                <>
                   <FadeIn delay={1000}>
-                     <span key={index + 345} className=' '>
+                     <span key={index + 345} className='w-100'>
                        {breakpoint.up.lg ? <h2 className='text-muted'>-</h2> : <h2 className='text-muted'>-</h2>}
                      </span>
                   </FadeIn>
