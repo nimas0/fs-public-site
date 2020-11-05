@@ -100,7 +100,7 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
                         </Col>
                      </Row>
 
-                     <Nav
+                     {/* <Nav
                         fill
                         variant='tabs'
                         className='border-0   border-bottom-0 nav justify-content-center '>
@@ -138,7 +138,7 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
                               </Nav.Link>
                            )}
                         </Nav.Item>
-                     </Nav>
+                     </Nav> */}
                   </Card.Header>
                   <Card.Body className='text-center pb-5'>
                      <Tab.Content>

@@ -42,7 +42,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                 <Row>
                     <Col xs='6'>
 
-                        <Heading />
+                        <Heading AuthUser={AuthUser} />
                         <Row className='pb-2 mx-1'>
                             {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
                                 Seller's Dashboard

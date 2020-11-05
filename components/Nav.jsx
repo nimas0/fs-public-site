@@ -102,7 +102,7 @@ export default ({
                   ) : (
                      <>
                         <Nav.Link as={Button} variant='link' href='/learnmore'>
-                           Learn More
+                           Get Started Selling Your House
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
                            Buyer
