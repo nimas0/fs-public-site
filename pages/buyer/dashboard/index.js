@@ -41,32 +41,22 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             <Container>
                 <Row>
                     <Col xs='6'>
-
                         <Heading AuthUser={AuthUser} />
-                        <Row className='pb-2 mx-1'>
+                        <Row className='pb-1 mx-1'>
                             {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
                                 Seller's Dashboard
                                        </Card.Header> */}
                             {/* <Button href={!loadingUserDoc && userDoc.data().defaultListingId ? 'http://localhost:3001/showings' : '/learnmore'} className=' rounded-lg mx-3' variant="primary" size="md" block>
                                 {!loadingUserDoc && userDoc.data().defaultListingId ? 'Go to Seller\'s Dashboard' : 'Learn More: Sell Your Home Free'}
                             </Button> */}
-                            <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+
                         </Row>
                         {
                             errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
                                 <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
                         }
-                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
-                        {loading && loadingUserDoc && <span>Loading...</span>}
-                        {(value && userDoc) && (
-                            <span>
-                                {value.docs.map(doc => (
-                                    <React.Fragment key={doc.id}>
-                                        <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
-                                    </React.Fragment>
-                                ))}
-                            </span>
-                        )}
+                        <Resources />
+
 
                     </Col>
                     <Col xs={{ span: 6 }}>
@@ -86,10 +76,21 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                                         </Card.Text>
                                     </Card.Body> */}
                                 </Card>
+
                             </Col>
                         </Row>
-
-                        <Resources />
+                        <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
+                        {loading && loadingUserDoc && <span>Loading...</span>}
+                        {(value && userDoc) && (
+                            <span>
+                                {value.docs.map(doc => (
+                                    <React.Fragment key={doc.id}>
+                                        <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
+                                    </React.Fragment>
+                                ))}
+                            </span>
+                        )}
                     </Col>
                 </Row>
             </Container>

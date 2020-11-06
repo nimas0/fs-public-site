@@ -75,7 +75,7 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
    return (
       <Row>
          <Col>
-            <Card  className='schedulingShadow border-0 bg-white mb-4'>
+            <Card  className='buttonShadow border-0 bg-white mb-4'>
                <Tab.Container id='left-tabs-example' activeKey={key} onSelect={(k) => setKey(k)}>
                   <Card.Header  className='pt-4  bg-white text-muted  mb-0' as='h5'>
                      <Row className=''>
