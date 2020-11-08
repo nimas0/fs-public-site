@@ -12,7 +12,8 @@ import 'firebase/auth';
 import fetch from 'isomorphic-unfetch';
 import firebaseInit from '../utils/firebaseInit';
 import uploadUserDocument from '../utils/uploadUserDocument';
-
+import PhoneInput from 'react-phone-number-input'
+import { isValidPhoneNumber } from 'react-phone-number-input'
 // Initialize Firebase app
 firebaseInit();
 
@@ -29,6 +30,8 @@ export default ({ shown, setShown }) => {
    // File input
    const fileInput = useRef(0);
    const [fileSelected, setFileSelected] = useState(false);
+   // phone number
+   const [number, setNumber] = useState('');
    const [userId, setUserId] = useState(null);
    const [uploading, setUploading] = useState(false);
    const [uploadFailure, setUploadFailure] = useState(false);
@@ -73,7 +76,7 @@ export default ({ shown, setShown }) => {
                   close();
                } else {
                   // Go to verification
-                  setPage('verification');
+                  setPage('number');
                }
             });
             setPage('authWait');
@@ -83,7 +86,7 @@ export default ({ shown, setShown }) => {
    };
 
    return (
-      <Modal show={shown} onHide={close} backdrop={uploading ? 'static' : true}>
+      <Modal centered animation show={shown}  backdrop={uploading ? 'static' : true}>
          {page === 'auth' ? (
             <>
                <Modal.Header closeButton>
@@ -174,6 +177,71 @@ export default ({ shown, setShown }) => {
                   </Button>
                </Modal.Footer>
             </>
+               ) : page === 'number' ? (
+                  <>
+                     <Modal.Header>
+                        <Modal.Title>Enter your phone number</Modal.Title>
+                        {/* Using custom button so I can disable it */}
+                        {/* <button
+                           type='button'
+                           className='close'
+                           onClick={close}
+                           aria-label='Close'
+                           disabled={uploading}>
+                           <span aria-hidden='true'>&times;</span>
+                        </button> */}
+                     </Modal.Header>
+      
+                     <Modal.Body>
+                        <p>
+                           Enter your phone number:
+                        </p>
+                        <PhoneInput
+                           placeholder="Enter phone number"
+                           value={number}
+                           onChange={setNumber}/>
+                        {/* <Form.Control
+                           type="tel"
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                           required
+                           name='number'
+                           aria-label='Verification document'
+                           onChange={(e) => setNumber(e.target.value)}
+                           disabled={uploading}
+                        />
+                        <small>Format: 123-456-7890</small> */}
+                        {uploadFailure && (
+                           <Form.Control.Feedback type='invalid'>
+                              We're experiencing network errors&mdash;please try again later.
+                           </Form.Control.Feedback>
+                        )}
+                     </Modal.Body>
+      
+                     <Modal.Footer>
+                        <Button
+                           disabled={!isValidPhoneNumber(number)}
+                           variant='primary'
+                           onClick={uploadNumber}
+                          >
+                           {uploading ? (
+                              <>
+                                 <Spinner
+                                    as='span'
+                                    animation='border'
+                                    size='sm'
+                                    role='status'
+                                    aria-hidden='true'
+                                    className='position-relative mr-2'
+                                    style={{ bottom: 3 }}
+                                 />
+                                 Loading...
+                              </>
+                           ) : (
+                              'Next'
+                           )}
+                        </Button>
+                     </Modal.Footer>
+                  </>
          ) : page === 'welcome' ? (
             <>
                <Modal.Header closeButton>
@@ -216,7 +284,8 @@ export default ({ shown, setShown }) => {
                   </Button>
                </Modal.Footer>
             </>
-         )}
+         )
+         }
       </Modal>
    );
 
@@ -301,4 +370,50 @@ export default ({ shown, setShown }) => {
          }
       }
    }
+
+   
+
+async function uploadNumber() {
+   // Set loading animations
+   setUploading(true);
+
+   // Remove upload failure message if there
+   setUploadFailure(false);
+
+
+      try {
+         
+      if(!isValidPhoneNumber(number)) {
+          // https://github.com/developit/unfetch#caveats
+          let error = new Error('Wrong format');
+          throw error;
+      }
+            // Send file info through API
+            const response = await fetch('/api/upload-number', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({ number, userId }),
+            });
+
+            if (response.ok) {
+               // Move on
+               setPage('verification');
+               setUploading(false);
+            } else {
+               // https://github.com/developit/unfetch#caveats
+               let error = new Error(response.statusText);
+               error.response = response;
+               throw error;
+            }
+      } catch (err) {
+         // Add upload failure message
+         console.error('Either a coding error or network issues', err);
+         setUploadFailure(true);
+         setUploading(false);
+      }
+ 
+}
+
 };
+
+

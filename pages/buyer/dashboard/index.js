@@ -90,11 +90,25 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                         <Row className='mb-5'>
 
                             <Col xs={12}>
-                                <Button onClick={() => router.push('/')} variant='primary' style={{ borderStyle: 'solid', borderRadius: 10 }} block className=' p-3 text-primary m-1 bg-white buttonShadow  d-flex justify-content-between border-rounded  '>{userDoc ? 'SELLER\'\S DASHBOARD' : 'Sell Your Home'}  <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b></Button>
+                                <Button
+                                    onClick={() => router.push('/')}
+                                    variant='primary'
+                                    style={{ borderStyle: 'solid', borderRadius: 10 }}
+                                    block
+                                    className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '>
+                                    {userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') ? 'Go to Seller\'\s dashboard' : 'Sell Your Home Without An Agent'}
+                                    <b><FontAwesomeIcon icon={faChevronRight} color='white' /></b>
+                                </Button>
 
                             </Col>
                             <Col>
-                                <Button onClick={() => router.push('/')} style={{ borderStyle: 'solid', borderRadius: 10 }} block className=' p-3 text-primary bg-white buttonShadow  m-1 d-flex justify-content-between border-rounded  '>SEARCH A HOME <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b></Button>
+                                <Button
+                                    onClick={() => router.push('/')} style={{ borderStyle: 'solid', borderRadius: 10 }}
+                                    block
+                                    className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '>
+                                    Enter Home Code
+                                        <b><FontAwesomeIcon icon={faChevronRight} color='white' /></b>
+                                </Button>
                             </Col>
                         </Row>
                         <p className='text-muted'>Subscriptions</p>
