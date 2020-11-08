@@ -17,13 +17,16 @@ import firebaseInit from '../../../utils/firebaseInit';
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import Nav from '../../../components/Nav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
 
 // Initialize Firebase app
 firebaseInit();
 
 
 const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionData }) => {
-
+    const router = useRouter();
     const { AuthUser = null } = AuthUserInfo;
     const [value, loading, error] = useCollection(firebase.firestore().collection('interest').where('buyer.buyerUid', '==', AuthUser.id));
     const [userDoc, loadingUserDoc, errorUserDoc] = useDocument(
@@ -37,7 +40,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
     return (
         <>
-            <Nav  AuthUser={AuthUser} showLoginModal={showLoginModal} />
+            <Nav showQuickLinks={false} AuthUser={AuthUser} showLoginModal={showLoginModal} />
             <Container>
                 <Row>
                     <Col xs='6'>
@@ -55,8 +58,11 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                             errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
                                 <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
                         }
-                        <Resources />
 
+
+
+                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
+                        <Resources />
 
                     </Col>
                     <Col xs={{ span: 6 }}>
@@ -79,20 +85,56 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
                             </Col>
                         </Row>
-                        <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
-                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
+                        <p className='text-muted'>Quick links</p>
+                        {/* <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} /> */}
+                        <Row className='mb-5'>
+
+                            <Col xs={12}>
+                                <Button onClick={() => router.push('/')} variant='primary' style={{ borderStyle: 'solid', borderRadius: 10 }} block className=' p-3 text-primary m-1 bg-white buttonShadow  d-flex justify-content-between border-rounded  '>{userDoc ? 'SELLER\'\S DASHBOARD' : 'Sell Your Home'}  <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b></Button>
+
+                            </Col>
+                            <Col>
+                                <Button onClick={() => router.push('/')} style={{ borderStyle: 'solid', borderRadius: 10 }} block className=' p-3 text-primary bg-white buttonShadow  m-1 d-flex justify-content-between border-rounded  '>SEARCH A HOME <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b></Button>
+                            </Col>
+                        </Row>
+                        <p className='text-muted'>Subscriptions</p>
                         {loading && loadingUserDoc && <span>Loading...</span>}
                         {(value && userDoc) && (
                             <span>
-                                {value.docs.map(doc => (
-                                    <React.Fragment key={doc.id}>
-                                        <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
-                                    </React.Fragment>
-                                ))}
+                                {
+                                    value.docs.length === 0 ?
+                                        (
+                                            <Card style={{ height: '20rem' }} className='border rounded'>
+                                                <Card.Header>You are not currently subscribed to any property.</Card.Header>
+                                                <Card.Body>
+                                                    <h6>Once subscribed you can: </h6>
+                                                    <ul>
+                                                        <li>Make offers</li>
+                                                        <li>Chat with Homeowner</li>
+                                                        <li>Schedule Showings</li>
+                                                        <li>Recieve updates</li>
+                                                    </ul>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                        :
+                                        (
+
+                                            value.docs.map(doc => (
+                                                <React.Fragment key={doc.id}>
+                                                    <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
+                                                </React.Fragment>
+                                            ))
+
+                                        )
+                                }
+
                             </span>
                         )}
                     </Col>
+
                 </Row>
+
             </Container>
         </>
     )

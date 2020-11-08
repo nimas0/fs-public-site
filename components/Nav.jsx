@@ -11,6 +11,7 @@ import { useScrollDirection, useScrollPosition } from '../utils/hooks/scrolldire
 
 export default ({
    address,
+   showQuickLinks = true,
    search,
    AuthUser,
    showLoginModal,
@@ -81,35 +82,37 @@ export default ({
             <Navbar.Collapse id='nav-links' className='flex-grow-0 order-5 order-sm-4'>
                <Nav className='align-items-center align-items-sm-center'>
                   {AuthUser ? (
-                     <>
-                        {/* <Nav.Link as={Button} variant='link' href='/learnmore'>
-                           Learn More
-                        </Nav.Link> */}
-                        <Nav.Link
-                           as={Button}
-                           className='p-3'
-                           variant='link'
-                           href='/buyer/dashboard'>
-                           Buying
-                        </Nav.Link>
-                        <Nav.Link
-                           as={Button}
-                           className='p-3'
-                           variant='link'
-                           href='http://localhost:3001/showings'>
-                           Selling
-                        </Nav.Link>
-                     </>
+     
+            
+                        (showQuickLinks && (
+                        <>
+                           <Nav.Link
+                              as={Button}
+                              className='p-3'
+                              variant='link'
+                              href='/buyer/dashboard'>
+                              Buyer's Dashboard
+                           </Nav.Link>
+                           <Nav.Link
+                              as={Button}
+                              className='p-3'
+                              variant='link'
+                              href='http://localhost:3001/showings'>
+                              Seller's Dashboard
+                           </Nav.Link>
+                        </>
+                        ))
+        
                   ) : (
                      <>
                         <Nav.Link as={Button} variant='link' href='/learnmore'>
                            Get Started Selling Your House
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Buyer
+                           Buyer's Dashboard
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Seller
+                           Seller's Dashboard
                         </Nav.Link>
                         {/* <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
                            Buying

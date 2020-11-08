@@ -34,10 +34,10 @@ const SellerSignUp = () => {
         //     </Card.Body>
         // </Card>
 
-        <Button variant='white' style={{ borderStyle: 'solid', borderRadius: 11 }} block size="lg"  className='pt-4 pb-3 text-primary bg-white buttonShadow my-4 d-flex justify-content-between border-rounded  '>
+        <Button variant='white' style={{ borderStyle: 'solid', borderRadius: 11 }} block size="lg"  className='pt-3 pb-2 text-primary bg-white buttonShadow  border-rounded  '>
 
             <h6 className='text-primary'>Learn How To Sell Your Home for Free</h6>
-            <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b>
+            {/* <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b> */}
 
         </Button>
 

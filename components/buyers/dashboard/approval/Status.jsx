@@ -36,7 +36,7 @@ export const Approved = ({verification: { createdAt, lender, loanType, verifType
       <Row>
          <Col>
             <Card className='border-0'>
-            <Card.Header className='py-2  border-0 '>
+            <Card.Header className='py-2 bg-light border-0 '>
             
                <Row className='my-2'>
                   <Col xs={9} className='pt-1'>
@@ -44,7 +44,7 @@ export const Approved = ({verification: { createdAt, lender, loanType, verifType
                   </Col>
                <Col xs={3}>
   
-                     <Button as='a' href={documentURL} target="_blank" className='px-4 py-2 buttonShadow rounded text-primary'>View</Button>
+                     <Button variant='outlined' as='a'  href={documentURL} target="_blank" className='px-4 py-2 rounded text-primary'>View</Button>
         
                  
             
@@ -53,7 +53,7 @@ export const Approved = ({verification: { createdAt, lender, loanType, verifType
                </Row>
    
             </Card.Header>
-            <Card.Body className='text-center pt-4 pb-3 px-3'>
+            <Card.Body className='bg-light text-center pt-4 pb-3 px-3'>
                   <Row className='px-4'>
                      <Col className=''>
                         <Row>
