@@ -13,6 +13,8 @@ import fetch from 'isomorphic-unfetch';
 import firebaseInit from '../utils/firebaseInit';
 import uploadUserDocument from '../utils/uploadUserDocument';
 import PhoneInput from 'react-phone-number-input'
+
+import 'react-phone-number-input/style.css'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 // Initialize Firebase app
 firebaseInit();
@@ -193,10 +195,9 @@ export default ({ shown, setShown }) => {
                      </Modal.Header>
       
                      <Modal.Body>
-                        <p>
-                           Enter your phone number:
-                        </p>
+        
                         <PhoneInput
+                           defaultCountry='US'
                            placeholder="Enter phone number"
                            value={number}
                            onChange={setNumber}/>
