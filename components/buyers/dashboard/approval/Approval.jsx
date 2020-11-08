@@ -3,7 +3,7 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { Pending, Denied, Approved, Expired } from './Status';
 
-const Approval = ({ verification: { status }, AuthUser }) => {
+const Approval = ({ verification, AuthUser }) => {
    const router = useRouter();
 
    const [uiState, resetState] = useState();
@@ -15,15 +15,15 @@ const Approval = ({ verification: { status }, AuthUser }) => {
       );
    };
 
-   switch (status) {
+   switch (verification.status) {
       case 'pending':
-         return <Pending />;
+         return <Pending verification={verification}  />;
       case 'approved':
-         return <Approved />;
+         return <Approved verification={verification} />;
       case 'denied':
          return <Denied reset={uploadPageRedirect} />;
       case 'expired':
-         return <Expired uploadPageRedirect={uploadPageRedirect} />;
+         return <Expired verification={verification}  uploadPageRedirect={uploadPageRedirect} />;
       default:
          return (
             <Row>

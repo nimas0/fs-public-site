@@ -15,6 +15,7 @@ export default ({
    AuthUser,
    showLoginModal,
    solidBackground,
+   showLogo,
    homepage = false,
 }) => {
    const router = useRouter();
@@ -51,7 +52,7 @@ export default ({
             id={solidBackground && isScrolled ? 'navbar-scrolling' : 'navbar-custom'}
             fixed
             sticky='top'
-            className=' text-info  d-flex px-5 pt-3 pb-2 '>
+            className={` text-info ${solidBackground && 'bg-white schedulingShadow border'}   d-flex px-5 pt-3 pb-2 `}>
             <>
                <div className='flex-grow-0 order-1'>
                   <Link href='/' passHref>
@@ -62,11 +63,11 @@ export default ({
                            </Nav.Link>
                         ) : (
                            <Navbar.Brand style={{ cursor: 'pointer' }} className='font-italic'>
-                              <img
+                              {showLogo && <img
                                  onClick={() => router.push('/')}
                                  width={'50%'}
                                  src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336'
-                              />
+                              />}
                            </Navbar.Brand>
                         )}
                      </>

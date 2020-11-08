@@ -103,6 +103,7 @@ const Listing = ({
             </title>
          </Head>
          <Nav
+            showLogo
             solidBackground={true}
             address={breakpoint.up.lg ? listing.address[0] + ', ' + listing.address[1] : false}
             {...{ AuthUser, showLoginModal }}

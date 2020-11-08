@@ -5,8 +5,9 @@ import HomeLayout from '../components/layout/HomeLayout';
 import withAuthUser from '../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../utils/pageWrappers/withLoginModal';
-import { Card, Container, Row, Col, FormControl, Form, Button } from 'react-bootstrap';
+import { Card, Container, Row, Col, FormControl, Form, Button, Alert } from 'react-bootstrap';
 import $ from 'jquery';
+import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 import FadeIn from 'react-fade-in';
 import { useRouter } from 'next/router';
 import './homepage.module.css';
@@ -17,6 +18,7 @@ import Nav from '../components/Nav';
 
 const Home = ({ AuthUserInfo, showLoginModal }) => {
    const { AuthUser = null } = AuthUserInfo;
+   const breakpoint = useMediaBreakpoints();
    const router = useRouter();
    // const buttonRef = React.createRef();
    let submitting;
@@ -118,12 +120,12 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                // cant use validation because it causes issues with autoTab() funcitons after submittion
                // isInvalid={props.errors && Boolean(props.errors[`input${props.index}`])}
                name={`input${props.index}`}
-               className={`rounded form-control1  defaultCard m-3 ${
+               className={`rounded   defaultCard ${breakpoint.up.lg ? 'm-3 form-control1' : 'm-1 form-control-mobile'} ${
                   submitting ? 'afterSubmitStyle' : 'beforeSubmitStyle'
                }`}
                style={{
-                  width: '10rem',
-                  height: '14rem',
+                  width: breakpoint.up.lg ? '10rem' : '3rem',
+                  height: breakpoint.up.lg ? '14rem' :  '4rem',
                }}
                data-index={props.index}
                ref={ref}
@@ -145,8 +147,8 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
             return (
                <>
                   <FadeIn delay={1000}>
-                     <span key={index + 345} className='px-3 '>
-                        <h2 className='text-muted'>-</h2>
+                     <span key={index + 345} className='w-100'>
+                       {breakpoint.up.lg ? <h2 className='text-muted'>-</h2> : <h2 className='text-muted'>-</h2>}
                      </span>
                   </FadeIn>
                   <Input key={index} index={index} autoTab={autoTab} error={errors} />
@@ -206,9 +208,21 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                <Form noValidate onSubmit={handleSubmit}>
                   <div style={{ height: '75vh' }} className='d-flex align-items-center'>
                      <Container className='align-items-center'>
-                        <Row className='justify-content-center align-items-center m-3 pl-3'>
-                           <img src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336' />
-                        </Row>
+                        {
+                           breakpoint.up.lg && (
+                              <Row className='justify-content-center align-items-center m-3 pl-3'>
+                               <img src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336' />
+                              </Row>
+                           )
+                        }
+                        {
+                           breakpoint.down.sm && (
+                              <Row className='justify-content-center align-items-center m-3 pl-3'>
+                               <img width='200px' src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336' />
+                              </Row>
+                           )
+                        }
+                        
                         <Row className='justify-content-center align-items-center'>
                            {blocks(errors)}
                         </Row>
@@ -225,8 +239,28 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                               className='m-4'>
                               <b>Enter Home</b>
                            </Button>
+                          
+                        </Row>
+                        <Row className='justify-content-center align-items-center text-center'>
+                           <p className='text-warning text-center'>{errors.submittionError}</p>
+                        </Row>
+                       
 
-                           <p className='text-warning'>{errors.submittionError}</p>
+                        <Row className=' justify-content-center align-items-center text-center'>
+                           {
+                              breakpoint.up.lg ? (
+                                 <Alert variant='primary' >
+                                 <h6  className='text-center'>"Notice! Our services provided on this platform are in Beta stages of production. Please take note that Finding Spaces will provide FREE photography and yard signs for all beta users!"</h6>
+                              </Alert>
+                              )
+                              :
+                              (
+                                 <Alert variant='transparent' className='w-75 mx-5' >
+                                 <small style={{fontSize: '.7em'}} className='text-center'>"Notice! Our services provided on this platform are in Beta stages of production. Please take note that Finding Spaces will provide FREE photography and yard signs for all beta users!"</small>
+                              </Alert>
+                              )
+                           }
+                       
                         </Row>
                      </Container>
                   </div>
@@ -235,7 +269,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
          </Formik>
          {console.log('rendered')}
          <div className='d-flex justify-content-center mt-auto pb-3'>
-            <small className='text-muted'> FindingSpaces, LLC - Copyright © 2020</small>
+            {breakpoint.up.lg && <small className='text-muted'> FindingSpaces, LLC - Copyright © 2020</small>}
          </div>
       </>
    );

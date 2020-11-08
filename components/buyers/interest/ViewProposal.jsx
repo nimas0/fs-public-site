@@ -75,11 +75,11 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
                         </Col>
                      </Row>
                   </div>
-                  <div className=' p-3 header bg-white border-bottom border-right-0 border-left-0 d-flex align-items-center'>
+                  {/* <div className=' p-3 header bg-white border-bottom border-right-0 border-left-0 d-flex align-items-center'>
                      <Row noGutters className='d-flex justify-content-start w-100'>
                         Offer Expires in {<h6><Timer initialMinute={59} /></h6>}
                      </Row>
-                  </div>
+                  </div> */}
                   <Row className='p-1 w-100'>
                      <Col className='border-right m-2 h-100' xs={7}>
                         <h4 className='p-2'>Terms</h4>

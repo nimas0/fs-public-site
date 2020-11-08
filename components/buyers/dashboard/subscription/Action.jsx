@@ -47,7 +47,7 @@ const Action = ({
                   size='sm'
                   onClick={handleClick} // TODO: route to submit offer page
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1'
+                  className='mb-1 buttonShadow'
                   block>
                   {isActive && isProposed ? 'View Proposals' : 'Propose Offer'}
                </Button>
@@ -63,7 +63,7 @@ const Action = ({
                   }
                   size='sm'
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1'
+                  className='mb-1 buttonShadow'
                   block>
                   Chat with Seller
                </Button>
@@ -72,7 +72,7 @@ const Action = ({
                   onClick={() => router.push(`/listing/${listingId}/tour`)}
                   size='sm'
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1 '
+                  className='mb-1 buttonShadow'
                   block>
                   Request Showing
                </Button>

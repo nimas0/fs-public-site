@@ -37,7 +37,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
     return (
         <>
-            <Nav solidBackground AuthUser={AuthUser} showLoginModal={showLoginModal} />
+            <Nav  AuthUser={AuthUser} showLoginModal={showLoginModal} />
             <Container>
                 <Row>
                     <Col xs='6'>
