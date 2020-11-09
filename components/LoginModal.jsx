@@ -93,6 +93,7 @@ export default ({ shown, setShown }) => {
             <>
                <Modal.Header closeButton>
                   <Modal.Title>Please Sign In</Modal.Title>
+                  
                </Modal.Header>
 
                <Modal.Body>
@@ -109,7 +110,7 @@ export default ({ shown, setShown }) => {
                <Modal.Header closeButton>
                   <Modal.Title>Please Sign In</Modal.Title>
                </Modal.Header>
-
+        
                <Modal.Body className='text-center'>
                   <Spinner animation='border' variant='primary' />
                </Modal.Body>
@@ -251,10 +252,12 @@ export default ({ shown, setShown }) => {
 
                <Modal.Body>
                   <p>
-                     You have successfully created an account! If you did not upload a pre-approval
-                     you may still secure a time and date with this home. If you still have not
-                     uploaded a pre-approval within 12 hours of the appointment, the appointment
-                     will automatically be canceled.
+                  <p> 
+                      “Finding Spaces Beta is a public feature-testing version of Finding Spaces, offering the newest features before they are available to the general public. 
+                       In contrast, Finding Spaces Beta is feature conservative, ensuring its functionality is maximally reliable and dependable for the general public. 
+                     We highly appreciate any constructive criticism. Please reach out to us at support@findingspaces.com if you come across any complications with the platform or have any suggestions for a better customer experience. 
+                     To show our appreciation for being early users, professional photography, and our yard sign service is entirely free! Use coupon code - FINDINGSPACES”
+                  </p>
                   </p>
                </Modal.Body>
 
