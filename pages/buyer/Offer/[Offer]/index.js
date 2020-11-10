@@ -188,7 +188,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                               <Amount proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Deposit proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Contingency proposal={proposal} {...props} contingencyOptions={contingencyOptions} cancelAction={cancelAction} />
-                              {/* <Possession proposal={proposal} {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} /> */}
+                              <Possession proposal={proposal} {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} />
                               <FinalComment proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Summary {...props} handleSubmit={handleSubmit} possessionOptions={possessionOptions} contingencyOptions={contingencyOptions} cancelAction={cancelAction} sending={sending} />
                            </StepWizard>

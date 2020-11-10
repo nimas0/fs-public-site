@@ -30,7 +30,7 @@ const Possession = ({
    const router = useRouter();
    // grab id from URL
    // interestId is formatted as listingId_buyerId
-   const interestId = router.query.offer;
+   const interestId = router.query.Offer;
    console.log(interestId);
    console.log(interestId);
    // break apart the interest id into its individual components ie. listingId_buyerId
