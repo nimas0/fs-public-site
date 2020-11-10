@@ -48,7 +48,7 @@ firebaseInit();
 
 const stepTitles = {
    1: 'Disclaimer',
-   2: 'Choose Amount',
+   2: 'Offer Price',
    3: 'Deposit',
    4: 'Contingencies',
    5: 'Possession',
@@ -102,7 +102,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    const [proposal, setProposal] = useState(false)
    const { addToast } = useToasts()
    const router = useRouter();
-   const interestId = router.query.offer;
+   const interestId = router.query.Offer;
    const [success, setSuccess] = React.useState(false);
    const [failure, setFailure] = React.useState(false);
    const [sending, setSending] = React.useState(false);
@@ -114,6 +114,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    const cancelAction = () => {
       router.push('/buyer/dashboard');
    }
+
 
    //Grab listing address and display on header
    const [value, loading, error] = useDocument(
@@ -140,13 +141,14 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
       // )
    }
 
+   console.log('')
    // const query = ((router.asPath).toString().split('?'))[1];
    // const queryObject = JSON.parse('{"' + decodeURI(((router.asPath).toString().split('?'))[1].replace(/&/g, "\",\"").replace(/=/g, "\":\"")) + '"}')
 
    // console.log('offerDetails', queryObject)
    return (
       <>
-         <MainNav AuthUser={AuthUser} showLoginModal={showLoginModal} />
+         <MainNav showLogo AuthUser={AuthUser} showLoginModal={showLoginModal} />
 
          <div data-test='offer-wizard'>
             <Formik
@@ -167,7 +169,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                      <Container fluid='md' className='p-5 '>
                         <Card className='shadow '>
                            <StepWizard
-                              initialStep={0}
+                              initialStep={3}
                               transitions={custom}
                               nav={
                                  <Header
@@ -186,7 +188,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                               <Amount proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Deposit proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Contingency proposal={proposal} {...props} contingencyOptions={contingencyOptions} cancelAction={cancelAction} />
-                              <Possession proposal={proposal} {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} />
+                              {/* <Possession proposal={proposal} {...props} possessionOptions={possessionOptions} cancelAction={cancelAction} /> */}
                               <FinalComment proposal={proposal} {...props} cancelAction={cancelAction} />
                               <Summary {...props} handleSubmit={handleSubmit} possessionOptions={possessionOptions} contingencyOptions={contingencyOptions} cancelAction={cancelAction} sending={sending} />
                            </StepWizard>

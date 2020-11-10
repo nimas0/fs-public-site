@@ -27,7 +27,7 @@ const Action = ({
                  `/buyer/interest?interestId=${listingId}_${buyerUid}`,
                  `/buyer/interest/${listingId}_${buyerUid}`
               )
-            : router.push(`/buyer/offer/[offer]`, `/buyer/offer/${listingId}_${buyerUid}`);
+            : router.push(`/buyer/Offer/[Offer]`, `/buyer/Offer/${listingId}_${buyerUid}`);
       } else if (!isActive) {
          setModalShow(true);
       }

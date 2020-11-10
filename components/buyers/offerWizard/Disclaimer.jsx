@@ -53,8 +53,7 @@ const Disclaimer = ({ ...props }) => {
                      Disclaimer: Non-Official Offer
                   </h2>
                   <p className='pb-1 text-center' data-test='step-disclaimer-sub-header'>
-                     After both parties have agreed to mutual terms, an official binding purchase
-                     agreement will be drafted and signed.
+                  After both parties have agreed to mutual terms, an official binding purchase agreement will be <strong>provided for you</strong> and the seller to complete.
                   </p>
                </Col>
             </Body>
