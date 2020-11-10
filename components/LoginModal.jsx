@@ -105,7 +105,7 @@ export default ({ shown, setShown }) => {
                         firebaseAuth={firebase.auth()}
                      />
                   ) : null} */}
-                     Beta version with all features is available in: <h2 className='mt-4'><Countdown  renderer={props => <h6>{props.days} days | {props.hours} hrs | {props.minutes} min | {props.seconds} secs</h6>} date={new Date(2020, 10, 10)} /></h2>
+                     Beta version with all features is available in: <h2 className='mt-4'><Countdown  renderer={props => <h6>{props.days} days | {props.hours} hrs | {props.minutes} min | {props.seconds} secs</h6>} date={new Date(2020, 10, 11)} /></h2>
                </Modal.Body>
                <Modal.Body className='pb-5 px-5 pt-0 text-center text-secondary'>
                   In the meantime, please visit our learn more page:
