@@ -19,6 +19,7 @@ const Action = ({
    const isActive = status === 'pending' || status === 'approved';
    console.log('isActive', isActive);
    const isProposed = proposal && proposal.state === 'active';
+   const isAccepted =  proposal && proposal.state === 'accepted'
    console.log('proposal', isProposed);
    const handleClick = () => {
       if (isActive) {
@@ -32,6 +33,7 @@ const Action = ({
          setModalShow(true);
       }
    };
+   console.log('propsal', isProposed)
 
    return (
       <>
@@ -43,15 +45,15 @@ const Action = ({
                <Image width='225' src={listingMainPhotoUrl} />
             </Col>
             <Col>
-               <Button
+            {!isAccepted &&
+               (<Button
                   size='sm'
                   onClick={handleClick} // TODO: route to submit offer page
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
                   className='mb-1 buttonShadow'
                   block>
                   {isActive && isProposed ? 'View Proposals' : 'Propose Offer'}
-               </Button>
-
+               </Button>)}
                <Button
                   onClick={() =>
                      status === 'pending' || 'approved'

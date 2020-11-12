@@ -172,7 +172,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                      <Container fluid='md' className='p-5 '>
                         <Card className='shadow '>
                            <StepWizard
-                              initialStep={5}
+                              initialStep={1}
                               transitions={custom}
                               nav={
                                  <Header
