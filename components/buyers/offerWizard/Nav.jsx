@@ -1,7 +1,8 @@
 import React from 'react';
 /* eslint react/prop-types: 0 */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { Row } from 'react-bootstrap';
 
 const Nav = (props) => {
    const dots = [];
@@ -12,9 +13,9 @@ const Nav = (props) => {
             key={`step-${i}`}
             onClick={() => props.goToStep(i)}
             size='xs'
-            className={`${'dot'} ${isActive ? 'active' : ''}`}
-            color={isActive ? 'green' : 'grey'}
-            icon={faCircle}
+            className={`${'dot'} ${isActive ? 'active mr-3' : 'mr-3'}`}
+            color={isActive ? 'green' : 'lightGrey'}
+            icon={faSquare}
             fixedWidth
          />
       );
@@ -23,10 +24,14 @@ const Nav = (props) => {
    return (
       <>
          <div className='nav' style={{ padding: 0, display: 'block' }}>
-            <h6 className='text-secondary' display='block'>
+         
+            <h2 className='text-secondary text-left mb-5'>
                {props.titles[props.currentStep]}
-            </h6>
-            {dots}
+            </h2>
+            <div className='d-flex justify-content-start'>
+         {dots}
+            </div>
+           
          </div>
          <style jsx>{`
             .nav {

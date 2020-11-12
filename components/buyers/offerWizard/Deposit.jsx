@@ -46,7 +46,7 @@ const Deposit = ({
             <Body className='d-flex justify-content-center'>
                <div className='w-75'>
                   <Form.Group controlId='formGridAddress1'>
-                     { proposal && 
+                     {/* { proposal && 
                      <>
                         <p data-test='step-deposit-header'>
                            Homeowner has offered ${proposal.offerDetails.deposit}
@@ -62,7 +62,12 @@ const Deposit = ({
                               2.) How much can you deposit?
                            </h5>
                         )
-                     }
+                     } */}
+
+<h5 className='mb-3' data-test='step-deposit-header'>
+                              2.) How much can you deposit?
+                           </h5>
+                        
                      <NumberFormat
                         allowLeadingZeros={false}
                         data-test='step-amount-field'

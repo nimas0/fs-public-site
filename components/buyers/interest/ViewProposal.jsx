@@ -9,9 +9,12 @@ import { useRouter } from 'next/router';
 import firebaseInit from '../../../utils/firebaseInit';
 import { useDocument, useCollectionData } from 'react-firebase-hooks/firestore';
 import Timer from '../../Timer';
-
+import moment from 'moment'
 // Initialize Firebase app
 firebaseInit();
+
+
+
 
 const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, interestData, proposalData = null }) => {
    // interest id includes embed buyer id after '_' underscore
@@ -29,6 +32,7 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
    console.log('isMine', isMine)
    console.log('buyer User', MY_USER_ID)
 
+   
    return (
       <>
          <Collapse timeout={100} dimension='width' in={toggle}>
@@ -85,10 +89,10 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
                         <h4 className='p-2'>Terms</h4>
                         <ListGroup variant='flush' className='bg-light rounded-0'>
                            <ListGroup.Item className='bg-light p-2'>
-                              Lender:<h6>Bank of America</h6>
+                              Lender:<h6>{proposalData && proposalData.verification.lender}</h6>
                            </ListGroup.Item>
                            <ListGroup.Item className='bg-light p-2'>
-                              Loan Type:<h6>Conv 10 year down</h6>
+                              Loan Type:<h6>{proposalData && proposalData.verification.loanType}</h6>
                            </ListGroup.Item>
                            <ListGroup.Item className='bg-light p-2'>
                               Amount:
@@ -113,18 +117,30 @@ const ViewProposal = ({ toggle, setToggle, handleToggleSidebar, interestId, inte
                               </h6>
                            </ListGroup.Item>
                            <ListGroup.Item className='bg-light p-2'>
-                              Contengency:
-                              <h6>{proposalData && proposalData.offerDetails.contingency}</h6>
+                              Financing: 
+                              <h6>{proposalData && proposalData.offerDetails.financing}</h6>
+                           </ListGroup.Item>
+                           <ListGroup.Item className='bg-light p-2'>
+                           Is the deal contingent on the sale of your home?: 
+                              <h6>{proposalData && proposalData.offerDetails.homeSale}</h6>
+                           </ListGroup.Item>
+                           <ListGroup.Item className='bg-light p-2'>
+                              Other contingencies: 
+                              <h6>{proposalData && proposalData.offerDetails.financing}</h6>
                            </ListGroup.Item>
                         </ListGroup>
                      </Col>
+                     {/* <Col className='b m-2 h-100'>
+                        <h4 className='pt-2 mb-4'>Closing Date</h4>
+                        <p>{proposalData ? moment(proposalData.offerDetails.closingDate) : ''}</p>
+                     </Col> */}
                      <Col className='b m-2 h-100'>
                         <h4 className='pt-2 mb-4'>Remarks</h4>
                         <p>{proposalData && proposalData.offerDetails.comment}</p>
                      </Col>
                   </Row>
                   <Row noGutters className='  d-flex pt-5 justify-content-center w-100'>
-                     <small>
+                     <small className='p-3'>
                         This is not an official offer. At this stage of the process you are only
                         verbally agreeing to the terms.
                      </small>

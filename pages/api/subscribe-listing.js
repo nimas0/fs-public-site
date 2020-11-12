@@ -36,7 +36,8 @@ export default async (req, res) => {
             .firestore()
             .collection('interest');
 
-
+        const buyerUser = await firebase.firestore().collection('users').doc(id).get();
+        const { verification } = buyerUser.data();
         // minimal amount of data needed to start a subscription
         // google cloud functions will generate the rest
 
@@ -45,6 +46,7 @@ export default async (req, res) => {
                 photoURL,
                 displayName,
                 buyerUid: id,
+                verification
             },
             dateCreated: firebase.firestore.FieldValue.serverTimestamp(),
             listingId,

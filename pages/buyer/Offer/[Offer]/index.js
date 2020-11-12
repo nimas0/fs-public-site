@@ -47,11 +47,11 @@ firebaseInit();
 
 
 const stepTitles = {
-   1: 'Disclaimer',
+   1: 'Propose an Offer',
    2: 'Offer Price',
    3: 'Deposit',
    4: 'Contingencies',
-   5: 'Possession',
+   5: 'Timelines',
    6: 'Final Comment',
    7: 'Summary',
 };
@@ -87,9 +87,9 @@ const offerSchema = Yup.object().shape({
    amount: Yup.number()
       .required('Must enter a purchase offer amount to continue.')
       .positive('Must be a positive number.'),
-   contingency: Yup.string()
-      .min(1)
-      .required(),
+   // contingency: Yup.string()
+   //    .min(1)
+   //    .required(),
    possession: Yup.string()
       .min(1)
       .required(),
@@ -157,8 +157,11 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                initialValues={{
                   amount: '',
                   deposit: '',
-                  contingency: '',
+                  financing: '',
+                  homeSale: '',
+                  other: '',
                   possession: '',
+                  closingDate: new Date(),
                   comment: '',
                }}
                validationSchema={offerSchema}
@@ -169,11 +172,11 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
                      <Container fluid='md' className='p-5 '>
                         <Card className='shadow '>
                            <StepWizard
-                              initialStep={3}
+                              initialStep={5}
                               transitions={custom}
                               nav={
                                  <Header
-                                    headerText='Propose an Offer'
+                                    headerText='Estimated Time [2 min]'
                                     subHeaderText={error && <strong>Error Displaying Address</strong> ||
                                        loading && <span>Loading...</span> ||
                                        value && (
@@ -256,7 +259,7 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
             // Move on
 
 
-            await router.push('/buyer/dashboard')
+            router.replace('/buyer/dashboard')
             addToast(`Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`, { appearance: 'success' })
             setSending(false);
             setSuccess(true);

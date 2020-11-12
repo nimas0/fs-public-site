@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Row, Col, Tab, Tabs, Image, Button, Nav, Dropdown } from 'react-bootstrap';
+import { Card, Row, Col, Tab, Tabs, Image, Button, Nav, Dropdown, Alert, ListGroup } from 'react-bootstrap';
 import Action from './Action';
 import Details from './Details';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -153,11 +153,48 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
                         </Tab.Pane>
                      </Tab.Content>
                   </Card.Body>
+                  <Card.Body>
+                     {
+                       subscriptionData &&  subscriptionData.hasOwnProperty('proposal') && subscriptionData.proposal.state ==='accepted' ?
+                        <>
+                           <Alert  variant='primary'>
+                              Your last offer was Accepted
+                           </Alert>
+                           {instructions()}
+                        </>
+                        :
+
+                        subscriptionData &&  subscriptionData.hasOwnProperty('proposal') && subscriptionData.proposal.state ==='rejected' ?
+                        <>
+                           <Alert  variant='danger'>
+                              Your Offer Was Rejected
+                           </Alert>
+                           <ListGroup>
+                        {/* <h6>You can submit another proposal at anytime.</h6> */}
+                        </ListGroup>
+                        </>
+                        :
+                        null
+                     }
+                  
+
+                  </Card.Body>
+                  
                </Tab.Container>
             </Card>
          </Col>
       </Row>
    );
 };
+
+const instructions = () => (
+   <ListGroup>
+  <h6>Seller is drafting up a contract and will be email it to you shortly.</h6>
+  <p>Review these resources while you are waiting to prepare yourself.</p>
+  <ListGroup.Item>What next?</ListGroup.Item>
+  <ListGroup.Item>Other Idea</ListGroup.Item>
+  <ListGroup.Item>Negotiations</ListGroup.Item>
+</ListGroup>
+)
 
 export default SubscriptionCard;

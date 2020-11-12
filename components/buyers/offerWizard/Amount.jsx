@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { Row, Col, Button, Form, FormControl } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/SideBar'
+import SideBar from '../../generic/Dialog/Sidebar'
 // import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 
@@ -55,6 +55,10 @@ const Amount = ({
             <Body className='d-flex justify-content-center'>
                <div className='w-75'>
                   <Form.Group controlId='formGridAddress1'>
+
+                     
+                     {/*
+                     // snippit shows the counter offer if proposal is true
                      { proposal && (
                      <>
                         <h6 data-test='step-amount-header'>
@@ -64,17 +68,17 @@ const Amount = ({
                            How much can you offer?
                         </Form.Label>
                      </>
-                     )}
+                     )} */}
 
-                     {
-                        !proposal && (
+                     
+                       
                            <>
                               <h4 data-test='step-amount-header'>
                                  1.) How much can you offer?
                               </h4>
                            </>
-                        )
-                     }
+                       
+                     
 
                      <NumberFormat
                         allowLeadingZeros={false}

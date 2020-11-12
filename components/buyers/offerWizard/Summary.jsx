@@ -13,7 +13,7 @@ import {
    Table,
 } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-// import SideBar from '../../generic/Dialog/Sidebar';
+ import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 import { useRouter } from 'next/router';
 import { toTitleCase } from '../../../utils/helpers';
@@ -81,7 +81,7 @@ const Summary = ({
                   <div className='w-75 m-3 d-block'>
                      <div className='py-4'>
                         <p>
-                           After submitting, seller will be notified of offer. He will have 24 hours
+                           After submitting, seller will be notified of offer. He/She will have 24 hours
                            to respond. Seller may accept, reject, or counter terms.
                         </p>
                      </div>
@@ -99,7 +99,7 @@ const Summary = ({
                         <tbody>
                            <tr className='text-break'>
                               {Object.values(values).map((value) => (
-                                 <td>{value}</td>
+                                 <td>{value.toString()}</td>
                               ))}
                            </tr>
                         </tbody>
