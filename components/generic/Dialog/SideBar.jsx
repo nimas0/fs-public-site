@@ -12,23 +12,21 @@ const SideBar = ({ sidebarHeader, subHeaderText, enabled = false, links }) => {
                   </h6>
                </Row>
                <Row>
-
                      <small>{subHeaderText}</small>
-            
                </Row>
             </div>
             <ListGroup variant='flush' className='d-flex h-100'>
-               {links &&
+               {/* {links &&
                   links.map((link, index) => {
                      return (
                         <ListGroup.Item key={index} className='py-2 pl-2 pr-2'>
                            <a className='text-success' href={link.url}>{link.title}</a>
                         </ListGroup.Item>
                      );
-                  })}
+                  })} */}
             </ListGroup>
          </Col>
-      ) : null;
+      ) : '';
 
    return renderedComponent();
 };
