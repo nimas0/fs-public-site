@@ -16,6 +16,7 @@ import PhoneInput from 'react-phone-number-input'
 import Upload from '../components/buyers/approval/UploadForm'
 import 'react-phone-number-input/style.css'
 import { isValidPhoneNumber } from 'react-phone-number-input'
+import { useRouter } from 'next/router';
 // Initialize Firebase app
 firebaseInit();
 
@@ -32,6 +33,7 @@ export default ({ shown, setShown }) => {
    // File input
    const fileInput = useRef(0);
    const [fileSelected, setFileSelected] = useState(false);
+   const router = useRouter();
    // phone number
    const [number, setNumber] = useState('');
    const [userId, setUserId] = useState(null);
@@ -49,6 +51,56 @@ export default ({ shown, setShown }) => {
       }, 1000);
    };
    const [newUser, setNewUser] = useState(undefined);
+
+
+
+
+   async function uploadNumber() {
+      // Set loading animations
+      setUploading(true);
+   
+      // Remove upload failure message if there
+      setUploadFailure(false);
+   
+   
+         try {
+            
+         if(!isValidPhoneNumber(number)) {
+             // https://github.com/developit/unfetch#caveats
+             let error = new Error('Wrong format');
+             throw error;
+         }
+               // Send file info through API
+               const response = await fetch('/api/upload-number', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ number, userId }),
+               });
+               setPage('verification');
+               if (response.ok) {
+                  // Move on
+                  setPage('verification');
+                  setUploading(false);
+               } else {
+                  // https://github.com/developit/unfetch#caveats
+                  let error = new Error(response.statusText);
+                  error.response = response;
+                  throw error;
+               }
+         } catch (err) {
+            // Add upload failure message
+            console.error('Either a coding error or network issues', err);
+            console.error('Either a coding error or network issues');
+            setUploadFailure(true);
+            setUploading(false);
+         }
+    
+   }
+
+
+
+
+
 
    // Firebase auth config
    const firebaseAuthConfig = {
@@ -93,7 +145,7 @@ export default ({ shown, setShown }) => {
             <>
                <Modal.Header className='bg-info text-white' closeButton>
                   <Modal.Title>Please Sign In</Modal.Title>
-               
+                  
                </Modal.Header>
 
                <Modal.Body>
@@ -233,10 +285,10 @@ export default ({ shown, setShown }) => {
                   <Button variant='secondary' onClick={close}>
                      Close
                   </Button>
-                  <Button variant='primary' href='#'>
-                     {/* TODO: Add buyer dashboard link */}
+                  {/* <Button variant='primary' onClick={() => router.push('/buyer/dashboard')}>
+                   
                      Go to buyer dashboard
-                  </Button>
+                  </Button> */}
                </Modal.Footer>
             </>
          ) : (
@@ -345,46 +397,7 @@ export default ({ shown, setShown }) => {
 
    
 
-async function uploadNumber() {
-   // Set loading animations
-   setUploading(true);
 
-   // Remove upload failure message if there
-   setUploadFailure(false);
-
-
-      try {
-         
-      if(!isValidPhoneNumber(number)) {
-          // https://github.com/developit/unfetch#caveats
-          let error = new Error('Wrong format');
-          throw error;
-      }
-            // Send file info through API
-            const response = await fetch('/api/upload-number', {
-               method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
-               body: JSON.stringify({ number, userId }),
-            });
-
-            if (response.ok) {
-               // Move on
-               setPage('verification');
-               setUploading(false);
-            } else {
-               // https://github.com/developit/unfetch#caveats
-               let error = new Error(response.statusText);
-               error.response = response;
-               throw error;
-            }
-      } catch (err) {
-         // Add upload failure message
-         console.error('Either a coding error or network issues', err);
-         setUploadFailure(true);
-         setUploading(false);
-      }
- 
-}
 
 };
 

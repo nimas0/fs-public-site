@@ -74,7 +74,7 @@ const Possession = ({
                {loadingDoc && <span>Loading...</span>}
                {doc && (
                   <div className='w-75'>
-                     {
+                     {/* {
                         proposal && (
                            <>
                               <p>Homeowner has indicated the following</p>
@@ -84,10 +84,10 @@ const Possession = ({
                            </>
                         )
                      }
-            
+             */}
                      <Form.Group controlId='formGridAddress1'>
                      {
-                        proposal && (
+                        possession && (
                            <Form.Label className='pb-2' data-test='step-possession-header'>
                            The homeowner has indicated the following preferences for handing over
                            possession of the subject property:

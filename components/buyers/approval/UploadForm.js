@@ -68,7 +68,7 @@ const Upload = ({ userId, setPage, newUser }) => {
                         <InfoGeneralComp
                             shadow
                             submitButton={<SubmitButton handleSubmit={handleSubmit} />}
-                            onClick={newUser ? setPage('welcome') : close()}
+                            onClick={newUser ? () => setPage('welcome') : close()}
                             header='Verify Your Funds: '
                             subHeader='Upload Pre-Qualification, Pre-Approval, or Proof of Funds'
                             colHeader='Why do I need to provide verification of financing?'

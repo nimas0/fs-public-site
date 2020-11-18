@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, Col, Row, Card } from 'react-bootstrap';
+import { ListGroup, Col, Row, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,15 +18,28 @@ const Resources = () => {
                         think!
                      </i> */}
                   </ListGroup.Item>
-                  <ListGroup.Item as='button' href='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/documents%2FFinding%20Spaces%20-%20Form%20Residential%20PSA%20(Final).pdf?alt=media&token=9ffeb38d-e5f9-4985-a812-9736a601d5f8' className='p-4 bg-transparent'>
+                  <ListGroup.Item   className=' bg-transparent rounded-sm'>
                      <Row>
-                        <Col xs={11}>Purchase Agreement Contract</Col>
+                        <Button
+                           variant='link'
+                           target='_blank'
+                           href='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/documents%2FFinding%20Spaces%20-%20Form%20Residential%20PSA%20(Final).pdf?alt=media&token=9ffeb38d-e5f9-4985-a812-9736a601d5f8'
+                           className='py-4 mb-1 rounded border-right-0 border-left-0 w-100 h-100 d-flex justify-content-between align-items-center'
+                        >
+                              <h5 className='p-0 m-0'>Download Purchase Agreement</h5>
+                              <h6 className='p-0 m-0'>
+                                 <strong>
+                                 <FontAwesomeIcon icon={faChevronRight} />
+                                 </strong>
+                              </h6>
+                        </Button>
+                        {/* <Col xs={11}>Purchase Agreement Contract</Col>
                         <Col xs={1}>
                            <FontAwesomeIcon icon={faChevronRight} />
-                        </Col>
+                        </Col> */}
                      </Row>
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4 bg-transparent'>
+                  {/* <ListGroup.Item className='p-4 bg-transparent'>
                      <Row>
                         <Col xs={11}>Securing a loan</Col>
                         <Col xs={1}>
@@ -113,7 +126,7 @@ const Resources = () => {
                            <FontAwesomeIcon icon={faChevronRight} />
                         </Col>
                      </Row>
-                  </ListGroup.Item>
+                  </ListGroup.Item> */}
                </ListGroup>
             </Card>
          </Col>
