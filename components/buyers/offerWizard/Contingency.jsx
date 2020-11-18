@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { Row, Col, Button, Form, Spinner, Dropdown, Container, Jumbotron } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
- import SideBar from '../../generic/Dialog/Sidebar';
+import SideBar from '../../generic/Dialog/Sidebar';
 import Footer from '../../generic/Dialog/Footer';
 
 const Contingency = ({
@@ -106,12 +106,12 @@ const Contingency = ({
                   </Form.Group>
                </div>
             </Body>
-            {/* <SideBar
+            <SideBar
                sidebarHeader='What is a Contingency?'
                subHeaderText='Contingencies are "walk-away" clauses in a contract that allow buyers to back out of buying a property if certain conditions are not met. Typical contingencies that buyers should consider are appraisal, financing, and title. It is the buyers job to make sure each contingency is met before closing.'
                enabled={true}
                links={links}
-            /> */}
+            />
          </Row>
          <Footer
             // disabledNext={

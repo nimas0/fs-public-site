@@ -74,7 +74,7 @@ const Possession = ({
                {loadingDoc && <span>Loading...</span>}
                {doc && (
                   <div className='w-75'>
-                     {/* {
+                     {
                         proposal && (
                            <>
                               <p>Homeowner has indicated the following</p>
@@ -83,7 +83,7 @@ const Possession = ({
                               </Form.Label>
                            </>
                         )
-                     } */}
+                     }
             
                      <Form.Group controlId='formGridAddress1'>
                      {

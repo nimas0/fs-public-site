@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { Row, Col, Button, Form, FormControl } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/SideBar'
+import SideBar from '../../generic/Dialog/Sidebar'
 import Footer from '../../generic/Dialog/Footer';
 
 
