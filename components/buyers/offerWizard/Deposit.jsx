@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Form, FormControl, Button, FormLabel } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/Sidebar';
+import SideBar from '../../generic/Dialog/SideBar';
 import Footer from '../../generic/Dialog/Footer';
 import { Divider } from 'antd';
 import NumberFormat from 'react-number-format';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { Row, Col, Button, Form, Spinner, Dropdown, Container, Jumbotron } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
- import SideBar from '../../generic/Dialog/Sidebar';
+ import SideBar from '../../generic/Dialog/SideBar';
 import Footer from '../../generic/Dialog/Footer';
 
 const FinalComment = ({ errors, touched, handleChange, values, handleBlur, proposal, sending, ...rest }) => {

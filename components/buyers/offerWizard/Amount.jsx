@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { Row, Col, Button, Form, FormControl } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-import SideBar from '../../generic/Dialog/Sidebar'
+import SideBar from '../../generic/Dialog/SideBar'
 import Footer from '../../generic/Dialog/Footer';
 
 
@@ -104,12 +104,12 @@ const Amount = ({
                   </Form.Group>
                </div>
             </Body>
-            {/* <SideBar
+            <Sidebar
                sidebarHeader='Need help pricing an offer?'
                subHeaderText={subHeaderText}
                enabled={true}
                links={links}
-            /> */}
+            />
          </Row>
          <Footer disabledBack={true} disabledNext={!touched.amount || !!errors.amount} {...rest} />
       </div>
