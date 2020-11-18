@@ -28,7 +28,7 @@ const SideBar = ({ sidebarHeader, subHeaderText, enabled = false, links }) => {
          </Col>
       ) : '';
 
-   return renderedComponent();
+   return 'test';
 };
 
 export default SideBar;
