@@ -105,12 +105,12 @@ const Deposit = ({
                   </Button>
                </div>
             </Body>
-            <SideBar
+            {/* <SideBar
                sidebarHeader='Is a deposit neccessary?'
                subHeaderText={subHeaderText}
                enabled={true}
                links={links}
-            />
+            /> */}
          </Row>
          <Footer
             disabledNext={!touched.deposit || (touched.deposit && !!errors.deposit)}

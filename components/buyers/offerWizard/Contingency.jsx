@@ -106,12 +106,12 @@ const Contingency = ({
                   </Form.Group>
                </div>
             </Body>
-            <SideBar
+            {/* <SideBar
                sidebarHeader='What is a Contingency?'
                subHeaderText='Contingencies are "walk-away" clauses in a contract that allow buyers to back out of buying a property if certain conditions are not met. Typical contingencies that buyers should consider are appraisal, financing, and title. It is the buyers job to make sure each contingency is met before closing.'
                enabled={true}
                links={links}
-            />
+            /> */}
          </Row>
          <Footer
             // disabledNext={

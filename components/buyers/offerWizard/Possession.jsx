@@ -146,11 +146,11 @@ const Possession = ({
                   </div>
                )}
             </Body>
-            <SideBar
+            {/* <SideBar
                sidebarHeader='What is a possession?'
                subHeaderText={subHeaderText()}
                enabled={true}
-            />
+            /> */}
          </Row>
          <Footer
             disabledNext={
