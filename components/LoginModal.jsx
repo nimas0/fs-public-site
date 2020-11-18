@@ -93,7 +93,7 @@ export default ({ shown, setShown }) => {
             <>
                <Modal.Header className='bg-info text-white' closeButton>
                   <Modal.Title>Please Sign In</Modal.Title>
-                  
+               
                </Modal.Header>
 
                <Modal.Body>

@@ -169,7 +169,8 @@ Dashboard.getInitialProps = async (ctx) => {
     //   }
 
     const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
-    //console.log('uusseerr', userId)
+    console.log('uusseerr', userId)
+    console.log('env',process.env)
     // Get profile data
     const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
         method: 'GET',
