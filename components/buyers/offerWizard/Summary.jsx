@@ -72,13 +72,13 @@ const Summary = ({
    return (
       <div data-test='step-summary'>
          <Row>
-            <Body className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center'>
                {sending ? (
                   <>
                      <Spinner variant="primary" animation='border' />
                   </>
                ) : (
-                  <div className='w-75 m-3 d-block'>
+                  <div className=' m-5 d-block'>
                      <div className='py-4'>
                         <p>
                            After submitting, seller will be notified of offer. He/She will have 24 hours
@@ -112,7 +112,7 @@ const Summary = ({
                      </Button>
                   </div>
                )}
-            </Body>
+            </div>
          </Row>
          <div>
             <Card.Footer className='p-4 d-flex justify-content-between align-items-center'>

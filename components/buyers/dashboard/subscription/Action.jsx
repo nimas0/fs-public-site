@@ -37,24 +37,16 @@ const Action = ({
 
    return (
       <>
-         <Row className='pb-1 px-1'>
-            <InformationBar />
+         <Row className='pb-1 mb-3 px-1'>
+            <InformationBar buyerUid={buyerUid} listingId={listingId} />
          </Row>
          <Row>
             <Col>
-               <Image width='225' src={listingMainPhotoUrl} />
+               <Image style={{borderRadius: 15, border: 0}} width='225rem' src={listingMainPhotoUrl} />
             </Col>
             <Col>
-            {!isAccepted &&
-               (<Button
-                  size='sm'
-                  onClick={handleClick} // TODO: route to submit offer page
-                  variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1 buttonShadow'
-                  block>
-                  {isActive && isProposed ? 'View Proposals' : 'Propose Offer'}
-               </Button>)}
-               <Button
+            <Button
+             style={{borderRadius: 30, border: 0}}
                   onClick={() =>
                      status === 'pending' || 'approved'
                         ? router.push(
@@ -63,18 +55,36 @@ const Action = ({
                           )
                         : setModalShow(true)
                   }
-                  size='sm'
-                  variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1 buttonShadow'
+                  size='large'
+                  variant={status === 'pending' || 'approved' ? 'primary' : 'success'}
+                  className='mb-3 buttonShadow'
                   block>
-                  Chat with Seller
+                  Chat
                </Button>
+            {!isAccepted &&
+               (<Button
+                  style={{borderRadius: 30, border: 0}}
+                  size='sm'
+                  onClick={handleClick} // TODO: route to submit offer page
+                  variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
+                  className='mb-3 buttonShadow'
+                  block>
+                  {isActive && isProposed ? 'View Proposals' : 'Propose Offer'}
+               </Button>)}
+             
 
                <Button
-                  onClick={() => router.push(`/listing/${listingId}/tour`)}
+                   style={{borderRadius: 30, border: 0}}
+                  onClick={() => (
+                     isActive 
+                     ?
+                     router.push(`/listing/${listingId}/tour`)
+                     :
+                     setModalShow(true)
+                   ) }
                   size='sm'
-                  variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-1 buttonShadow'
+                  variant={(status === 'pending' || 'approved') ? 'primary' : 'secondary'}
+                  className='mb-2 buttonShadow'
                   block>
                   Request Showing
                </Button>
@@ -96,7 +106,7 @@ const Action = ({
          <GenericModal
             show={modalShow}
             onHide={() => setModalShow(false)}
-            header='Verification required to use this feature.'
+            header='Pre-Approval or Pre-Qualification Required.'
             body={<ModalBody />}
          />
       </>
@@ -106,13 +116,7 @@ const Action = ({
 const ModalBody = () => (
    <>
       <p>
-         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-         been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-         a galley of type and scrambled it to make a type specimen book. It has survived not only
-         five centuries, but also the leap into electronic typesetting, remaining essentially
-         unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-         Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
-         PageMaker including versions of Lorem Ipsum.
+      A mortgage approval allows you to make an offer with confidence and shows that you're a serious buyer with the means to purchase the seller's home. Please submit a pre-approval or proof of funds to unlock this feature.
       </p>
    </>
 );

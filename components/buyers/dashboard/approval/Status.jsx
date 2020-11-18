@@ -16,13 +16,10 @@ export const Pending = () => (
                      <FontAwesomeIcon size='2x' icon={faCheck} />
                      <h4 className='ml-3 text-success pt-1'>Pending Review</h4>
                   </div>
-
-                  <Card.Text>
-                     <h6 className=' text-dark text-left px-1 pt-0 mt-0 pt-2'>
+                     <h6 className='text-dark text-left px-1 pt-0 mt-0 pt-2'>
                         Scheduling has been unlocked. You will be notified of your approval within 3
                         hours of submittion.
                      </h6>
-                  </Card.Text>
                </Card.Body>
             </Card>
          </Col>

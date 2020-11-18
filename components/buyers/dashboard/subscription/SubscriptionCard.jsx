@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Row, Col, Tab, Tabs, Image, Button, Nav, Dropdown, Alert, ListGroup } from 'react-bootstrap';
+import { Card, Row, Col, Tab, Tabs, Image, Button, Nav, Dropdown, Alert, ListGroup, Badge } from 'react-bootstrap';
 import Action from './Action';
 import Details from './Details';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -78,7 +78,7 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
    const instructions = () => (
       <ListGroup>
      <p className='mb-5'>Congratulations! You and the seller have agreed on the essential terms of the offer. Below are the steps needed to complete the remainder of the process and get the keys to your new home!</p>
-     <Button onClick={() => setModalShow(true)}>See Next Steps</Button>
+     <Button className='bg-primary' onClick={() => setModalShow(true)}>See Next Steps</Button>
    </ListGroup>
    )
    
@@ -113,15 +113,25 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
          <Col>
             <Card  className='buttonShadow border-0 bg-white mb-4'>
                <Tab.Container id='left-tabs-example' activeKey={key} onSelect={(k) => setKey(k)}>
-                  <Card.Header  className='pt-4  bg-white text-muted  mb-0' as='h5'>
+                  <Card.Header  className='pt-4 mt-1  bg-white text-muted  mb-0' as='h5'>
                      <Row className=''>
                         <Col xs={11} className=' pb-4'>
+                           {
+                              subscriptionData.buyerMessageCounter > 0 ? (
+                                 <Badge variant="success" className='px-3 py-1 mr-3 text-white'>{subscriptionData.buyerMessageCounter} New Messages</Badge>
+                              )
+                              : 
+                              (
+                                 null
+                              )
+                           }
+                        
                            {subscriptionData.address[0]}
                         </Col>
                         <Col xs={1} className=''>
-                           <Dropdown>
-                              <Dropdown.Toggle as={CustomToggle} id='dropdown-custom-components' />
-                              <Dropdown.Menu>
+                           <Dropdown >
+                              <Dropdown.Toggle className='schedulingShadow p-3 text-dark' as={CustomToggle} id='dropdown-custom-components' />
+                              <Dropdown.Menu className='schedulingShadow p-3 text-dark'>
                                  <Dropdown.Item
                                     onClick={() =>
                                        router.push(`/listing/${subscriptionData.listingId}`)
@@ -167,7 +177,7 @@ const SubscriptionCard = ({ subscriptionData, verification, interestId }) => {
                               </Nav.Link>
                            ) : (
                               <Nav.Link
-                                 key={key}
+                                 key={key
                                  className='text-dark border-0 small bg-transparent'
                                  eventKey='details'>
                                  Details

@@ -48,18 +48,43 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
         console.log('proposalData', proposalData)
     }
 
-    useEffect(() => {
-        if (activeProposal !== 1) {
-            let proposalsRef = firebase
-                .firestore()
-                .collection('proposals')
-                .doc(activeProposal);
-            const data = proposalsRef
-                .get()
-                .then((doc) => setProposalData(doc.data()));
+    useEffect( () => {
 
+        const unsubscribe = async () => {
+            if (activeProposal !== 1) {
+                let proposalsRef = firebase
+                    .firestore()
+                    .collection('proposals')
+                    .doc(activeProposal);
+                const data = proposalsRef
+                    .get()
+                    .then((doc) => setProposalData(doc.data()));
+                const update = proposalsRef.update({})
+            }
         }
+        
+
+        unsubscribe();
+        return () => unsubscribe()
     }, [activeProposal]);
+
+
+    useEffect(() => {
+        const unsubscribe = async () => await firebase.firestore().collection('interest').doc(interestId).update({
+            buyerMessageCounter: 0
+        });
+        // Add offer field object to interested document
+        unsubscribe();
+        return () => unsubscribe()
+    }, []);
+
+
+    useEffect(() => {
+        if (!AuthUser) {
+            router.push('/')
+        }
+    })
+
 
     const [toggle, setToggle] = React.useState(false);
 
@@ -116,7 +141,7 @@ const Interest = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal }) 
                                         <Col xs={toggle ? 5 : 9}>
                                             <h5 className='ml-4 text-muted d-flex text-center pt-2'>{!toggle && data.address[0]}</h5>
                                         </Col>
-                                      
+
                                         <Col xs={toggle ? 2 : 1} className='p-3  justify-content-center d-flex '>
                                             {/* <Link href="/buyer/dashboard">
                                                 <a>Unsubscribe </a>

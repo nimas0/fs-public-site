@@ -27,6 +27,11 @@ export default async (req, res) => {
     .doc(listingId)
     .collection("questions");
 
+    // add new message to the counter for Tabs on navigation
+  const ref = db
+    .collection("message_counter").doc(listingId);
+  ref.set({ questionCount: firebase.firestore.FieldValue.increment(1) }, { merge: true })
+
   // Add new question
   try {
     await questions.add(questionData);

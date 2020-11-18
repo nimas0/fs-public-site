@@ -44,7 +44,24 @@ import queryLatestProposal from '../../../../utils/queryLatestProposal';
 // Initialize Firebase app
 firebaseInit();
 
-
+const contingencyOptions = {
+   financingOptions: {
+      1: 'Conventional',
+      2: 'FHA',
+      3: 'VA',
+      4: 'USDA Assumption',
+      5: 'Seller Carryback'
+   },
+   homeSale: {
+      1: 'Yes, I have my home listed online.',
+      2: 'Yes, I need to list my home.',
+      3: 'No, I am able to purchase home right away.',
+      4: 'Other, I will provide the reason in the additional comment section of this offer.',
+   },
+   other: {
+      4: 'Other, I will provide the reason in the additional comment section at the end of this offer.',
+   }
+}
 
 const stepTitles = {
    1: 'Propose an Offer',
@@ -63,12 +80,7 @@ const possessionOptions = {
    4: 'Other, I will provide the reason in the additional comment section of this offer',
 }
 
-const contingencyOptions = {
-   1: 'Yes, I have my home listed online.',
-   2: 'Yes, I need to list my home.',
-   3: 'No, I am able to purchase home right away.',
-   4: 'Other, I will provide the reason in the additional comment section of this offer.',
-}
+
 
 // custom transitions for react-wizard
 let custom = {
@@ -125,9 +137,15 @@ const OfferPage = ({ AuthUserInfo, showLoginModalAuthUserInfo, showLoginModal })
    );
 
 
-   useEffect(async () => {
-      setProposal(await queryLatestProposal(interestId))
-      console.log('proposal', proposal)
+   useEffect(() => {
+
+      const unsubscribe = async () => {
+         setProposal(await queryLatestProposal(interestId))
+         console.log('proposal', proposal)
+      }
+      
+      unsubscribe();
+      return () => unsubscribe()
    }, [interestId])
 
 

@@ -56,7 +56,7 @@ const Contingency = ({
                            as='select'
                            custom>
                            <option label='Choose an option' />
-                           {Object.entries(rest.contingencyOptions).map((option) => (
+                           {Object.entries(rest.contingencyOptions.financingOptions).map((option) => (
                               <option value={option[1]} label={option[1]} />
                            ))}
                         </Form.Control>
@@ -77,7 +77,7 @@ const Contingency = ({
                            as='select'
                            custom>
                            <option label='Choose an option' />
-                           {Object.entries(rest.contingencyOptions).map((option) => (
+                           {Object.entries(rest.contingencyOptions.homeSale).map((option) => (
                               <option value={option[1]} label={option[1]} />
                            ))}
                         </Form.Control>
@@ -98,7 +98,7 @@ const Contingency = ({
                            as='select'
                            custom>
                            <option label='Choose an option' />
-                           {Object.entries(rest.contingencyOptions).map((option) => (
+                           {Object.entries(rest.contingencyOptions.other).map((option) => (
                               <option value={option[1]} label={option[1]} />
                            ))}
                         </Form.Control>

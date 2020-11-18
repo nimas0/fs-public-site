@@ -43,18 +43,20 @@ export default function MessageProposal(props) {
                   </Card.Title>
                </Card.Header>
                <Card.Body className=' p-3'>
-                  <Card.Text className='p-4 d-flex justify-content-center'>
-                     <h4 className='text-primary'>
+                  <div className='p-4 d-flex justify-content-center'>
+                     
                         <strong>
                            {
                                  (!data.status) 
                                     ?
-                              <NumberFormat
-                                 value={data.proposalAmount}
-                                 displayType={'text'}
-                                 thousandSeparator={true}
-                                 prefix={'$'}
-                              />
+                              <h4 className='text-primary'>
+                                 <NumberFormat
+                                    value={data.proposalAmount}
+                                    displayType={'text'}
+                                    thousandSeparator={true}
+                                    prefix={'$'}
+                                 />
+                              </h4>
                               :
                                  data.status === 'rejected' ?
                                        <h4 className='text-warning'>Rejected</h4>
@@ -62,8 +64,8 @@ export default function MessageProposal(props) {
                                        <h4 className='text-primary'>Accepted</h4>
                            }
                         </strong>
-                     </h4>
-                  </Card.Text>
+                  
+                  </div>
                   <Card.Subtitle className='text-muted d-flex justify-content-center'>
                      Click to expand more details
                   </Card.Subtitle>

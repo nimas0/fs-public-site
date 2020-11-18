@@ -42,8 +42,16 @@ export default ({
    const logoutRefresh = async () => {
       try {
          await logout();
+         console.log('routerpath',router.pathname)
+
       } finally {
-         //router.replace(router.pathname, router.asPath);
+         if(router.pathname.match(/listing/)) {
+            router.replace(router.pathname, router.asPath);
+           
+         } else {
+            router.push('/')
+         }
+        
       }
    };
 

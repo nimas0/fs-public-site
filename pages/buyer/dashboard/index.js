@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import fetch from 'isomorphic-unfetch';
 import MainLayout from '../../../components/layout/MainLayout';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
@@ -36,6 +36,8 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
             .doc(AuthUser.id)
     );
 
+
+  
     //TODO : clean up return. getting messy with error && error statments
 
     return (
@@ -158,8 +160,16 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
 Dashboard.getInitialProps = async (ctx) => {
 
-    const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
+    console.log('ctx--', ctx.myCustomData.AuthUserInfo.AuthUser)
+    // if (ctx && !ctx.myCustomData.AuthUserInfo.AuthUser) {
+    //     ctx.res.writeHead(301, {
+    //       Location: '/'
+    //     });
+    //     ctx.res.end();
+    //   }
 
+    const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
+    //console.log('uusseerr', userId)
     // Get profile data
     const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
         method: 'GET',

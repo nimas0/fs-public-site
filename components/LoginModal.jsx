@@ -13,7 +13,7 @@ import fetch from 'isomorphic-unfetch';
 import firebaseInit from '../utils/firebaseInit';
 import uploadUserDocument from '../utils/uploadUserDocument';
 import PhoneInput from 'react-phone-number-input'
-
+import Upload from '../components/buyers/approval/UploadForm'
 import 'react-phone-number-input/style.css'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 // Initialize Firebase app
@@ -88,10 +88,10 @@ export default ({ shown, setShown }) => {
    };
 
    return (
-      <Modal centered animation show={shown}  backdrop={uploading ? 'static' : true}>
+      <Modal size={page === 'verification' ? 'xl' : ''} centered animation show={shown}  backdrop={uploading ? 'static' : true}>
          {page === 'auth' ? (
             <>
-               <Modal.Header closeButton>
+               <Modal.Header className='bg-info text-white' closeButton>
                   <Modal.Title>Please Sign In</Modal.Title>
                   
                </Modal.Header>
@@ -117,40 +117,8 @@ export default ({ shown, setShown }) => {
             </>
          ) : page === 'verification' ? (
             <>
-               <Modal.Header>
-                  <Modal.Title>Upload Pre-Approval</Modal.Title>
-                  {/* Using custom button so I can disable it */}
-                  <button
-                     type='button'
-                     className='close'
-                     onClick={close}
-                     aria-label='Close'
-                     disabled={uploading}>
-                     <span aria-hidden='true'>&times;</span>
-                  </button>
-               </Modal.Header>
-
-               <Modal.Body>
-                  <p>
-                     You need to upload a verified pre-approval or proof of funds to book a tour
-                     with a home. You may skip this process for now.
-                  </p>
-                  <Form.Control
-                     ref={fileInput}
-                     type='file'
-                     name='document'
-                     aria-label='Verification document'
-                     onChange={(e) => setFileSelected(!!e.target.files)}
-                     disabled={uploading}
-                  />
-                  {uploadFailure && (
-                     <Form.Control.Feedback type='invalid'>
-                        We're experiencing network errors&mdash;please try again later.
-                     </Form.Control.Feedback>
-                  )}
-               </Modal.Body>
-
-               <Modal.Footer>
+               <Upload userId={userId} setPage={setPage} newUser={newUser} />
+               {/* <Modal.Footer>
                   <Button
                      variant='secondary'
                      onClick={() => (newUser ? setPage('welcome') : close())}
@@ -178,7 +146,7 @@ export default ({ shown, setShown }) => {
                         'Upload'
                      )}
                   </Button>
-               </Modal.Footer>
+               </Modal.Footer> */}
             </>
                ) : page === 'number' ? (
                   <>
@@ -246,11 +214,11 @@ export default ({ shown, setShown }) => {
                   </>
          ) : page === 'welcome' ? (
             <>
-               <Modal.Header closeButton>
+               <Modal.Header className='bg-info text-white' closeButton>
                   <Modal.Title>Welcome!</Modal.Title>
                </Modal.Header>
 
-               <Modal.Body>
+               <Modal.Body className='p-5 text-centered'>
                   <p>
                   <p> 
                       “Finding Spaces Beta is a public feature-testing version of Finding Spaces, offering the newest features before they are available to the general public. 
@@ -263,7 +231,7 @@ export default ({ shown, setShown }) => {
 
                <Modal.Footer>
                   <Button variant='secondary' onClick={close}>
-                     Return to listing
+                     Close
                   </Button>
                   <Button variant='primary' href='#'>
                      {/* TODO: Add buyer dashboard link */}

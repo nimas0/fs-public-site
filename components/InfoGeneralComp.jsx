@@ -10,10 +10,12 @@ const InfoGeneralComp = ({
    children,
    colHeader,
    colSubHeader,
+   onClick,
+   shadow
 }) => {
    return (
-      <Container fluid='md' className='p-5'>
-         <Card className='shadow'>
+      <Container fluid='sm' className={shadow ? 'p-5': ''}>
+         <Card className={shadow ? '': 'shadow p-5'}>
             <Card.Header className='p-4'>
                <Row className='pl-4 py-2'>
                   <h5 className='pr-3'>
@@ -42,15 +44,26 @@ const InfoGeneralComp = ({
                      </div>
                   </Col>
                </Row>
-            </Card.Body>
+            </Card.Body> 
             <Card.Footer>
                <Row className='pl-4 py-2'>
                   <Col xs='1' className='pl-1'>
-                     <Link href={cancelRoute}>
-                        <Button as='a' className='rounded-lg' variant='light'>
-                           CANCEL
-                        </Button>
-                     </Link>
+                     {
+                        cancelRoute ? (
+                           <Link  href={cancelRoute}>
+                              <Button as='a' className='rounded-lg' variant={shadow ? 'secondary' : 'dark'}>
+                                 CANCEL
+                              </Button>
+                           </Link>
+                        )
+                        : 
+                        (
+                           <Button onClick={onClick} className='rounded-lg' variant='light'>
+                              CANCEL
+                           </Button>
+                        )
+                     }
+                     
                   </Col>
                   <Col xs='2'>{submitButton}</Col>
                </Row>
