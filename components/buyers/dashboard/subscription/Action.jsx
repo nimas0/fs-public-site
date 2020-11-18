@@ -67,7 +67,7 @@ const Action = ({
                   size='sm'
                   onClick={handleClick} // TODO: route to submit offer page
                   variant={status === 'pending' || 'approved' ? 'primary' : 'secondary'}
-                  className='mb-3 buttonShadow'
+                  className='mb-1 buttonShadow'
                   block>
                   {isActive && isProposed ? 'View Proposals' : 'Propose Offer'}
                </Button>)}
@@ -84,7 +84,7 @@ const Action = ({
                    ) }
                   size='sm'
                   variant={(status === 'pending' || 'approved') ? 'primary' : 'secondary'}
-                  className='mb-2 buttonShadow'
+                  className='mb-1 buttonShadow'
                   block>
                   Request Showing
                </Button>

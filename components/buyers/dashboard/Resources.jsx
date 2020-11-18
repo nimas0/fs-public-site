@@ -18,9 +18,9 @@ const Resources = () => {
                         think!
                      </i> */}
                   </ListGroup.Item>
-                  <ListGroup.Item className='p-4 bg-transparent'>
+                  <ListGroup.Item as='button' href='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/documents%2FFinding%20Spaces%20-%20Form%20Residential%20PSA%20(Final).pdf?alt=media&token=9ffeb38d-e5f9-4985-a812-9736a601d5f8' className='p-4 bg-transparent'>
                      <Row>
-                        <Col xs={11}>What to know when making an offer</Col>
+                        <Col xs={11}>Purchase Agreement Contract</Col>
                         <Col xs={1}>
                            <FontAwesomeIcon icon={faChevronRight} />
                         </Col>
