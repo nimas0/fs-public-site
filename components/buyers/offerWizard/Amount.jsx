@@ -104,7 +104,7 @@ const Amount = ({
                   </Form.Group>
                </div>
             </Body>
-            <Sidebar
+            <SideBar
                sidebarHeader='Need help pricing an offer?'
                subHeaderText={subHeaderText}
                enabled={true}
