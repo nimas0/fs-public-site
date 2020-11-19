@@ -42,13 +42,21 @@ export default async (req, res) => {
         .firestore()
         .collection("interest")
         .doc(interestId)
+
+    const buyerUser = await firebase.firestore().collection('users').doc(buyerId).get();
+    const { verification } = buyerUser.data();
+
+
     // set expiration date 48 hours from proposal submittion
     const expirationDate = DateTime.fromJSDate(new Date()).plus({ days: 2 }).toJSDate();
 
     //create proposal id
     const docId = `${interestId}_${uid()}`;
 
-    const { amount, deposit } = offerDetails;
+    // get verification stuff
+
+
+    const { amount, deposit  } = offerDetails;
 
 
     try {
@@ -57,6 +65,7 @@ export default async (req, res) => {
             state: 'active',
             offererId: buyerId,
             listingId: listingId,
+            verification: verification,
             offerDetails: offerDetails,
             expires: firebase.firestore.Timestamp.fromDate(expirationDate),
             owner: {
@@ -73,7 +82,7 @@ export default async (req, res) => {
                 offererId: buyerId,
                 history: firebase.firestore.FieldValue.arrayUnion(docId),
                 latestQuickFacts: {
-                    docId: docId, amount, deposit, expires: firebase.firestore.Timestamp.fromDate(expirationDate),
+                    docId: docId, amount, deposit,  expires: firebase.firestore.Timestamp.fromDate(expirationDate),
                 },
 
             },

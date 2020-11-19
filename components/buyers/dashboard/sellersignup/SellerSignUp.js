@@ -18,16 +18,28 @@ const SellerSignUp = () => {
 
     return (
 
-        <Card className='border-0 bg-transparent w-100 my-3'>
-            <Card.Body as={Button} variant='link' className='py-3'>
-                <div className=' d-flex justify-content-between px-0 pt-2'>
-                    <h5 className='ml-0 text-primary '>Sell Your Home for Free</h5>
-                    <h5 id='documents-heading'>
-                        <FontAwesomeIcon icon={faChevronRight} color='green' />
-                    </h5>
-                </div>
-            </Card.Body>
-        </Card>
+        // <Card style={{ cursor: 'pointer' }} onClick={() => router.push('/learnmore')} className='border-0   bg-transparent w-100 '>
+        //     {/* <Card.Header className='py-4 bg-transparent border-0 text-muted' as='h5'>
+        //           Pre-Approval
+        //        </Card.Header> */}
+        //     <Card.Body className='text-center py-4'>
+
+
+        //         {/* <Card.Text>
+        //             <h6 className=' text-dark text-left px-4 pt-0 mt-0 pt-2'>
+        //                 Scheduling has been unlocked. You will be notified of your approval within 3
+        //                 hours of submittion.
+        //              </h6>
+        //         </Card.Text> */}
+        //     </Card.Body>
+        // </Card>
+
+        <Button variant='white' style={{ borderStyle: 'solid', borderRadius: 11 }} block size="lg"  className='pt-3 pb-2 text-primary bg-white buttonShadow  border-rounded  '>
+
+            <h6 className='text-primary'>Learn How To Sell Your Home for Free</h6>
+            {/* <b><FontAwesomeIcon icon={faChevronRight} color='green' /></b> */}
+
+        </Button>
 
     );
 

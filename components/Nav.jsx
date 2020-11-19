@@ -12,10 +12,12 @@ import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 
 export default ({
    address,
+   showQuickLinks = true,
    search,
    AuthUser,
    showLoginModal,
    solidBackground,
+   showLogo,
    homepage = false,
 }) => {
    const router = useRouter();
@@ -43,8 +45,16 @@ export default ({
    const logoutRefresh = async () => {
       try {
          await logout();
+         console.log('routerpath',router.pathname)
+
       } finally {
-         //router.replace(router.pathname, router.asPath);
+         if(router.pathname.match(/listing/)) {
+            router.replace(router.pathname, router.asPath);
+           
+         } else {
+            router.push('/')
+         }
+        
       }
    };
 
@@ -52,10 +62,9 @@ export default ({
       <>
          <Navbar
             id={solidBackground && isScrolled ? 'navbar-scrolling' : 'navbar-custom'}
-            fixed={breakpoint.lg.up ? true : false}
-            sticky={breakpoint.lg.up ? 'top' : false}
-            expand="lg"
-            className=' text-info d-flex px-5 pt-3 pb-2 '>
+            fixed
+            sticky='top'
+            className={` text-info ${solidBackground && 'bg-white schedulingShadow border'}   d-flex px-5 pt-3 pb-2 `}>
             <>
             <Navbar.Toggle className='border-0 ' aria-controls="basic-navbar-nav" />
                <div className='flex-grow-0 order-1'>
@@ -63,15 +72,15 @@ export default ({
                      <>
                         {homepage ? (
                            <Nav.Link variant='text-secondary' href='/learnmore'>
-                             
+       
                            </Nav.Link>
                         ) : (
                            <Navbar.Brand style={{ cursor: 'pointer' }} className='font-italic'>
-                              <img
+                              {showLogo && <img
                                  onClick={() => router.push('/')}
                                  width={'50%'}
                                  src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336'
-                              />
+                              />}
                            </Navbar.Brand>
                         )}
                      </>
@@ -85,35 +94,37 @@ export default ({
             <Navbar.Collapse id='nav-links' className='flex-grow-0 order-5 order-sm-4'>
                <Nav className='align-items-center align-items-sm-center'>
                   {AuthUser ? (
-                     <>
-                        {/* <Nav.Link as={Button} variant='link' href='/learnmore'>
-                           Learn More
-                        </Nav.Link> */}
-                        <Nav.Link
-                           as={Button}
-                           className='p-3'
-                           variant='link'
-                           href='/buyer/dashboard'>
-                           Buying
-                        </Nav.Link>
-                        <Nav.Link
-                           as={Button}
-                           className='p-3'
-                           variant='link'
-                           href='http://localhost:3001/showings'>
-                           Selling
-                        </Nav.Link>
-                     </>
+     
+            
+                        (showQuickLinks && (
+                        <>
+                           <Nav.Link
+                              as={Button}
+                              className='p-3'
+                              variant='link'
+                              href='/buyer/dashboard'>
+                              Buyer's Dashboard
+                           </Nav.Link>
+                           <Nav.Link
+                              as={Button}
+                              className='p-3'
+                              variant='link'
+                              href='https://seller.findingspaces.com/showings'>
+                              Seller's Dashboard
+                           </Nav.Link>
+                        </>
+                        ))
+        
                   ) : (
                      <>
                         <Nav.Link as={Button} variant='link' href='/learnmore'>
-                           Learn More
+                           Get Started Selling Your House
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Buyer
+                           Buyer's Dashboard
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Seller
+                           Seller's Dashboard
                         </Nav.Link>
                         {/* <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
                            Buying

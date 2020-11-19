@@ -11,6 +11,7 @@ import {
 import { faCircle as openCircle } from "@fortawesome/free-regular-svg-icons";
 import clsx from "clsx";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
+import Link from "next/link";
 
 const { Step } = Steps;
 
@@ -74,14 +75,14 @@ export default ({ tourTime }) => {
           {breakpoint.xs ? " " : <br />}
           We'll get back to you shortly by phone or email.
         </p>
-
-        <Button
+        <Link       
           variant="primary"
-          href="#"
-          className={clsx(breakpoint.xs ? "w-100" : "px-5")}
-        >
-          View Tour Details
-        </Button>
+          className={clsx(breakpoint.xs ? "w-100" : "px-5")} 
+          as={Button} 
+          variant='link'  
+          href='/buyer/dashboard'>
+            View Appointment
+        </Link>
       </Card>
     </main>
   );

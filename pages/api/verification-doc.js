@@ -32,7 +32,7 @@ export default async (req, res) => {
     await firebase.firestore().collection('adminTasks').add({
       priority: 'urgent',
       type: 'verification',
-      data: { verification: { status: "pending", documentURL, verifType, lender, loanType, amount } }
+      data: { verification: { status: "pending", documentURL, verifType, lender, loanType, amount, userId } }
     })
 
     // If no error yet, mission accomplished

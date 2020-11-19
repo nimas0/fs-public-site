@@ -1,28 +1,25 @@
 import React from 'react';
-import { Card, Row, Col, Button } from 'react-bootstrap';
+import { Card, Row, Col, Button, Nav, Navbar } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faFrownOpen, faBell } from '@fortawesome/free-solid-svg-icons';
-
+import moment from 'moment'
 export const Pending = () => (
-   <span className='mx-4'>
+   <span className='mx-2'>
       <Row>
          <Col>
-            <Card className='border-0 schedulingShadow bg-transparent'>
+            <Card className='border-0 bg-transparent'>
                {/* <Card.Header className='py-4 bg-transparent border-0 text-muted' as='h5'>
                   Pre-Approval
                </Card.Header> */}
-               <Card.Body className='text-center py-5'>
-                  <div className='text-success d-flex justify-content-start px-3 '>
+               <Card.Body className='text-center py-1'>
+                  <div className='text-success d-flex justify-content-start py-3 '>
                      <FontAwesomeIcon size='2x' icon={faCheck} />
                      <h4 className='ml-3 text-success pt-1'>Pending Review</h4>
                   </div>
-
-                  <Card.Text>
-                     <h6 className=' text-dark text-left px-4 pt-0 mt-0 pt-2'>
+                     <h6 className='text-dark text-left px-1 pt-0 mt-0 pt-2'>
                         Scheduling has been unlocked. You will be notified of your approval within 3
                         hours of submittion.
                      </h6>
-                  </Card.Text>
                </Card.Body>
             </Card>
          </Col>
@@ -30,51 +27,68 @@ export const Pending = () => (
    </span>
 );
 
-export const Approved = () => (
+
+export const Approved = ({verification: { createdAt, lender, loanType, verifType, amount, documentURL }}) => (
    <span className='mx-4'>
       <Row>
          <Col>
-            <Card className='defaultCard'>
-               <Card.Header className='py-4 text-muted' as='h5'>
-                  Qualification
-               </Card.Header>
-               <Card.Body className='text-center pt-4 pb-5 px-3'>
+            <Card className='border-0'>
+            <Card.Header className='py-2 bg-light border-0 '>
+            
+               <Row className='my-2'>
+                  <Col xs={9} className='pt-1'>
+                 <h5 className='text-secondary'>Qualification</h5>
+                  </Col>
+               <Col xs={3}>
+  
+                     <Button variant='outlined' as='a'  href={documentURL} target="_blank" className='px-4 py-2 rounded text-primary'>View</Button>
+        
+                 
+            
+               </Col>
+                  
+               </Row>
+   
+            </Card.Header>
+            <Card.Body className='bg-light text-center pt-4 pb-3 px-3'>
                   <Row className='px-4'>
-                     <Col xs={8} className='pt-4'>
+                     <Col className=''>
                         <Row>
                            <h6 className='pr-1'>
                               <b>Lender: </b>
                            </h6>
-                           <h6>Back of America </h6>
+                           <h6>{lender}</h6>
                         </Row>
                         <Row>
                            <h6 className='pr-1'>
                               <b>Loan Type: </b>
                            </h6>
-                           <h6>Conv. 10 Year</h6>
+                              <h6>{loanType}</h6>
                         </Row>
                         <Row>
                            <h6 className='pr-1'>
                               <b>Amount: </b>
                            </h6>
-                           <h6>$150,000</h6>
+                              <h6>{amount}</h6>
                         </Row>
+                       
+                        
                      </Col>
-                     <Col xs={4}>
-                        <div className='text-dark'>
-                           <b>Expires</b>
-                        </div>
-                        <div className='border border-info p-2 mt-1 pt-2 rounded'>
-                           <h4 className='text-success p-0 mb-0'>
-                              <b>28</b>
-                           </h4>
-                           <h5 className='text-success p-0'>
-                              <b>July</b>
-                           </h5>
-                        </div>
+                     <Col >
+    
+
+     
+                           <p className='text-muted'>Expires</p>
+                            <h5 className='text-success'>{moment(createdAt).add(10, 'days').format('LL')}</h5>
+                         
+                 
+                  
+  
+                          
+                     
                      </Col>
                   </Row>
-                  <Card.Text></Card.Text>
+                  
                </Card.Body>
             </Card>
          </Col>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'formik';
 import { Row, Col, Button, Form, Spinner, Dropdown, Container, Jumbotron } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-// import SideBar from '../../generic/Dialog/Sidebar';
+ import SideBar from '../../generic/Dialog/SideBar';
 import Footer from '../../generic/Dialog/Footer';
 
 //firebase initialization imports
@@ -12,6 +12,11 @@ import 'firebase/firestore';
 
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
+import { Typography } from 'antd';
+
+import DatePicker from "react-datepicker";
+ 
+import "react-datepicker/dist/react-datepicker.css";
 
 // Initialize Firebase app
 firebaseInit();
@@ -30,7 +35,7 @@ const Possession = ({
    const router = useRouter();
    // grab id from URL
    // interestId is formatted as listingId_buyerId
-   const interestId = router.query.offer;
+   const interestId = router.query.Offer;
    console.log(interestId);
    console.log(interestId);
    // break apart the interest id into its individual components ie. listingId_buyerId
@@ -69,7 +74,7 @@ const Possession = ({
                {loadingDoc && <span>Loading...</span>}
                {doc && (
                   <div className='w-75'>
-                     {
+                     {/* {
                         proposal && (
                            <>
                               <p>Homeowner has indicated the following</p>
@@ -79,19 +84,23 @@ const Possession = ({
                            </>
                         )
                      }
-            
+             */}
                      <Form.Group controlId='formGridAddress1'>
                      {
-                        !proposal && (
+                        possession && (
                            <Form.Label className='pb-2' data-test='step-possession-header'>
                            The homeowner has indicated the following preferences for handing over
                            possession of the subject property:
-                           <div className='m-2'>
-                              {possession.map((item) => (
-                                 <p>
-                                    <b>Possession is: {item.label}</b>
-                                 </p>
+                           <div className='m-1'>
+                           <b>Possession is:</b>
+                           <ul>
+                           {possession.map((item) => (
+                                 <li>
+                                    {item.label}
+                                 </li>
                               ))}
+                           </ul>
+                            
                            </div>
                         </Form.Label>
                         )
@@ -111,13 +120,35 @@ const Possession = ({
                               ))}
                            </Form.Control>
                         </Form.Group>
+                        <Form.Group controlId='exampleForm.SelectCustom'>
+                        <h6 className='pb-2' data-test='step-possession-header'>
+                           Select Closing Day
+                        </h6>
+
+                        <DatePicker className='form-control' id='closingDate' name='closingDate' {...rest}  selected={values.closingDate} onChange={date => rest.setFieldValue('closingDate', date)} />
+
+                        
+                           {/* <Form.Control
+                              name='possession'
+                              value={values.possession}
+                              onChange={handleChange}
+                              className='rounded-sm w-100'
+                              style={{ display: 'block' }}
+                              as='select'
+                              custom>
+                              <option label='Choose an option' />
+                              {Object.entries(rest.possessionOptions).map((option) => (
+                                 <option value={option[1]} label={option[1]} />
+                              ))}
+                           </Form.Control> */}
+                        </Form.Group>
                      </Form.Group>
                   </div>
                )}
             </Body>
             {/* <SideBar
                sidebarHeader='What is a possession?'
-               subHeaderText='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. '
+               subHeaderText={subHeaderText()}
                enabled={true}
             /> */}
          </Row>
@@ -130,5 +161,21 @@ const Possession = ({
       </div>
    );
 };
+
+const subHeaderText = () => (
+<>
+   <p>
+      1. The closing - or completion - date is when ownership and title to the home are transferred along with the payment of funds from the buyer to the seller. The closing date may have to change throughout the process. Sometimes, the lender does not give final approval on the mortgage loan in time to close by the first date that was established. If this occurs, then the seller and buyer must agree to a new closing date. 
+   </p>
+   <p>
+      2. The possession date is when the buyer is entitled to take physical possession of the home/property. This date may also change throughout the process due to contingencies. 
+
+   </p>
+</>)
+
+
+
+
+
 
 export default Possession;

@@ -3,8 +3,9 @@ import { Col, Row, Button, Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserPlus, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-const Heading = () => {
+const Heading = ({AuthUser}) => {
    const router = useRouter();
+   console.log('AuthUser',AuthUser)
    return (
       <>
          <span className='mt-0 pt-0'>
@@ -17,7 +18,7 @@ const Heading = () => {
             </Row> */}
             <Row>
                <Col xs='auto' className='mr-0 pr-0'>
-                  <h2 className='text-info'>John SmitherField</h2>
+         <h2 className='ml-2 text-info'>{AuthUser.displayName}</h2>
                </Col>
                <Col xs='2' className='align-items-top  pl-1'>
                   <span className='d-flex mr-auto '>
@@ -31,13 +32,13 @@ const Heading = () => {
                </Col>
             </Row>
             <Row className='pl-3 mb-1'>
-               <Badge className='mr-2' variant='secondary'>
+               {/* <Badge className='mr-2' variant='secondary'>
                   Jack Lemons (<i>pending</i>) <FontAwesomeIcon icon={faTimes} />
                </Badge>
     
                <Badge variant='secondary'>
                   Donna Wright  <FontAwesomeIcon icon={faTimes} />
-               </Badge>
+               </Badge> */}
     
             </Row>
          </span>

@@ -21,6 +21,7 @@ import firebaseInit from '../utils/firebaseInit';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useEffect } from 'react';
+import GenericModal from './GenericModal';
 
 // Initialize Firebase app
 firebaseInit();
@@ -44,7 +45,7 @@ const SchedulingWidget = ({
    const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
 
    const miniWidget = useRef(0);
-
+   const [modalShow, setModalShow] = React.useState(false);
    const router = useRouter();
    const dateQuery = activeDate ? `?date=${activeDate.toFormat('LL-dd-yyyy')}` : '';
    const tourLinkHref = `/listing/[listingId]/tour${dateQuery}`;
@@ -57,12 +58,19 @@ const SchedulingWidget = ({
    const buyerId = AuthUser && AuthUser.id;
    const listingId = router.query.listingId;
    const interestId = `${listingId}_${buyerId}`;
-   console.log('interestId', interestId);
+   console.log('AuthUser', AuthUser);
 
    // react hook for firebase firestore listener
    const [value, loading, error] = useDocument(firebase.firestore().doc(`interest/${interestId}`), {
       snapshotListenOptions: { includeMetadataChanges: true },
    });
+
+   const [userDoc, loadingUserDoc, errorUserDoc] = useDocument(
+      firebase
+          .firestore()
+          .collection('users')
+          .doc(AuthUser && AuthUser.id || "asdf")
+  );
 
    if (!loading) {
       console.log('listingId', value.data());
@@ -75,6 +83,7 @@ const SchedulingWidget = ({
       if (!loading && !error) {
          return setSubscribed(false);
       }
+
    }, [value]);
 
    const handleSubscribe = async () => {
@@ -188,22 +197,47 @@ const SchedulingWidget = ({
 
                   <div className='text-center mb-1 mt-2'>
                      {/* Schedule Tour */}
-                     <Link href={tourLinkHref} as={tourLinkAs} passHref>
+                    
+                        
+                    {
+                     !loadingUserDoc && !errorUserDoc && userDoc.data() && userDoc.data().hasOwnProperty('verification') && (userDoc.data().verification.status === false) ? (
                         <Button
                            variant='primary'
                            onClick={
-                              AuthUser
-                                 ? false
-                                 : (e) => {
+                                  (e) => {
                                       e.preventDefault();
-                                      showLoginModal();
+                                      setModalShow(true);
                                    }
                            }
                            className={clsx(breakpoint.down.md && 'px-5', 'buttonShadow')}
                            style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}>
                            Schedule Tour
                         </Button>
+                     ) : 
+                     (
+                        <>
+                        <Link target="_blank" href={tourLinkHref} as={tourLinkAs} passHref>
+                        <Button
+                        variant='primary'
+                        onClick={
+                           AuthUser
+                              ? false
+                              : (e) => {
+                                   e.preventDefault();
+                                   showLoginModal();
+                                }
+                        }
+                        className={clsx(breakpoint.down.md && 'px-5', 'buttonShadow')}
+                        style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}>
+                        Schedule Tourfsdf
+                     </Button>
                      </Link>
+                     </>
+                     )
+                     
+                     }
+                      
+                    
                   </div>
                   <div
                      className='text-muted mx-auto mb-3'
@@ -269,7 +303,7 @@ const SchedulingWidget = ({
                      }}>
                      <div className='d-flex justify-content-around align-items-center'>
                         {/* Schedule Tour */}
-                        <Link href={tourLinkHref} as={tourLinkAs} passHref>
+                        <Link href={tourLinkHref} as={tourLinkAs}  passHref>
                            <Button
                               variant='info'
                               onClick={
@@ -294,8 +328,22 @@ const SchedulingWidget = ({
                )}
             </>
          )}
+          <GenericModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            header='Pre-Approval or Pre-Qualification Required.'
+            body={<ModalBody />}
+         />
       </>
    );
 };
+
+const ModalBody = () => (
+   <>
+      <p>
+      A mortgage approval allows you to make an offer with confidence and shows that you're a serious buyer with the means to purchase the seller's home. Please submit a pre-approval or proof of funds to unlock this feature.
+      </p>
+   </>
+);
 
 export default SchedulingWidget;

@@ -25,9 +25,9 @@ const Footer = (props) => {
       <div>
          <Card.Footer className='p-4 d-flex justify-content-between align-items-center'>
             <Col xs='1' className='pl-1'>
-               <Button onClick={props.cancelAction} as='a' className='rounded-lg' variant='light'>
-                  CANCEL
-               </Button>
+               {/* <Button onClick={props.cancelAction} as='a' className='rounded-lg' variant='light'>
+                  <a>CANCEL</a>
+               </Button> */}
             </Col>
             <Col className='d-flex justify-content-end mr-5'>
                <Button

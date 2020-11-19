@@ -41,7 +41,7 @@ export default ({ details, features }) => {
          </ul>
 
          <div className='text-center'>
-            <Button variant='link' onClick={toggleExpanded}>
+            <Button variant='white' className='text-primary' onClick={toggleExpanded}>
                See {expanded ? 'less' : 'more'}
                <FontAwesomeIcon icon={expanded ? faChevronUp : faChevronDown} className='ml-1' />
             </Button>

@@ -18,7 +18,11 @@
 
 # misc
 .DS_Store
+<<<<<<< HEAD
 # .env*
+=======
+ /.env*/
+>>>>>>> finalStuff
 
 # debug
 npm-debug.log*

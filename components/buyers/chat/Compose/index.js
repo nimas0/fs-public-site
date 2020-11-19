@@ -40,6 +40,7 @@ export default function Compose({ messagesEndRef, auth, rightItems, setProposalD
       await firebase.database().ref().update(update);
       resetForm();
       messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
+      // TODO: inefficent calls to firestore to count messages
 
     } catch (error) {
       console.log(error)

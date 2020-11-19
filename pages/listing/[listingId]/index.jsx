@@ -19,7 +19,6 @@ import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
 
 import { useRouter } from 'next/router';
-// URL to test: http://localhost:3000/listing/KDfFS1FtGblMYSrzLDCZ
 
 const Listing = ({
    AuthUserInfo,
@@ -103,6 +102,7 @@ const Listing = ({
             </title>
          </Head>
          <Nav
+            showLogo
             solidBackground={true}
             address={breakpoint.up.lg ? listing.address[0] + ', ' + listing.address[1] : false}
             {...{ AuthUser, showLoginModal }}

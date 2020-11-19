@@ -19,9 +19,9 @@ const SideBar = ({ sidebarHeader, subHeaderText, enabled = false, links }) => {
             </div>
             <ListGroup variant='flush' className='d-flex h-100'>
                {links &&
-                  links.map((link) => {
+                  links.map((link, index) => {
                      return (
-                        <ListGroup.Item className='py-2 pl-2 pr-2'>
+                        <ListGroup.Item key={index} className='py-2 pl-2 pr-2'>
                            <a className='text-success' href={link.url}>{link.title}</a>
                         </ListGroup.Item>
                      );

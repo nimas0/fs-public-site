@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Form, FormControl, Button, FormLabel } from 'react-bootstrap';
 import Body from '../../generic/Dialog/Body';
-// import SideBar from '../../generic/Dialog/Sidebar';
+import SideBar from '../../generic/Dialog/SideBar';
 import Footer from '../../generic/Dialog/Footer';
 import { Divider } from 'antd';
 import NumberFormat from 'react-number-format';
@@ -22,19 +22,19 @@ const Deposit = ({
    const links = [
       {
          url:
-            'https://www.realtor.com/advice/finance/understanding-the-earnest-money-deposit-2/#:~:text=Depositing%20earnest%20money%20is%20an,helps%20fund%20your%20down%20payment.&text=Sellers%20rarely%20accept%20offers%20without,the%20offer%20in%20good%20faith.',
-         title: 'Learn more about Deposits',
+            'https://www.rocketmortgage.com/learn/earnest-money#:~:text=It\'s%20typically%20around%201%25%20%2D%203,down%20payment%20or%20closing%20costs.',
+         title: 'Learn more about deposits',
       },
-      {
-         url:
-            'https://www.realtor.com/advice/finance/understanding-the-earnest-money-deposit-2/#:~:text=Depositing%20earnest%20money%20is%20an,helps%20fund%20your%20down%20payment.&text=Sellers%20rarely%20accept%20offers%20without,the%20offer%20in%20good%20faith.',
-         title: 'Does the deposit count towards the purchase?',
-      },
-      {
-         url:
-            'https://www.realtor.com/advice/finance/understanding-the-earnest-money-deposit-2/#:~:text=Depositing%20earnest%20money%20is%20an,helps%20fund%20your%20down%20payment.&text=Sellers%20rarely%20accept%20offers%20without,the%20offer%20in%20good%20faith.',
-         title: 'Where does my deposit go?',
-      },
+      // {
+      //    url:
+      //       'https://www.realtor.com/advice/finance/understanding-the-earnest-money-deposit-2/#:~:text=Depositing%20earnest%20money%20is%20an,helps%20fund%20your%20down%20payment.&text=Sellers%20rarely%20accept%20offers%20without,the%20offer%20in%20good%20faith.',
+      //    title: 'Does the deposit count towards the purchase?',
+      // },
+      // {
+      //    url:
+      //       'https://www.realtor.com/advice/finance/understanding-the-earnest-money-deposit-2/#:~:text=Depositing%20earnest%20money%20is%20an,helps%20fund%20your%20down%20payment.&text=Sellers%20rarely%20accept%20offers%20without,the%20offer%20in%20good%20faith.',
+      //    title: 'Where does my deposit go?',
+      // },
    ];
 
 
@@ -46,7 +46,7 @@ const Deposit = ({
             <Body className='d-flex justify-content-center'>
                <div className='w-75'>
                   <Form.Group controlId='formGridAddress1'>
-                     { proposal && 
+                     {/* { proposal && 
                      <>
                         <p data-test='step-deposit-header'>
                            Homeowner has offered ${proposal.offerDetails.deposit}
@@ -58,11 +58,16 @@ const Deposit = ({
                      }
                      {
                         !proposal && (
-                           <Form.Label data-test='step-deposit-header'>
+                           <h5 className='mb-3' data-test='step-deposit-header'>
                               2.) How much can you deposit?
-                           </Form.Label>
+                           </h5>
                         )
-                     }
+                     } */}
+
+<h5 className='mb-3' data-test='step-deposit-header'>
+                              2.) How much can you deposit?
+                           </h5>
+                        
                      <NumberFormat
                         allowLeadingZeros={false}
                         data-test='step-amount-field'
@@ -100,12 +105,12 @@ const Deposit = ({
                   </Button>
                </div>
             </Body>
-            {/* <SideBar
+            <SideBar
                sidebarHeader='Is a deposit neccessary?'
                subHeaderText={subHeaderText}
                enabled={true}
                links={links}
-            /> */}
+            />
          </Row>
          <Footer
             disabledNext={!touched.deposit || (touched.deposit && !!errors.deposit)}
@@ -115,7 +120,6 @@ const Deposit = ({
    );
 };
 
-const subHeaderText = `Depositing earnest money is an important part of the home-buying process. It tells the real estate seller you're in earnest as a buyer, and it helps fund your down payment. 
-Sellers rarely accept offers without the buyers putting down earnest money to show that they are serious and are making the offer in good faith.`;
+const subHeaderText = `Depositing earnest money is an essential part of the home-buying process.  It's typically around 1% - 3% of the sale price and is held in an escrow account until the deal is complete. This deposit lets the seller know you're in good faith as a buyer, and it helps fund your down payment. Sellers rarely accept offers without the buyers putting down earnest money to show that they are serious and making the offer.`;
 
 export default Deposit;
