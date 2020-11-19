@@ -3,9 +3,9 @@
  */
 
 'use strict';
-import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
+
 import React, { useEffect, useState, useRef } from 'react';
-import { Modal, Button, Form, Spinner, ModalBody } from 'react-bootstrap';
+import { Modal, Button, Form, Spinner } from 'react-bootstrap';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -24,15 +24,11 @@ export default ({ shown, setShown }) => {
    // FirebaseUI does not support server-side rendering
    // https://github.com/firebase/firebaseui-web/issues/213
    const [renderAuth, setRenderAuth] = useState(false);
-   const breakpoint = useMediaBreakpoints();
-
-
    useEffect(() => {
       if (typeof window !== 'undefined') {
          setRenderAuth(true);
       }
    }, []);
-
 
    // File input
    const fileInput = useRef(0);
@@ -151,16 +147,14 @@ export default ({ shown, setShown }) => {
                   <Modal.Title>Please Sign In</Modal.Title>
                   
                </Modal.Header>
-      
 
-               <Modal.Body className='pt-5  bg-light px-3 text-center text-secondary'>
-                  {/* {renderAuth ? (
+               <Modal.Body>
+                  {renderAuth ? (
                      <StyledFirebaseAuth
                         uiConfig={firebaseAuthConfig}
                         firebaseAuth={firebase.auth()}
                      />
-                  ) : null} */}
-                     Beta version with all features is available in: <h2 className='mt-4'><Countdown  renderer={props => <h6>{props.days} days | {props.hours} hrs | {props.minutes} min | {props.seconds} secs</h6>} date={new Date(2020, 10, 19)} /></h2>
+                  ) : null}
                </Modal.Body>
             </>
          ) : page === 'authWait' ? (
