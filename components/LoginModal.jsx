@@ -3,7 +3,7 @@
  */
 
 'use strict';
-
+import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import React, { useEffect, useState, useRef } from 'react';
 import { Modal, Button, Form, Spinner, ModalBody } from 'react-bootstrap';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
