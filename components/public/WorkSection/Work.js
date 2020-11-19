@@ -95,7 +95,7 @@ class Work extends Component {
 
                                         {/* <h6 className='pt-4'>The platform and features are free to sign up. Other items, such as yard signs and photography, are available for purchase.</h6> */}
 
-                                        <Button className="font-weight-bold text-uppercase card-default btn shadow w-100 p-3 mt-sm-4" href='http://localhost:3001/showings'>GET STARTED FOR FREE TODAY</Button>
+                                        <Button className="font-weight-bold text-uppercase card-default btn shadow w-100 p-3 mt-sm-4" href='https://seller.findingspaces.com/showings'>GET STARTED FOR FREE TODAY</Button>
                                     </div>
           
                                     <div className='mt-5'>

@@ -64,7 +64,7 @@ class HeroSection extends Component {
                                             </div> */}
                                             </div>
                                             <div className="col-12">
-                                                <Button className="btn btn-bordered w-100 mt-3 mt-sm-4 p-3" href='http://localhost:3001/showings'>{this.state.data.formBtn}</Button>
+                                                <Button className="btn btn-bordered w-100 mt-3 mt-sm-4 p-3" href='http://seller.findingspaces.com/showings'>{this.state.data.formBtn}</Button>
                                                 <div className="contact-bottom">
                                                     <span className="d-inline-block mt-3">{this.state.data.formBtnText} <a href="/#">{this.state.data.formBtnText_2}</a> &amp; <a href="/#">{this.state.data.formBtnText_3}</a></span>
                                                 </div>

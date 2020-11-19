@@ -90,7 +90,7 @@ export default ({ address, search, AuthUser, showLoginModal }) => {
                         }
                         id='basic-nav-dropdown'>
                         <NavDropdown.Item onClick={logoutRefresh}>Log Out</NavDropdown.Item>
-                        <NavDropdown.Item href='http://localhost:3001'>
+                        <NavDropdown.Item href='https://seller.findingspaces.com'>
                            Seller's Dashboard
                         </NavDropdown.Item>
                         <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>

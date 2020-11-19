@@ -105,7 +105,7 @@ export default ({
                               as={Button}
                               className='p-3'
                               variant='link'
-                              href='http://localhost:3001/showings'>
+                              href='https://seller.findingspaces.com/showings'>
                               Seller's Dashboard
                            </Nav.Link>
                         </>
