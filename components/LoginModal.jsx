@@ -33,7 +33,6 @@ export default ({ shown, setShown }) => {
       }
    }, []);
 
-   const router = useRouter();
 
    // File input
    const fileInput = useRef(0);
