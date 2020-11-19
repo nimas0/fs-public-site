@@ -50,7 +50,7 @@ const Approval = ({ verification, AuthUser }) => {
                </Col>
             </Row>
          );
-   // }
+   }
 };
 
 export default Approval;
