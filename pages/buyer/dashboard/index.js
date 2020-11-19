@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import MainLayout from '../../../components/layout/MainLayout';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
@@ -37,7 +37,7 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
     );
 
 
-  
+
     //TODO : clean up return. getting messy with error && error statments
 
     return (
@@ -170,19 +170,33 @@ Dashboard.getInitialProps = async (ctx) => {
 
     const userId = ctx.myCustomData.AuthUserInfo.AuthUser.id;
     console.log('uusseerr', userId)
-    console.log('env',process.env.HOST)
+    console.log('env', process.env.HOST)
     // Get profile data
-
-
-    const userProfileFetch = fetch(`https://fs-public-site-git-experiement-buyer.nimas0.vercel.app/api/user?id=${userId}`, {
+    const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     });
 
 
-    console.log(userProfileFetch)
     try {
         const [userProfileResponse] = await Promise.all([userProfileFetch]);
+
+        if (userProfileResponse.ok) {
+            const { verification } = await userProfileResponse.json();
+            console.log(verification);
+            return {
+                verification: verification
+            }
+        } else if ([404, 503].includes(userProfileResponse.status)) {
+            return { statusCode: userProfileResponse.status };
+        } else {
+            // https://github.com/developit/unfetch#caveats
+            let error = new Error(userProfileResponse.statusText);
+            error.response = userProfileResponse;
+            throw error;
+        }
+
+
 
     } catch (err) {
         console.log(err)
