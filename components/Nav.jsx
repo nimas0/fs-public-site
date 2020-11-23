@@ -123,9 +123,9 @@ export default ({
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
                            Buyer's Dashboard
                         </Nav.Link>
-                        <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
+                        {/* <Nav.Link as={Button} variant='link'  href='https://seller.findingspaces.com/showings'>
                            Seller's Dashboard
-                        </Nav.Link>
+                        </Nav.Link> */}
                         {/* <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
                            Buying
                         </Nav.Link> */}

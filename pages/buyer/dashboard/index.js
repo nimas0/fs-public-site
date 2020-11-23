@@ -93,7 +93,8 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
                             <Col xs={12}>
                                 <Button
-                                    onClick={() => router.push('/')}
+                                    href={userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') ?  'https://seller.findingspaces.com/showings' :  'https://findingspaces.com/learnmore' }
+                                    // onClick={userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') && router.push('/')}
                                     variant='primary'
                                     style={{ borderStyle: 'solid', borderRadius: 10 }}
                                     block
