@@ -56,7 +56,7 @@ const Action = ({
                         : setModalShow(true)
                   }
                   size='large'
-                  variant={status === 'pending' || 'approved' ? 'primary' : 'success'}
+                  variant='success'
                   className='mb-3 buttonShadow'
                   block>
                   Chat
