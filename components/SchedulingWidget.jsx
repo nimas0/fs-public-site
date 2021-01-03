@@ -229,7 +229,7 @@ const SchedulingWidget = ({
                         }
                         className={clsx(breakpoint.down.md && 'px-5', 'buttonShadow')}
                         style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}>
-                        Schedule Tourfsdf
+                        Schedule Tour.
                      </Button>
                      </Link>
                      </>
