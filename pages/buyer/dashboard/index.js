@@ -46,6 +46,7 @@ const Dashboard = ({
   );
 
   //TODO : clean up return. getting messy with error && error statments
+  // add more comments
 
   return (
     <>
