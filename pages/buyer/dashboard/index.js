@@ -18,7 +18,7 @@ import firebase from 'firebase/app';
 import "firebase/firestore";
 import Nav from '../../../components/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-sopid-svg-icons';
 import { useRouter } from 'next/router';
 
 // Initialize Firebase app

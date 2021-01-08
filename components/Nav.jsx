@@ -117,7 +117,7 @@ export default ({
         
                   ) : (
                      <>
-                        <Nav.Link as={Button} variant='link' href='/learnmore'>
+                        <Nav.Link as={Button} variant='primary' className='text-white' href='/learnmore'>
                            Get Started Selling Your House
                         </Nav.Link>
                         <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
