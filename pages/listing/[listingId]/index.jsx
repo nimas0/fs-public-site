@@ -145,8 +145,18 @@ const Listing = ({
                      ownerPhotoSrc={owner.photoURL}
                   />
 
-                  {breakpoint.down.md && (
+       
+ 
+            
+
+                  
+                   {breakpoint.down.md && (
+                     
+
+                      <Col md='auto'>
                      <SchedulingWidget
+                        setSubscribed={setSubscribed}
+                        listing={listing}
                         firstAvailableDate={tourFirstAvailableDate}
                         firstDate={tourFirstDate}
                         setFirstDate={setTourFirstDate}
@@ -160,7 +170,11 @@ const Listing = ({
                         )}
                         {...{ timeZone, AuthUser, showLoginModal }}
                      />
-                  )}
+                  </Col> 
+
+
+
+                  )} 
 
                   <QuestionsAndAnswers
                      as='section'
@@ -176,7 +190,7 @@ const Listing = ({
                   <TabWidgets />
                </Col>
 
-               {breakpoint.up.lg && (
+                {breakpoint.up.lg && (
                   <Col lg='auto'>
                      <SchedulingWidget
                         setSubscribed={setSubscribed}
@@ -195,7 +209,7 @@ const Listing = ({
                         {...{ timeZone, AuthUser, showLoginModal }}
                      />
                   </Col>
-               )}
+               )} 
             </Row>
          </Container>
 

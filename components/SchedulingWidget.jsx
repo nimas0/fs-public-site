@@ -176,7 +176,7 @@ const SchedulingWidget = ({
                   <h2
                      id='tour-this-home-heading'
                      className={clsx('text-center text-info mb-5', breakpoint.lg && 'h3')}>
-                     Tour This Home
+                     Tour This Home.
                   </h2>
 
                   <DatePicker
@@ -229,7 +229,7 @@ const SchedulingWidget = ({
                         }
                         className={clsx(breakpoint.down.md && 'px-5', 'buttonShadow')}
                         style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}>
-                        Schedule Tourfsdf
+                        Schedule Tour.
                      </Button>
                      </Link>
                      </>
