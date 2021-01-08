@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
-// Initialize Firebase app
+// Initialize Firebase ap
 firebaseInit();
 
 const Dashboard = ({
