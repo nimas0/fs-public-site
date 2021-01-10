@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
-import MainLayout from '../../../components/layout/MainLayout';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import firebase from 'firebase/app';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
+import MainLayout from '../../../components/layout/MainLayout';
 import Heading from '../../../components/buyers/dashboard/Heading';
 import Approval from '../../../components/buyers/dashboard/approval/Approval';
 import SubscriptionCard from '../../../components/buyers/dashboard/subscription/SubscriptionCard';
@@ -9,17 +14,12 @@ import Resources from '../../../components/buyers/dashboard/Resources';
 import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
-import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 import SellerSignUp from '../../../components/buyers/dashboard/sellersignup/SellerSignUp'
 
 import firebaseInit from '../../../utils/firebaseInit';
-import firebase from 'firebase/app';
 import "firebase/firestore";
 import Nav from '../../../components/Nav';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/router';
 
 // Initialize Firebase app
 firebaseInit();
@@ -38,44 +38,44 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
 
 
 
-    //TODO : clean up return. getting messy with error && error statments
+    // TODO : clean up return. getting messy with error && error statments
 
     return (
-        <>
-            <Nav showLogo showQuickLinks={false} AuthUser={AuthUser} showLoginModal={showLoginModal} />
-            <Container>
-                <Row>
-                    <Col xs='6'>
-                        <Heading AuthUser={AuthUser} />
-                        <Row className='pb-1 mx-1'>
-                            {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
+      <>
+        <Nav showLogo showQuickLinks={false} AuthUser={AuthUser} showLoginModal={showLoginModal} />
+        <Container>
+          <Row>
+            <Col xs='6'>
+              <Heading AuthUser={AuthUser} />
+              <Row className='pb-1 mx-1'>
+                {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
                                 Seller's Dashboard
                                        </Card.Header> */}
-                            {/* <Button href={!loadingUserDoc && userDoc.data().defaultListingId ? 'http://localhost:3001/showings' : '/learnmore'} className=' rounded-lg mx-3' variant="primary" size="md" block>
+                {/* <Button href={!loadingUserDoc && userDoc.data().defaultListingId ? 'http://localhost:3001/showings' : '/learnmore'} className=' rounded-lg mx-3' variant="primary" size="md" block>
                                 {!loadingUserDoc && userDoc.data().defaultListingId ? 'Go to Seller\'s Dashboard' : 'Learn More: Sell Your Home Free'}
                             </Button> */}
 
-                        </Row>
-                        {
+              </Row>
+              {
                             errorUserDoc ? <strong>Error: {JSON.stringify(error)}</strong> :
-                                <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
+                            <Approval key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} />
                         }
 
 
 
-                        {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
-                        <Resources />
+              {error && errorUserDoc && <strong>Error: {JSON.stringify(error)}</strong>}
+              <Resources />
 
-                    </Col>
-                    <Col xs={{ span: 6 }}>
+            </Col>
+            <Col xs={{ span: 6 }}>
 
-                        <Row>
-                            <Col>
-                                <Card className='border-0 mb-2 bg-transparent'>
-                                    {/* <Card.Header className='bg-transparent py-4  border-0 ' as='h4'>
+              <Row>
+                <Col>
+                  <Card className='border-0 mb-2 bg-transparent'>
+                    {/* <Card.Header className='bg-transparent py-4  border-0 ' as='h4'>
                                        Search Using Home Code`
                                        </Card.Header>  */}
-                                    {/* <Card.Body className='text-center py-5'>
+                    {/* <Card.Body className='text-center py-5'>
 
                                         <Card.Text>
                                             <small>
@@ -83,77 +83,80 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification, subscriptionDat
                                             </small>
                                         </Card.Text>
                                     </Card.Body> */}
-                                </Card>
+                  </Card>
 
-                            </Col>
-                        </Row>
-                        <p className='text-muted'>Quick links</p>
-                        {/* <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} /> */}
-                        <Row className='mb-5'>
+                </Col>
+              </Row>
+              <p className='text-muted'>Quick links</p>
+              {/* <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} /> */}
+              <Row className='mb-5'>
 
-                            <Col xs={12}>
-                                <Button
-                                    href={userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') ?  'https://seller.findingspaces.com/showings' :  'https://findingspaces.com/learnmore' }
+                <Col xs={12}>
+                  <Button
+                    href={userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') ?  'https://seller.findingspaces.com/showings' :  'https://findingspaces.com/learnmore'}
                                     // onClick={userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') && router.push('/')}
-                                    variant='primary'
-                                    style={{ borderStyle: 'solid', borderRadius: 10 }}
-                                    block
-                                    className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '>
-                                    {userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') ? 'Go to Seller\'\s dashboard' : 'Sell Your Home Without An Agent'}
-                                    <b><FontAwesomeIcon icon={faChevronRight} color='white' /></b>
-                                </Button>
+                    variant='primary'
+                    style={{ borderStyle: 'solid', borderRadius: 10 }}
+                    block
+                    className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '
+                  >
+                    {userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') ? 'Go to Seller\'\s dashboard' : 'Sell Your Home Without An Agent'}
+                    <b><FontAwesomeIcon icon={faChevronRight} color='white' /></b>
+                  </Button>
 
-                            </Col>
-                            <Col>
-                                <Button
-                                    onClick={() => router.push('/')} style={{ borderStyle: 'solid', borderRadius: 10 }}
-                                    block
-                                    className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '>
-                                    Enter Home Code
-                                        <b><FontAwesomeIcon icon={faChevronRight} color='white' /></b>
-                                </Button>
-                            </Col>
-                        </Row>
-                        <p className='text-muted'>Subscriptions</p>
-                        {loading && loadingUserDoc && <span>Loading...</span>}
-                        {(value && userDoc) && (
-                            <span>
-                                {
+                </Col>
+                <Col>
+                  <Button
+                    onClick={() => router.push('/')}
+                    style={{ borderStyle: 'solid', borderRadius: 10 }}
+                    block
+                    className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '
+                  >
+                    Enter Home Code
+                    <b><FontAwesomeIcon icon={faChevronRight} color='white' /></b>
+                  </Button>
+                </Col>
+              </Row>
+              <p className='text-muted'>Subscriptions</p>
+              {loading && loadingUserDoc && <span>Loading...</span>}
+              {(value && userDoc) && (
+                <span>
+                  {
                                     value.docs.length === 0 ?
                                         (
-                                            <Card style={{ height: '20rem' }} className='border rounded'>
-                                                <Card.Header>You are not currently subscribed to any property.</Card.Header>
-                                                <Card.Body>
-                                                    <h6>Once subscribed you can: </h6>
-                                                    <ul>
-                                                        <li>Make offers</li>
-                                                        <li>Chat with Homeowner</li>
-                                                        <li>Schedule Showings</li>
-                                                        <li>Recieve updates</li>
-                                                    </ul>
-                                                </Card.Body>
-                                            </Card>
+                                          <Card style={{ height: '20rem' }} className='border rounded'>
+                                            <Card.Header>You are not currently subscribed to any property.</Card.Header>
+                                            <Card.Body>
+                                              <h6>Once subscribed you can: </h6>
+                                              <ul>
+                                                <li>Make offers</li>
+                                                <li>Chat with Homeowner</li>
+                                                <li>Schedule Showings</li>
+                                                <li>Recieve updates</li>
+                                              </ul>
+                                            </Card.Body>
+                                          </Card>
                                         )
                                         :
                                         (
 
                                             value.docs.map(doc => (
-                                                <React.Fragment key={doc.id}>
-                                                    <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
-                                                </React.Fragment>
+                                              <React.Fragment key={doc.id}>
+                                                <SubscriptionCard interestId={doc.id} verification={loadingUserDoc ? verification : userDoc.data().verification} subscriptionData={doc.data()} />
+                                              </React.Fragment>
                                             ))
 
                                         )
                                 }
 
-                            </span>
+                </span>
                         )}
-                    </Col>
+            </Col>
 
-                </Row>
+          </Row>
 
-            </Container>
-        </>
+        </Container>
+      </>
     )
 
 };
@@ -186,16 +189,16 @@ Dashboard.getInitialProps = async (ctx) => {
             const { verification } = await userProfileResponse.json();
             console.log(verification);
             return {
-                verification: verification
+                verification
             }
-        } else if ([404, 503].includes(userProfileResponse.status)) {
+        } if ([404, 503].includes(userProfileResponse.status)) {
             return { statusCode: userProfileResponse.status };
-        } else {
+        } 
             // https://github.com/developit/unfetch#caveats
-            let error = new Error(userProfileResponse.statusText);
+            const error = new Error(userProfileResponse.statusText);
             error.response = userProfileResponse;
             throw error;
-        }
+        
 
 
 
