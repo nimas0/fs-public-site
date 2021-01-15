@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/.vscode
+
 
 # next.js
 /.next/
@@ -18,11 +18,8 @@
 
 # misc
 .DS_Store
-<<<<<<< HEAD
 # .env*
-=======
- /.env*/
->>>>>>> finalStuff
+
 
 # debug
 npm-debug.log*

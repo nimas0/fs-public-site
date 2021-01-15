@@ -1,10 +1,12 @@
-'use strict';
+
+
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 import fetch from 'isomorphic-unfetch';
 import { Settings as LuxonSettings, DateTime, Interval } from 'luxon';
 import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
+import { useRouter } from 'next/router';
 import Nav from '../../../components/Nav';
 import AtAGlance from '../../../components/AtAGlance';
 import SchedulingWidget from '../../../components/SchedulingWidget';
@@ -12,13 +14,11 @@ import QuestionsAndAnswers from '../../../components/QuestionsAndAnswers';
 import Documents from '../../../components/Documents';
 import HomeDetails from '../../../components/HomeDetails';
 import TabWidgets from '../../../components/TabWidgets';
-import Footer from '../../../components/Footer';
 import getSpecificAvailability from '../../../utils/getSpecificAvailability';
 import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
 
-import { useRouter } from 'next/router';
 
 const Listing = ({
    AuthUserInfo,
@@ -95,127 +95,128 @@ const Listing = ({
    const [tourActiveDate, setTourActiveDate] = useState(null);
 
    return (
-      <>
-         <Head>
-            <title>
-               Finding Spaces – {listing.address[0]}, {listing.address[1]}
-            </title>
-         </Head>
-         <Nav
-            showLogo
-            solidBackground={true}
-            address={breakpoint.up.lg ? listing.address[0] + ', ' + listing.address[1] : false}
-            {...{ AuthUser, showLoginModal }}
-         />
-         {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-         <Container style={{ marginTop: '3%' }} bsPrefix='container-md'>
-            {breakpoint.down.md && (
-               <Row as='h1' className='h4 mx-auto mb-3' style={{ width: 'max-content' }}>
-                  {listing.address[0]}
-                  {breakpoint.xs ? <br /> : ', '}
-                  {listing.address[1]}
-               </Row>
+     <Head>
+       <Head>
+         <title>
+           Finding Spaces – {listing.address[0]}, {listing.address[1]}
+         </title>
+       </Head>
+       <Nav
+         showLogo
+         solidBackground
+         address={breakpoint.up.lg ? `${listing.address[0]  }, ${  listing.address[1]}` : false}
+         {...{ AuthUser, showLoginModal }}
+       />
+       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
+       <Container style={{ marginTop: '3%' }} bsPrefix='container-md'>
+         {breakpoint.down.md && (
+         <Row as='h1' className='h4 mx-auto mb-3' style={{ width: 'max-content' }}>
+           {listing.address[0]}
+           {breakpoint.xs ? <br /> : ', '}
+           {listing.address[1]}
+         </Row>
             )}
 
-            {isSubscribed && (
-               <Alert
-                  variant='secondary'
-                  className='py-2 px-4 mb-5 d-flex justify-content-between align-items-center'>
-                  <p className='pt-2'>
-                     You are subscribed to this listing. To view, chat, or submit an offer visit:
-                  </p>
-                  <Alert.Link href='/buyer/dashboard' className='text-primary '>
-                     BUYER DASHBOARD
-                  </Alert.Link>
-               </Alert>
+         {isSubscribed && (
+         <Alert
+           variant='secondary'
+           className='py-2 px-4 mb-5 d-flex justify-content-between align-items-center'
+         >
+           <p className='pt-2'>
+             You are subscribed to this listing. To view, chat, or submit an offer visit:
+           </p>
+           <Alert.Link href='/buyer/dashboard' className='text-primary '>
+             BUYER DASHBOARD
+           </Alert.Link>
+         </Alert>
             )}
 
-            <Row as='main'>
-               <Col lg>
-                  <AtAGlance
-                     activity={listing.activity}
-                     price={listing.currentPrice}
-                     beds={listing.bedrooms}
-                     baths={listing.fullBaths + 0.5 * listing.halfBaths}
-                     sqFt={listing.totalFinishedSqFt}
-                     pricePerSqFt={Math.round(listing.currentPrice / listing.totalFinishedSqFt)}
-                     photos={listing.photos}
-                     address={`${listing.address[0]}, ${listing.address[1]}`}
-                     ownerName={owner.displayName}
-                     ownerPhotoSrc={owner.photoURL}
-                  />
+         <Row as='main'>
+           <Col lg>
+             <AtAGlance
+               activity={listing.activity}
+               price={listing.currentPrice}
+               beds={listing.bedrooms}
+               baths={listing.fullBaths + 0.5 * listing.halfBaths}
+               sqFt={listing.totalFinishedSqFt}
+               pricePerSqFt={Math.round(listing.currentPrice / listing.totalFinishedSqFt)}
+               photos={listing.photos}
+               address={`${listing.address[0]}, ${listing.address[1]}`}
+               ownerName={owner.displayName}
+               ownerPhotoSrc={owner.photoURL}
+             />
 
        
  
             
 
                   
-                   {breakpoint.down.md && (
+             {breakpoint.down.md && (
                      
 
-                      <Col md='auto'>
-                     <SchedulingWidget
-                        setSubscribed={setSubscribed}
-                        listing={listing}
-                        firstAvailableDate={tourFirstAvailableDate}
-                        firstDate={tourFirstDate}
-                        setFirstDate={setTourFirstDate}
-                        activeDate={tourActiveDate}
-                        setActiveDate={setTourActiveDate}
-                        dayAvailability={dayAvailability}
-                        getTimeAvailability={getSpecificAvailability(
+             <Col md='auto'>
+               <SchedulingWidget
+                 setSubscribed={setSubscribed}
+                 listing={listing}
+                 firstAvailableDate={tourFirstAvailableDate}
+                 firstDate={tourFirstDate}
+                 setFirstDate={setTourFirstDate}
+                 activeDate={tourActiveDate}
+                 setActiveDate={setTourActiveDate}
+                 dayAvailability={dayAvailability}
+                 getTimeAvailability={getSpecificAvailability(
                            generalTimeAvailability,
                            hourly ? 1 : 0.5,
                            schedules
                         )}
-                        {...{ timeZone, AuthUser, showLoginModal }}
-                     />
-                  </Col> 
+                 {...{ timeZone, AuthUser, showLoginModal }}
+               />
+             </Col> 
 
 
 
                   )} 
 
-                  <QuestionsAndAnswers
-                     as='section'
-                     questions={questions}
-                     limit={5}
-                     AuthUser={AuthUser}
-                  />
+             <QuestionsAndAnswers
+               as='section'
+               questions={questions}
+               limit={5}
+               AuthUser={AuthUser}
+             />
 
-                  <Documents documents={documents} />
+             <Documents documents={documents} />
 
-                  <HomeDetails details={listing.homeDetails} features={listing.homeFeatures} />
+             <HomeDetails details={listing.homeDetails} features={listing.homeFeatures} />
 
-                  <TabWidgets />
-               </Col>
+             <TabWidgets />
+           </Col>
 
-                {breakpoint.up.lg && (
-                  <Col lg='auto'>
-                     <SchedulingWidget
-                        setSubscribed={setSubscribed}
-                        listing={listing}
-                        firstAvailableDate={tourFirstAvailableDate}
-                        firstDate={tourFirstDate}
-                        setFirstDate={setTourFirstDate}
-                        activeDate={tourActiveDate}
-                        setActiveDate={setTourActiveDate}
-                        dayAvailability={dayAvailability}
-                        getTimeAvailability={getSpecificAvailability(
+           {breakpoint.up.lg && (
+           <Col lg='auto'>
+             <SchedulingWidget
+               setSubscribed={setSubscribed}
+               listing={listing}
+               firstAvailableDate={tourFirstAvailableDate}
+               firstDate={tourFirstDate}
+               setFirstDate={setTourFirstDate}
+               activeDate={tourActiveDate}
+               setActiveDate={setTourActiveDate}
+               dayAvailability={dayAvailability}
+               getTimeAvailability={getSpecificAvailability(
                            generalTimeAvailability,
                            hourly ? 1 : 0.5,
                            schedules
                         )}
-                        {...{ timeZone, AuthUser, showLoginModal }}
-                     />
-                  </Col>
+               {...{ timeZone, AuthUser, showLoginModal }}
+             />
+           </Col>
                )} 
-            </Row>
-         </Container>
+         </Row>
+       </Container>
 
-         {/* <Footer /> */}
+       {/* <Footer /> */}
 
-         <style jsx global>{`
+       <style jsx global>{`
             body {
                background-color: #ededed;
             }
@@ -225,8 +226,9 @@ const Listing = ({
             p {
                margin-bottom: 10px;
             }
-         `}</style>
-      </>
+         `}
+       </style>
+     </Head>
    );
 };
 
@@ -267,16 +269,16 @@ Listing.getInitialProps = async (ctx) => {
                ...(userSchedule && { user: userSchedule }),
             },
          };
-      } else if ([404, 503].includes(listingResponse.status)) {
+      } if ([404, 503].includes(listingResponse.status)) {
          return { statusCode: listingResponse.status };
-      } else if ([404, 503].includes(tourSchedulesResponse.status)) {
+      } if ([404, 503].includes(tourSchedulesResponse.status)) {
          return { statusCode: tourSchedulesResponse.status };
-      } else {
+      } 
          // https://github.com/developit/unfetch#caveats
-         let error = new Error(listingResponse.statusText);
+         const error = new Error(listingResponse.statusText);
          error.response = listingResponse;
          throw error;
-      }
+      
    } catch (err) {
       console.log(err);
       return {

@@ -1,11 +1,8 @@
-"use strict";
-
 import firebase from "firebase/app";
 import "firebase/storage";
 import firebaseInit from "./firebaseInit";
 
 firebaseInit();
-
 
 // you can delete this useless comment now
 export default async (file, filePath) => {
@@ -17,7 +14,7 @@ export default async (file, filePath) => {
     const uploaded = await storageRef
       .child(file.name)
       .put(file, {
-        contentType: file.type
+        contentType: file.type,
       })
       .then();
 

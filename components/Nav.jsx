@@ -34,7 +34,6 @@ export default ({
 
   const [isScrolled, setScrolled] = useState(false);
   const breakpoint = useMediaBreakpoints();
-  // random comment so it will update vercel
 
   useScrollPosition((position) => {
     if (position !== 0) {
