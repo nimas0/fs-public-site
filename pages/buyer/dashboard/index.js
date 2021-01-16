@@ -1,7 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import fetch from "isomorphic-unfetch";
-import MainLayout from "../../../components/layout/MainLayout";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+
+import firebase from "firebase/app";
+import firebaseInit from "../../../utils/firebaseInit";
+import "firebase/firestore";
+
 import Heading from "../../../components/buyers/dashboard/Heading";
 import Approval from "../../../components/buyers/dashboard/approval/Approval";
 import SubscriptionCard from "../../../components/buyers/dashboard/subscription/SubscriptionCard";
@@ -9,27 +17,15 @@ import Resources from "../../../components/buyers/dashboard/Resources";
 import withAuthUser from "../../../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../utils/pageWrappers/withLoginModal";
-import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 
-import SellerSignUp from "../../../components/buyers/dashboard/sellersignup/SellerSignUp";
+// import SellerSignUp from "../../../components/buyers/dashboard/sellersignup/SellerSignUp";
 
-import firebaseInit from "../../../utils/firebaseInit";
-import firebase from "firebase/app";
-import "firebase/firestore";
 import Nav from "../../../components/Nav";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 
 // Initialize Firebase ap
 firebaseInit();
 
-const Dashboard = ({
-  AuthUserInfo,
-  showLoginModal,
-  verification,
-  subscriptionData,
-}) => {
+const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
   const router = useRouter();
   const { AuthUser = null } = AuthUserInfo;
   const [value, loading, error] = useCollection(
@@ -45,7 +41,7 @@ const Dashboard = ({
       .doc(AuthUser.id)
   );
 
-  //TODO : clean up return. getting messy with error && error statments
+  // TODO : clean up return. getting messy with error && error statments
   // add more comments
 
   return (
@@ -208,17 +204,15 @@ Dashboard.getInitialProps = async (ctx) => {
     if (userProfileResponse.ok) {
       const { verification } = await userProfileResponse.json();
       console.log(verification);
-      return {
-        verification: verification,
-      };
-    } else if ([404, 503].includes(userProfileResponse.status)) {
-      return { statusCode: userProfileResponse.status };
-    } else {
-      // https://github.com/developit/unfetch#caveats
-      let error = new Error(userProfileResponse.statusText);
-      error.response = userProfileResponse;
-      throw error;
+      return { verification };
     }
+    if ([404, 503].includes(userProfileResponse.status)) {
+      return { statusCode: userProfileResponse.status };
+    }
+    // https://github.com/developit/unfetch#caveats
+    let error = new Error(userProfileResponse.statusText);
+    error.response = userProfileResponse;
+    throw error;
   } catch (err) {
     console.log(err);
     return {

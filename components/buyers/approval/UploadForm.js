@@ -36,9 +36,8 @@ const Upload = ({ userId, setPage, newUser }) => {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [sending, setSending] = useState(false);
-  const [fileSelected, setFileSelected] = useState(false);
-
   const fileInput = useRef(0);
+  const [fileSelected, setFileSelected] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadFailure, setUploadFailure] = useState(false);
 
