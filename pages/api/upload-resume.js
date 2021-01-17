@@ -12,6 +12,7 @@ export default async (req, res) => {
     email,
     phone,
     currentCompany,
+    file,
     ...rest
   } = req.body;
   console.log(req.body);
