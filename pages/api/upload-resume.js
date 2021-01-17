@@ -6,7 +6,14 @@ firebaseInit();
 
 /// POST only
 export default async (req, res) => {
-  const { documentURL, fullName, email, phone, currentCompany } = req.body;
+  const {
+    documentURL,
+    fullName,
+    email,
+    phone,
+    currentCompany,
+    ...rest
+  } = req.body;
   console.log(req.body);
 
   try {
@@ -24,6 +31,7 @@ export default async (req, res) => {
           phone,
           currentCompany,
           documentURL,
+          ...rest,
         },
       });
 

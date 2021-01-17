@@ -102,6 +102,12 @@ const Resume = () => {
           email: "",
           phone: "",
           currentCompany: "",
+          linkedIn: "",
+          repository: "",
+          portfolio: "",
+          additionalInformation: "",
+          survey: "",
+          terms: "",
         }}
       >
         {({

@@ -210,7 +210,7 @@ Dashboard.getInitialProps = async (ctx) => {
       return { statusCode: userProfileResponse.status };
     }
     // https://github.com/developit/unfetch#caveats
-    let error = new Error(userProfileResponse.statusText);
+    const error = new Error(userProfileResponse.statusText);
     error.response = userProfileResponse;
     throw error;
   } catch (err) {
