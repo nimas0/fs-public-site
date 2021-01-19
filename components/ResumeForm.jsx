@@ -42,7 +42,7 @@ const Resume = () => {
       const response = await fetch("/api/upload-resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ documentURL, ...values }),
+        body: JSON.stringify({ documentURL, ...values, createdAt: new Date() }),
       });
 
       if (response.ok) {
