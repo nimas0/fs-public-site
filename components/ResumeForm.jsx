@@ -3,6 +3,7 @@ import { Col, Button, Form, Container, Row, Spinner } from "react-bootstrap";
 // import InfoGeneralComp from "../../InfoGeneralComp";
 // import uploadUserDocument from "../../../utils/uploadUserDocument";
 import { Formik } from "formik";
+import moment from "moment";
 
 import * as yup from "yup";
 
@@ -42,7 +43,11 @@ const Resume = () => {
       const response = await fetch("/api/upload-resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ documentURL, ...values, createdAt: new Date() }),
+        body: JSON.stringify({
+          documentURL,
+          ...values,
+          createdAt: moment().format("MMMM Do YYYY, h:mm:ss a"),
+        }),
       });
 
       if (response.ok) {
