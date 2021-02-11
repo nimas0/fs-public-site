@@ -67,13 +67,11 @@ export default ({
   return (
     <>
       <Navbar
-        id={
-          solidBackground && isScrolled ? "navbar-scrolling" : "navbar-custom"
-        }
+        id={solidBackground && isScrolled ? "" : "navbar-custom"}
         fixed
         sticky="top"
         className={` text-info ${solidBackground &&
-          "bg-white schedulingShadow border"}   d-flex px-5 pt-3 pb-2 `}
+          " bg-dark schedulingShadow "}   d-flex px-5 pt-3 pb-2 `}
       >
         <>
           <Navbar.Toggle
