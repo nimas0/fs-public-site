@@ -47,54 +47,54 @@ class FeatureSection extends Component {
         initData: {},
         data: []
     }
+
     componentDidMount() {
         this.setState({
-            initData: initData,
-            data: data
+            initData,
+            data
         })
     }
+
     render() {
         return (
-            <section id="features" className="section mb-0 features-area style-two overflow-hidden ptb_100">
-                <div className="container ">
-                    <div className="d-flex justify-content-center row">
-                        <div className="col-12 col-md-10 col-lg-10">
-                            {/* Section Heading */}
-                            <div className="my-5">
-                                {/* <span className="d-inline-block rounded-pill shadow-sm fw-5 px-4 py-2 mb-3">
+          <section id="features" className="section mb-0 features-area style-two overflow-hidden ptb_100">
+            <div className="container ">
+              <div className="d-flex justify-content-center row">
+                <div className="col-12 col-md-10 col-lg-10">
+                  {/* Section Heading */}
+                  <div className="my-5">
+                    {/* <span className="d-inline-block rounded-pill shadow-sm fw-5 px-4 py-2 mb-3">
                                     <i className="far fa-lightbulb text-primary mr-1" />
                                     <span className="text-primary">{this.state.initData.preHeading}</span>
                                     {this.state.initData.preHeadingspan}
                                 </span> */}
-                                <h1 className='d-flex justify-content-center text-dark font-weight-bold'>{this.state.initData.heading}</h1>
-                                <h5 className='pt-2 text-center' >{this.state.initData.headingText}</h5>
-                                {/* <h4 className='text-center' >{this.state.initData.headingTexttwo}</h4> */}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        {this.state.data.map((item, idx) => {
-                            return (
-                                <div key={`ffd_${idx}`} className="col-12 col-md-6 col-lg-4 my-4 res-margin">
-                                    {/* Image Box */}
-                                    <div className="image-box text-center icon-1 p-5">
-                                        {/* Featured Image */}
-                                        <div className="featured-img mb-3 text-primary">
-                                            {/* <img className="avatar-sm" src={item.image} alt="" /> */}
-                                            <FontAwesomeIcon size='2x' color='text-primary' icon={item.icon} />
-                                        </div>
-                                        {/* Icon Text */}
-                                        <div className="icon-text ">
-                                            <h3 className="mb-2">{item.title}</h3>
-                                            <p>{item.content}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                    <h1 className='d-flex justify-content-center font-weight-bold'>{this.state.initData.heading}</h1>
+                    <h5 className='pt-2 text-center'>{this.state.initData.headingText}</h5>
+                    {/* <h4 className='text-center' >{this.state.initData.headingTexttwo}</h4> */}
+                  </div>
                 </div>
-                <style jsx>{`
+              </div>
+              <div className="row">
+                {this.state.data.map((item, idx) => (
+                  <div key={`ffd_${idx}`} className="col-12 col-md-6 col-lg-4 my-4 res-margin">
+                    {/* Image Box */}
+                    <div className="image-box text-center icon-1 p-5">
+                      {/* Featured Image */}
+                      <div className="featured-img mb-3 text-primary">
+                        {/* <img className="avatar-sm" src={item.image} alt="" /> */}
+                        <FontAwesomeIcon size='2x' color='text-primary' icon={item.icon} />
+                      </div>
+                      {/* Icon Text */}
+                      <div className="icon-text ">
+                        <h3 className="mb-2">{item.title}</h3>
+                        <p>{item.content}</p>
+                      </div>
+                    </div>
+                  </div>
+                            ))}
+              </div>
+            </div>
+            <style jsx>{`
                                         
                                         /* ******************************
                     :: 10.0 FEATURES AREA CSS
@@ -122,8 +122,9 @@ class FeatureSection extends Component {
                     box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.125) !important;
                     }
                                         
-                    `}</style>
-            </section>
+                    `}
+            </style>
+          </section>
         );
     }
 }
