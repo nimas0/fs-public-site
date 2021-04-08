@@ -6,10 +6,10 @@ import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
 
 const HomeLayout = ({ AuthUser, showLoginModal, logoActive = false, children }) => (
-   <>
-      <HomeNav AuthUser={AuthUser} showLoginModal={showLoginModal} logoActive={logoActive} />
-      {children}
-   </>
+  <>
+    <HomeNav AuthUser={AuthUser} showLoginModal={showLoginModal} logoActive={logoActive} />
+    {children}
+  </>
 );
 
 export default HomeLayout;

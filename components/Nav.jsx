@@ -1,4 +1,4 @@
-"use strict";
+
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -13,12 +13,12 @@ import {
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import logout from "../utils/auth/logout";
 import {
   useScrollDirection,
   useScrollPosition,
 } from "../utils/hooks/scrolldirection";
-import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 
 export default ({
   address,
@@ -85,7 +85,7 @@ export default ({
                   <Nav.Link
                     variant="text-secondary"
                     href="/learnmore"
-                  ></Nav.Link>
+                  />
                 ) : (
                   <Navbar.Brand
                     style={{ cursor: "pointer" }}
@@ -94,7 +94,7 @@ export default ({
                     {showLogo && (
                       <img
                         onClick={() => router.push("/")}
-                        width={"50%"}
+                        width="50%"
                         src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336"
                       />
                     )}
@@ -116,14 +116,14 @@ export default ({
             {AuthUser ? (
               showQuickLinks && (
                 <>
-                  <Nav.Link
+                  {/* <Nav.Link
                     as={Button}
                     className="p-3"
                     variant="link"
                     href="/buyer/dashboard"
                   >
                     Buyer's Dashboard
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link
                     as={Button}
                     className="p-3"
@@ -140,13 +140,13 @@ export default ({
                   as={Button}
                   variant="primary"
                   className="text-white"
-                  href="/learnmore"
+                  href="https://seller.findingspaces.com"
                 >
-                  Get Started Selling Your House
+                  Sell Your House
                 </Nav.Link>
-                <Nav.Link as={Button} variant="link" onClick={showLoginModal}>
+                {/* <Nav.Link as={Button} variant="link" onClick={showLoginModal}>
                   Buyer's Dashboard
-                </Nav.Link>
+                </Nav.Link> */}
                 {/* <Nav.Link as={Button} variant='link'  href='https://seller.findingspaces.com/showings'>
                            Seller's Dashboard
                         </Nav.Link> */}
@@ -163,13 +163,13 @@ export default ({
           {AuthUser ? (
             AuthUser.photoURL ? (
               <NavDropdown
-                title={
+                title={(
                   <Image
                     src={AuthUser.photoURL}
                     roundedCircle
                     style={{ height: "2.5rem", width: "2.5rem" }}
                   />
-                }
+                )}
                 id="dropdown-basic"
                 className="hover-focus-opacity-90 noCaret"
               >
@@ -177,9 +177,7 @@ export default ({
                 <NavDropdown.Item onClick={logoutRefresh}>
                   Log Out
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/learnmore">
-                  Learn More
-                </NavDropdown.Item>
+              
                 <NavDropdown.Item href="/learnmore">Search</NavDropdown.Item>
               </NavDropdown>
             ) : (

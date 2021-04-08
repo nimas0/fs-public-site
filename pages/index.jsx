@@ -1,10 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import HomeLayout from "../components/layout/HomeLayout";
-import withAuthUser from "../utils/pageWrappers/withAuthUser";
-import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
-import withLoginModal from "../utils/pageWrappers/withLoginModal";
 import {
   Card,
   Container,
@@ -23,6 +19,10 @@ import "./homepage.module.css";
 
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import withLoginModal from "../utils/pageWrappers/withLoginModal";
+import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
+import withAuthUser from "../utils/pageWrappers/withAuthUser";
+import HomeLayout from "../components/layout/HomeLayout";
 import Nav from "../components/Nav";
 
 const Home = ({ AuthUserInfo, showLoginModal }) => {
@@ -45,7 +45,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
     }
   };
 
-  //validation
+  // validation
   // const listingSchema = Yup.object().shape({
   //    input1: Yup.string().required('Must be a number'),
   //    input2: Yup.string().required('Must be a number'),
@@ -68,8 +68,8 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
     // console.log(e.target);
 
     const inputName = e.target.name;
-    let inputNumber = inputName[inputName.length - 1] || 0;
-    let tabindex = Number(inputNumber);
+    const inputNumber = inputName[inputName.length - 1] || 0;
+    const tabindex = Number(inputNumber);
     // console.log(inputNumber);
 
     let elem = elemRefs[0];
@@ -90,7 +90,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
     } else if (e.keyCode !== DELETE_KEY) {
       elem = tabindex < elemRefs.length - 1 && elemRefs[tabindex + 1];
 
-      completedCount = completedCount + 1;
+      completedCount += 1;
     }
 
     // elemRefs[tabindex].current.value.replace(/[^0-9\\.]/g, '');
@@ -169,11 +169,11 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
             <Input key={index} index={index} autoTab={autoTab} error={errors} />
           </>
         );
-      } else {
+      } 
         return (
           <Input key={index} index={index} autoTab={autoTab} errors={errors} />
         );
-      }
+      
     });
 
   return (
@@ -183,7 +183,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
       </Head>
 
       <Nav
-        homepage={true}
+        homepage
         AuthUser={AuthUser}
         showLoginModal={showLoginModal}
       />
@@ -257,11 +257,10 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
                 <Row className="justify-content-center align-items-center">
                   <Button
                     disabled={submitting}
-                    variant={"link text-dark"}
+                    variant="link text-dark"
                     // ref={buttonRef}
                     onClick={() =>
-                      submitSearch(elemRefs, setFieldValue, rest.submitForm)
-                    }
+                      submitSearch(elemRefs, setFieldValue, rest.submitForm)}
                     className="m-4"
                   >
                     <b>Enter Home</b>
@@ -340,14 +339,14 @@ async function fetchListing(values) {
       // Return whether this user is new and user's verification status
       const { listingId } = await response.json();
       return listingId;
-    } else if ([404, 503].includes(response.status)) {
+    } if ([404, 503].includes(response.status)) {
       return { statusCode: response.status, ...(await response.json()) };
-    } else {
+    } 
       // https://github.com/developit/unfetch#caveats
-      let error = new Error(response.statusText);
+      const error = new Error(response.statusText);
       error.response = response;
       throw error;
-    }
+    
   } catch (err) {
     console.log(err);
     return { statusCode: response.status || err.statusCode || 500 };
