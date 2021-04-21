@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import { Container, Row, Col, Alert, Card, Button } from "react-bootstrap";
 import fetch from "isomorphic-unfetch";
 import { Settings as LuxonSettings, DateTime, Interval } from "luxon";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
@@ -16,9 +16,12 @@ import getSpecificAvailability from "../../../utils/getSpecificAvailability";
 import withAuthUser from "../../../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../utils/pageWrappers/withLoginModal";
+import GenericModal from '../../../components/GenericModal';
+import Upload from '../../../components/buyers/approval/UploadForm';
 
 const Listing = ({
   AuthUserInfo,
+  verification,
   listing,
   questions,
   documents,
@@ -26,7 +29,9 @@ const Listing = ({
   schedules: stringSchedules,
   showLoginModal,
 }) => {
+  const [modalShow, setModalShow] = useState(false);
   const { AuthUser = null } = AuthUserInfo;
+  const [skeleton, setSkeleton] = useState(false);
   const breakpoint = useMediaBreakpoints();
   const [isSubscribed, setSubscribed] = useState(false);
   const { timeZone } = listing;
@@ -49,6 +54,20 @@ const Listing = ({
       ),
     }),
   };
+
+  
+
+
+   
+  const ModalBody = () => (
+    <>
+      {/* <p>
+        A mortgage approval allows you to make an offer with confidence and shows that you're a serious buyer with the means to purchase the seller's home. Please submit a pre-approval or proof of funds to unlock this feature.
+      </p> */}
+      <Upload userId={AuthUser.id} setModalShow={setModalShow} />
+    </>
+);
+
 
   // Listing tour availability
   const { days: dayAvailability } = listing.generalAvailability;
@@ -108,7 +127,6 @@ const Listing = ({
       </Head>
       <Nav
         showLogo
-        solidBackground
         address={
           breakpoint.up.lg
             ? `${listing.address[0]}, ${listing.address[1]}`
@@ -116,8 +134,10 @@ const Listing = ({
         }
         {...{ AuthUser, showLoginModal }}
       />
+     
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-      <Container style={{ marginTop: "3%" }} bsPrefix="container-md">
+      <Container style={{  }} bsPrefix="container-md">
+        
         {breakpoint.down.md && (
           <Row
             as="h1"
@@ -130,7 +150,7 @@ const Listing = ({
           </Row>
         )}
 
-        {isSubscribed && (
+        {/* {isSubscribed && (
           <Alert
             variant="secondary"
             className="py-2 px-4 mb-5 d-flex justify-content-between align-items-center"
@@ -143,11 +163,15 @@ const Listing = ({
               BUYER DASHBOARD
             </Alert.Link>
           </Alert>
-        )}
+        )} */}
 
         <Row as="main">
           <Col lg>
             <AtAGlance
+              verification={verification}
+              AuthUser={AuthUser}
+              setModalShow={setModalShow}
+              skeleton={skeleton}
               activity={listing.activity}
               price={listing.currentPrice}
               beds={listing.bedrooms}
@@ -164,6 +188,9 @@ const Listing = ({
 
             {breakpoint.down.md && (
               <Col md="auto">
+        
+                  
+     
                 <SchedulingWidget
                   setSubscribed={setSubscribed}
                   listing={listing}
@@ -202,6 +229,7 @@ const Listing = ({
 
           {breakpoint.up.lg && (
             <Col lg="auto">
+                
               <SchedulingWidget
                 setSubscribed={setSubscribed}
                 listing={listing}
@@ -222,7 +250,20 @@ const Listing = ({
           )}
         </Row>
       </Container>
-
+      <GenericModal
+        showFooter={false}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        header={(
+          <>
+            <h5 className="pr-3 text-white">
+              <b>Action Required: </b>{" "}
+            </h5>
+            <h6 className='text-white'>To unlock this feature please upload a Pre-Qualification, Pre-Approval, or Proof of Funds.</h6>
+          </>
+        )}
+        body={<ModalBody />}
+      />
       {/* <Footer /> */}
 
       <style jsx global>

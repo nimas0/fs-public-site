@@ -97,20 +97,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
     if (elem) {
       elem.current.focus();
     }
-    //  END [control non number || letter inputs]
 
-    // PUSH focus to Submit if all inputs have been filled out
-    // commented this out because it was causes post submittion errors
-    // no quick solution obvious
-    // let isValid = [];
-    // for (let i = 0; i < 5; i++) {
-    //    if (elemRefs[i] && elemRefs[i].current.value) {
-    //       isValid.push(true);
-    //    }
-    // }
-    // if (isValid.length === 5) {
-    //    buttonRef.current.focus();
-    // }
   };
 
   // const delayCount = (index) => {
@@ -135,8 +122,8 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
             breakpoint.up.lg ? "m-3 form-control1" : "m-1 form-control-mobile"
           } ${submitting ? "afterSubmitStyle" : "beforeSubmitStyle"}`}
           style={{
-            width: breakpoint.up.lg ? "10rem" : "3rem",
-            height: breakpoint.up.lg ? "14rem" : "4rem",
+            width: breakpoint.up.lg ? "5rem" : "3rem",
+            height: breakpoint.up.lg ? "7rem" : "4rem",
           }}
           data-index={props.index}
           ref={ref}
@@ -158,7 +145,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
         return (
           <>
             <FadeIn delay={1000}>
-              <span key={index + 345} className="w-100">
+              <span key={index + 345} className="w-50">
                 {breakpoint.up.lg ? (
                   <h2 className="text-muted">-</h2>
                 ) : (
@@ -233,11 +220,7 @@ const Home = ({ AuthUserInfo, showLoginModal }) => {
               className="d-flex align-items-center"
             >
               <Container className="align-items-center">
-                {breakpoint.up.lg && (
-                  <Row className="justify-content-center align-items-center m-3 pl-3">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336" />
-                  </Row>
-                )}
+         
                 {breakpoint.down.sm && (
                   <Row className="justify-content-center align-items-center m-3 pl-3">
                     <img

@@ -71,7 +71,7 @@ export default ({
         fixed
         sticky="top"
         className={` text-info ${solidBackground &&
-          " bg-dark schedulingShadow "}   d-flex px-5 pt-3 pb-2 `}
+          " bg-light schedulingShadow "}   d-flex px-5 pt-3 pb-2 `}
       >
         <>
           <Navbar.Toggle
@@ -79,7 +79,7 @@ export default ({
             aria-controls="basic-navbar-nav"
           />
           <div className="flex-grow-0 order-1">
-            <Link href="/" passHref>
+            {/* <Link href="/" passHref>
               <>
                 {homepage ? (
                   <Nav.Link
@@ -101,7 +101,7 @@ export default ({
                   </Navbar.Brand>
                 )}
               </>
-            </Link>
+            </Link> */}
           </div>
           <Navbar.Text as="h1" className="text-reset flex-grow-1 order-2 mb-0">
             {/* {address} */}
@@ -124,26 +124,26 @@ export default ({
                   >
                     Buyer's Dashboard
                   </Nav.Link> */}
-                  <Nav.Link
+                  {/* <Nav.Link
                     as={Button}
                     className="p-3"
                     variant="link"
                     href="https://seller.findingspaces.com/showings"
                   >
                     Seller's Dashboard
-                  </Nav.Link>
+                  </Nav.Link> */}
                 </>
               )
             ) : (
               <>
-                <Nav.Link
+                {/* <Nav.Link
                   as={Button}
                   variant="primary"
                   className="text-white"
                   href="https://seller.findingspaces.com"
                 >
                   Sell Your House
-                </Nav.Link>
+                </Nav.Link> */}
                 {/* <Nav.Link as={Button} variant="link" onClick={showLoginModal}>
                   Buyer's Dashboard
                 </Nav.Link> */}

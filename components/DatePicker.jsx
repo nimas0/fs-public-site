@@ -1,4 +1,4 @@
-'use strict';
+
 
 import React from 'react';
 import { Settings as LuxonSettings, DateTime } from 'luxon';
@@ -35,8 +35,8 @@ export default ({
       : { ref: null };
 
    return (
-      <div
-         className={clsx(
+     <div
+       className={clsx(
             'd-flex align-items-center mb-2',
             alignment === 'left'
                ? 'justify-content-start'
@@ -44,41 +44,42 @@ export default ({
                ? 'justify-content-end'
                : 'justify-content-center',
             className
-         )}>
-         <ExpandButton
-            className='schedulingShadow'
-            direction='left'
-            overlap='right'
-            onClick={() => {
+         )}
+     >
+       <ExpandButton
+         className='schedulingShadow'
+         direction='left'
+         overlap='right'
+         onClick={() => {
                setFirstDate(
                   DateTime.max(firstAvailableDate, firstDate.minus({ days: daysDisplayed }))
                );
             }}
-            hidden={firstDate.hasSame(firstAvailableDate, 'day')}
-         />
+         hidden={firstDate.hasSame(firstAvailableDate, 'day')}
+       />
 
-         <div ref={dateButtons} className='mr-n1'>
-            {daysArray.map((index) => (
-               <DateButton
-                  key={index}
-                  date={firstDate.plus({ days: index })}
-                  disabled={disableAllDates}
-                  {...{
+       <div ref={dateButtons} className='mr-n1'>
+         {daysArray.map((index) => (
+           <DateButton
+             key={index}
+             date={firstDate.plus({ days: index })}
+             disabled={disableAllDates}
+             {...{
                      small,
                      dayAvailability,
                      getTimeAvailability,
                      activeDate,
                      setActiveDate,
                   }}
-               />
+           />
             ))}
-         </div>
+       </div>
 
-         <ExpandButton
-          className='schedulingShadow'
-            direction='right'
-            overlap='left'
-            onClick={() => {
+       <ExpandButton
+         className='schedulingShadow'
+         direction='right'
+         overlap='left'
+         onClick={() => {
                setFirstDate(
                   DateTime.min(
                      DateTime.local()
@@ -89,13 +90,13 @@ export default ({
                   )
                );
             }}
-            hidden={firstDate.hasSame(
+         hidden={firstDate.hasSame(
                DateTime.local()
                   .plus({ months: 1 })
                   .minus({ days: daysDisplayed - 1 }),
                'day'
             )}
-         />
-      </div>
+       />
+     </div>
    );
 };

@@ -2,7 +2,7 @@
  * TODO: Add buyer dashboard link
  */
 
-"use strict";
+
 
 import React, { useEffect, useState, useRef } from "react";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
@@ -10,13 +10,13 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/app";
 import "firebase/auth";
 import fetch from "isomorphic-unfetch";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { useRouter } from "next/router";
 import firebaseInit from "../utils/firebaseInit";
 import uploadUserDocument from "../utils/uploadUserDocument";
-import PhoneInput from "react-phone-number-input";
-import Upload from "../components/buyers/approval/UploadForm";
+import Upload from "./buyers/approval/UploadForm";
 import "react-phone-number-input/style.css";
-import { isValidPhoneNumber } from "react-phone-number-input";
-import { useRouter } from "next/router";
+
 // Initialize Firebase app
 firebaseInit();
 
@@ -62,7 +62,7 @@ export default ({ shown, setShown }) => {
     try {
       if (!isValidPhoneNumber(number)) {
         // https://github.com/developit/unfetch#caveats
-        let error = new Error("Wrong format");
+        const error = new Error("Wrong format");
         throw error;
       }
       // Send file info through API
@@ -78,7 +78,7 @@ export default ({ shown, setShown }) => {
         setUploading(false);
       } else {
         // https://github.com/developit/unfetch#caveats
-        let error = new Error(response.statusText);
+        const error = new Error(response.statusText);
         error.response = response;
         throw error;
       }
@@ -330,12 +330,12 @@ export default ({ shown, setShown }) => {
         const { created: isNew, verification } = await response.json();
         const { status: verified } = verification;
         return callback(isNew, verified);
-      } else {
+      } 
         // https://github.com/developit/unfetch#caveats
-        let error = new Error(response.statusText);
+        const error = new Error(response.statusText);
         error.response = response;
         throw error;
-      }
+      
     } catch (err) {
       console.error(
         "Auth success but database failure. Either a coding error or network issues.",
@@ -376,7 +376,7 @@ export default ({ shown, setShown }) => {
           }
         } else {
           // https://github.com/developit/unfetch#caveats
-          let error = new Error(response.statusText);
+          const error = new Error(response.statusText);
           error.response = response;
           throw error;
         }

@@ -3,7 +3,7 @@ import { Card, Row, Col, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { Pending, Denied, Approved, Expired } from './Status';
 
-const Approval = ({ verification, AuthUser }) => {
+const Approval = ({ verification, AuthUser, setModalShow }) => {
    const router = useRouter();
 
    const [uiState, resetState] = useState();
@@ -23,32 +23,36 @@ const Approval = ({ verification, AuthUser }) => {
       case 'denied':
          return <Denied reset={uploadPageRedirect} />;
       case 'expired':
-         return <Expired verification={verification}  uploadPageRedirect={uploadPageRedirect} />;
+         return <Expired verification={verification} uploadPageRedirect={uploadPageRedirect} />;
       default:
          return (
-            <Row>
-               <Col>
-                  {/*  boxShadow: 'inset 4px 4px 15px #bdbdbd' */}
-                  <Card style={{}} className=' bg-transparent mb-2'>
-                     <Card.Header className='py-2 text-muted' as='h5'>
-                        Verification
-                     </Card.Header>
-                     <Card.Body className='text-center py-5'>
-                        <Button
-                           onClick={uploadPageRedirect}
-                           variant='primary'
-                           className='mb-3 px-5 rounded-lg'>
-                           Upload
-                        </Button>
-                        <Card.Text>
-                           <small>
-                              <i>*required to view properties through findingSpaces</i>
-                           </small>
-                        </Card.Text>
-                     </Card.Body>
-                  </Card>
-               </Col>
-            </Row>
+           <>
+             <h4 className=' mt-3 align-content-end bg-transparent text-info '>
+               <Button
+                 onClick={
+              (e) => {
+                  e.preventDefault();
+                  setModalShow(true);
+              }
+            }
+                 variant='info'
+                 className='rounded-0'
+               >Upload Verification
+               </Button>
+             </h4>
+             {/* <Button
+                     onClick={uploadPageRedirect}
+                     variant='primary'
+                     className='mb-3 px-5 rounded-lg'
+                   >
+                     Upload
+                   </Button> */}
+             {/* <Card.Text>
+               <small>
+                 <i>*required to view properties through findingSpaces</i>
+               </small>
+             </Card.Text> */}
+           </>
          );
    }
 };

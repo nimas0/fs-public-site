@@ -63,7 +63,7 @@ body {
 
 
 /* beta tag */
-body:after{
+/* body:after{
    content: "beta";
    position: fixed;
    width: 80px;
@@ -79,7 +79,7 @@ body:after{
    color: #fff;
    line-height: 27px;
    transform:rotate(-45deg);
- }
+ } */
 
 .fw-3 {
    font-weight: 300;
