@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from "react";
 import Head from "next/head";
 import { Container, Row, Col, Alert, Card, Button } from "react-bootstrap";
@@ -5,9 +6,10 @@ import fetch from "isomorphic-unfetch";
 import { Settings as LuxonSettings, DateTime, Interval } from "luxon";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import { useRouter } from "next/router";
+import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+import firebase from "firebase";
 import Nav from "../../../components/Nav";
 import AtAGlance from "../../../components/AtAGlance";
-import SchedulingWidget from "../../../components/SchedulingWidget";
 import QuestionsAndAnswers from "../../../components/QuestionsAndAnswers";
 import Documents from "../../../components/Documents";
 import HomeDetails from "../../../components/HomeDetails";
@@ -16,12 +18,18 @@ import getSpecificAvailability from "../../../utils/getSpecificAvailability";
 import withAuthUser from "../../../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../utils/pageWrappers/withLoginModal";
-import GenericModal from '../../../components/GenericModal';
-import Upload from '../../../components/buyers/approval/UploadForm';
+import GenericModal from "../../../components/GenericModal";
+import Upload from "../../../components/buyers/approval/UploadForm";
 
+import firebaseInit from "../../../utils/firebaseInit";
+import "firebase/firestore";
+import SidebarWidget from "../../../components/SidebarWidget";
+import SubscriptionCard from "../../../components/buyers/dashboard/subscription/SubscriptionCard";
+
+// Initialize Firebase ap
+firebaseInit();
 const Listing = ({
   AuthUserInfo,
-  verification,
   listing,
   questions,
   documents,
@@ -55,10 +63,24 @@ const Listing = ({
     }),
   };
 
-  
+  const [userDoc, loadingUserDoc, errorUserDoc] = useDocument(
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(AuthUser.id)
+  );
 
+  const [value, loading, error] = useCollection(
+    firebase
+      .firestore()
+      .collection("interest")
+      .where("buyer.buyerUid", "==", AuthUser.id)
+      .where("listingId", "==", listing.id)
+    // {
+    //   snapshotListenOptions: { includeMetadataChanges: true },
+    // }
+  );
 
-   
   const ModalBody = () => (
     <>
       {/* <p>
@@ -66,8 +88,7 @@ const Listing = ({
       </p> */}
       <Upload userId={AuthUser.id} setModalShow={setModalShow} />
     </>
-);
-
+  );
 
   // Listing tour availability
   const { days: dayAvailability } = listing.generalAvailability;
@@ -118,6 +139,67 @@ const Listing = ({
   const [tourFirstDate, setTourFirstDate] = useState(tourFirstAvailableDate);
   const [tourActiveDate, setTourActiveDate] = useState(null);
 
+  if (errorUserDoc || error)
+    return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
+  if (loadingUserDoc || loading) return "loading";
+  const { verification } = userDoc.data();
+  console.log("doc afsdfsdf", value.docs.length);
+  const renderSideBar = () => {
+    const matchProposal = "";
+
+    if (value.docs) {
+      // return value.docs.map((doc) => (
+      //   <>
+      //     <div
+      //       key={doc.id}
+      //       className={`rounded-0 py-5 px-4 mx-n2 mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
+      //         breakpoint.up.lg ? " position-sticky" : ""
+      //       }`}
+      //       style={
+      //         breakpoint.up.lg
+      //           ? { top: "8rem", zIndex: 1020 }
+      //           : { zIndex: 1021 }
+      //       }
+      //     >
+      //       <SubscriptionCard
+      //         firebase={firebase}
+      //         interestId={doc.id}
+      //         verification={
+      //           loadingUserDoc ? verification : userDoc.data().verification
+      //         }
+      //         subscriptionData={doc.data()}
+      //       />
+      //     </div>
+      //   </>
+      // ));
+
+      return value.docs.map((doc) => (
+        <SidebarWidget
+          firebase={firebase}
+          subscriptionData={doc.data()}
+          interestId={doc.id}
+          verification={verification}
+          key={userDoc}
+          setSubscribed={setSubscribed}
+          listing={listing}
+          firstAvailableDate={tourFirstAvailableDate}
+          firstDate={tourFirstDate}
+          setFirstDate={setTourFirstDate}
+          activeDate={tourActiveDate}
+          setActiveDate={setTourActiveDate}
+          dayAvailability={dayAvailability}
+          getTimeAvailability={getSpecificAvailability(
+            generalTimeAvailability,
+            hourly ? 1 : 0.5,
+            schedules
+          )}
+          {...{ timeZone, AuthUser, showLoginModal }}
+        />
+      ));
+    }
+  };
+  console.log("userDoc", verification);
+  console.log("doc stuff", value.docs.length === 0);
   return (
     <>
       <Head>
@@ -134,14 +216,13 @@ const Listing = ({
         }
         {...{ AuthUser, showLoginModal }}
       />
-     
+
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-      <Container style={{  }} bsPrefix="container-md">
-        
+      <Container style={{}} bsPrefix='container-md'>
         {breakpoint.down.md && (
           <Row
-            as="h1"
-            className="h4 mx-auto mb-3"
+            as='h1'
+            className='h4 mx-auto mb-3'
             style={{ width: "max-content" }}
           >
             {listing.address[0]}
@@ -165,11 +246,12 @@ const Listing = ({
           </Alert>
         )} */}
 
-        <Row as="main">
-          <Col lg>
+        <Row as='main'>
+          <Col lg={6}>
             <AtAGlance
+              listing={listing}
               verification={verification}
-              AuthUser={AuthUser}
+              AuthUserInfo={AuthUserInfo}
               setModalShow={setModalShow}
               skeleton={skeleton}
               activity={listing.activity}
@@ -187,11 +269,9 @@ const Listing = ({
             />
 
             {breakpoint.down.md && (
-              <Col md="auto">
-        
-                  
-     
-                <SchedulingWidget
+              <Col md='auto'>
+                <SidebarWidget
+                  verification={verification}
                   setSubscribed={setSubscribed}
                   listing={listing}
                   firstAvailableDate={tourFirstAvailableDate}
@@ -211,9 +291,9 @@ const Listing = ({
             )}
 
             <QuestionsAndAnswers
-              as="section"
+              as='section'
               questions={questions}
-              limit={5}
+              limit={6}
               AuthUser={AuthUser}
             />
 
@@ -228,25 +308,9 @@ const Listing = ({
           </Col>
 
           {breakpoint.up.lg && (
-            <Col lg="auto">
-                
-              <SchedulingWidget
-                setSubscribed={setSubscribed}
-                listing={listing}
-                firstAvailableDate={tourFirstAvailableDate}
-                firstDate={tourFirstDate}
-                setFirstDate={setTourFirstDate}
-                activeDate={tourActiveDate}
-                setActiveDate={setTourActiveDate}
-                dayAvailability={dayAvailability}
-                getTimeAvailability={getSpecificAvailability(
-                  generalTimeAvailability,
-                  hourly ? 1 : 0.5,
-                  schedules
-                )}
-                {...{ timeZone, AuthUser, showLoginModal }}
-              />
-            </Col>
+            <>
+              <Col lg={5}>{renderSideBar()}</Col>
+            </>
           )}
         </Row>
       </Container>
@@ -254,14 +318,18 @@ const Listing = ({
         showFooter={false}
         show={modalShow}
         onHide={() => setModalShow(false)}
-        header={(
+        header={
+          // eslint-disable-next-line react/jsx-wrap-multilines
           <>
-            <h5 className="pr-3 text-white">
+            <h5 className='pr-3 text-white'>
               <b>Action Required: </b>{" "}
             </h5>
-            <h6 className='text-white'>To unlock this feature please upload a Pre-Qualification, Pre-Approval, or Proof of Funds.</h6>
+            <h6 className='text-white'>
+              To unlock this feature please upload a Pre-Qualification,
+              Pre-Approval, or Proof of Funds.
+            </h6>
           </>
-        )}
+        }
         body={<ModalBody />}
       />
       {/* <Footer /> */}

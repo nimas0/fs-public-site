@@ -65,7 +65,11 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
                             </Button> */}
             </Row>
             {errorUserDoc ? (
-              <strong>Error: {JSON.stringify(error)}</strong>
+              <strong>
+                Error:
+                {' '}
+                {JSON.stringify(error)}
+              </strong>
             ) : (
               <Approval
                 key={userDoc}
@@ -77,7 +81,11 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
             )}
 
             {error && errorUserDoc && (
-              <strong>Error: {JSON.stringify(error)}</strong>
+              <strong>
+                Error:
+                {' '}
+                {JSON.stringify(error)}
+              </strong>
             )}
             <Resources />
           </Col>

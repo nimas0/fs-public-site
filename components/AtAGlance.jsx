@@ -1,8 +1,6 @@
-
-
 import React from "react";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import QuickStats from "./QuickStats";
 import PhotoGrid from "./PhotoGrid";
 import HomeownerInfo from "./HomeownerInfo";
@@ -21,18 +19,19 @@ export default ({
   skeleton,
   setSkeleton,
   setModalShow,
-  AuthUser,
-  verification
+  AuthUserInfo,
+  verification,
+  listing,
 }) => {
   const breakpoint = useMediaBreakpoints();
 
   return (
-    <section id="at-a-glance" aria-label="Home at a Glance" className="mb-5">
-      <SkeletonTheme color="#e5e5e5" highlightColor="#ffffff">
-
+    <section id='at-a-glance' aria-label='Home at a Glance' className='mb-5'>
+      <SkeletonTheme color='#e5e5e5' highlightColor='#ffffff'>
         <QuickStats
+          listing={listing}
           verification={verification}
-          AuthUser={AuthUser}
+          AuthUserInfo={AuthUserInfo}
           setModalShow={setModalShow}
           skeleton={skeleton}
           setSkeleton={setSkeleton}
@@ -44,18 +43,17 @@ export default ({
           sqFt={sqFt}
           pricePerSqFt={pricePerSqFt}
         />
-      
+
         {!skeleton ? (
           <PhotoGrid
             photos={photos}
             tilesWide={breakpoint.xs ? 2 : 3}
             address={address}
           />
-      ) : (
-        <Skeleton delay={1000} height={350}  />
-      )}
+        ) : (
+          <Skeleton delay={1000} height={350} />
+        )}
         <HomeownerInfo photoSrc={ownerPhotoSrc} name={ownerName} />
-            
       </SkeletonTheme>
     </section>
   );

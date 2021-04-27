@@ -9,21 +9,21 @@ import uploadUserDocument from "../../../utils/uploadUserDocument";
 const Upload = ({ userId, setPage, newUser, setModalShow }) => {
   const SubmitButton = ({ handleSubmit }) => (
     <Button
-      className="rounded-0"
-      type="button"
+      className='rounded-0'
+      type='button'
       onClick={handleSubmit}
       disabled={sending}
     >
       {sending ? (
         <>
           <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
+            as='span'
+            animation='border'
+            size='sm'
+            role='status'
+            aria-hidden='true'
           />
-          <span className="sr-only">Loading...</span>
+          <span className='sr-only'>Loading...</span>
         </>
       ) : (
         "Submit"
@@ -89,7 +89,7 @@ const Upload = ({ userId, setPage, newUser, setModalShow }) => {
           //                               ssubmittion pends approval."
           // >
           <Form className='m-4' noValidate onSubmit={handleSubmit}>
-            <div className="mb-1">
+            <div className='mb-1'>
               {/* <Row className="pl-4 py-1">
                 <h5 className="pr-3">
                   <b>Verify Your Funds: </b>{" "}
@@ -97,144 +97,145 @@ const Upload = ({ userId, setPage, newUser, setModalShow }) => {
                 <h5>Upload Pre-Qualification, Pre-Approval, or Proof of Funds</h5>
               </Row> */}
               <Row>
-                <Col xs="12">
-                  <div className="p-4">
-                    <Row className="pb-0">
+                <Col xs='12'>
+                  <div className='p-4'>
+                    <Row className='pb-0'>
                       <h6>
-                        <b>Why do I need to provide verification of financing?</b>
+                        <b>
+                          Why do I need to provide verification of financing?
+                        </b>
                       </h6>
                     </Row>
                     <Row>
-              
-                      <small>In an effort to limit wasting either parties time it is
-                        important for you to view qualified to view the home. Finding
-                        Spaces will independently rreview and confirm your information
-                        within 3 hours. You can still schedule an appointment while your
-                        ssubmittion pends approval.
+                      <small>
+                        In an effort to limit wasting either parties time it is
+                        important for you to view qualified to view the home.
+                        Finding Spaces will independently rreview and confirm
+                        your information within 3 hours. You can still schedule
+                        an appointment while your ssubmittion pends approval.
                       </small>
-                   
                     </Row>
                   </div>
                 </Col>
               </Row>
-              <Form.Group controlId="exampleForm.SelectCustomSizeSm">
+              <Form.Group controlId='exampleForm.SelectCustomSizeSm'>
                 <Form.Label>Verification Type</Form.Label>
                 <Form.Control
-                  size="sm"
-                  name="verifType"
+                  size='sm'
+                  name='verifType'
                   value={values.verifType}
                   isInvalid={touched.loanType && !!errors.loanType}
                   disabled={sending}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  as="select"
-                  size="md"
+                  as='select'
+                  size='md'
                   custom
                 >
-                  <option value="" label="Select a Type" />
-                  <option
-                    value="preQualification"
-                    label="Pre-Qualification"
-                  />
-                  <option value="preApproval" label="Pre-Approval" />
-                  <option value="proofOfFunds" label="Proof of Funds" />
+                  <option value='' label='Select a Type' />
+                  <option value='preQualification' label='Pre-Qualification' />
+                  <option value='preApproval' label='Pre-Approval' />
+                  <option value='proofOfFunds' label='Proof of Funds' />
                 </Form.Control>
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type='invalid'>
                   {errors.verifType}
                 </Form.Control.Feedback>
               </Form.Group>
             </div>
             {values.verifType !== "proofOfFunds" ? (
               <Form.Row>
-                <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Group as={Col} controlId='formGridEmail'>
                   <Form.Label>Loan Type</Form.Label>
                   <Form.Control
-                    size="sm"
-                    name="loanType"
-                    type="text"
+                    size='sm'
+                    name='loanType'
+                    type='text'
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     isInvalid={touched.loanType && !!errors.loanType}
                     disabled={sending}
-                    placeholder="Ex. 10 year fixed 30 year adjustable"
+                    placeholder='Ex. 10 year fixed 30 year adjustable'
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type='invalid'>
                     {errors.loanType}
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Group as={Col} controlId='formGridPassword'>
                   <Form.Label>Lender / Bank</Form.Label>
                   <Form.Control
-                    size="sm"
+                    size='sm'
                     value={values.lender}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     isInvalid={touched.lender && !!errors.lender}
                     disabled={sending}
-                    placeholder="Ex. Great Morgage Company LLC"
-                    type="text"
-                    name="lender"
+                    placeholder='Ex. Great Morgage Company LLC'
+                    type='text'
+                    name='lender'
                   />
 
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type='invalid'>
                     {errors.lender}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Form.Row>
-              ) : null}
-            <Form.Group controlId="formGridAddress1">
+            ) : null}
+            <Form.Group controlId='formGridAddress1'>
               <Form.Label>Amount</Form.Label>
               <Form.Control
-                size="sm"
+                size='sm'
                 value={values.amount}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isInvalid={touched.amount && !!errors.amount} // !! is two (not) operators and converts object to boolean then negates it
                 disabled={sending}
-                type="text"
-                name="amount"
-                placeholder="Ex. 159000"
+                type='text'
+                name='amount'
+                placeholder='Ex. 159000'
               />
             </Form.Group>
 
             <Form.Group>
-              <div className="d-flex upload-box justify-content-center">
-                <Row xs="12" className="align-items-center">
-                  <Col xs="12">
+              <div className='d-flex upload-box justify-content-center'>
+                <Row xs='12' className='align-items-center'>
+                  <Col xs='12'>
                     <Form.Control
                       ref={fileInput}
-                      type="file"
-                      name="file"
+                      type='file'
+                      name='file'
                       onBlur={handleBlur}
-                      aria-label="Verification document"
-                      onChange={(e) =>
-                          setFieldValue("file", e.target.files[0])}
+                      aria-label='Verification document'
+                      onChange={(e) => setFieldValue("file", e.target.files[0])}
                       disabled={uploading}
                       isInvalid={touched.file && !!errors.file}
                     />
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback type='invalid'>
                       {errors.file}
                     </Form.Control.Feedback>
                   </Col>
                 </Row>
               </div>
             </Form.Group>
-            <div className="d-flex justify-content-end">
+            <div className='d-flex justify-content-end'>
               {uploadFailure && (
-              <Form.Control.Feedback type="invalid">
-                We're experiencing network errors&mdash;please try again
-                later.
-              </Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>
+                  We're experiencing network errors&mdash;please try again
+                  later.
+                </Form.Control.Feedback>
               )}
-              <Button onClick={() => setModalShow(false)} className="mx-2 rounded-0 bg-secondary">Close</Button>
+              <Button
+                onClick={() => setModalShow(false)}
+                className='mx-2 rounded-0 bg-secondary'
+              >
+                Close
+              </Button>
               <SubmitButton handleSubmit={handleSubmit} />
             </div>
           </Form>
           // </InfoGeneralComp>
         )}
-
       </Formik>
     </>
   );
@@ -249,9 +250,8 @@ const Upload = ({ userId, setPage, newUser, setModalShow }) => {
     if (values.file === "") {
       setFieldError("file", "Please upload your pre-approval document");
       return;
-    } 
-      setSending(true);
-    
+    }
+    setSending(true);
 
     try {
       // Upload file to Cloud Storage
@@ -268,6 +268,7 @@ const Upload = ({ userId, setPage, newUser, setModalShow }) => {
       });
 
       if (response.ok) {
+        setModalShow(false);
         // Move on
         console.log("upload successful");
       } else {
@@ -279,7 +280,6 @@ const Upload = ({ userId, setPage, newUser, setModalShow }) => {
       setSending(false);
       setPage("welcome");
       resetForm();
-      redirectToDashboard();
     } catch (err) {
       // Add upload failure message
       console.error("Either a coding error or network issues", err);

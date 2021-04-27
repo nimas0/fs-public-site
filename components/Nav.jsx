@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -69,16 +67,16 @@ export default ({
       <Navbar
         id={solidBackground && isScrolled ? "" : "navbar-custom"}
         fixed
-        sticky="top"
+        sticky='top'
         className={` text-info ${solidBackground &&
           " bg-light schedulingShadow "}   d-flex px-5 pt-3 pb-2 `}
       >
         <>
           <Navbar.Toggle
-            className="border-0 "
-            aria-controls="basic-navbar-nav"
+            className='border-0 '
+            aria-controls='basic-navbar-nav'
           />
-          <div className="flex-grow-0 order-1">
+          <div className='flex-grow-0 order-1'>
             {/* <Link href="/" passHref>
               <>
                 {homepage ? (
@@ -103,16 +101,16 @@ export default ({
               </>
             </Link> */}
           </div>
-          <Navbar.Text as="h1" className="text-reset flex-grow-1 order-2 mb-0">
+          <Navbar.Text as='h1' className='text-reset flex-grow-1 order-2 mb-0'>
             {/* {address} */}
           </Navbar.Text>
         </>
 
         <Navbar.Collapse
-          id="nav-links"
-          className="flex-grow-0 order-5 order-sm-4"
+          id='nav-links'
+          className='flex-grow-0 order-5 order-sm-4'
         >
-          <Nav className="align-items-center align-items-sm-center">
+          <Nav className='align-items-center align-items-sm-center'>
             {AuthUser ? (
               showQuickLinks && (
                 <>
@@ -159,42 +157,41 @@ export default ({
             )}
           </Nav>
         </Navbar.Collapse>
-        <Nav className="mr-1 mr-sm-0 order-3 order-sm-5">
+        <Nav className='mr-1 mr-sm-0  order-3 order-sm-5'>
           {AuthUser ? (
             AuthUser.photoURL ? (
               <NavDropdown
-                title={(
-                  <Image
-                    src={AuthUser.photoURL}
-                    roundedCircle
-                    style={{ height: "2.5rem", width: "2.5rem" }}
-                  />
-                )}
-                id="dropdown-basic"
-                className="hover-focus-opacity-90 noCaret"
+                key='down'
+                title={
+                  <div>
+                    <Image src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/assets%2Flogos%2FProfile.png?alt=media&token=5863348f-23ce-4d09-8906-b90f5c95bcb1' />
+                  </div>
+                }
+                id='dropdown-basic'
+                className='hover-focus-opacity-90 noCaret'
               >
                 {/* TODO: Add dashboard link */}
                 <NavDropdown.Item onClick={logoutRefresh}>
                   Log Out
                 </NavDropdown.Item>
-              
-                <NavDropdown.Item href="/learnmore">Search</NavDropdown.Item>
+
+                <NavDropdown.Item href='/learnmore'>Search</NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <Nav.Link href="#" className="profile-icon">
+              <Nav.Link href='#' className='profile-icon'>
                 {/* TODO: Add dashboard link */}
-                <FontAwesomeIcon size="3x" icon={faUserCircle} />
+                <FontAwesomeIcon size='3x' icon={faUserCircle} />
               </Nav.Link>
             )
           ) : (
             breakpoint.up.lg && (
               <Nav.Link
                 as={Button}
-                variant="inherit"
+                variant='inherit'
                 onClick={showLoginModal}
-                className="profile-icon"
+                className='profile-icon'
               >
-                <FontAwesomeIcon size="2x" icon={faUserCircle} />
+                <FontAwesomeIcon size='2x' icon={faUserCircle} />
               </Nav.Link>
             )
           )}

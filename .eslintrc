@@ -15,7 +15,7 @@
     "react/react-in-jsx-scope": "off",
     "react/prefer-stateless-functions": 0,
     "react/jsx-filename-extension": 0,
-    "react/jsx-one-expression-per-line": 0,
+    "react/jsx-one-expression-per-line": 1,
     "react/prop-types": 0,
     "no-console": "off"
   },

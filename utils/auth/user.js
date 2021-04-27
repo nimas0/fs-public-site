@@ -1,7 +1,5 @@
 // Adapted from https://github.com/zeit/next.js/blob/canary/examples/with-firebase-authentication
 
-"use strict";
-
 import { get, has } from "lodash/object";
 
 /**
@@ -14,24 +12,23 @@ import { get, has } from "lodash/object";
  * @return {String} AuthUser.email - The user's email
  * @return {Boolean} AuthUser.emailVerified - Whether the user has verified their email
  */
-export const createAuthUser = firebaseUser => {
+export const createAuthUser = (firebaseUser) => {
   if (!firebaseUser || !firebaseUser.uid) {
     return null;
-  } else {
-    return {
-      id: get(firebaseUser, "uid"),
-      displayName: get(firebaseUser, 'displayName'),
-      email: get(firebaseUser, "email"),
-      emailVerified: has(firebaseUser, "emailVerified")
-        ? get(firebaseUser, "emailVerified") // Firebase JS SDK
-        : get(firebaseUser, "email_verified"), // Firebase admin SDK
-      photoURL: get(
-        firebaseUser,
-        "photoURL",
-        get(firebaseUser, "photo_url", null)
-      )
-    };
   }
+  return {
+    id: get(firebaseUser, "uid"),
+    displayName: get(firebaseUser, "displayName"),
+    email: get(firebaseUser, "email"),
+    emailVerified: has(firebaseUser, "emailVerified")
+      ? get(firebaseUser, "emailVerified") // Firebase JS SDK
+      : get(firebaseUser, "email_verified"), // Firebase admin SDK
+    photoURL: get(
+      firebaseUser,
+      "photoURL",
+      get(firebaseUser, "photo_url", null)
+    ),
+  };
 };
 
 /**
@@ -46,10 +43,8 @@ export const createAuthUser = firebaseUser => {
  */
 export const createAuthUserInfo = ({
   firebaseUser = null,
-  token = null
-} = {}) => {
-  return {
-    AuthUser: createAuthUser(firebaseUser),
-    token
-  };
-};
+  token = null,
+} = {}) => ({
+  AuthUser: createAuthUser(firebaseUser),
+  token,
+});

@@ -1,7 +1,5 @@
 // Adapted from https://github.com/zeit/next.js/blob/canary/examples/with-firebase-authentication
 
-"use strict";
-
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -16,9 +14,7 @@ firebaseInit();
 // Defaults to empty AuthUserInfo object
 export const AuthUserInfoContext = React.createContext(createAuthUserInfo());
 
-export const useAuthUserInfo = () => {
-  return React.useContext(AuthUserInfoContext);
-};
+export const useAuthUserInfo = () => React.useContext(AuthUserInfoContext);
 
 // Returns a Firebase JS SDK user object
 export const useFirebaseAuth = () => {
@@ -26,7 +22,7 @@ export const useFirebaseAuth = () => {
     const user = firebase.auth().currentUser;
     return {
       initializing: !user,
-      user
+      user,
     };
   });
 
