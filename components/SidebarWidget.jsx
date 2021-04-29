@@ -30,7 +30,7 @@ import LoginModal from "./LoginModal";
 import Upload from "./buyers/approval/UploadForm";
 import InformationBar from "./buyers/dashboard/subscription/InformationBar";
 import RenderView from "./buyers/sidebar/RenderView";
-
+import RenderButtons from "./buyers/sidebar/RenderButtons";
 // Initialize Firebase app
 firebaseInit();
 
@@ -52,6 +52,8 @@ const SidebarWidget = ({
   firebase,
   interestId,
   value,
+  loading,
+  error,
 }) => {
   const breakpoint = useMediaBreakpoints();
   console.log("verif", verification);
@@ -82,7 +84,7 @@ const SidebarWidget = ({
   //   }
   // );
 
-  console.log("router", router);
+  console.log("router", subscriptionData);
 
   // if (!loading) {
   //   console.log("listingId", value.data());
@@ -97,14 +99,14 @@ const SidebarWidget = ({
     </>
   );
 
-  // useEffect(() => {
-  //   if (!loading && !error && value.data()) {
-  //     return setSubscribed(true);
-  //   }
-  //   if (!loading && !error) {
-  //     return setSubscribed(false);
-  //   }
-  // }, [value]);
+  useEffect(() => {
+    if (!loading && !error && subscriptionData) {
+      return setSubscribed(true);
+    }
+    if (!loading && !error) {
+      return setSubscribed(false);
+    }
+  }, [value]);
 
   const handleSubscribe = async () => {
     setSuccess(false);
@@ -114,9 +116,9 @@ const SidebarWidget = ({
     try {
       const { authId } = AuthUser;
 
-      if (value.data()) {
+      if (subscriptionData) {
         // Send offer info through API
-        const interestId = `${router.query.listingId}_${AuthUser.id}`;
+        // const interestId = `${router.query.listingId}_${AuthUser.id}`;
         const response = await fetch("/api/unsubscribe-listing", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -180,8 +182,7 @@ const SidebarWidget = ({
     }
   };
 
-  console.log("subscriptionData.proposal", subscriptionData.proposal);
-
+  // if (!subscriptionData) return "loading";
   return (
     <>
       {/* {error && <strong>Error: {JSON.stringify(error)}</strong>}
@@ -238,15 +239,14 @@ const SidebarWidget = ({
               className=''
             >
               {/* { Generate SideBar} */}
-              {subscriptionData &&
-                RenderView(
-                  (subscriptionData.proposal &&
-                    subscriptionData.proposal.state) ||
-                    "default"
-                )}
+              {RenderView(
+                (subscriptionData &&
+                  subscriptionData.proposal &&
+                  subscriptionData.proposal.state) ||
+                  "default"
+              )}
             </Row>
           </div>
-
           <Row className='pb-1 mb-3 mx-2'>
             <InformationBar buyerUid={buyerId} listingId={listingId} />
           </Row>
@@ -268,112 +268,57 @@ const SidebarWidget = ({
               }}
             />
           )}
-          <Row className='text-center w-100 justify-content-center ml-1  mb-1 mt-2'>
-            {/* Schedule Tour */}
+          {!verification ||
+          (verification.status !== "accepted" &&
+            verification.status !== "pending") ? (
             <>
-              <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (verification.status === "pending") {
-                    router.push(tourLinkAs);
-                  } else if (verification.status === "approved") {
-                    router.push(tourLinkAs);
-                  } else {
-                    setModalShow(true);
-                  }
-                }}
-                variant='primary'
-                block
-                className={clsx(
-                  breakpoint.down.md && "px-5",
-                  "buttonShadow",
-                  "d-block",
-                  "my-1",
-                  "text-center"
-                )}
-                style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
-              >
-                Schedule Tour
-              </Button>
-
-              <Button
-                block
-                variant={
-                  subscriptionData.buyerMessageCounter > 0
-                    ? "outline-primary"
-                    : "primary"
-                }
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (verification.status === "pending") {
-                    router.push(
-                      `/buyer/interest?interestId=${listingId}_${buyerId}`,
-                      `/buyer/interest/${listingId}_${buyerId}`
-                    );
-                  } else if (verification.status === "approved") {
-                    router.push(
-                      `/buyer/interest?interestId=${listingId}_${buyerId}`,
-                      `/buyer/interest/${listingId}_${buyerId}`
-                    );
-                  } else {
-                    setModalShow(true);
-                  }
-                }}
-                className={clsx(
-                  breakpoint.down.md && "px-5",
-                  "buttonShadow",
-                  "d-block",
-                  "my-1",
-                  "text-center",
-                  "align-center",
-                  "bg-primary",
-                  subscriptionData.buyerMessageCounter > 0 &&
-                    "bg-white text-primary border border-primary"
-                )}
-                style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
-              >
-                {subscriptionData.buyerMessageCounter > 0 ? (
-                  <b> {subscriptionData.buyerMessageCounter} New Message(s)</b>
-                ) : (
-                  "Chat with Seller"
-                )}
-              </Button>
-              {subscriptionData.proposal.state !== ("active" || "accepted") && (
-                <Button
-                  block
-                  variant='primary'
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (verification.status === "pending") {
-                      router.push(
-                        `/buyer/Offer/[Offer]`,
-                        `/buyer/Offer/${listingId}_${buyerId}`
-                      );
-                    } else if (verification.status === "approved") {
-                      router.push(
-                        `/buyer/Offer/[Offer]`,
-                        `/buyer/Offer/${listingId}_${buyerId}`
-                      );
-                    } else {
-                      setModalShow(true);
-                    }
-                  }}
-                  className={clsx(
-                    breakpoint.down.md && "px-5",
-                    "buttonShadow",
-                    "d-block",
-                    "my-1",
-                    "text-center"
-                  )}
-                  style={
-                    breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}
-                  }
-                >
-                  Propose Offer
-                </Button>
-              )}
+              <RenderButtons
+                setModalShow={setModalShow}
+                type='unverified'
+                label='Schedule an Appointment'
+              />
+              <RenderButtons
+                setModalShow={setModalShow}
+                type='unverified'
+                label='Make an Offer'
+              />
+              <RenderButtons
+                setModalShow={setModalShow}
+                type='unverified'
+                label='Chat with Seller'
+              />
             </>
-          </Row>
+          ) : (
+            <>
+              <RenderButtons
+                router={router}
+                subscriptionData={subscriptionData}
+                type='scheduling'
+                label='Schedule Appointment'
+                tourLinkAs={tourLinkAs}
+                handleSubscribe={handleSubscribe}
+              />
+              <RenderButtons
+                subscriptionData={subscriptionData}
+                type='chat'
+                label='Chat with Seller'
+                router={router}
+                handleSubscribe={handleSubscribe}
+                listingId={listingId}
+                buyerId={buyerId}
+              />
+              <RenderButtons
+                subscriptionData={subscriptionData}
+                type='proposal'
+                label='Make an Offer'
+                buyerId={buyerId}
+                router={router}
+                listingId={listingId}
+                handleSubscribe={handleSubscribe}
+              />
+            </>
+          )}
+
           <div
             className='text-muted mx-auto mb-3'
             style={
@@ -386,7 +331,6 @@ const SidebarWidget = ({
             {breakpoint.xs ? <br /> : " "}
             to book an appointment
           </div>
-
           <Row
             noGutters
             className='text-center mx-auto'

@@ -206,6 +206,78 @@ const SubscriptionCard = ({
     </>
   );
 
+  const SubscriptionView = (type) => {
+    const Views = {
+      accepted: () => (
+        <h2
+          id='tour-this-home-heading'
+          className={clsx(
+            "text-center w-100  text-primary mt-5 pb-4 pl-1",
+            breakpoint.lg && "h3"
+          )}
+        >
+          Offer Accepted
+        </h2>
+      ),
+      acceptedContent: () => (
+        <>
+          <Alert variant='primary'>
+            You are getting closer to buying a home!
+          </Alert>
+          {instructions()}
+        </>
+      ),
+      default: () => (
+        <h5
+          id='tour-this-home-heading'
+          className={clsx(
+            "text-center w-100  text-primary mt-5 pb-4 pl-1",
+            breakpoint.lg && "h3"
+          )}
+        >
+          Tour this Home
+        </h5>
+      ),
+      defaultContent: () => <p>asldfj</p>,
+      rejected: () => (
+        <>
+          <h4
+            className={clsx(
+              "text-center w-100 text-success mt-5 pl-3",
+              breakpoint.lg && "h3"
+            )}
+          >
+            {" "}
+            Offer Rejected.
+          </h4>
+          <h6
+            id='tour-this-home-heading'
+            className={clsx(
+              "text-center w-100 pb-4 text-error  pl-3",
+              breakpoint.lg && "h3"
+            )}
+          >
+            Try chatting with the buyer to resolve any issues. Once resolved,
+            you can resubmit a new offer.
+          </h6>
+        </>
+      ),
+      rejectedContent: () => (
+        <>
+          <Alert variant='success'>
+            Don't worry! It is common to get a rejection. Just chat with seller
+            and see if you can work out the differences.
+          </Alert>
+          <ListGroup>
+            {/* <h6>You can submit another proposal at anytime.</h6> */}
+          </ListGroup>
+        </>
+      ),
+    };
+
+    return (Views[type] || Views.default)();
+  };
+
   if (error) return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
   if (loading) return "loading";
   console.log(

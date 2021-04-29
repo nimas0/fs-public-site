@@ -143,6 +143,7 @@ const Listing = ({
     return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
   if (loadingUserDoc || loading) return "loading";
   const { verification } = userDoc.data();
+  const subscriptionData = value.docs.length ? value.docs[0].data() : false;
   console.log("doc afsdfsdf", value.docs.length);
   const renderSideBar = () => {
     const matchProposal = "";
@@ -173,11 +174,13 @@ const Listing = ({
       //   </>
       // ));
 
-      return value.docs.map((doc) => (
+      return (
         <SidebarWidget
+          loading={loading}
+          error={error}
           firebase={firebase}
-          subscriptionData={doc.data()}
-          interestId={doc.id}
+          subscriptionData={subscriptionData}
+          interestId={subscriptionData && subscriptionData.id}
           verification={verification}
           key={userDoc}
           setSubscribed={setSubscribed}
@@ -195,9 +198,10 @@ const Listing = ({
           )}
           {...{ timeZone, AuthUser, showLoginModal }}
         />
-      ));
+      );
     }
   };
+
   console.log("userDoc", verification);
   console.log("doc stuff", value.docs.length === 0);
   return (
