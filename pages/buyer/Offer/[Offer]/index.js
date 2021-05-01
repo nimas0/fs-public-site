@@ -308,7 +308,7 @@ const OfferPage = ({
       if (response.ok) {
         // Move on
 
-        router.replace("/buyer/dashboard");
+        router.replace(`/listing/${interestId.split("_")[0]}`);
         addToast(
           `Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`,
           { appearance: "success" }

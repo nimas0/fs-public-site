@@ -43,7 +43,7 @@ const RenderButtons = ({
       <Button
         block
         variant={
-          subscriptionData.buyerMessageCounter > 0
+          !!subscriptionData && subscriptionData.buyerMessageCounter > 0
             ? "outline-primary"
             : "primary"
         }
@@ -59,7 +59,8 @@ const RenderButtons = ({
           "text-center",
           "align-center",
           "bg-primary",
-          subscriptionData.buyerMessageCounter > 0 &&
+          !!subscriptionData &&
+            subscriptionData.buyerMessageCounter > 0 &&
             "bg-white text-primary border border-primary"
         )}
         style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
@@ -71,7 +72,7 @@ const RenderButtons = ({
       <Button
         block
         variant={
-          subscriptionData.buyerMessageCounter > 0
+          !!subscriptionData && subscriptionData.buyerMessageCounter > 0
             ? "outline-primary"
             : "primary"
         }
@@ -91,12 +92,13 @@ const RenderButtons = ({
           "text-center",
           "align-center",
           "bg-primary",
-          subscriptionData.buyerMessageCounter > 0 &&
+          !!subscriptionData &&
+            subscriptionData.buyerMessageCounter > 0 &&
             "bg-white text-primary border border-primary"
         )}
         style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
       >
-        {subscriptionData.buyerMessageCounter > 0 ? (
+        {!!subscriptionData && subscriptionData.buyerMessageCounter > 0 ? (
           <b> {subscriptionData.buyerMessageCounter} New Message(s)</b>
         ) : (
           "Chat with Seller"
@@ -104,16 +106,27 @@ const RenderButtons = ({
       </Button>
     ),
     proposal: () => {
-      console.log("subscription", subscriptionData.proposal.state);
-      if (subscriptionData.proposal.state === "accepted") return null;
-      if (subscriptionData.proposal.state === "active")
+      // console.log("subscription", subscriptionData.proposal.state);
+
+      if (
+        !!subscriptionData &&
+        subscriptionData.proposal &&
+        subscriptionData.proposal.state === "accepted"
+      )
+        return null;
+      if (
+        !!subscriptionData &&
+        subscriptionData.proposal &&
+        subscriptionData.proposal.state === "active"
+      )
         return (
           <Button
             block
             variant='primary'
             onClick={async (e) => {
               e.preventDefault();
-              if (!subscriptionData) await handleSubscribe();
+              if (!!subscriptionData && !subscriptionData)
+                await handleSubscribe();
               router.push(
                 `/buyer/interest?interestId=${listingId}_${buyerId}`,
                 `/buyer/interest/${listingId}_${buyerId}`
@@ -125,7 +138,8 @@ const RenderButtons = ({
               "d-block",
               "my-1",
               "text-center",
-              subscriptionData.proposal &&
+              !!subscriptionData &&
+                subscriptionData.proposal &&
                 subscriptionData.proposal.state === "rejected" &&
                 "bg-danger"
             )}
@@ -152,13 +166,15 @@ const RenderButtons = ({
             "d-block",
             "my-1",
             "text-center",
-            subscriptionData.proposal &&
+            !!subscriptionData &&
+              subscriptionData.proposal &&
               subscriptionData.proposal.state === "rejected" &&
               "bg-danger"
           )}
           style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
         >
-          {subscriptionData.proposal &&
+          {!!subscriptionData &&
+          subscriptionData.proposal &&
           subscriptionData.proposal.state === "rejected"
             ? "Propose Another Offer"
             : "Propose Offer"}

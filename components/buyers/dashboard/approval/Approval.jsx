@@ -3,7 +3,7 @@ import { Card, Row, Col, Button } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { Pending, Denied, Approved, Expired } from "./Status";
 
-const Approval = ({ verification, AuthUser, setModalShow }) => {
+const Approval = ({ verification, AuthUser, setModalShow, showLoginModal }) => {
   const router = useRouter();
 
   const [uiState, resetState] = useState();
@@ -15,7 +15,7 @@ const Approval = ({ verification, AuthUser, setModalShow }) => {
     );
   };
 
-  switch (verification.status) {
+  switch (verification && verification.status) {
     case "pending":
       return <Pending verification={verification} />;
     case "approved":
@@ -55,18 +55,15 @@ const Approval = ({ verification, AuthUser, setModalShow }) => {
 
               <Card.Text className=' text-dark text-left  pt-0 mt-0 pt-2 w-100'>
                 <h6>
-                  Unlock 
-                  {' '}
-                  <b>scheduling, chat, or submit an offer </b>
-                  {' '}
-                  by
+                  Unlock <b>scheduling, chat, or submit an offer </b> by
                   uploading a Pre-Qualification, Pre-Approval, or Proof of
                   Funds.
                 </h6>
                 <Button
                   onClick={(e) => {
                     e.preventDefault();
-                    setModalShow(true);
+                    if (AuthUser) setModalShow(true);
+                    if (!AuthUser) showLoginModal();
                   }}
                   variant='info'
                   className='rounded-0'

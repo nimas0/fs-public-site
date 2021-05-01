@@ -56,7 +56,7 @@ const SidebarWidget = ({
   error,
 }) => {
   const breakpoint = useMediaBreakpoints();
-  console.log("verif", verification);
+  // console.log("verif", verification);
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
   const [modalShown, setModalShown] = useState(false);
   const miniWidget = useRef(0);
@@ -181,7 +181,7 @@ const SidebarWidget = ({
       setSending(false);
     }
   };
-
+  console.log("proposal", !!subscriptionData);
   // if (!subscriptionData) return "loading";
   return (
     <>
@@ -240,7 +240,7 @@ const SidebarWidget = ({
             >
               {/* { Generate SideBar} */}
               {RenderView(
-                (subscriptionData &&
+                (!!subscriptionData &&
                   subscriptionData.proposal &&
                   subscriptionData.proposal.state) ||
                   "default"
@@ -250,7 +250,25 @@ const SidebarWidget = ({
           <Row className='pb-1 mb-3 mx-2'>
             <InformationBar buyerUid={buyerId} listingId={listingId} />
           </Row>
-          {!subscriptionData.proposal && (
+          {!!subscriptionData && !subscriptionData.proposal && (
+            <DatePicker
+              // eslint-disable-next-line no-nested-ternary
+              daysDisplayed={breakpoint.sm ? 4 : breakpoint.md ? 5 : 3}
+              small={breakpoint.xs || breakpoint.lg}
+              dayAvailability={dayAvailability}
+              getTimeAvailability={getTimeAvailability}
+              {...{
+                firstAvailableDate,
+                firstDate,
+                setFirstDate,
+                activeDate,
+                setActiveDate,
+                setDateButtonsWidth,
+                timeZone,
+              }}
+            />
+          )}
+          {!subscriptionData && (
             <DatePicker
               // eslint-disable-next-line no-nested-ternary
               daysDisplayed={breakpoint.sm ? 4 : breakpoint.md ? 5 : 3}
@@ -273,17 +291,17 @@ const SidebarWidget = ({
             verification.status !== "pending") ? (
             <>
               <RenderButtons
-                setModalShow={setModalShow}
+                setModalShow={AuthUser ? setModalShow : showLoginModal}
                 type='unverified'
                 label='Schedule an Appointment'
               />
               <RenderButtons
-                setModalShow={setModalShow}
+                setModalShow={AuthUser ? setModalShow : showLoginModal}
                 type='unverified'
                 label='Make an Offer'
               />
               <RenderButtons
-                setModalShow={setModalShow}
+                setModalShow={AuthUser ? setModalShow : showLoginModal}
                 type='unverified'
                 label='Chat with Seller'
               />
@@ -338,7 +356,7 @@ const SidebarWidget = ({
           >
             <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
               <WidgetAction
-                handleClick={handleSubscribe}
+                // handleClick={handleSubscribe}
                 label='Subscribe to Updates'
                 icon={faHeart}
                 href='#'
@@ -347,7 +365,7 @@ const SidebarWidget = ({
             </Col>
             <Col xs={5} sm={3} lg={5} xl={6} className='mb-3'>
               <WidgetAction
-                handleClick={handleSubscribe}
+                // handleClick={handleSubscribe}
                 label='Share'
                 icon={faShareAlt}
                 href='#'

@@ -94,7 +94,7 @@ const RenderView = (type) => {
       </p>
       <Button
         block
-        className='bg-white text-primary border border-primary m-4 '
+        className='border border-primary m-4 '
         onClick={() => setModalShow(true)}
       >
         <b>See Next Steps</b>
@@ -172,7 +172,7 @@ const RenderView = (type) => {
           id='tour-this-home-heading'
           className={clsx(
             "text-center w-100 pb-4 text-error  pl-3",
-            breakpoint.lg && "h3"
+            breakpoint.lg && "h6"
           )}
         >
           Try chatting with the buyer to resolve any issues. Once resolved, you

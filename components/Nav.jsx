@@ -41,14 +41,6 @@ export default ({
     }
   });
 
-  console.log(isScrolled);
-  //   useScrollDirection(direction => {
-  //       console.log('direction', direction)
-  //       if(direction === 'SCROLL_DIRECTION_NONE') {
-  //          console.log('set Shadow')
-  //       }
-  //     })
-
   const logoutRefresh = async () => {
     try {
       await logout();
@@ -76,31 +68,7 @@ export default ({
             className='border-0 '
             aria-controls='basic-navbar-nav'
           />
-          <div className='flex-grow-0 order-1'>
-            {/* <Link href="/" passHref>
-              <>
-                {homepage ? (
-                  <Nav.Link
-                    variant="text-secondary"
-                    href="/learnmore"
-                  />
-                ) : (
-                  <Navbar.Brand
-                    style={{ cursor: "pointer" }}
-                    className="font-italic"
-                  >
-                    {showLogo && (
-                      <img
-                        onClick={() => router.push("/")}
-                        width="50%"
-                        src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336"
-                      />
-                    )}
-                  </Navbar.Brand>
-                )}
-              </>
-            </Link> */}
-          </div>
+          <div className='flex-grow-0 order-1' />
           <Navbar.Text as='h1' className='text-reset flex-grow-1 order-2 mb-0'>
             {/* {address} */}
           </Navbar.Text>

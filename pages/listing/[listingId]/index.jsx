@@ -67,14 +67,14 @@ const Listing = ({
     firebase
       .firestore()
       .collection("users")
-      .doc(AuthUser.id)
+      .doc((AuthUser && AuthUser.id) || "1")
   );
 
   const [value, loading, error] = useCollection(
     firebase
       .firestore()
       .collection("interest")
-      .where("buyer.buyerUid", "==", AuthUser.id)
+      .where("buyer.buyerUid", "==", (AuthUser && AuthUser.id) || "1")
       .where("listingId", "==", listing.id)
     // {
     //   snapshotListenOptions: { includeMetadataChanges: true },
@@ -142,7 +142,7 @@ const Listing = ({
   if (errorUserDoc || error)
     return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
   if (loadingUserDoc || loading) return "loading";
-  const { verification } = userDoc.data();
+  const { verification } = (userDoc && userDoc.data()) || false;
   const subscriptionData = value.docs.length ? value.docs[0].data() : false;
   console.log("doc afsdfsdf", value.docs.length);
   const renderSideBar = () => {
@@ -202,7 +202,7 @@ const Listing = ({
     }
   };
 
-  console.log("userDoc", verification);
+  // console.log("userDoc", verification);
   console.log("doc stuff", value.docs.length === 0);
   return (
     <>
@@ -235,21 +235,6 @@ const Listing = ({
           </Row>
         )}
 
-        {/* {isSubscribed && (
-          <Alert
-            variant="secondary"
-            className="py-2 px-4 mb-5 d-flex justify-content-between align-items-center"
-          >
-            <p className="pt-2">
-              You are subscribed to this listing. To view, chat, or submit an
-              offer visit:
-            </p>
-            <Alert.Link href="/buyer/dashboard" className="text-primary ">
-              BUYER DASHBOARD
-            </Alert.Link>
-          </Alert>
-        )} */}
-
         <Row as='main'>
           <Col lg={6}>
             <AtAGlance
@@ -270,6 +255,7 @@ const Listing = ({
               address={`${listing.address[0]}, ${listing.address[1]}`}
               ownerName={owner.displayName}
               ownerPhotoSrc={owner.photoURL}
+              {...{ AuthUser, showLoginModal }}
             />
 
             {breakpoint.down.md && (

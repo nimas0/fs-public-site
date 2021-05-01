@@ -22,6 +22,7 @@ export default ({
   AuthUserInfo,
   verification,
   listing,
+  showLoginModal,
 }) => {
   const breakpoint = useMediaBreakpoints();
 
@@ -30,6 +31,7 @@ export default ({
       <SkeletonTheme color='#e5e5e5' highlightColor='#ffffff'>
         <QuickStats
           listing={listing}
+          showLoginModal={showLoginModal}
           verification={verification}
           AuthUserInfo={AuthUserInfo}
           setModalShow={setModalShow}

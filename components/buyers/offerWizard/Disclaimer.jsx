@@ -68,10 +68,9 @@ const Disclaimer = (props) => {
           </Col>
         </Body>
         {seconds !== 0 ? (
-          //  <Footer disabledBack custom {...props}>
-          //    {renderCountDownFooter()}
-          //  </Footer>
-          <p>sfdsdf</p>
+          <Footer disabledBack custom {...props}>
+            {renderCountDownFooter()}
+          </Footer>
         ) : (
           <Footer
             customButtonIcon={

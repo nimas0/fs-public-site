@@ -22,6 +22,7 @@ const QuickStats = ({
   AuthUserInfo,
   verification,
   listing,
+  showLoginModal,
 }) => {
   const breakpoint = useMediaBreakpoints();
   const { AuthUser = null } = AuthUserInfo;
@@ -51,6 +52,7 @@ const QuickStats = ({
           verification={verification}
           AuthUser={AuthUser}
           setModalShow={setModalShow}
+          showLoginModal={showLoginModal}
         />
         {/* Quick stats */}
         <Col
