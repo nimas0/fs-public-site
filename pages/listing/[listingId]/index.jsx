@@ -25,6 +25,7 @@ import firebaseInit from "../../../utils/firebaseInit";
 import "firebase/firestore";
 import SidebarWidget from "../../../components/SidebarWidget";
 import SubscriptionCard from "../../../components/buyers/dashboard/subscription/SubscriptionCard";
+import SkeletonBuyerDashboard from "../../../components/SkeletonBuyerDashboard";
 
 // Initialize Firebase ap
 firebaseInit();
@@ -141,7 +142,10 @@ const Listing = ({
 
   if (errorUserDoc || error)
     return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
-  if (loadingUserDoc || loading) return "loading";
+  if (loadingUserDoc || loading)
+    return (
+      <SkeletonBuyerDashboard AuthUserInfo={AuthUserInfo} loading={loading} />
+    );
   const { verification } = (userDoc && userDoc.data()) || false;
   const subscriptionData = value.docs.length ? value.docs[0].data() : false;
   console.log("doc afsdfsdf", value.docs.length);

@@ -25,25 +25,25 @@ import {
   faHeart,
   faShareAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Nav from "../components/Nav";
+import Nav from "../../components/Nav";
 
-import withAuthUser from "../utils/pageWrappers/withAuthUser";
-import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
-import withLoginModal from "../utils/pageWrappers/withLoginModal";
-import GenericModal from "../components/GenericModal";
+import withAuthUser from "../../utils/pageWrappers/withAuthUser";
+import withAuthUserInfo from "../../utils/pageWrappers/withAuthUserInfo";
+import withLoginModal from "../../utils/pageWrappers/withLoginModal";
+import GenericModal from "../../components/GenericModal";
 
 import "firebase/firestore";
-import "./homepage.module.css";
-import Approval from "../components/buyers/dashboard/approval/Approval";
-import Stat from "../components/Stat";
-import HomeownerInfo from "../components/HomeownerInfo";
-import RenderView from "../components/buyers/sidebar/RenderView";
-import RenderButtons from "../components/buyers/sidebar/RenderButtons";
+import "../homepage.module.css";
+import Approval from "../../components/buyers/dashboard/approval/Approval";
+import Stat from "../../components/Stat";
+import HomeownerInfo from "../../components/HomeownerInfo";
+import RenderView from "../../components/buyers/sidebar/RenderView";
+import RenderButtons from "../../components/buyers/sidebar/RenderButtons";
 
-import WidgetAction from "../components/WidgetAction";
-import DatePicker from "../components/DatePicker";
+import WidgetAction from "../../components/WidgetAction";
+import DatePicker from "../../components/DatePicker";
 import clsx from "clsx";
-import HomeSearch from "../components/HomeSearch.";
+import HomeSearch from "../../components/HomeSearch.";
 
 const Listing = ({
   AuthUserInfo,
@@ -116,7 +116,7 @@ const Listing = ({
       <Head>
         <title>Finding Spaces – Search for Home</title>
       </Head>
-      {/* <Nav showLogo {...{ AuthUser, showLoginModal }} /> */}
+      <Nav showLogo {...{ AuthUser, showLoginModal }} />
 
       <SkeletonTheme color='#e5e5e5' highlightColor='#ffffff'>
         {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}

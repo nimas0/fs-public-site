@@ -9,13 +9,12 @@ import {
   Card,
   Media,
   Image,
-  Badge,
 } from "react-bootstrap";
 import fetch from "isomorphic-unfetch";
 import { Settings as LuxonSettings } from "luxon";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import { useRouter } from "next/router";
-import { Divider } from "antd";
+
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -25,33 +24,29 @@ import {
   faHeart,
   faShareAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Nav from "../components/Nav";
+import Nav from "./Nav";
 
 import withAuthUser from "../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../utils/pageWrappers/withLoginModal";
-import GenericModal from "../components/GenericModal";
+import GenericModal from "./GenericModal";
 
 import "firebase/firestore";
-import "./homepage.module.css";
-import Approval from "../components/buyers/dashboard/approval/Approval";
-import Stat from "../components/Stat";
-import HomeownerInfo from "../components/HomeownerInfo";
-import RenderView from "../components/buyers/sidebar/RenderView";
-import RenderButtons from "../components/buyers/sidebar/RenderButtons";
 
-import WidgetAction from "../components/WidgetAction";
-import DatePicker from "../components/DatePicker";
+import Approval from "./buyers/dashboard/approval/Approval";
+import Stat from "./Stat";
+import HomeownerInfo from "./HomeownerInfo";
+import RenderView from "./buyers/sidebar/RenderView";
+import RenderButtons from "./buyers/sidebar/RenderButtons";
+
+import WidgetAction from "./WidgetAction";
+import DatePicker from "./DatePicker";
 import clsx from "clsx";
-import HomeSearch from "../components/HomeSearch.";
 
-const Listing = ({
-  AuthUserInfo,
-
-  showLoginModal,
-}) => {
-  const [modalShow, setModalShow] = useState(true);
+const SkeletonBuyerDashboard = ({ AuthUserInfo, showLoginModal }) => {
+  const [modalShow, setModalShow] = useState(false);
   const { AuthUser = null } = AuthUserInfo;
+  const [loading, setLoading] = useState(true);
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
   const breakpoint = useMediaBreakpoints();
   const miniWidget = useRef(0);
@@ -59,68 +54,23 @@ const Listing = ({
 
   const ModalBody = () => (
     <>
-      <Container className='home-code-height home-code bg-info justify-content-center  p-5'>
-        <Row className='justify-content-center mx-5' xs={12}>
-          <Col className='d-inline' xs='auto'>
-            <h5 className=' text-white '>
-              <b>Enter Home Code</b>{" "}
-            </h5>
-          </Col>
-
-          <p className=' text-white mx-3'>
-            View Details, Schedule an Appointment, Chat, or Make an Offer
-          </p>
-        </Row>
-
-        <Row className='justify-content-center  mx-5 my-0 ' xs={12}>
-          <HomeSearch AuthUser={AuthUser} setModalShow={setModalShow} />
-
-          <Divider className='text-white my-1' plain>
-            OR
-          </Divider>
-        </Row>
-        <Row />
-        {/* <Row className='justify-content-center' xs={12}>
-          {" "}
-          <h3 className='text-white my-5 py-2'>or</h3>
-        </Row> */}
-        <Row className='justify-content-right mt-4 ml-3' xs={12}>
-          <h5 className='text-white ml-5'>
-            <strong>Sell your Home. Save Money.</strong>
-          </h5>
-        </Row>
-        <Row className='justify-content-right mt-2 ml-5' xs={12}>
-          <Col xs={7}>
-            <p className='text-white '>
-              Stop using a Real Estate Agent. Finding Space's one-stop online
-              dashboard makes selling without a real estate agent completely
-              effortless!
-            </p>
-            <Button
-              as='a'
-              target='_blank'
-              href='https://seller.findingspaces.com'
-              className='bg-white text-primary border border-primary'
-              block
-            >
-              <strong>Sign up for Free</strong>
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+      {/* <p>
+        A mortgage approval allows you to make an offer with confidence and shows that you're a serious buyer with the means to purchase the seller's home. Please submit a pre-approval or proof of funds to unlock this feature.
+      </p> */}
+      {/* <Upload userId={AuthUser.id} setModalShow={setModalShow} /> */}
     </>
   );
 
   return (
     <>
-      <Head>
-        <title>Finding Spaces – Search for Home</title>
-      </Head>
-      {/* <Nav showLogo {...{ AuthUser, showLoginModal }} /> */}
-
       <SkeletonTheme color='#e5e5e5' highlightColor='#ffffff'>
+        <Head>
+          <title>Finding Spaces – Search for Home</title>
+        </Head>
+        <Nav showLogo {...{ AuthUser, showLoginModal }} />
+
         {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-        <Container style={{ borderRadius: "30px" }} bsPrefix='container-md'>
+        <Container style={{}} bsPrefix='container-md'>
           {breakpoint.down.md && (
             <Row
               as='h1'
@@ -138,50 +88,50 @@ const Listing = ({
               )}
               <Skeleton
                 style={{ marginBottom: "1rem" }}
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={50}
                 count={1}
               />
-              <Skeleton delay={modalShow ? 1000 : 0} height={220} count={1} />
+              <Skeleton delay={loading ? 3 : 1000} height={220} count={1} />
 
               <Skeleton
                 className='mr-4 my-2'
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={30}
                 width={60}
                 count={1}
               />
               <Skeleton
                 className='mr-4 my-2'
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={30}
                 width={60}
                 count={1}
               />
               <Skeleton
                 className='mr-4 my-2'
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={30}
                 width={60}
                 count={1}
               />
               <Skeleton
                 className='mr-4 my-2'
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={30}
                 width={60}
                 count={1}
               />
               <Skeleton
                 className='mr-4 my-2'
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={30}
                 width={60}
                 count={1}
               />
               <Skeleton
                 className='mr-4 my-2'
-                delay={modalShow ? 1000 : 0}
+                delay={loading ? 3 : 1000}
                 height={30}
                 width={60}
                 count={1}
@@ -189,24 +139,16 @@ const Listing = ({
 
               <Row xs={12}>
                 <Col className='mr-n2' xs={8}>
-                  <Skeleton
-                    delay={modalShow ? 1000 : 0}
-                    height={260}
-                    count={1}
-                  />
+                  <Skeleton delay={loading ? 3 : 1000} height={260} count={1} />
                 </Col>
                 <Col xs={4}>
                   <Skeleton
                     className='mb-3'
-                    delay={modalShow ? 1000 : 0}
+                    delay={loading ? 3 : 1000}
                     height={120}
                     count={1}
                   />
-                  <Skeleton
-                    delay={modalShow ? 1000 : 0}
-                    height={120}
-                    count={1}
-                  />
+                  <Skeleton delay={loading ? 3 : 1000} height={120} count={1} />
                 </Col>
               </Row>
               <Media style={{ clear: "left", marginTop: 40 }}>
@@ -222,7 +164,7 @@ const Listing = ({
                   <h5 className='text-muted'>Homeowner</h5>
                   <Skeleton
                     className='mb-3'
-                    delay={modalShow ? 1000 : 0}
+                    delay={loading ? 3 : 1000}
                     height={50}
                     count={1}
                   />
@@ -231,17 +173,17 @@ const Listing = ({
               <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
                 Questions and Answers
               </h3>
-              <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
+              <Skeleton delay={loading ? 3 : 1000} height={120} count={1} />
 
               <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
                 Documents
               </h3>
-              <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
+              <Skeleton delay={loading ? 3 : 1000} height={120} count={1} />
 
               <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
                 Home Details
               </h3>
-              <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
+              <Skeleton delay={loading ? 3 : 1000} height={120} count={1} />
             </Col>
 
             {breakpoint.up.lg && (
@@ -249,10 +191,10 @@ const Listing = ({
                 <Col lg={5}>
                   <>
                     <Skeleton
-                      delay={modalShow ? 1000 : 0}
+                      delay={loading ? 3 : 1000}
                       height={50}
                       count={1}
-                      className={` mb-2 w-100  border-0 rounded-0  text-white py-3 px-4 mx-n5 mx-md-n3 mx-lg-0 pb-2 mb-5 my-n2 ${
+                      className={`mb-2 w-100  border-0 rounded-0  text-white py-3 px-4 mx-n5 mx-md-n3 mx-lg-0 pb-2 mb-5 my-n2 ${
                         breakpoint.up.lg ? " position-sticky" : ""
                       }`}
                       style={
@@ -316,7 +258,7 @@ const Listing = ({
 
                       <Skeleton
                         className='mb-2'
-                        delay={1000}
+                        delay={loading ? 3 : 1000}
                         height={100}
                         count={1}
                       />
@@ -324,19 +266,19 @@ const Listing = ({
                       <>
                         <Skeleton
                           className='mb-2'
-                          delay={1000}
+                          delay={loading ? 3 : 1000}
                           height={35}
                           count={1}
                         />
                         <Skeleton
                           className='mb-2'
-                          delay={1000}
+                          delay={loading ? 3 : 1000}
                           height={35}
                           count={1}
                         />
                         <Skeleton
                           className='mb-2'
-                          delay={1000}
+                          delay={loading ? 3 : 1000}
                           height={35}
                           count={1}
                         />
@@ -430,30 +372,40 @@ const Listing = ({
             )}
           </Row>
         </Container>
-      </SkeletonTheme>
-      <GenericModal
-        backdrop={false}
-        showFooter={false}
-        showHeader={false}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        body={<ModalBody setModalShow={setModalShow} />}
-      />
-      {/* <Footer /> */}
+        <GenericModal
+          showFooter={false}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          header={
+            // eslint-disable-next-line react/jsx-wrap-multilines
+            <>
+              <h5 className='pr-3 text-white'>
+                <b>Action Required: </b>{" "}
+              </h5>
+              <h6 className='text-white'>
+                To unlock this feature please upload a Pre-Qualification,
+                Pre-Approval, or Proof of Funds.
+              </h6>
+            </>
+          }
+          body={<ModalBody />}
+        />
+        {/* <Footer /> */}
 
-      <style jsx global>
-        {`
-          body {
-            background-color: #ededed;
-          }
-          h1 {
-            font-weight: 700;
-          }
-          p {
-            margin-bottom: 10px;
-          }
-        `}
-      </style>
+        <style jsx global>
+          {`
+            body {
+              background-color: #ededed;
+            }
+            h1 {
+              font-weight: 700;
+            }
+            p {
+              margin-bottom: 10px;
+            }
+          `}
+        </style>
+      </SkeletonTheme>
     </>
   );
 };
@@ -461,4 +413,4 @@ const Listing = ({
 // `withAuthUser` gets the authed user server-side, which disables static
 // rendering. `withAuthUserInfo` includes the authed user as a prop to the
 // component.
-export default withAuthUser(withAuthUserInfo(withLoginModal(Listing)));
+export default SkeletonBuyerDashboard;

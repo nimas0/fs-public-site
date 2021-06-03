@@ -54,11 +54,11 @@ const Approval = ({ verification, AuthUser, setModalShow, showLoginModal }) => {
               </div>
 
               <Card.Text className=' text-dark text-left  pt-0 mt-0 pt-2 w-100'>
-                <h6>
+                <>
                   Unlock <b>scheduling, chat, or submit an offer </b> by
                   uploading a Pre-Qualification, Pre-Approval, or Proof of
                   Funds.
-                </h6>
+                </>
                 <Button
                   onClick={(e) => {
                     e.preventDefault();

@@ -1,5 +1,3 @@
-"use strict";
-
 import React from "react";
 import { Media, Image } from "react-bootstrap";
 
@@ -12,14 +10,19 @@ export default ({ photoSrc, name, greeting }) => {
       <Image
         width={95}
         height={95}
-        className="mr-3"
-        src={photoSrc}
+        className='mr-3'
+        src={
+          photoSrc ||
+          "https://jmcp.edu.pk/wp-content/uploads/2020/10/blank-profile-picture-973460_1280-300x300-1.jpg"
+        }
         alt={`Homeowner ${name}`}
         rounded
       />
       <Media.Body>
-        <h5>{name}, Homeowner</h5>
-        <p className="mb-0" style={{ fontSize: "0.9em" }}>{greeting || defaultGreeting}</p>
+        <h5>{name} Homeowner</h5>
+        <p className='mb-0' style={{ fontSize: "0.9em" }}>
+          {greeting || defaultGreeting}
+        </p>
       </Media.Body>
     </Media>
   );

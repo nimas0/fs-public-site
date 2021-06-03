@@ -58,7 +58,6 @@ export default ({
     <>
       <Navbar
         id={solidBackground && isScrolled ? "" : "navbar-custom"}
-        fixed
         sticky='top'
         className={` text-info ${solidBackground &&
           " bg-light schedulingShadow "}   d-flex px-5 pt-3 pb-2 `}
@@ -77,54 +76,7 @@ export default ({
         <Navbar.Collapse
           id='nav-links'
           className='flex-grow-0 order-5 order-sm-4'
-        >
-          <Nav className='align-items-center align-items-sm-center'>
-            {AuthUser ? (
-              showQuickLinks && (
-                <>
-                  {/* <Nav.Link
-                    as={Button}
-                    className="p-3"
-                    variant="link"
-                    href="/buyer/dashboard"
-                  >
-                    Buyer's Dashboard
-                  </Nav.Link> */}
-                  {/* <Nav.Link
-                    as={Button}
-                    className="p-3"
-                    variant="link"
-                    href="https://seller.findingspaces.com/showings"
-                  >
-                    Seller's Dashboard
-                  </Nav.Link> */}
-                </>
-              )
-            ) : (
-              <>
-                {/* <Nav.Link
-                  as={Button}
-                  variant="primary"
-                  className="text-white"
-                  href="https://seller.findingspaces.com"
-                >
-                  Sell Your House
-                </Nav.Link> */}
-                {/* <Nav.Link as={Button} variant="link" onClick={showLoginModal}>
-                  Buyer's Dashboard
-                </Nav.Link> */}
-                {/* <Nav.Link as={Button} variant='link'  href='https://seller.findingspaces.com/showings'>
-                           Seller's Dashboard
-                        </Nav.Link> */}
-                {/* <Nav.Link as={Button} variant='link' onClick={showLoginModal}>
-                           Buying
-                        </Nav.Link> */}
-                {/* <Nav.Link as={Button} variant='link' href='#'>Home Dashboard</Nav.Link> */}
-                {/* TODO: Determine link or function */}
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
+        />
         <Nav className='mr-1 mr-sm-0  order-3 order-sm-5'>
           {AuthUser ? (
             AuthUser.photoURL ? (
