@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { useState } from "react";
 import { Accordion, Row, Col, Button } from "react-bootstrap";
 import Carousel, { Modal, ModalGateway } from "react-images";
@@ -7,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronUp,
-  faMapMarkerAlt
+  faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import LinkTile from "./LinkTile";
 import formatPhotoArray from "../utils/formatPhotoArray";
@@ -23,18 +21,18 @@ export default ({ photos, tilesWide, address }) => {
 
   // Set up dimensions/positioning
   const { ref: container, width: containerWidth = 0 } = useResizeObserver({
-    type: "offset"
+    type: "offset",
   });
   const tileWidth = containerWidth / tilesWide;
   const tileHeight = tileWidth / widthToHeightRatio;
   const {
     ref: toggleButton,
     width: toggleButtonWidth = 0,
-    height: toggleButtonHeight = 0
+    height: toggleButtonHeight = 0,
   } = useResizeObserver({ type: "client" });
   const toggleButtonPosition = {
     marginLeft: containerWidth / 2 - toggleButtonWidth / 2,
-    marginTop: -toggleButtonHeight / 2 - gutterWidth / 2
+    marginTop: -toggleButtonHeight / 2 - gutterWidth / 2,
   };
 
   // Grid expansion
@@ -46,18 +44,18 @@ export default ({ photos, tilesWide, address }) => {
   // Lightbox gallery
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const toggleLightbox = index => {
+  const toggleLightbox = (index) => {
     setLightboxIndex(index);
     setLightboxOpen(!lightboxOpen);
   };
 
   // Address for map tile
   const urlEncodedAddress = encodeURIComponent(address).replace(/%20/g, "+");
-
+  console.log("photo", photos);
   return (
     <Accordion
       ref={container}
-      className="mb-4"
+      className='mb-4'
       style={{ margin: -gutterWidth / 2 }}
     >
       {/* First block (always shown) */}
@@ -70,16 +68,16 @@ export default ({ photos, tilesWide, address }) => {
             {column.photos.map((photo, photoIndex) => (
               <div
                 key={`0-${columnIndex}-${photoIndex}`}
-                className="photo-wrapper"
+                className='photo-wrapper'
                 style={{
                   padding: gutterWidth / 2,
-                  height: (tileHeight + gutterWidth) * photo.tilesTall
+                  height: (tileHeight + gutterWidth) * photo.tilesTall,
                 }}
               >
                 {photo.map ? (
                   <LinkTile
                     icon={faMapMarkerAlt}
-                    text="View on map"
+                    text='View on map'
                     href={`https://www.google.com/maps/search/?api=1&query=${urlEncodedAddress}`}
                   />
                 ) : (
@@ -89,18 +87,18 @@ export default ({ photos, tilesWide, address }) => {
                       toggleLightbox(photo.index);
                     }}
                     tabIndex={0}
-                    onKeyDown={e => {
+                    onKeyDown={(e) => {
                       // Toggle lightbox on Enter or Space
                       if ([13, 32].includes(e.keyCode)) {
                         toggleLightbox(photo.index);
                       }
                     }}
-                    className="hover-focus-opacity-90"
+                    className='hover-focus-opacity-90'
                     style={{
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
-                      cursor: "pointer"
+                      cursor: "pointer",
                     }}
                   />
                 )}
@@ -111,7 +109,7 @@ export default ({ photos, tilesWide, address }) => {
       </Row>
 
       {/* Remaining blocks (shown when toggled) */}
-      <Accordion.Collapse eventKey="0">
+      <Accordion.Collapse eventKey='0'>
         <>
           {photoBlocks.slice(1).map((block, blockIndex) => (
             <Row key={`${blockIndex}`} noGutters>
@@ -123,16 +121,16 @@ export default ({ photos, tilesWide, address }) => {
                   {column.photos.map((photo, photoIndex) => (
                     <div
                       key={`${blockIndex}-${columnIndex}-${photoIndex}`}
-                      className="photo-wrapper"
+                      className='photo-wrapper'
                       style={{
                         padding: gutterWidth / 2,
-                        height: (tileHeight + gutterWidth) * photo.tilesTall
+                        height: (tileHeight + gutterWidth) * photo.tilesTall,
                       }}
                     >
                       {photo.map ? (
                         <LinkTile
                           icon={faMapMarkerAlt}
-                          text="View on map"
+                          text='View on map'
                           href={`https://www.google.com/maps/search/?api=1&query=${urlEncodedAddress}`}
                         />
                       ) : (
@@ -142,18 +140,18 @@ export default ({ photos, tilesWide, address }) => {
                             toggleLightbox(photo.index);
                           }}
                           tabIndex={0}
-                          onKeyDown={e => {
+                          onKeyDown={(e) => {
                             // Toggle lightbox on Enter or Space
                             if ([13, 32].includes(e.keyCode)) {
                               toggleLightbox(photo.index);
                             }
                           }}
-                          className="hover-focus-opacity-90"
+                          className='hover-focus-opacity-90'
                           style={{
                             width: "100%",
                             height: "100%",
                             objectFit: "cover",
-                            cursor: "pointer"
+                            cursor: "pointer",
                           }}
                         />
                       )}
@@ -168,14 +166,14 @@ export default ({ photos, tilesWide, address }) => {
 
       {/* Toggle button, overlapping with end of last block via position-relative */}
       <Accordion.Toggle
-        eventKey="0"
+        eventKey='0'
         as={Button}
         variant='info'
         ref={toggleButton}
-        className="navShadow border-0 float-left position-relative h4-icon"
+        className='navShadow border-0 float-left position-relative h4-icon'
         style={Object.assign(toggleButtonPosition)}
         onClick={toggleExpanded}
-        aria-label={(expanded ? "Collapse" : "Expand") + " photo grid"}
+        aria-label={`${expanded ? "Collapse" : "Expand"} photo grid`}
       >
         <FontAwesomeIcon icon={expanded ? faChevronUp : faChevronDown} />
       </Accordion.Toggle>
@@ -186,7 +184,7 @@ export default ({ photos, tilesWide, address }) => {
           <Modal
             onClose={toggleLightbox}
             allowFullscreen={false}
-            closeOnBackdropClick={true}
+            closeOnBackdropClick
           >
             <Carousel currentIndex={lightboxIndex} views={photoSources} />
           </Modal>

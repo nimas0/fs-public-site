@@ -349,12 +349,13 @@ const SidebarWidget = ({
             {breakpoint.xs ? <br /> : " "}
             to book an appointment
           </div>
+          {/* Disabled temporarily until we write a new subscription solution */}
           <Row
             noGutters
             className='text-center mx-auto'
             style={{ width: breakpoint.lg ? "16rem" : "100%" }}
           >
-            <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
+            {/* <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
               <WidgetAction
                 // handleClick={handleSubscribe}
                 label='Subscribe to Updates'
@@ -370,7 +371,7 @@ const SidebarWidget = ({
                 icon={faShareAlt}
                 href='#'
               />
-            </Col>
+            </Col> */}
           </Row>
         </Card>
 
