@@ -138,6 +138,7 @@ const Listing = ({
   }
 
   console.log("env", process.env.NODE_ENV);
+  console.log("env", process.env.VERCEL_URL);
 
   // Other scheduling widget state
   const [tourFirstDate, setTourFirstDate] = useState(tourFirstAvailableDate);
