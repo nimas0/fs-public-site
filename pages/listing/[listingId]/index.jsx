@@ -138,7 +138,8 @@ const Listing = ({
   }
 
   console.log("env", process.env.NODE_ENV);
-  console.log("env", process.env.VERCEL_URL);
+  console.log("env2", process.env.VERCEL_URL);
+  console.log("env3", process);
 
   // Other scheduling widget state
   const [tourFirstDate, setTourFirstDate] = useState(tourFirstAvailableDate);
@@ -353,19 +354,14 @@ const Listing = ({
 
 Listing.getInitialProps = async (ctx, req) => {
   // Get current listing data from database
-  const listingFetch = fetch(
-    `${process.env.VERCEL_URL}/api/listing?id=${ctx.query.listingId}`,
-    {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  const listingFetch = fetch(`/api/listing?id=${ctx.query.listingId}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `${process.env.VERCEL_URL}/api/tour-schedules?listingId=${
-      ctx.query.listingId
-    }${
+    `/api/tour-schedules?listingId=${ctx.query.listingId}${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""
