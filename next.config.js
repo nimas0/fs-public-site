@@ -1,5 +1,3 @@
-"use strict";
-
 require("dotenv").config();
 const withSass = require("@zeit/next-sass");
 const withCSS = require("@zeit/next-css");
@@ -19,7 +17,7 @@ module.exports = withSass(
       CLIENT_EMAIL: process.env.CLIENT_EMAIL,
       SESSION_SECRET_CURRENT: process.env.SESSION_SECRET_CURRENT,
       SESSION_SECRET_PREVIOUS: process.env.SESSION_SECRET_PREVIOUS,
-      HOST: process.env.HOST
-    }
+      HOST: process.env.HOST,
+    },
   })
 );

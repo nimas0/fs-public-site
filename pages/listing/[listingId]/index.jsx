@@ -353,19 +353,20 @@ const Listing = ({
 // sdfsldfj
 
 Listing.getInitialProps = async (ctx, req) => {
-  const host =
-    process.NODE_ENV !== "production"
-      ? process.env.HOST
-      : "https://findingspaces.com";
   // Get current listing data from database
-  const listingFetch = fetch(`${host}/api/listing?id=${ctx.query.listingId}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
+  const listingFetch = fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/listing?id=${ctx.query.listingId}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `${host}/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `${process.env.NEXT_PUBLIC_API_URL}/api/tour-schedules?listingId=${
+      ctx.query.listingId
+    }${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""

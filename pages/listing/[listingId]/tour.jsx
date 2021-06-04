@@ -33,7 +33,6 @@ import withAuthUser from "../../../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../utils/pageWrappers/withLoginModal";
 
-// URL to test: http://localhost:3000/listing/KDfFS1FtGblMYSrzLDCZ/tour
 
 const Tour = ({
   listing,
