@@ -137,6 +137,8 @@ const Listing = ({
     }
   }
 
+  console.log("env", process.env.NODE_ENV);
+
   // Other scheduling widget state
   const [tourFirstDate, setTourFirstDate] = useState(tourFirstAvailableDate);
   const [tourActiveDate, setTourActiveDate] = useState(null);
