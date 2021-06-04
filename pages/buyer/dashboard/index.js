@@ -54,22 +54,11 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
       />
       <Container>
         <Row>
-          <Col xs="6">
+          <Col xs='6'>
             <Heading AuthUser={AuthUser} />
-            <Row className="pb-1 mx-1">
-              {/* {/* <Card.Header className='bg-transparent  border-0 ' as='h4'>
-                                Seller's Dashboard
-                                       </Card.Header> */}
-              {/* <Button href={!loadingUserDoc && userDoc.data().defaultListingId ? 'http://localhost:3001/showings' : '/learnmore'} className=' rounded-lg mx-3' variant="primary" size="md" block>
-                                {!loadingUserDoc && userDoc.data().defaultListingId ? 'Go to Seller\'s Dashboard' : 'Learn More: Sell Your Home Free'}
-                            </Button> */}
-            </Row>
+            <Row className='pb-1 mx-1' />
             {errorUserDoc ? (
-              <strong>
-                Error:
-                {' '}
-                {JSON.stringify(error)}
-              </strong>
+              <strong>Error: {JSON.stringify(error)}</strong>
             ) : (
               <Approval
                 key={userDoc}
@@ -81,18 +70,14 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
             )}
 
             {error && errorUserDoc && (
-              <strong>
-                Error:
-                {' '}
-                {JSON.stringify(error)}
-              </strong>
+              <strong>Error: {JSON.stringify(error)}</strong>
             )}
             <Resources />
           </Col>
           <Col xs={{ span: 6 }}>
             <Row>
               <Col>
-                <Card className="border-0 mb-2 bg-transparent">
+                <Card className='border-0 mb-2 bg-transparent'>
                   {/* <Card.Header className='bg-transparent py-4  border-0 ' as='h4'>
                                        Search Using Home Code`
                                        </Card.Header>  */}
@@ -107,9 +92,9 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
                 </Card>
               </Col>
             </Row>
-            <p className="text-muted">Quick links</p>
+            <p className='text-muted'>Quick links</p>
             {/* <SellerSignUp key={userDoc} verification={loadingUserDoc ? verification : userDoc.data().verification} AuthUser={AuthUser} /> */}
-            <Row className="mb-5">
+            <Row className='mb-5'>
               <Col xs={12}>
                 <Button
                   href={
@@ -118,16 +103,16 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
                       : "https://findingspaces.com/learnmore"
                   }
                   // onClick={userDoc && (userDoc.data()).hasOwnProperty('defaultListingId') && router.push('/')}
-                  variant="primary"
+                  variant='primary'
                   style={{ borderStyle: "solid", borderRadius: 10 }}
                   block
-                  className=" p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  "
+                  className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '
                 >
                   {userDoc && userDoc.data().hasOwnProperty("defaultListingId")
                     ? "Go to Seller's dashboard"
                     : "Sell Your Home Without An Agent"}
                   <b>
-                    <FontAwesomeIcon icon={faChevronRight} color="white" />
+                    <FontAwesomeIcon icon={faChevronRight} color='white' />
                   </b>
                 </Button>
               </Col>
@@ -136,21 +121,21 @@ const Dashboard = ({ AuthUserInfo, showLoginModal, verification }) => {
                   onClick={() => router.push("/")}
                   style={{ borderStyle: "solid", borderRadius: 10 }}
                   block
-                  className=" p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  "
+                  className=' p-3 text-white m-1 buttonShadow  d-flex justify-content-between border-rounded  '
                 >
                   Enter Home Code
                   <b>
-                    <FontAwesomeIcon icon={faChevronRight} color="white" />
+                    <FontAwesomeIcon icon={faChevronRight} color='white' />
                   </b>
                 </Button>
               </Col>
             </Row>
-            <p className="text-muted">Subscriptions</p>
+            <p className='text-muted'>Subscriptions</p>
             {loading && loadingUserDoc && <span>Loading...</span>}
             {value && userDoc && (
               <span>
                 {value.docs.length === 0 ? (
-                  <Card style={{ height: "20rem" }} className="border rounded">
+                  <Card style={{ height: "20rem" }} className='border rounded'>
                     <Card.Header>
                       You are not currently subscribed to any property.
                     </Card.Header>
@@ -201,7 +186,7 @@ Dashboard.getInitialProps = async (ctx) => {
   console.log("uusseerr", userId);
   console.log("env", process.env.HOST);
   // Get profile data
-  const userProfileFetch = fetch(`${process.env.HOST}/api/user?id=${userId}`, {
+  const userProfileFetch = fetch(`/api/user?id=${userId}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });

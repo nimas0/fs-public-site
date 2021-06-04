@@ -345,10 +345,13 @@ const Listing = ({
   );
 };
 
-Listing.getInitialProps = async (ctx) => {
+Listing.getInitialProps = async (ctx, req) => {
+  const protocol = req.headers["x-forwarded-proto"] || "http";
+  const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+
   // Get current listing data from database
   const listingFetch = fetch(
-    `${process.env.HOST}/api/listing?id=${ctx.query.listingId}`,
+    `${baseUrl}/api/listing?id=${ctx.query.listingId}`,
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -357,7 +360,7 @@ Listing.getInitialProps = async (ctx) => {
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `${baseUrl}/api/tour-schedules?listingId=${ctx.query.listingId}${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""
