@@ -138,7 +138,7 @@ const Listing = ({
   }
 
   console.log("env", process.env.NODE_ENV);
-  console.log("env2", process.env);
+  console.log("env2", process.env.VERCEL_URL);
   console.log("env3", process.env);
 
   // Other scheduling widget state
