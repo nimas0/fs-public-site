@@ -243,7 +243,7 @@ const Listing = ({
               </h3>
               <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
             </Col>
-
+            {/* sdkjfsldfj */}
             {breakpoint.up.lg && (
               <>
                 <Col lg={5}>
