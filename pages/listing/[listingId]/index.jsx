@@ -8,6 +8,7 @@ import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import { useRouter } from "next/router";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
+import absoluteUrl from "next-absolute-url";
 import Nav from "../../../components/Nav";
 import AtAGlance from "../../../components/AtAGlance";
 import QuestionsAndAnswers from "../../../components/QuestionsAndAnswers";
@@ -354,14 +355,18 @@ const Listing = ({
 
 Listing.getInitialProps = async (ctx, req) => {
   // Get current listing data from database
-  const listingFetch = fetch(`/api/listing?id=${ctx.query.listingId}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
+  const { origin } = absoluteUrl(req, req.headers.host);
+  const listingFetch = fetch(
+    `${origin}/api/listing?id=${ctx.query.listingId}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `${origin}/api/tour-schedules?listingId=${ctx.query.listingId}${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""
