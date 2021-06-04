@@ -347,7 +347,6 @@ const Listing = ({
 
 Listing.getInitialProps = async (ctx, req) => {
   const baseUrl = req ? `${req.protocol}://${req.get("Host")}` : "";
-  console.log("req", req.protocol);
   // Get current listing data from database
   const listingFetch = fetch(
     `${baseUrl}/api/listing?id=${ctx.query.listingId}`,
