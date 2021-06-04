@@ -11,7 +11,6 @@ import {
   Image,
   Badge,
 } from "react-bootstrap";
-import fetch from "isomorphic-unfetch";
 import { Settings as LuxonSettings } from "luxon";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import { useRouter } from "next/router";

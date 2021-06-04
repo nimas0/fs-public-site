@@ -346,8 +346,7 @@ const Listing = ({
 };
 
 Listing.getInitialProps = async (ctx, req) => {
-  const protocol = req.headers["x-forwarded-proto"] || "http";
-  const baseUrl = req ? `${protocol}://${req.headers.host}` : "";
+  const baseUrl = req ? `${req.protocol}://${req.get("Host")}` : "";
 
   // Get current listing data from database
   const listingFetch = fetch(
