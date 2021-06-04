@@ -354,7 +354,7 @@ const Listing = ({
 
 Listing.getInitialProps = async (ctx, req) => {
   const host =
-    process.NODE_ENV === " development"
+    process.NODE_ENV !== "production"
       ? process.env.HOST
       : "https://findingspaces.com";
   // Get current listing data from database
