@@ -1,5 +1,3 @@
-"use strict";
-
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -9,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLongArrowAltLeft,
   faCalendarAlt,
-  faInfoCircle
+  faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import fetch from "isomorphic-unfetch";
 import {
@@ -17,7 +15,7 @@ import {
   DateTime,
   Interval,
   Duration,
-  LocalZone
+  LocalZone,
 } from "luxon";
 import clsx from "clsx";
 import { words } from "lodash/string";
@@ -41,7 +39,7 @@ const Tour = ({
   listing,
   schedules: stringSchedules,
   AuthUserInfo,
-  showLoginModal
+  showLoginModal,
 }) => {
   const { AuthUser = null } = AuthUserInfo;
   const router = useRouter();
@@ -49,20 +47,20 @@ const Tour = ({
 
   // Convert schedules to Intervals
   const schedules = {
-    listing: stringSchedules.listing.map(tour =>
+    listing: stringSchedules.listing.map((tour) =>
       Interval.after(
         DateTime.fromISO(tour.start),
         Duration.fromObject({ minutes: tour.durationInMinutes })
       )
     ),
     ...(stringSchedules.user && {
-      user: stringSchedules.user.map(tour =>
+      user: stringSchedules.user.map((tour) =>
         Interval.after(
           DateTime.fromISO(tour.start),
           Duration.fromObject({ minutes: tour.durationInMinutes })
         )
-      )
-    })
+      ),
+    }),
   };
 
   // Configure time zones
@@ -81,7 +79,7 @@ const Tour = ({
         : wordsInCommon(offsetNameNow, offsetNameNextMonth)
     );
     function wordsInCommon(...phrases) {
-      const splitPhrases = phrases.map(phrase => words(phrase));
+      const splitPhrases = phrases.map((phrase) => words(phrase));
       const intersectingWords = intersection(...splitPhrases);
       return intersectingWords.join(" ");
     }
@@ -99,7 +97,7 @@ const Tour = ({
   const {
     halfHourly: halfHourAvailability,
     hourly: hourAvailability,
-    isHourly: hourly
+    isHourly: hourly,
   } = listing.generalAvailability;
   const generalTimeAvailability = hourly
     ? hourAvailability
@@ -163,7 +161,7 @@ const Tour = ({
   const [activeTime, setActiveTime] = useState(null);
 
   // Reset time picker when new date is chosen
-  const chooseDate = date => {
+  const chooseDate = (date) => {
     setActiveDate(date);
     setActiveTime(null);
     setFirstHour(
@@ -178,7 +176,7 @@ const Tour = ({
   // Match photo height to date and time pickers
   const { ref: dateAndTime, height: dateAndTimeHeight = 0 } = useResizeObserver(
     {
-      type: "offset"
+      type: "offset",
     }
   );
 
@@ -221,16 +219,16 @@ const Tour = ({
       <Nav
         address={
           breakpoint.up.lg
-            ? listing.address[0] + ", " + listing.address[1]
+            ? `${listing.address[0]}, ${listing.address[1]}`
             : false
         }
         {...{ AuthUser, showLoginModal }}
       />
 
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-      <Container bsPrefix="container-md">
+      <Container bsPrefix='container-md'>
         {breakpoint.down.md && (
-          <div className="h4 mx-auto mb-4" style={{ width: "max-content" }}>
+          <div className='h4 mx-auto mb-4' style={{ width: "max-content" }}>
             {listing.address[0]}
             {breakpoint.xs ? <br /> : ", "}
             {listing.address[1]}
@@ -239,13 +237,12 @@ const Tour = ({
 
         <div className={clsx("mb-4", confirmed && breakpoint.sm && "ml-4")}>
           <Link
-            
-            href="/listing/[listingId]"
+            href='/listing/[listingId]'
             as={`/listing/${router.query.listingId}`}
             passHref
           >
             <a>
-              <FontAwesomeIcon icon={faLongArrowAltLeft} className="mr-1" />
+              <FontAwesomeIcon icon={faLongArrowAltLeft} className='mr-1' />
               Return to listing
             </a>
           </Link>
@@ -254,19 +251,19 @@ const Tour = ({
         {confirmed ? (
           <TourRequestConfirmation tourTime={activeTime} />
         ) : (
-          <main aria-labelledby="pick-a-time">
+          <main aria-labelledby='pick-a-time'>
             <h1
-              id="pick-a-time"
+              id='pick-a-time'
               className={clsx(breakpoint.xs ? "mb-4" : "mb-5")}
             >
               <FontAwesomeIcon icon={faCalendarAlt} /> Pick a Time
             </h1>
 
             <Row className={clsx(breakpoint.down.lg ? "mb-4" : "mb-5")}>
-              <Col xs={12} md="auto">
+              <Col xs={12} md='auto'>
                 <div ref={dateAndTime}>
                   {userTimeZoneDiffers && (
-                    <div className="text-info text-center mb-3">
+                    <div className='text-info text-center mb-3'>
                       <FontAwesomeIcon icon={faInfoCircle} /> All times are in{" "}
                       {offsetName}.
                     </div>
@@ -283,13 +280,13 @@ const Tour = ({
                       schedules
                     )}
                     disableAllDates={submitting}
-                    className="mb-4"
+                    className='mb-4'
                     {...{
                       daysDisplayed,
                       firstAvailableDate,
                       firstDate,
                       setFirstDate,
-                      activeDate
+                      activeDate,
                     }}
                   />
 
@@ -312,21 +309,21 @@ const Tour = ({
                       activeDate,
                       activeTime,
                       setActiveTime,
-                      timeZone
+                      timeZone,
                     }}
                   />
                 </div>
               </Col>
 
               {breakpoint.up.md && (
-                <Col md={true} style={{ height: dateAndTimeHeight }}>
+                <Col md style={{ height: dateAndTimeHeight }}>
                   <Image
                     src={listing.photos[0].src}
                     rounded
                     style={{
                       height: "100%",
                       width: "100%",
-                      objectFit: "cover"
+                      objectFit: "cover",
                     }}
                   />
                 </Col>
@@ -341,7 +338,7 @@ const Tour = ({
                 timeZone,
                 submitting,
                 setSubmitting,
-                setConfirmed
+                setConfirmed,
               }}
               user={AuthUser && AuthUser}
             />
@@ -354,26 +351,23 @@ const Tour = ({
   );
 };
 
-Tour.getInitialProps = async ctx => {
+Tour.getInitialProps = async (ctx) => {
   // Get current listing data from database
-  const listingFetch = fetch(
-    `${process.env.HOST}/api/listing?id=${ctx.query.listingId}`,
-    {
-      method: "GET",
-      headers: { "Content-Type": "application/json" }
-    }
-  );
+  const listingFetch = fetch(`/api/listing?id=${ctx.query.listingId}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `${process.env.HOST}/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `/api/tour-schedules?listingId=${ctx.query.listingId}${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""
     }`,
     {
       method: "GET",
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     }
   );
 
@@ -381,36 +375,38 @@ Tour.getInitialProps = async ctx => {
     // Resolve both fetches
     const [listingResponse, tourSchedulesResponse] = await Promise.all([
       listingFetch,
-      tourSchedulesFetch
+      tourSchedulesFetch,
     ]);
 
     // Handle response from API
     if (listingResponse.ok && tourSchedulesResponse.ok) {
       const {
         listingSchedule,
-        userSchedule
+        userSchedule,
       } = await tourSchedulesResponse.json();
       return {
         ...(await listingResponse.json()),
         schedules: {
           listing: listingSchedule,
-          user: userSchedule
-        }
+          user: userSchedule,
+        },
       };
-    } else if ([404, 503].includes(listingResponse.status)) {
-      return { statusCode: listingResponse.status };
-    } else if ([404, 503].includes(tourSchedulesResponse.status)) {
-      return { statusCode: tourSchedulesResponse.status };
-    } else {
-      // https://github.com/developit/unfetch#caveats
-      let error = new Error(listingResponse.statusText);
-      error.response = listingResponse;
-      throw error;
     }
+    if ([404, 503].includes(listingResponse.status)) {
+      return { statusCode: listingResponse.status };
+    }
+    if ([404, 503].includes(tourSchedulesResponse.status)) {
+      return { statusCode: tourSchedulesResponse.status };
+    }
+    // https://github.com/developit/unfetch#caveats
+    const error = new Error(listingResponse.statusText);
+    error.response = listingResponse;
+    throw error;
   } catch (err) {
     console.log(err);
     return {
-      statusCode: (err.response && err.response.status) || err.statusCode || 500
+      statusCode:
+        (err.response && err.response.status) || err.statusCode || 500,
     };
   }
 };
