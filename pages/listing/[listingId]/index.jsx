@@ -357,7 +357,7 @@ Listing.getInitialProps = async (ctx) => {
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `${process.env.HOST}/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `/api/tour-schedules?listingId=${ctx.query.listingId}${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""
