@@ -64,6 +64,7 @@ const Listing = ({
     }),
   };
 
+  console.log("process", process.env.HOST);
   const [userDoc, loadingUserDoc, errorUserDoc] = useDocument(
     firebase
       .firestore()
