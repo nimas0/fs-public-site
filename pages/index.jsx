@@ -49,6 +49,7 @@ const Listing = ({
 
   showLoginModal,
 }) => {
+  console.log("env", process.env.NODE_ENV);
   const [modalShow, setModalShow] = useState(true);
   const { AuthUser = null } = AuthUserInfo;
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
