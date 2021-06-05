@@ -10,6 +10,7 @@ import {
   Media,
   Image,
   Badge,
+  Navbar,
 } from "react-bootstrap";
 import { Settings as LuxonSettings } from "luxon";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
@@ -117,7 +118,16 @@ const Listing = ({
         <title>Finding Spaces – Search for Home</title>
       </Head>
       {/* <Nav showLogo {...{ AuthUser, showLoginModal }} /> */}
-
+      <Navbar fixed='top' bg='transparent'>
+        <Navbar.Brand className='ml-auto' href='#home'>
+          <img
+            width='75%'
+            src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336'
+            className='ml-auto'
+            alt='Finding Spaces'
+          />
+        </Navbar.Brand>
+      </Navbar>
       <SkeletonTheme color='#e5e5e5' highlightColor='#ffffff'>
         {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
         <Container style={{ borderRadius: "30px" }} bsPrefix='container-md'>
