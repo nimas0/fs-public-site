@@ -261,11 +261,18 @@ const OfferPage = ({
       const { displayName, photoURL, id } = AuthUserInfo.AuthUser;
 
       // Send offer info through API
-      const response = await fetch("/api/submit-proposal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ interestId, offerDetails: values, displayName }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/submit-proposal`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            interestId,
+            offerDetails: values,
+            displayName,
+          }),
+        }
+      );
 
       // Set up message object, create key, and post to firebase real time //
       const { amount, deposit } = values;

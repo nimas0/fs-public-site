@@ -54,7 +54,7 @@ const handleUnsubscribe = async (interestId) => {
   console.log("test");
   try {
     // Send offer info through API
-    const response = await fetch("/api/unsubscribe-listing", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/unsubscribe-listing`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ interestId }),
@@ -132,7 +132,9 @@ const SubscriptionCard = ({
     <>
       <ListGroup>
         <h6 className='mb-5 mt-2 p-2'>
-          <b> Congratulations!</b> You and the seller have agreed on the
+          <b> Congratulations!</b>
+          {' '}
+          You and the seller have agreed on the
           essential terms of the offer. Below are the steps needed to complete
           the remainder of the process and get the keys to your new home!
         </h6>
@@ -155,7 +157,8 @@ const SubscriptionCard = ({
         <ListGroup.Item>
           <h5>
             <b>2. Fill out purchase agreement</b>
-          </h5>{" "}
+          </h5>
+          {" "}
           Fill out the purchase agreement according to the terms and conditions
           you and the seller agreed on. The contract will have more information
           to fill out; make sure to read thoroughly and contact a lawyer if you
@@ -164,7 +167,8 @@ const SubscriptionCard = ({
         <ListGroup.Item>
           <h5>
             <b>3. Send to Seller</b>
-          </h5>{" "}
+          </h5>
+          {" "}
           After completion of the purchase agreement, the seller will need to
           review and sign. We recommend that you upload your document directly
           to the seller through the Finding Spaces dashboard; This will allow
@@ -173,7 +177,8 @@ const SubscriptionCard = ({
         <ListGroup.Item>
           <h5>
             <b>4. Notify Title Company</b>
-          </h5>{" "}
+          </h5>
+          {" "}
           Next, deliver the completed and signed contract with the agreed amount
           of earnest deposit to the title company stated in the agreement. You
           and the seller can negotiate who hires a title company and pays
@@ -186,16 +191,19 @@ const SubscriptionCard = ({
         <ListGroup.Item>
           <h5>
             <b>5. Contengencies</b>
-          </h5>{" "}
+          </h5>
+          {" "}
           It's your responsibility to remove all contingencies in the proper
           timelines stated in the contract. The Finding Spaces dashboard will
           remain available for you to chat, schedule appointments, and exchange
-          documents with the seller.{" "}
+          documents with the seller.
+          {" "}
         </ListGroup.Item>
         <ListGroup.Item>
           <h5>
             <b>6. Home Sold</b>
-          </h5>{" "}
+          </h5>
+          {" "}
           Once all contingencies have been uplifted, it will be time to close
           the deal. The title company will provide you with the documents you
           need for the closing process. After the documents are signed and
@@ -278,7 +286,13 @@ const SubscriptionCard = ({
     return (Views[type] || Views.default)();
   };
 
-  if (error) return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
+  if (error) return (
+    <strong>
+      Error:
+      {' '}
+      {/* {JSON.stringify(error)} */}
+    </strong>
+);
   if (loading) return "loading";
   console.log(
     "subscriptionData.proposal.state",
@@ -332,7 +346,9 @@ const SubscriptionCard = ({
                         variant='success'
                         className='px-3 py-1 mr-3 text-white'
                       >
-                        {subscriptionData.buyerMessageCounter} New Messages
+                        {subscriptionData.buyerMessageCounter}
+                        {' '}
+                        New Messages
                       </Badge>
                     ) : null}
                   </Col>

@@ -119,23 +119,29 @@ const SidebarWidget = ({
       if (subscriptionData) {
         // Send offer info through API
         // const interestId = `${router.query.listingId}_${AuthUser.id}`;
-        const response = await fetch("/api/unsubscribe-listing", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ interestId }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/unsubscribe-listing`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ interestId }),
+          }
+        );
         console.log("nope");
       } else {
         // Send offer info through API
-        const response = await fetch("/api/subscribe-listing", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            listingId: router.query.listingId,
-            AuthUser,
-            listing,
-          }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/subscribe-listing`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              listingId: router.query.listingId,
+              AuthUser,
+              listing,
+            }),
+          }
+        );
       }
 
       // // Send offer info through API

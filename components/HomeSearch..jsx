@@ -271,11 +271,14 @@ async function fetchListing(values) {
   // Get or create user in Firestore
   console.log("sdlfjsldfj");
   try {
-    const response = await fetch("/api/enter-home", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ values }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/enter-home`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ values }),
+      }
+    );
 
     if (response.ok) {
       // Return whether this user is new and user's verification status

@@ -186,10 +186,13 @@ Dashboard.getInitialProps = async (ctx) => {
   console.log("uusseerr", userId);
   console.log("env", process.env.HOST);
   // Get profile data
-  const userProfileFetch = fetch(`/api/user?id=${userId}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
+  const userProfileFetch = fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/user?id=${userId}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
 
   try {
     const [userProfileResponse] = await Promise.all([userProfileFetch]);

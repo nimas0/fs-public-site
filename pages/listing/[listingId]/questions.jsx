@@ -75,10 +75,13 @@ const Questions = ({ listing, questions, AuthUserInfo, showLoginModal }) => {
 Questions.getInitialProps = async (ctx) => {
   try {
     // Get current listing data from database
-    const response = await fetch(`/api/listing?id=${ctx.query.listingId}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/listing?id=${ctx.query.listingId}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
 
     // Handle response from API
     if (response.ok) {

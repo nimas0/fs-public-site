@@ -2,8 +2,6 @@
  * TODO: Add buyer dashboard link
  */
 
-
-
 import React, { useEffect, useState, useRef } from "react";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
@@ -66,11 +64,14 @@ export default ({ shown, setShown }) => {
         throw error;
       }
       // Send file info through API
-      const response = await fetch("/api/upload-number", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ number, userId }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/upload-number`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ number, userId }),
+        }
+      );
       setPage("verification");
       if (response.ok) {
         // Move on
@@ -139,7 +140,7 @@ export default ({ shown, setShown }) => {
     >
       {page === "auth" ? (
         <>
-          <Modal.Header className="bg-info text-white" closeButton>
+          <Modal.Header className='bg-info text-white' closeButton>
             <Modal.Title>Please Sign In</Modal.Title>
           </Modal.Header>
 
@@ -154,12 +155,12 @@ export default ({ shown, setShown }) => {
         </>
       ) : page === "authWait" ? (
         <>
-          <Modal.Header className="text-white" closeButton>
+          <Modal.Header className='text-white' closeButton>
             <Modal.Title>Please Sign In</Modal.Title>
           </Modal.Header>
 
-          <Modal.Body className="text-center">
-            <Spinner animation="border" variant="primary" />
+          <Modal.Body className='text-center'>
+            <Spinner animation='border' variant='primary' />
           </Modal.Body>
         </>
       ) : page === "verification" ? (
@@ -212,8 +213,8 @@ export default ({ shown, setShown }) => {
 
           <Modal.Body>
             <PhoneInput
-              defaultCountry="US"
-              placeholder="Enter phone number"
+              defaultCountry='US'
+              placeholder='Enter phone number'
               value={number}
               onChange={setNumber}
             />
@@ -228,7 +229,7 @@ export default ({ shown, setShown }) => {
                         />
                         <small>Format: 123-456-7890</small> */}
             {uploadFailure && (
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type='invalid'>
                 We're experiencing network errors&mdash;please try again later.
               </Form.Control.Feedback>
             )}
@@ -237,18 +238,18 @@ export default ({ shown, setShown }) => {
           <Modal.Footer>
             <Button
               disabled={!isValidPhoneNumber(number)}
-              variant="primary"
+              variant='primary'
               onClick={uploadNumber}
             >
               {uploading ? (
                 <>
                   <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                    className="position-relative mr-2"
+                    as='span'
+                    animation='border'
+                    size='sm'
+                    role='status'
+                    aria-hidden='true'
+                    className='position-relative mr-2'
                     style={{ bottom: 3 }}
                   />
                   Loading...
@@ -261,11 +262,11 @@ export default ({ shown, setShown }) => {
         </>
       ) : page === "welcome" ? (
         <>
-          <Modal.Header className="bg-info text-white" closeButton>
+          <Modal.Header className='bg-info text-white' closeButton>
             <Modal.Title>Welcome!</Modal.Title>
           </Modal.Header>
 
-          <Modal.Body className="p-5 text-centered">
+          <Modal.Body className='p-5 text-centered'>
             <p>
               <p>
                 “Finding Spaces Beta is a public feature-testing version of
@@ -284,7 +285,7 @@ export default ({ shown, setShown }) => {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={close}>
+            <Button variant='secondary' onClick={close}>
               Close
             </Button>
             {/* <Button variant='primary' onClick={() => router.push('/buyer/dashboard')}>
@@ -301,10 +302,10 @@ export default ({ shown, setShown }) => {
           </Modal.Header>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={close}>
+            <Button variant='secondary' onClick={close}>
               Return to listing
             </Button>
-            <Button variant="primary" href="findingspaces.com/buyer/dashboard">
+            <Button variant='primary' href='findingspaces.com/buyer/dashboard'>
               {/* TODO: Add buyer dashboard link */}
               Go to buyer dashboard
             </Button>
@@ -319,23 +320,25 @@ export default ({ shown, setShown }) => {
 
     // Get or create user in Firestore
     try {
-      const response = await fetch("/api/check-user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, displayName, photoURL }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/check-user`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, displayName, photoURL }),
+        }
+      );
 
       if (response.ok) {
         // Return whether this user is new and user's verification status
         const { created: isNew, verification } = await response.json();
         const { status: verified } = verification;
         return callback(isNew, verified);
-      } 
-        // https://github.com/developit/unfetch#caveats
-        const error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      
+      }
+      // https://github.com/developit/unfetch#caveats
+      const error = new Error(response.statusText);
+      error.response = response;
+      throw error;
     } catch (err) {
       console.error(
         "Auth success but database failure. Either a coding error or network issues.",
@@ -361,11 +364,14 @@ export default ({ shown, setShown }) => {
         );
 
         // Send file info through API
-        const response = await fetch("/api/verification-doc", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ documentURL, userId }),
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/verification-doc`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ documentURL, userId }),
+          }
+        );
 
         if (response.ok) {
           // Move on

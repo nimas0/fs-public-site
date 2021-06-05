@@ -40,15 +40,18 @@ const Resume = () => {
       const documentURL = await uploadUserDocument(values.file, `resumes`);
       // console.log("file", values.file);
       // Send file info through API
-      const response = await fetch("/api/upload-resume", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          documentURL,
-          ...values,
-          createdAt: moment().format("MMMM Do YYYY, h:mm:ss a"),
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/upload-resume`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            documentURL,
+            ...values,
+            createdAt: moment().format("MMMM Do YYYY, h:mm:ss a"),
+          }),
+        }
+      );
 
       if (response.ok) {
         // Move on
@@ -79,11 +82,11 @@ const Resume = () => {
   if (success === true) {
     return (
       <>
-        <Container bsPrefix="container-md" className="my-auto p-5">
-          <h6 className="text-center">
+        <Container bsPrefix='container-md' className='my-auto p-5'>
+          <h6 className='text-center'>
             You have successfully submitted your resume.
           </h6>
-          <p className="text-center">We will reach out to you shortly.</p>
+          <p className='text-center'>We will reach out to you shortly.</p>
         </Container>
       </>
     );
@@ -125,31 +128,31 @@ const Resume = () => {
           errors,
         }) => (
           <Form noValidate onSubmit={handleSubmit}>
-            <Row className="my-5">
+            <Row className='my-5'>
               <h5>
                 <b>SUBMIT YOUR APPLICATION</b>
               </h5>
             </Row>
-            <Form.Group as={Row} sm="12" className="my-5">
+            <Form.Group as={Row} sm='12' className='my-5'>
               <Form.Control
                 ref={fileInput}
-                type="file"
-                name="file"
-                label="Attach Resume / CV"
+                type='file'
+                name='file'
+                label='Attach Resume / CV'
                 onBlur={handleBlur}
-                aria-label="Resume document"
+                aria-label='Resume document'
                 onChange={(e) => setFieldValue("file", e.target.files[0])}
                 disabled={uploading}
                 isInvalid={touched.file && !!errors.file}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type='invalid'>
                 {errors.file}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group
               as={Row}
-              className="my-4"
-              controlId="validationFormik101"
+              className='my-4'
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Full Name
@@ -157,71 +160,71 @@ const Resume = () => {
 
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="fullName"
+                  type='text'
+                  name='fullName'
                   value={values.fullName}
                   onChange={handleChange}
                   isInvalid={touched.fullName && !!errors.fullName}
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type='invalid'>
                   {errors.fullName}
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
             <Form.Group
-              className="my-4"
+              className='my-4'
               as={Row}
-              controlId="validationFormik101"
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Email
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="email"
+                  type='text'
+                  name='email'
                   value={values.email}
                   onChange={handleChange}
                   isInvalid={touched.email && !!errors.email}
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type='invalid'>
                   {errors.email}
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
             <Form.Group
-              className="my-4"
+              className='my-4'
               as={Row}
-              controlId="validationFormik101"
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Phone
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="phone"
+                  type='text'
+                  name='phone'
                   value={values.phone}
                   onChange={handleChange}
                   isInvalid={touched.phone && !!errors.phone}
                 />
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type='invalid'>
                   {errors.phone}
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
             <Form.Group
-              className="my-4"
+              className='my-4'
               as={Row}
-              controlId="validationFormik101"
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Current Company
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="currentCompany"
+                  type='text'
+                  name='currentCompany'
                   value={values.currentCompany}
                   onChange={handleChange}
                   isValid={touched.currentCompany && !errors.currentCompany}
@@ -232,7 +235,7 @@ const Resume = () => {
               </Col>
             </Form.Group>
 
-            <Row className="my-5 pt-3 pl-2">
+            <Row className='my-5 pt-3 pl-2'>
               <h5>
                 <b>LINKS</b>
               </h5>
@@ -240,16 +243,16 @@ const Resume = () => {
 
             <Form.Group
               as={Row}
-              className="my-4"
-              controlId="validationFormik101"
+              className='my-4'
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 LinkedIn URL
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="linkedIn"
+                  type='text'
+                  name='linkedIn'
                   value={values.linkedIn}
                   onChange={handleChange}
                   isValid={touched.linkedIn && !errors.linkedIn}
@@ -260,17 +263,17 @@ const Resume = () => {
               </Col>
             </Form.Group>
             <Form.Group
-              className="my-4"
+              className='my-4'
               as={Row}
-              controlId="validationFormik101"
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Github / GitLab URL
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="repository"
+                  type='text'
+                  name='repository'
                   value={values.repository}
                   onChange={handleChange}
                   isValid={touched.repository && !errors.repository}
@@ -281,18 +284,18 @@ const Resume = () => {
               </Col>
             </Form.Group>
             <Form.Group
-              className="my-4"
+              className='my-4'
               as={Row}
-              controlId="validationFormik101"
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Portfolio Website
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  size="sm"
-                  type="text"
-                  name="portfolio"
+                  size='sm'
+                  type='text'
+                  name='portfolio'
                   value={values.portfolio}
                   onChange={handleChange}
                   isValid={touched.portfolio && !errors.portfolio}
@@ -303,17 +306,17 @@ const Resume = () => {
               </Col>
             </Form.Group>
             <Form.Group
-              className="my-4"
+              className='my-4'
               as={Row}
-              controlId="validationFormik101"
+              controlId='validationFormik101'
             >
               <Form.Label column sm={3}>
                 Other Website
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  type="text"
-                  name="otherWebsite"
+                  type='text'
+                  name='otherWebsite'
                   value={values.otherWebsite}
                   onChange={handleChange}
                   isValid={touched.otherWebsite && !errors.otherWebsite}
@@ -324,7 +327,7 @@ const Resume = () => {
               </Col>
             </Form.Group>
 
-            <Row className="my-5 pt-3 pl-2 ">
+            <Row className='my-5 pt-3 pl-2 '>
               <h5>
                 <b>ADDITIONAL INFORMATION</b>
               </h5>
@@ -332,15 +335,15 @@ const Resume = () => {
 
             <Form.Group
               as={Row}
-              className="my-4"
-              controlId="validationFormik101"
+              className='my-4'
+              controlId='validationFormik101'
             >
               <Col sm={12}>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Group controlId='exampleForm.ControlTextarea1'>
                   <Form.Control
                     rows={7}
-                    as="textarea"
-                    name="additionalInformation"
+                    as='textarea'
+                    name='additionalInformation'
                     value={values.additionalInformation}
                     onChange={handleChange}
                     isValid={
@@ -355,71 +358,71 @@ const Resume = () => {
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
-            <div className="border-bottom text-white mb-5" />
+            <div className='border-bottom text-white mb-5' />
 
-            <Row className="my-5 pt-3 pl-2 ">
+            <Row className='my-5 pt-3 pl-2 '>
               <h5>
                 <b>DEMOGRAPHIC SURVEY</b>
               </h5>
             </Row>
 
-            <Form.Group as={Row} controlId="exampleForm.SelectCustomSizeSm">
+            <Form.Group as={Row} controlId='exampleForm.SelectCustomSizeSm'>
               <Form.Label column sm={3}>
                 What is your location?
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
-                  name="survey"
+                  name='survey'
                   value={values.survey}
                   isInvalid={touched.survey && !!errors.survey}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  as="select"
-                  size="md"
+                  as='select'
+                  size='md'
                   custom
                 >
-                  <option value="" label="Choose Location" />
+                  <option value='' label='Choose Location' />
                   {countryList.map((option) => (
                     <option value={option} label={option} />
                   ))}
                 </Form.Control>
-                <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type='invalid'>
                   {errors.survey}
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
 
-            <div className="border-bottom text-white mb-5" />
+            <div className='border-bottom text-white mb-5' />
 
             <Form.Group>
               <Form.Check
-                name="terms"
-                label="Yes, Finding Spaces can contact me about future job opportunities for up to 2 years"
+                name='terms'
+                label='Yes, Finding Spaces can contact me about future job opportunities for up to 2 years'
                 onChange={handleChange}
                 isInvalid={!!errors.terms}
                 feedback={errors.terms}
-                id="validationFormik106"
+                id='validationFormik106'
                 feedbackTooltip
               />
             </Form.Group>
-            <Form.Row className="my-5 text-right">
+            <Form.Row className='my-5 text-right'>
               {uploading ? (
-                <Spinner animation="border" role="status">
-                  <span className="sr-only">Loading...</span>
+                <Spinner animation='border' role='status'>
+                  <span className='sr-only'>Loading...</span>
                 </Spinner>
               ) : (
                 <Button
                   disabled={uploading}
-                  className="mb-5"
-                  type="submit text-right"
+                  className='mb-5'
+                  type='submit text-right'
                 >
                   SUBMIT APPLICATION
                 </Button>
               )}
             </Form.Row>
-            <div className="my-5" />
-            <div className="my-5" />
-            <div className="my-5" />
+            <div className='my-5' />
+            <div className='my-5' />
+            <div className='my-5' />
           </Form>
         )}
       </Formik>

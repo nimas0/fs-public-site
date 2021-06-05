@@ -261,11 +261,14 @@ const Upload = ({ userId, setPage, newUser, setModalShow }) => {
       );
       console.log("file", values.file);
       // Send file info through API
-      const response = await fetch("/api/verification-doc", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ documentURL, userId, ...values }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/verification-doc`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ documentURL, userId, ...values }),
+        }
+      );
 
       if (response.ok) {
         setModalShow(false);
