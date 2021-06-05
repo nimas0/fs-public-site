@@ -5,9 +5,9 @@ import { faLightbulb, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default ({ question, answer }) => (
   <li className='mb-3'>
-    <Row noGutters className='question font-weight-bold text-success mb-n2'>
+    <Row noGutters className='question font-weight-bold text-dark mb-n2'>
       <Col xs='auto' className='mr-2'>
-        <FontAwesomeIcon icon={faLightbulb} fixedWidth />
+        <FontAwesomeIcon color='green' icon={faLightbulb} fixedWidth />
       </Col>
       <Col as='p'>{question}</Col>
     </Row>
