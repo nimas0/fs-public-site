@@ -33,13 +33,13 @@ export default ({
   const [isScrolled, setScrolled] = useState(false);
   const breakpoint = useMediaBreakpoints();
 
-  useScrollPosition((position) => {
-    if (position !== 0) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  });
+  // useScrollPosition((position) => {
+  //   if (position !== 0) {
+  //     setScrolled(true);
+  //   } else {
+  //     setScrolled(false);
+  //   }
+  // });
 
   const logoutRefresh = async () => {
     try {
@@ -57,22 +57,21 @@ export default ({
   return (
     <>
       <Navbar
-        id={solidBackground && isScrolled ? "" : "navbar-custom"}
-        sticky='top'
-        className={` text-info ${solidBackground &&
-          " bg-light schedulingShadow "}   d-flex px-5 pt-3 pb-2 `}
+        fixed='top'
+        style={{ zIndex: 1000 }}
+        id='navbar-custom'
+        className='text-info bg-tranparent'
       >
         <>
           <Navbar.Toggle
-            className='border-0 '
+            className='border-0'
             aria-controls='basic-navbar-nav'
           />
           <div className='flex-grow-0 order-1' />
-          <Navbar.Text as='h1' className='text-reset flex-grow-1 order-2 mb-0'>
+          <Navbar.Text as='h1' className='text-reset flex-grow-1 order-2 mb-2'>
             {/* {address} */}
           </Navbar.Text>
         </>
-
         <Navbar.Collapse
           id='nav-links'
           className='flex-grow-0 order-5 order-sm-4'
@@ -84,7 +83,10 @@ export default ({
                 key='down'
                 title={
                   <div>
-                    <Image src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/assets%2Flogos%2FProfile.png?alt=media&token=5863348f-23ce-4d09-8906-b90f5c95bcb1' />
+                    <Image
+                      width='70%'
+                      src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/assets%2Flogos%2FProfile.png?alt=media&token=5863348f-23ce-4d09-8906-b90f5c95bcb1'
+                    />
                   </div>
                 }
                 id='dropdown-basic'
@@ -94,8 +96,7 @@ export default ({
                 <NavDropdown.Item onClick={logoutRefresh}>
                   Log Out
                 </NavDropdown.Item>
-
-                <NavDropdown.Item href='/learnmore'>Search</NavDropdown.Item>
+                <NavDropdown.Item href='/'>Search</NavDropdown.Item>
               </NavDropdown>
             ) : (
               <Nav.Link href='#' className='profile-icon'>
@@ -109,9 +110,14 @@ export default ({
                 as={Button}
                 variant='inherit'
                 onClick={showLoginModal}
-                className='profile-icon'
+                className='profile-icon pb-4'
               >
-                <FontAwesomeIcon size='2x' icon={faUserCircle} />
+                <FontAwesomeIcon
+                  className='mr-2 mt-1 mb-n1 pt-1'
+                  size='2x'
+                  icon={faUserCircle}
+                />
+                My Account
               </Nav.Link>
             )
           )}

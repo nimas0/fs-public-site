@@ -195,32 +195,24 @@ const SidebarWidget = ({
       {loading && <span>Document: Loading...</span>}
       {value && ( */}
       <>
-        <Button
-          id='tour-this-home2'
-          aria-labelledby='tour-this-home-heading'
-          className={` w-100  border-0 rounded-0 bg-primary text-white py-3 px-4 mx-n5 mx-md-n3 mx-lg-0 pb-2 mb-5 my-n2 ${
-            breakpoint.up.lg ? " position-sticky" : ""
-          }`}
-          style={
-            breakpoint.up.lg ? { top: "6rem", zIndex: 1030 } : { zIndex: 1030 }
-          }
-        >
-          <Row>
-            <Col xs='10'>Sign up and Sell your home</Col>
-            <Col xs='auto'>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </Col>
-          </Row>
-        </Button>
         <Card
           as='section'
           id='tour-this-home'
           aria-labelledby='tour-this-home-heading2'
-          className={`rounded-0 px-4  mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
+          className={` px-4  mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
             breakpoint.up.lg ? " position-sticky" : ""
           }`}
+          // style={
+          //   breakpoint.up.lg ? { top: "8rem", zIndex: 1020 } : { zIndex: 1021 }
+          // }
           style={
-            breakpoint.up.lg ? { top: "8rem", zIndex: 1020 } : { zIndex: 1021 }
+            breakpoint.up.lg
+              ? {
+                  top: "8rem",
+                  zIndex: 1020,
+                  boxShadow: "inset 4px 4px 30px #bdbdbd",
+                }
+              : { zIndex: 1021 }
           }
         >
           {/* <h2
@@ -233,7 +225,7 @@ const SidebarWidget = ({
               Tour This Home.
             </h2> */}
           <div
-            className='pt-4 mt-1  bg-white text-muted text-center  mb-0'
+            className='pt-4 mt-1  bg-tranparent text-muted text-center  mb-0'
             as='h5'
           >
             <Row
@@ -311,6 +303,22 @@ const SidebarWidget = ({
                 type='unverified'
                 label='Chat with Seller'
               />
+              <Button
+                target='_blank'
+                href='https://seller.findingspaces.com'
+                id='tour-this-home2'
+                aria-labelledby='tour-this-home-heading'
+                className={` w-100  border-0 bg-transparent py-3 mt-3 text-primary px-n3    mx-lg-0 pb-2 mb-5  ${
+                  breakpoint.up.lg ? " position-sticky" : ""
+                }`}
+              >
+                <Row>
+                  <Col xs='12'>
+                    Sign up to sell your home{" "}
+                    <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
+                  </Col>
+                </Row>
+              </Button>
             </>
           ) : (
             <>
@@ -340,9 +348,24 @@ const SidebarWidget = ({
                 listingId={listingId}
                 handleSubscribe={handleSubscribe}
               />
+              <Button
+                target='_blank'
+                href='https://seller.findingspaces.com'
+                id='tour-this-home2'
+                aria-labelledby='tour-this-home-heading'
+                className={` w-100  border-0 bg-transparent py-3 mt-3 text-primary px-n3    mx-lg-0 pb-2 mb-5  ${
+                  breakpoint.up.lg ? " position-sticky" : ""
+                }`}
+              >
+                <Row>
+                  <Col xs='12'>
+                    Sign up to sell your home{" "}
+                    <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
+                  </Col>
+                </Row>
+              </Button>
             </>
           )}
-
           <div
             className='text-muted mx-auto mb-3'
             style={

@@ -137,7 +137,7 @@ const Interest = ({
       {loading && <span>Document: Loading...</span>}
       {value && (
         <>
-          <Nav AuthUser={AuthUser} showLoginModal={showLoginModal} />
+          {/* <Nav AuthUser={AuthUser} showLoginModal={showLoginModal} /> */}
           <Row className=' d-flex'>
             <Col noGutters>
               <div className=' border'>

@@ -209,14 +209,7 @@ const Tour = ({
     <>
       <Head>
         <title>
-          Schedule Tour – 
-          {' '}
-          {listing.address[0]}
-          ,
-          {' '}
-          {listing.address[1]}
-          {' '}
-          – Finding
+          Schedule Tour – {listing.address[0]}, {listing.address[1]} – Finding
           Spaces
         </title>
       </Head>
@@ -231,23 +224,28 @@ const Tour = ({
       />
 
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-      <Container bsPrefix='container-md'>
+      <Container className='mt-5' bsPrefix='container-md mt-5'>
         {breakpoint.down.md && (
-          <div className='h4 mx-auto mb-4' style={{ width: "max-content" }}>
+          <div className='h4 mx-auto mb-5' style={{ width: "max-content" }}>
             {listing.address[0]}
             {breakpoint.xs ? <br /> : ", "}
             {listing.address[1]}
           </div>
         )}
 
-        <div className={clsx("mb-4", confirmed && breakpoint.sm && "ml-4")}>
+        <div className={clsx("mb-5", confirmed && breakpoint.sm && "ml-4")}>
           <Link
+            className='mt-5'
             href='/listing/[listingId]'
             as={`/listing/${router.query.listingId}`}
             passHref
           >
             <a>
-              <FontAwesomeIcon icon={faLongArrowAltLeft} className='mr-1' />
+              <FontAwesomeIcon
+                icon={faLongArrowAltLeft}
+                className='mr-1 mt-5'
+                style={{ zIndex: 1020 }}
+              />
               Return to listing
             </a>
           </Link>
@@ -261,9 +259,7 @@ const Tour = ({
               id='pick-a-time'
               className={clsx(breakpoint.xs ? "mb-4" : "mb-5")}
             >
-              <FontAwesomeIcon icon={faCalendarAlt} />
-              {' '}
-              Pick a Time
+              <FontAwesomeIcon icon={faCalendarAlt} /> Pick a Time
             </h1>
 
             <Row className={clsx(breakpoint.down.lg ? "mb-4" : "mb-5")}>
@@ -271,12 +267,8 @@ const Tour = ({
                 <div ref={dateAndTime}>
                   {userTimeZoneDiffers && (
                     <div className='text-info text-center mb-3'>
-                      <FontAwesomeIcon icon={faInfoCircle} />
-                      {' '}
-                      All times are in
-                      {" "}
-                      {offsetName}
-                      .
+                      <FontAwesomeIcon icon={faInfoCircle} /> All times are in{" "}
+                      {offsetName}.
                     </div>
                   )}
 
@@ -375,7 +367,9 @@ Tour.getInitialProps = async (ctx) => {
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `${process.env.NEXT_PUBLIC_API_URL}/api/tour-schedules?listingId=${
+      ctx.query.listingId
+    }${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""

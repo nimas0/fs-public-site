@@ -58,7 +58,7 @@ const QuickStats = ({
         <Col
           xs={12}
           sm={12}
-          className='d-flex text-info pr-1 d-md-inline-flex flex-wrap justify-content-start'
+          className='d-flex text-info pr-1 d-md-inline-flex flex-wrap justify-content-start mt-3'
         >
           <Stat loading label='Price' stat={price} unitPre='$' />
           <Stat loading label='Beds' stat={beds} />

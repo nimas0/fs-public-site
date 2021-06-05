@@ -29,7 +29,7 @@ const GenericModal = ({
       </Modal.Header>
     )}
     <Modal.Body
-      className='p-0 m-0 rounded-lg border-0'
+      className='p-0 m-0 rounded-lg border-0 bg-white'
       // className={padding ? "" : "home-code p-0"}
     >
       {body}

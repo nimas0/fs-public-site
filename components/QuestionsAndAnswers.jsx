@@ -23,7 +23,7 @@ export default ({ as, questions, limit, AuthUser }) => {
     as || "div",
     {
       id: "questions-and-answers",
-      className: "mb-5",
+      className: "mb-2",
       "aria-labelledby": "questions-and-answers-heading",
     },
     <>
@@ -31,7 +31,7 @@ export default ({ as, questions, limit, AuthUser }) => {
         as === "main" ? "h3" : "h4",
         {
           id: "questions-and-answers-heading",
-          className: "mb-4 text-uppercase font-weight-light p-3",
+          className: "mb-1 text-uppercase font-weight-light p-3",
         },
         <>Questions &amp; Answers</>
       )}
@@ -72,7 +72,7 @@ export default ({ as, questions, limit, AuthUser }) => {
         </Button>
         <div
           id='question-help'
-          className='text-center text-muted'
+          className='text-center text-muted mb-5'
           style={{ fontSize: "0.8em" }}
         >
           *Homeowner reserves the right to make questions public or private.

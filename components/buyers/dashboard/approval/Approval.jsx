@@ -46,7 +46,7 @@ const Approval = ({ verification, AuthUser, setModalShow, showLoginModal }) => {
                </Button>
              </h4> */}
 
-          <Card className='border-0 rounded-0 p-4 bg-white '>
+          <Card className='border-0 p-4 bg-white '>
             <Card.Body className='text-left py-3 pl-0'>
               <div className='text-warning d-flex justify-content-start  '>
                 {/* <FontAwesomeIcon size='2x' icon={faFrownOpen} /> */}
