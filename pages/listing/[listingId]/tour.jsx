@@ -33,7 +33,6 @@ import withAuthUser from "../../../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../utils/pageWrappers/withLoginModal";
 
-
 const Tour = ({
   listing,
   schedules: stringSchedules,
@@ -210,7 +209,14 @@ const Tour = ({
     <>
       <Head>
         <title>
-          Schedule Tour – {listing.address[0]}, {listing.address[1]} – Finding
+          Schedule Tour – 
+          {' '}
+          {listing.address[0]}
+          ,
+          {' '}
+          {listing.address[1]}
+          {' '}
+          – Finding
           Spaces
         </title>
       </Head>
@@ -255,7 +261,9 @@ const Tour = ({
               id='pick-a-time'
               className={clsx(breakpoint.xs ? "mb-4" : "mb-5")}
             >
-              <FontAwesomeIcon icon={faCalendarAlt} /> Pick a Time
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              {' '}
+              Pick a Time
             </h1>
 
             <Row className={clsx(breakpoint.down.lg ? "mb-4" : "mb-5")}>
@@ -263,8 +271,12 @@ const Tour = ({
                 <div ref={dateAndTime}>
                   {userTimeZoneDiffers && (
                     <div className='text-info text-center mb-3'>
-                      <FontAwesomeIcon icon={faInfoCircle} /> All times are in{" "}
-                      {offsetName}.
+                      <FontAwesomeIcon icon={faInfoCircle} />
+                      {' '}
+                      All times are in
+                      {" "}
+                      {offsetName}
+                      .
                     </div>
                   )}
 
@@ -352,14 +364,18 @@ const Tour = ({
 
 Tour.getInitialProps = async (ctx) => {
   // Get current listing data from database
-  const listingFetch = fetch(`/api/listing?id=${ctx.query.listingId}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
+
+  const listingFetch = fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/listing?id=${ctx.query.listingId}`,
+    {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    }
+  );
 
   // Get current tour schedules for listing and user
   const tourSchedulesFetch = fetch(
-    `/api/tour-schedules?listingId=${ctx.query.listingId}${
+    `${process.env.NEXT_PUBLIC_API_URL}/api/tour-schedules?listingId=${ctx.query.listingId}${
       ctx.myCustomData.AuthUserInfo.AuthUser
         ? `&userId=${ctx.myCustomData.AuthUserInfo.AuthUser.id}`
         : ""
