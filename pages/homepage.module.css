@@ -34,10 +34,11 @@ input {
 
 .home-code {
   border-radius: 30px !important;
-  background: url("https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/AdobeStock_355889969.png?alt=media&token=9ef5de38-bbe1-4935-a0d0-0e505debc396")
+  background: url("https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/AdobeStock_3558899111111111169.png?alt=media&token=99b600ac-0645-4e7b-8c28-4764e0a968f2")
     no-repeat right bottom;
 }
 
 .home-code-height {
-  height: 40rem;
+  height: 15rem;
+
 }

@@ -10,15 +10,24 @@ import {
   Container,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faTh, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
+import { useCollection } from "react-firebase-hooks/firestore";
+import firebase from "firebase";
 import logout from "../utils/auth/logout";
 import {
   useScrollDirection,
   useScrollPosition,
 } from "../utils/hooks/scrolldirection";
 
-export default ({
+import firebaseInit from "../utils/firebaseInit";
+import "firebase/firestore";
+
+// Initialize Firebase ap
+firebaseInit();
+
+
+ const Navigation = ({
   address,
   showQuickLinks = true,
   search,
@@ -29,6 +38,25 @@ export default ({
   homepage = false,
 }) => {
   const router = useRouter();
+
+
+  // const [subscriptions, loadingSubscriptions, errorSubscriptions] = useDocument(
+  //   firebase
+  //     .firestore()
+  //     .collection("subscriptions")
+  //     .doc((AuthUser && `${listing.id}_${AuthUser.id}`) || "1")
+  // );
+
+  const [subscriptions, loadingSubscriptions, errorSubscriptions] = useCollection(
+    firebase
+      .firestore()
+      .collection("subscriptions")
+      .where("buyerUid", "==", (AuthUser && AuthUser.id) || "1")
+    // {
+    //   snapshotListenOptions: { includeMetadataChanges: true },
+    // }
+  );
+
 
   const [isScrolled, setScrolled] = useState(false);
   const breakpoint = useMediaBreakpoints();
@@ -54,75 +82,162 @@ export default ({
     }
   };
 
-  return (
-    <>
-      <Navbar
-        fixed='top'
-        style={{ zIndex: 1000 }}
-        id='navbar-custom'
-        className='text-info bg-tranparent'
-      >
-        <>
-          <Navbar.Toggle
-            className='border-0'
-            aria-controls='basic-navbar-nav'
+  if (errorSubscriptions)
+    return (
+      <strong>
+        Error:
+        {' '}
+        {/* {JSON.stringify(error)} */}
+      </strong>
+);
+
+
+
+    // const subscriptionData = subscriptions.docs.length ? subscriptions.docs[0].data() : false;;
+    //   console.log('subscriptionData', subscriptionData)
+    return (
+      <>
+        <Navbar
+          fixed='top'
+          style={{ zIndex: 1000 }}
+          id='navbar-custom'
+          className='text-info bg-tranparent '
+        >
+          <>
+            <Navbar.Toggle
+              className='border-0'
+              aria-controls='basic-navbar-nav'
+            />
+            <Navbar.Brand className='ml-5' href='/'>
+              <img
+                src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/assets%2Flogos%2Flogo%20idea-2-transparent%20extra%20extra%20extra%20small.png?alt=media&token=b2eab607-8c13-4cdf-96f2-99abd3451e17'
+                className='ml-auto'
+                alt='Finding Spaces'
+              />
+            </Navbar.Brand>
+            {/* Placeholder to force brand to the right side  */}
+            <div className='flex-grow-0 order-1' />
+            <Navbar.Text as='h1' className='text-reset flex-grow-1 order-2 mb-2'>
+              {/* {address} */}
+            </Navbar.Text>
+            {/* Placeholder end  */}
+          </>
+          <Navbar.Collapse
+            id='nav-links'
+            className='flex-grow-0 order-5 order-sm-4'
           />
-          <div className='flex-grow-0 order-1' />
-          <Navbar.Text as='h1' className='text-reset flex-grow-1 order-2 mb-2'>
-            {/* {address} */}
-          </Navbar.Text>
-        </>
-        <Navbar.Collapse
-          id='nav-links'
-          className='flex-grow-0 order-5 order-sm-4'
-        />
-        <Nav className='mr-1 mr-sm-0  order-3 order-sm-5'>
-          {AuthUser ? (
-            AuthUser.photoURL ? (
-              <NavDropdown
-                key='down'
-                title={
-                  <div>
-                    <Image
-                      width='70%'
-                      src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/assets%2Flogos%2FProfile.png?alt=media&token=5863348f-23ce-4d09-8906-b90f5c95bcb1'
-                    />
-                  </div>
-                }
-                id='dropdown-basic'
-                className='hover-focus-opacity-90 noCaret'
-              >
-                {/* TODO: Add dashboard link */}
-                <NavDropdown.Item onClick={logoutRefresh}>
-                  Log Out
-                </NavDropdown.Item>
-                <NavDropdown.Item href='/'>Search</NavDropdown.Item>
-              </NavDropdown>
-            ) : (
-              <Nav.Link href='#' className='profile-icon'>
-                {/* TODO: Add dashboard link */}
-                <FontAwesomeIcon size='3x' icon={faUserCircle} />
-              </Nav.Link>
-            )
+          <Nav variant="pills" className='mr-sm-0 mt-2 order-3 order-sm-5'>
+            {AuthUser ? (
+              <>
+
+                <NavDropdown
+                  key='down'
+                  title={(
+                    <div>
+                      <img alt='user' width='43px' src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/menu.svg?alt=media&token=3f97f690-b2f6-48cc-9ac7-7cf2107af8b5" />
+                    </div>
+              )}
+                  className='noCaret scheduling-shadow mt-n2'
+                >
+     
+                  {/* TODO: Add dashboard link */}
+                  <NavDropdown.Header className='bg-white rounded-top text-info mx-n2 ' bsPrefix='dropdown-header'>
+         
+                    <b>Subscriptions</b>
+                  </NavDropdown.Header>
+                  {loadingSubscriptions && "Loading..."} 
+                  {
+                    subscriptions && subscriptions.docs.map((subscription => (
+                      <NavDropdown.Header className='rounded-sm  p-2  '>
+                        <Button href={`/listing/${subscription.data().listingId}`} size='lg' className='bg-info py-2 text-white w-100'>
+                          <FontAwesomeIcon
+                            className='mr-2'
+                            size='sm'
+                            icon={faHome}
+                            color='white'
+                          />
+                          {' '}
+                          {subscription.data().listing.address[0]}
+                        </Button>
+                      </NavDropdown.Header>
+                    )))
+                  }
+                 
+               
+                  <NavDropdown.Header className='mx-n2 mt-4 text-white bg-light'>
+                    <Button size='sm' className='mt-4 py-2 w-100'>Seller dashboard</Button> 
+                  </NavDropdown.Header>
+                  <NavDropdown.Header className='mx-n2 mb-n3 mt-n2 rounded-bottom  text-light bg-light' href='/'> 
+                    {' '}
+                    <Button size='sm' className='mb-4  py-2  w-100'>Enter home code</Button>
+                  </NavDropdown.Header>
+          
+                </NavDropdown>
+                <NavDropdown
+                  key='down'
+                  title={(
+                    AuthUser.photoURL ? (
+                      <div>
+                        <Image
+                          className='rounded-sm'
+                          width='34px'
+                          src={AuthUser.photoURL}
+                        />
+                      </div>
+                  )
+                    : (
+                      <FontAwesomeIcon
+                        color='darkGrey'
+                        size='2x'
+                        icon={faUserCircle}
+                      />
+                  )
+              )}
+                  id='dropdown-basic'
+                  className='hover-focus-opacity-90 noCaret mr-5 mt-n1 '
+                >
+                  {/* TODO: Add dashboard link */}
+                  <NavDropdown.Item className=' my-1 p-1 bg-light' onClick={logoutRefresh}>
+                    Log Out
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+          
           ) : (
             breakpoint.up.lg && (
-              <Nav.Link
-                as={Button}
-                variant='inherit'
-                onClick={showLoginModal}
-                className='profile-icon pb-4'
-              >
-                <FontAwesomeIcon
-                  className='mr-2 mt-1 mb-n1 pt-1'
-                  size='2x'
-                  icon={faUserCircle}
-                />
-                My Account
-              </Nav.Link>
+              <>
+                <Nav.Link
+                  as={Button}
+                  variant='inherit'
+                  onClick={showLoginModal}
+                  className=''
+                >
+                  <div>
+                    <img alt='user' width='33px' src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/menu.svg?alt=media&token=3f97f690-b2f6-48cc-9ac7-7cf2107af8b5" />
+                  </div>
+           
+                </Nav.Link>
+                <Nav.Link
+                  as={Button}
+                  variant='inherit'
+                  onClick={showLoginModal}
+                  className=''
+                >
+                  <FontAwesomeIcon
+                    className=' '
+                    size='2x'
+                    icon={faUserCircle}
+                  />
+           
+                </Nav.Link>
+              </>
             )
           )}
-        </Nav>
-      </Navbar>
-    </>
+          </Nav>
+        </Navbar>
+      </>
   );
 };
+
+
+export default Navigation;

@@ -1,10 +1,10 @@
-"use strict";
+
 
 import firebase from "firebase/app";
 import "firebase/firestore";
-import firebaseInit from "../../utils/firebaseInit";
 import uid from 'uid';
 import { DateTime } from 'luxon'
+import firebaseInit from "../../utils/firebaseInit";
 
 firebaseInit();
 // Submit propsal for informal offer to interested collection in database

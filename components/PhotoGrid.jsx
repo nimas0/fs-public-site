@@ -41,6 +41,7 @@ export default ({ photos, tilesWide, address }) => {
     setExpanded(!expanded);
   };
 
+
   // Lightbox gallery
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);

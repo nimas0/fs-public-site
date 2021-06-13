@@ -1,4 +1,4 @@
-"use strict";
+
 
 import React from "react";
 import { Button } from "react-bootstrap";
@@ -25,12 +25,12 @@ export default ({
 
   return (
     <Button
-      variant="dark"
-      className="mr-1 py-2"
-      style={Object.assign(
-        { width: small ? "4.7rem" : "7rem" },
-        available ? {} : { cursor: "not-allowed" }
-      )}
+      variant='outline-primary'
+      className="mr-1 border border-primary text-dark py-2"
+      style={({
+        width: small ? "4.7rem" : "7rem",
+        ...(available ? {} : { cursor: "not-allowed" })
+      })}
       active={+time === +activeTime}
       onClick={() => {
         if (+time === +activeTime) {

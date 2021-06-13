@@ -165,7 +165,7 @@ export default ({ shown, setShown }) => {
         </>
       ) : page === "verification" ? (
         <>
-          <Upload userId={userId} setPage={setPage} newUser={newUser} />
+          <Upload userId={userId} setPage={setPage} setModalShow={setShown} newUser={newUser} />
           {/* <Modal.Footer>
                   <Button
                      variant='secondary'

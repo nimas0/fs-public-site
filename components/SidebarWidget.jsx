@@ -46,9 +46,9 @@ const SidebarWidget = ({
   timeZone,
   AuthUser,
   showLoginModal,
-  setSubscribed,
   verification,
-  subscriptionData,
+  leadData,
+  isSubscribed,
   firebase,
   interestId,
   value,
@@ -74,21 +74,6 @@ const SidebarWidget = ({
 
   const buyerId = AuthUser && AuthUser.id;
   const { listingId } = router.query;
-  // const interestId = `${listingId}_${buyerId}`;
-
-  // react hook for firebase firestore listener
-  // const [value, loading, error] = useDocument(
-  //   firebase.firestore().doc(`interest/${interestId}`),
-  //   {
-  //     snapshotListenOptions: { includeMetadataChanges: true },
-  //   }
-  // );
-
-  console.log("router", subscriptionData);
-
-  // if (!loading) {
-  //   console.log("listingId", value.data());
-  // }
 
   const ModalBody = () => (
     <>
@@ -99,16 +84,11 @@ const SidebarWidget = ({
     </>
   );
 
-  useEffect(() => {
-    if (!loading && !error && subscriptionData) {
-      return setSubscribed(true);
-    }
-    if (!loading && !error) {
-      return setSubscribed(false);
-    }
-  }, [value]);
 
-  const handleSubscribe = async () => {
+  
+
+
+  const handleLeadInitialization = async () => {
     setSuccess(false);
     setFailure(false);
     setSending(true);
@@ -116,33 +96,21 @@ const SidebarWidget = ({
     try {
       const { authId } = AuthUser;
 
-      if (subscriptionData) {
-        // Send offer info through API
-        // const interestId = `${router.query.listingId}_${AuthUser.id}`;
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/unsubscribe-listing`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ interestId }),
-          }
-        );
-        console.log("nope");
-      } else {
-        // Send offer info through API
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/subscribe-listing`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              listingId: router.query.listingId,
-              AuthUser,
-              listing,
-            }),
-          }
-        );
-      }
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/lead-initialize`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            listingId: router.query.listingId,
+            AuthUser,
+            listing,
+          }),
+        }
+      );
+
+
 
       // // Send offer info through API
       // const response = await fetch('/api/subscribe-listing', {
@@ -187,8 +155,109 @@ const SidebarWidget = ({
       setSending(false);
     }
   };
-  console.log("proposal", !!subscriptionData);
-  // if (!subscriptionData) return "loading";
+
+
+  const handleSubscription = async () => {
+    setSuccess(false);
+    setFailure(false);
+    setSending(true);
+    console.log("test");
+    try {
+     
+
+      if(!AuthUser) {
+        showLoginModal()
+      }
+
+      const { authId } = AuthUser;
+if(isSubscribed) {
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/listing-unsubscribe`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        listingId: router.query.listingId,
+        AuthUser,
+        listing,
+      }),
+    }
+  );
+} else {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/listing-subscribe`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        listingId: router.query.listingId,
+        AuthUser,
+        listing,
+      }),
+    }
+  );
+
+ 
+}
+     
+
+
+
+      // // Send offer info through API
+      // const response = await fetch('/api/subscribe-listing', {
+      //    method: 'POST',
+      //    headers: { 'Content-Type': 'application/json' },
+      //    body: JSON.stringify({ listingId: router.query.listingId, AuthUser, listing }),
+      // });
+
+      // Set up message object, create key, and post to firebase real time //
+      // const { amount, deposit } = values;
+      // const responseJson = await response.json()
+      // const docId = responseJson.docId;
+
+      if (response.ok) {
+        // Move on
+
+        // await router.push('/buyer/dashboard')
+        // addToast(`Offer has been successfully submitted! You will be notified within 48 hours or less with the sellers response`, { appearance: 'success' })
+        // setSending(false);
+        // setSuccess(true);
+        console.log(await response.json());
+        console.log("upload successful");
+      } else {
+        // https://github.com/developit/unfetch#caveats
+        const error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+    } catch (err) {
+      // Add upload failure message
+      setSuccess(false);
+      console.error("Either a coding error or network issues", err.response);
+      console.log(err);
+
+      // addToast(
+      //    `Sorry something went wrong. Please try again. If this error persists please contact customer support. ${err.response.status} ${err}`,
+      //    {
+      //       appearance: 'error',
+      //    }
+      // );
+
+      setSending(false);
+    }
+  };
+
+
+
+
+  
+
+
+
+
+  console.log("subnotiffff", isSubscribed);
+  // if (!leadData) return "loading";
   return (
     <>
       {/* {error && <strong>Error: {JSON.stringify(error)}</strong>}
@@ -238,9 +307,9 @@ const SidebarWidget = ({
             >
               {/* { Generate SideBar} */}
               {RenderView(
-                (!!subscriptionData &&
-                  subscriptionData.proposal &&
-                  subscriptionData.proposal.state) ||
+                (!!leadData &&
+                  leadData.proposal &&
+                  leadData.proposal.state) ||
                   "default"
               )}
             </Row>
@@ -248,7 +317,7 @@ const SidebarWidget = ({
           <Row className='pb-1 mb-3 mx-2'>
             <InformationBar buyerUid={buyerId} listingId={listingId} />
           </Row>
-          {!!subscriptionData && !subscriptionData.proposal && (
+          {!!leadData && !leadData.proposal && (
             <DatePicker
               // eslint-disable-next-line no-nested-ternary
               daysDisplayed={breakpoint.sm ? 4 : breakpoint.md ? 5 : 3}
@@ -266,7 +335,7 @@ const SidebarWidget = ({
               }}
             />
           )}
-          {!subscriptionData && (
+          {!leadData && (
             <DatePicker
               // eslint-disable-next-line no-nested-ternary
               daysDisplayed={breakpoint.sm ? 4 : breakpoint.md ? 5 : 3}
@@ -287,86 +356,92 @@ const SidebarWidget = ({
           {!verification ||
           (verification.status !== "accepted" &&
             verification.status !== "pending") ? (
-            <>
-              <RenderButtons
-                setModalShow={AuthUser ? setModalShow : showLoginModal}
-                type='unverified'
-                label='Schedule an Appointment'
-              />
-              <RenderButtons
-                setModalShow={AuthUser ? setModalShow : showLoginModal}
-                type='unverified'
-                label='Make an Offer'
-              />
-              <RenderButtons
-                setModalShow={AuthUser ? setModalShow : showLoginModal}
-                type='unverified'
-                label='Chat with Seller'
-              />
-              <Button
-                target='_blank'
-                href='https://seller.findingspaces.com'
-                id='tour-this-home2'
-                aria-labelledby='tour-this-home-heading'
-                className={` w-100  border-0 bg-transparent py-3 mt-3 text-primary px-n3    mx-lg-0 pb-2 mb-5  ${
+              <>
+                <div className='mx-4'>
+                  <RenderButtons
+                    setModalShow={AuthUser ? setModalShow : showLoginModal}
+                    type='unverified'
+                    label='Schedule an Appointment'
+                  />
+                  <RenderButtons
+                    setModalShow={AuthUser ? setModalShow : showLoginModal}
+                    type='unverified'
+                    label='Make an Offer'
+                  />
+                  <RenderButtons
+                    setModalShow={AuthUser ? setModalShow : showLoginModal}
+                    type='unverified'
+                    label='Chat with Seller'
+                  />
+                  <Button
+                    target='_blank'
+                    href='https://seller.findingspaces.com'
+                    id='tour-this-home2'
+                    aria-labelledby='tour-this-home-heading'
+                    className={` w-100  border-0 bg-transparent py-3 mt-3 text-primary px-n3    mx-lg-0 pb-2 1  ${
                   breakpoint.up.lg ? " position-sticky" : ""
                 }`}
-              >
-                <Row>
-                  <Col xs='12'>
-                    Sign up to sell your home{" "}
-                    <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
-                  </Col>
-                </Row>
-              </Button>
-            </>
+                  >
+                    <Row>
+                      <Col xs='12'>
+                        Sign up to sell your home
+                        {" "}
+                        <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
+                      </Col>
+                    </Row>
+                  </Button>
+                </div>
+              </>
           ) : (
             <>
-              <RenderButtons
-                router={router}
-                subscriptionData={subscriptionData}
-                type='scheduling'
-                label='Schedule Appointment'
-                tourLinkAs={tourLinkAs}
-                handleSubscribe={handleSubscribe}
-              />
-              <RenderButtons
-                subscriptionData={subscriptionData}
-                type='chat'
-                label='Chat with Seller'
-                router={router}
-                handleSubscribe={handleSubscribe}
-                listingId={listingId}
-                buyerId={buyerId}
-              />
-              <RenderButtons
-                subscriptionData={subscriptionData}
-                type='proposal'
-                label='Make an Offer'
-                buyerId={buyerId}
-                router={router}
-                listingId={listingId}
-                handleSubscribe={handleSubscribe}
-              />
-              <Button
-                target='_blank'
-                href='https://seller.findingspaces.com'
-                id='tour-this-home2'
-                aria-labelledby='tour-this-home-heading'
-                className={` w-100  border-0 bg-transparent py-3 mt-3 text-primary px-n3    mx-lg-0 pb-2 mb-5  ${
+              <div className='mx-4'>
+                <RenderButtons
+                  router={router}
+                  leadData={leadData}
+                  type='scheduling'
+                  label='Schedule Appointment'
+                  tourLinkAs={tourLinkAs}
+                  handleLeadInitialization={handleLeadInitialization}
+                />
+                <RenderButtons
+                  leadData={leadData}
+                  type='chat'
+                  label='Chat with Seller'
+                  router={router}
+                  handleLeadInitialization={handleLeadInitialization}
+                  listingId={listingId}
+                  buyerId={buyerId}
+                />
+                <RenderButtons
+                  leadData={leadData}
+                  type='proposal'
+                  label='Make an Offer'
+                  buyerId={buyerId}
+                  router={router}
+                  listingId={listingId}
+                  handleLeadInitialization={handleLeadInitialization}
+                />
+                <Button
+                  target='_blank'
+                  href='https://seller.findingspaces.com'
+                  id='tour-this-home2'
+                  aria-labelledby='tour-this-home-heading'
+                  className={` w-100  border-0 bg-transparent py-3 mt-3 text-primary px-n3    mx-lg-0 pb-2 mb-3  ${
                   breakpoint.up.lg ? " position-sticky" : ""
                 }`}
-              >
-                <Row>
-                  <Col xs='12'>
-                    Sign up to sell your home{" "}
-                    <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
-                  </Col>
-                </Row>
-              </Button>
+                >
+                  <Row>
+                    <Col xs='12'>
+                      Sign up to sell your home
+                      {" "}
+                      <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
+                    </Col>
+                  </Row>
+                </Button>
+              </div>
             </>
           )}
-          <div
+          {/* <div
             className='text-muted mx-auto mb-3'
             style={
               breakpoint.up.lg
@@ -377,20 +452,20 @@ const SidebarWidget = ({
             *Pre-approval/proof of funds required
             {breakpoint.xs ? <br /> : " "}
             to book an appointment
-          </div>
+          </div> */}
           {/* Disabled temporarily until we write a new subscription solution */}
           <Row
             noGutters
             className='text-center mx-auto'
             style={{ width: breakpoint.lg ? "16rem" : "100%" }}
           >
-            {/* <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
+            <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
               <WidgetAction
-                // handleClick={handleSubscribe}
-                label='Subscribe to Updates'
+                handleClick={handleSubscription}
+                label={isSubscribed ? 'You are recieving updates' : 'Subscribe to Updates'}
                 icon={faHeart}
                 href='#'
-                isSubscribed={!!subscriptionData}
+                isSubscribed={!!isSubscribed}
               />
             </Col>
             <Col xs={5} sm={3} lg={5} xl={6} className='mb-3'>
@@ -400,7 +475,7 @@ const SidebarWidget = ({
                 icon={faShareAlt}
                 href='#'
               />
-            </Col> */}
+            </Col>
           </Row>
         </Card>
 
@@ -447,6 +522,7 @@ const SidebarWidget = ({
       <GenericModal
         showFooter={false}
         show={modalShow}
+        handleClose={() => setModalShow(false)}
         onHide={() => setModalShow(false)}
         header='Pre-Approval or Pre-Qualification Required.'
         body={<ModalBody />}

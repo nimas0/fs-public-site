@@ -5,7 +5,7 @@ import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import GenericModal from "../../GenericModal";
 
 const RenderButtons = ({
-  subscriptionData,
+  leadData,
   verification,
   tourLinkAs,
   router,
@@ -14,10 +14,10 @@ const RenderButtons = ({
   setModalShow,
   buyerId,
   listingId,
-  handleSubscribe,
+  handleLeadInitialization,
 }) => {
   const breakpoint = useMediaBreakpoints();
-  console.log("type", type);
+  console.log("type", leadData);
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
 
   //   const GenericButton = (onClick, label) => (
@@ -43,12 +43,12 @@ const RenderButtons = ({
       <Button
         block
         variant={
-          !!subscriptionData && subscriptionData.buyerMessageCounter > 0
+          !!leadData && leadData.buyerMessageCounter > 0
             ? "outline-primary"
             : "primary"
         }
         onClick={() => {
-          if (!subscriptionData) handleSubscribe();
+          if (!leadData) handleLeadInitialization();
           router.push(tourLinkAs);
         }}
         className={clsx(
@@ -59,9 +59,9 @@ const RenderButtons = ({
           "text-center",
           "align-center",
           "bg-primary",
-          !!subscriptionData &&
-            subscriptionData.buyerMessageCounter > 0 &&
-            "bg-white text-primary border border-primary"
+          !!leadData &&
+            leadData.buyerMessageCounter > 0 &&
+            ""
         )}
         style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
       >
@@ -72,13 +72,13 @@ const RenderButtons = ({
       <Button
         block
         variant={
-          !!subscriptionData && subscriptionData.buyerMessageCounter > 0
+          !!leadData && leadData.buyerMessageCounter > 0
             ? "outline-primary"
             : "primary"
         }
         onClick={async (e) => {
           e.preventDefault();
-          if (!subscriptionData) await handleSubscribe();
+          if (!leadData) await handleLeadInitialization();
           router.push(
             `/buyer/interest?interestId=${listingId}_${buyerId}`,
             `/buyer/interest/${listingId}_${buyerId}`
@@ -92,32 +92,36 @@ const RenderButtons = ({
           "text-center",
           "align-center",
           "bg-primary",
-          !!subscriptionData &&
-            subscriptionData.buyerMessageCounter > 0 &&
-            "bg-white text-primary border border-primary"
+          !!leadData &&
+            leadData.buyerMessageCounter > 0 &&
+            "bg-white text-success border border-primary"
         )}
         style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
       >
-        {!!subscriptionData && subscriptionData.buyerMessageCounter > 0 ? (
-          <b> {subscriptionData.buyerMessageCounter} New Message(s)</b>
+        {!!leadData && leadData.buyerMessageCounter > 0 ? (
+          <b> 
+            {' '}
+            {leadData.buyerMessageCounter}
+            {' '}
+            New Message(s)
+          </b>
         ) : (
           "Chat with Seller"
         )}
       </Button>
     ),
     proposal: () => {
-      // console.log("subscription", subscriptionData.proposal.state);
-
+  
       if (
-        !!subscriptionData &&
-        subscriptionData.proposal &&
-        subscriptionData.proposal.state === "accepted"
+        !!leadData &&
+        leadData.proposal &&
+        leadData.proposal.state === "accepted"
       )
         return null;
       if (
-        !!subscriptionData &&
-        subscriptionData.proposal &&
-        subscriptionData.proposal.state === "active"
+        !!leadData &&
+        leadData.proposal &&
+        leadData.proposal.state === "active"
       )
         return (
           <Button
@@ -125,8 +129,8 @@ const RenderButtons = ({
             variant='primary'
             onClick={async (e) => {
               e.preventDefault();
-              if (!!subscriptionData && !subscriptionData)
-                await handleSubscribe();
+              if (!!leadData && !leadData)
+                await handleLeadInitialization();
               router.push(
                 `/buyer/interest?interestId=${listingId}_${buyerId}`,
                 `/buyer/interest/${listingId}_${buyerId}`
@@ -138,9 +142,9 @@ const RenderButtons = ({
               "d-block",
               "my-1",
               "text-center",
-              !!subscriptionData &&
-                subscriptionData.proposal &&
-                subscriptionData.proposal.state === "rejected" &&
+              !!leadData &&
+                leadData.proposal &&
+                leadData.proposal.state === "rejected" &&
                 "bg-danger"
             )}
             style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
@@ -154,7 +158,7 @@ const RenderButtons = ({
           variant='primary'
           onClick={async (e) => {
             e.preventDefault();
-            if (!subscriptionData) await handleSubscribe();
+            if (!leadData) await handleLeadInitialization();
             router.push(
               `/buyer/Offer/[Offer]`,
               `/buyer/Offer/${listingId}_${buyerId}`
@@ -166,16 +170,16 @@ const RenderButtons = ({
             "d-block",
             "my-1",
             "text-center",
-            !!subscriptionData &&
-              subscriptionData.proposal &&
-              subscriptionData.proposal.state === "rejected" &&
+            !!leadData &&
+              leadData.proposal &&
+              leadData.proposal.state === "rejected" &&
               "bg-danger"
           )}
           style={breakpoint.up.lg ? { width: dateButtonsWidth - 4 } : {}}
         >
-          {!!subscriptionData &&
-          subscriptionData.proposal &&
-          subscriptionData.proposal.state === "rejected"
+          {!!leadData &&
+          leadData.proposal &&
+          leadData.proposal.state === "rejected"
             ? "Propose Another Offer"
             : "Propose Offer"}
         </Button>

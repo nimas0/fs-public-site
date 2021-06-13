@@ -9,6 +9,7 @@ const GenericModal = ({
   showFooter = true,
   showHeader = true,
   padding,
+  handleClose,
   ...rest
 }) => (
   <Modal
@@ -36,7 +37,7 @@ const GenericModal = ({
     </Modal.Body>
     {showFooter && (
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button onClick={handleClose}>Close</Button>
       </Modal.Footer>
     )}
   </Modal>

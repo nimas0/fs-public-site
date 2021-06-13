@@ -76,15 +76,13 @@ const SkeletonBuyerDashboard = ({ AuthUserInfo, showLoginModal }) => {
               as='h1'
               className='h4 mx-auto mb-3'
               style={{ width: "max-content" }}
-            >
-              address medium
-            </Row>
+            />
           )}
 
           <Row as='main'>
             <Col lg={6}>
               {breakpoint.down.md && (
-                <Col md='auto'>SidebarWidget if small</Col>
+                <Col md='auto' />
               )}
               <Skeleton
                 style={{ marginBottom: "1rem" }}

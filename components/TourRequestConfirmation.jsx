@@ -1,4 +1,4 @@
-"use strict";
+
 
 import React from "react";
 import { Card, Button } from "react-bootstrap";
@@ -15,9 +15,9 @@ import Link from "next/link";
 
 const { Step } = Steps;
 
-export default ({ tourTime }) => {
+export default ({ tourTime, listing }) => {
   const breakpoint = useMediaBreakpoints();
-
+console.log('listing', listing)
   return (
     <main aria-labelledby="tour-requested">
       <h1 id="tour-requested" className="text-center mb-4">
@@ -36,8 +36,10 @@ export default ({ tourTime }) => {
               weekday: "long",
               month: "long",
               day: "numeric"
-            })}{" "}
-            at{" "}
+            })}
+            {" "}
+            at
+            {" "}
             {tourTime.toLocaleString({
               hour: "numeric",
               hour12: true,
@@ -75,13 +77,17 @@ export default ({ tourTime }) => {
           {breakpoint.xs ? " " : <br />}
           We'll get back to you shortly by phone or email.
         </p>
-        <Link       
+
+        <Link
           variant="primary"
           className={clsx(breakpoint.xs ? "w-100" : "px-5")} 
-          as={Button} 
-          variant='link'  
-          href='/buyer/dashboard'>
+          href='/listing/[listingId]'
+          as={`/listing/${listing.id}`}
+          passHref
+        >
+          <a>
             View Appointment
+          </a>
         </Link>
       </Card>
     </main>

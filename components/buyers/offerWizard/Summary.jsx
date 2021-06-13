@@ -70,15 +70,19 @@ const Summary = ({
   //       </div>
   //    );
   return (
-    <div data-test='step-summary'>
-      <Row>
-        <div className='d-flex justify-content-center'>
+    <>
+      <Row style={{ minHeight: '50vh' }} data-test='step-summary'>
+        <div style={{ width: '100%' }} className='d-flex justify-content-center'>
           {sending ? (
             <>
-              <Spinner variant='primary' animation='border' />
+              <div className='m-5' />
+              <div className=' m-auto'>
+                <Spinner className='text-center' variant='primary' animation='border' />
+              </div>
+              <div className=' m-5' />
             </>
           ) : (
-            <div className=' m-5 d-block'>
+            <div style={{ height: '100%', width: '100%' }} className=' h-100 m-5 d-block'>
               <div className='py-4'>
                 <p>
                   After submitting, seller will be notified of offer. He/She
@@ -86,7 +90,6 @@ const Summary = ({
                   counter terms.
                 </p>
               </div>
-
               <b className='mb-5'>Please Review Offer before submitting:</b>
               <br />
               <Table
@@ -122,32 +125,31 @@ const Summary = ({
           )}
         </div>
       </Row>
-      <div>
-        <Card.Footer className='p-4 d-flex justify-content-between align-items-center'>
-          <Col xs='1' className='pl-1'>
-            <Button
-              onClick={rest.cancelAction}
-              as='a'
-              className='rounded-lg'
-              variant='light'
-            >
-              CANCEL
-            </Button>
-          </Col>
-          <Col className='d-flex justify-content-end mr-5'>
-            <Button
-              size='lg'
-              type='submit'
-              className=' w-25 rounded-lg ml-3 my-1'
-              variant='primary'
-              block
-            >
-              Send Offer
-            </Button>
-          </Col>
-        </Card.Footer>
-      </div>
-    </div>
+
+      <Card.Footer className='p-4 d-flex justify-content-between align-items-end'>
+        <Col xs='1' className='pl-1'>
+          <Button
+            onClick={rest.cancelAction}
+            as='a'
+            className='rounded-lg'
+            variant='light'
+          >
+            CANCEL
+          </Button>
+        </Col>
+        <Col className='d-flex justify-content-end mr-5'>
+          <Button
+            size='lg'
+            type='submit'
+            className=' w-25 rounded-lg ml-3 my-1'
+            variant='primary'
+            block
+          >
+            Send Offer
+          </Button>
+        </Col>
+      </Card.Footer>
+    </>
   );
 };
 

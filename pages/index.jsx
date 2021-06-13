@@ -27,6 +27,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../components/Nav";
 
+
 import withAuthUser from "../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../utils/pageWrappers/withLoginModal";
@@ -44,6 +45,7 @@ import WidgetAction from "../components/WidgetAction";
 import DatePicker from "../components/DatePicker";
 import clsx from "clsx";
 import HomeSearch from "../components/HomeSearch.";
+import DividerWithText from "../components/DividerWithText";
 
 const Listing = ({
   AuthUserInfo,
@@ -57,55 +59,65 @@ const Listing = ({
   const breakpoint = useMediaBreakpoints();
   const miniWidget = useRef(0);
   const router = useRouter();
-
+  console.log('AuthUserInfo', AuthUserInfo);
   const ModalBody = () => (
     <>
-      <Container className='home-code-height home-code bg-info justify-content-center  p-5'>
+      <Nav showLogo {...{ AuthUser, showLoginModal }} />
+      <Container className='bg-info justify-content-center  p-5'>
         <Row className='justify-content-center mx-5' xs={12}>
           <Col className='d-inline' xs='auto'>
-            <h5 className=' text-white '>
+            <h5 className=' text-white'>
               <b>Enter Home Code</b>{" "}
             </h5>
           </Col>
 
-          <p className=' text-white mx-3'>
+          <p className=' text-light mx-3'>
             View Details, Schedule an Appointment, Chat, or Make an Offer
           </p>
         </Row>
-
-        <Row className='justify-content-center  mx-5 my-0 ' xs={12}>
+       
+        <Row className='justify-content-center pt-3 pb-0 mx-5 mt-2  mb-2' xs={12}>
           <HomeSearch AuthUser={AuthUser} setModalShow={setModalShow} />
-
-          <Divider className='text-white my-1' plain>
-            OR
-          </Divider>
         </Row>
+        <Row className='justify-content-center  mx-1 my-2 ml-1'>
+          <Col xs={5}> <Divider className='bg-light' orientation="left" /></Col>
+          <Col className='mt-2 text-light' xs={1}>or</Col>
+          <Col xs={5}> <Divider className='bg-light' orientation="right" /></Col>
+        </Row>
+       
+ 
         <Row />
         {/* <Row className='justify-content-center' xs={12}>
           {" "}
           <h3 className='text-white my-5 py-2'>or</h3>
         </Row> */}
-        <Row className='justify-content-right mt-4 ml-3' xs={12}>
-          <h5 className='text-white ml-5'>
+        {/* <Row className='justify-content-right mt-4 ml-3' xs={12}>
+          <h5 className='text-primary ml-5'>
             <strong>Sell your Home. Save Money.</strong>
           </h5>
-        </Row>
+        </Row> */}
         <Row className='justify-content-right mt-2 ml-5' xs={12}>
           <Col xs={7}>
-            <p className='text-white '>
-              Stop using a Real Estate Agent. Finding Space's one-stop online
-              dashboard makes selling without a real estate agent completely
-              effortless!
+            <h5 className='text-white mb-4 text-center'>
+              <strong>Sell your Home. Save Money.</strong>
+            </h5>
+            <p className='text-light text-center'>
+              Finding Space's one-stop online dashboard makes selling without a real estate agent completely
+              effortless by providing: Scheduling, Website, Tips, etc
             </p>
             <Button
               as='a'
+              variant='outlined'
               target='_blank'
               href='https://seller.findingspaces.com'
-              className='bg-white text-primary border border-primary'
+              className='border border-primary'
               block
             >
-              <strong>Sign up for Free</strong>
+              <strong>Sign up or Login</strong>
             </Button>
+          </Col>
+          <Col xs={5}>
+            <img src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/AdobeStock_3558899111111111169.png?alt=media&token=3c165f22-8853-4b43-8b45-bb5ab0a5bed6' />
           </Col>
         </Row>
       </Container>
@@ -117,21 +129,13 @@ const Listing = ({
       <Head>
         <title>Finding Spaces – Search for Home</title>
       </Head>
-      {/* <Nav showLogo {...{ AuthUser, showLoginModal }} /> */}
-      <Navbar fixed='top' bg='transparent'>
-        <Navbar.Brand className='ml-auto' href='#home'>
-          <img
-            width='75%'
-            src='https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/logo%20idea-2-transparent.png?alt=media&token=0bc11614-2775-4c8c-8052-c897afb2b336'
-            className='ml-auto'
-            alt='Finding Spaces'
-          />
-        </Navbar.Brand>
-      </Navbar>
-      <SkeletonTheme color='#e5e5e5' highlightColor='#ffffff'>
+
+    
+
+      <SkeletonTheme color='#d6d6d6' highlightColor='#ffffff'>
         {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
         <Container style={{ borderRadius: "30px" }} bsPrefix='container-md'>
-          {breakpoint.down.md && (
+          {/* {breakpoint.down.md && (
             <Row
               as='h1'
               className='h4 mx-auto mb-3'
@@ -139,13 +143,13 @@ const Listing = ({
             >
               address medium
             </Row>
-          )}
+          )} */}
 
           <Row as='main'>
             <Col lg={6}>
-              {breakpoint.down.md && (
+              {/* {breakpoint.down.md && (
                 <Col md='auto'>SidebarWidget if small</Col>
-              )}
+              )} */}
               <Skeleton
                 style={{ marginBottom: "1rem" }}
                 delay={modalShow ? 1000 : 0}

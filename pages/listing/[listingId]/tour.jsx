@@ -209,7 +209,14 @@ const Tour = ({
     <>
       <Head>
         <title>
-          Schedule Tour – {listing.address[0]}, {listing.address[1]} – Finding
+          Schedule Tour – 
+          {' '}
+          {listing.address[0]}
+          ,
+          {' '}
+          {listing.address[1]}
+          {' '}
+          – Finding
           Spaces
         </title>
       </Head>
@@ -252,14 +259,16 @@ const Tour = ({
         </div>
 
         {confirmed ? (
-          <TourRequestConfirmation tourTime={activeTime} />
+          <TourRequestConfirmation listing={listing} tourTime={activeTime} />
         ) : (
           <main aria-labelledby='pick-a-time'>
             <h1
               id='pick-a-time'
               className={clsx(breakpoint.xs ? "mb-4" : "mb-5")}
             >
-              <FontAwesomeIcon icon={faCalendarAlt} /> Pick a Time
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              {' '}
+              Pick a Time
             </h1>
 
             <Row className={clsx(breakpoint.down.lg ? "mb-4" : "mb-5")}>
@@ -267,8 +276,12 @@ const Tour = ({
                 <div ref={dateAndTime}>
                   {userTimeZoneDiffers && (
                     <div className='text-info text-center mb-3'>
-                      <FontAwesomeIcon icon={faInfoCircle} /> All times are in{" "}
-                      {offsetName}.
+                      <FontAwesomeIcon icon={faInfoCircle} />
+                      {' '}
+                      All times are in
+                      {" "}
+                      {offsetName}
+                      .
                     </div>
                   )}
 

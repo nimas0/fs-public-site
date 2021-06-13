@@ -43,7 +43,6 @@ const Listing = ({
   const { AuthUser = null } = AuthUserInfo;
   const [skeleton, setSkeleton] = useState(false);
   const breakpoint = useMediaBreakpoints();
-  const [isSubscribed, setSubscribed] = useState(false);
   const { timeZone } = listing;
   LuxonSettings.defaultZoneName = timeZone;
   const router = useRouter();
@@ -73,6 +72,14 @@ const Listing = ({
       .doc((AuthUser && AuthUser.id) || "1")
   );
 
+
+  const [subNotif, loadingSubNotif, errorSubNotif] = useDocument(
+    firebase
+      .firestore()
+      .collection("subscriptions")
+      .doc((AuthUser && `${listing.id}_${AuthUser.id}`) || "1")
+  );
+
   const [value, loading, error] = useCollection(
     firebase
       .firestore()
@@ -83,6 +90,7 @@ const Listing = ({
     //   snapshotListenOptions: { includeMetadataChanges: true },
     // }
   );
+
 
   const ModalBody = () => (
     <>
@@ -145,15 +153,16 @@ const Listing = ({
   const [tourFirstDate, setTourFirstDate] = useState(tourFirstAvailableDate);
   const [tourActiveDate, setTourActiveDate] = useState(null);
 
-  if (errorUserDoc || error)
+  if (errorUserDoc || error || errorSubNotif)
     return <strong>Error: {/* {JSON.stringify(error)} */}</strong>;
-  if (loadingUserDoc || loading)
+  if (loadingUserDoc || loading || loadingSubNotif)
     return (
       <SkeletonBuyerDashboard AuthUserInfo={AuthUserInfo} loading={loading} />
     );
   const { verification } = (userDoc && userDoc.data()) || false;
-  const subscriptionData = value.docs.length ? value.docs[0].data() : false;
-  console.log("doc afsdfsdf", value.docs.length);
+  const leadData = value.docs.length ? value.docs[0].data() : false;
+  const subNotifData = (subNotif && subNotif.data()) || false;
+
   const renderSideBar = () => {
     const matchProposal = "";
 
@@ -177,7 +186,7 @@ const Listing = ({
       //         verification={
       //           loadingUserDoc ? verification : userDoc.data().verification
       //         }
-      //         subscriptionData={doc.data()}
+      //         leadData={doc.data()}
       //       />
       //     </div>
       //   </>
@@ -188,11 +197,12 @@ const Listing = ({
           loading={loading}
           error={error}
           firebase={firebase}
-          subscriptionData={subscriptionData}
-          interestId={subscriptionData && subscriptionData.id}
+          leadData={leadData}
+          interestId={leadData && leadData.id}
           verification={verification}
           key={userDoc}
-          setSubscribed={setSubscribed}
+          isSubscribed={subNotifData}
+          subNotif={subNotif.length}
           listing={listing}
           firstAvailableDate={tourFirstAvailableDate}
           firstDate={tourFirstDate}
@@ -232,17 +242,7 @@ const Listing = ({
 
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
       <Container style={{}} bsPrefix='container-md mt-5'>
-        {breakpoint.down.md && (
-          <Row
-            as='h1'
-            className='h4 mx-auto mb-3'
-            style={{ width: "max-content" }}
-          >
-            {listing.address[0]}
-            {breakpoint.xs ? <br /> : ", "}
-            {listing.address[1]}
-          </Row>
-        )}
+        
 
         <Row as='main'>
           <Col lg={6}>
@@ -270,8 +270,10 @@ const Listing = ({
             {breakpoint.down.md && (
               <Col md='auto'>
                 <SidebarWidget
+                  leadData={leadData}
                   verification={verification}
-                  setSubscribed={setSubscribed}
+                  isSubscribed={!subNotifData}
+                  subNotif={subNotif.length}
                   listing={listing}
                   firstAvailableDate={tourFirstAvailableDate}
                   firstDate={tourFirstDate}

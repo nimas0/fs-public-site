@@ -38,7 +38,6 @@ import MainNav from "../../../../components/Nav";
 import Header from "../../../../components/generic/Dialog/Header";
 
 // Auth, Layout Controls
-import MainLayout from "../../../../components/layout/MainLayout";
 import withAuthUser from "../../../../utils/pageWrappers/withAuthUser";
 import withAuthUserInfo from "../../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../../utils/pageWrappers/withLoginModal";
@@ -193,18 +192,20 @@ const OfferPage = ({
                     initialStep={1}
                     transitions={custom}
                     nav={
-                      <Header
-                        headerText='Estimated Time [2 min]'
-                        subHeaderText={
+                      (
+                        <Header
+                          headerText='Estimated Time [2 min]'
+                          subHeaderText={
                           (error && (
                             <strong>Error Displaying Address</strong>
                           )) ||
                           (loading && <span>Loading...</span>) ||
                           (value && value.data().address[0])
                         }
-                      >
-                        <Nav titles={stepTitles} />
-                      </Header>
+                        >
+                          <Nav titles={stepTitles} />
+                        </Header>
+)
                     }
                   >
                     <Disclaimer {...props} cancelAction={cancelAction} />
