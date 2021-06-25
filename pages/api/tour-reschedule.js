@@ -16,7 +16,7 @@ firebaseInit();
 export default async (req, res) => {
   /// Check current listing and/or user schedules
   if (req.method === "GET") {
-    const { listingId = null, userId = null, address = null, photoURL = null } = req.query;
+    const { listingId = null, userId = null } = req.query;
     const showings = firebase.firestore().collection("showings");
 
     // Get listing's future tour schedule
@@ -108,9 +108,7 @@ export default async (req, res) => {
       durationInMinutes,
       listingId,
       userId,
-      user,
-      address,
-      photoURL
+      user
     } = req.body;
     const startTime = parseJSON(startTimeJSON);
     const endTime = addMinutes(startTime, durationInMinutes);
@@ -198,9 +196,7 @@ export default async (req, res) => {
         scheduled: startTime,
         duration: durationInMinutes,
         status: "pending",
-        dateCreated: new Date(),
-        address,
-        photoURL
+        dateCreated: new Date()
       });
 
       // If no error, mission accomplished

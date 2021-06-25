@@ -21,7 +21,7 @@ export default ({
        variant='info'
        className='mr-1 '
        style={({
-            width: small ? '4.7rem' : '7rem',
+            width: small ? '5rem' : '7rem',
             ...(available ? {} : { cursor: 'not-allowed' })
          })}
        active={activeDate && date.hasSame(activeDate, 'day')}

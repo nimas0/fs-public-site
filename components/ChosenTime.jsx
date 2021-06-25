@@ -14,12 +14,12 @@ export default ({
   submitting,
   setSubmitting,
   setConfirmed,
-  user,
+  listing,
+  user
 }) => {
   LuxonSettings.defaultZoneName = timeZone;
   const breakpoint = useMediaBreakpoints();
   const router = useRouter();
-
   const [failureMessage, setFailureMessage] = useState(null);
 
   return (
@@ -174,6 +174,8 @@ export default ({
             startTime: startTime.toUTC().toJSON(),
             durationInMinutes: durationInHours * 60,
             listingId: router.query.listingId,
+            photoURL: listing.photos[0].src,
+            address: listing.fullAddress,
             userId: user.id,
             user: {
               displayName: user.displayName,

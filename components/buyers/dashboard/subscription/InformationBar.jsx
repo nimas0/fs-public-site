@@ -58,14 +58,24 @@ const NoticationBar = ({ buyerUid, listingId }) => {
             {new Date(showing.scheduled.seconds * 1000).toLocaleString()}
           </strong>
         </p>
-        <p className='text-primary p-0 m-0'>{showing.status.toUpperCase()}</p>
+        <p className={`${showing.status === 'cancelled' ? 'text-secondary' : 'text-primary'} p-0 m-0`}>{showing.status.toUpperCase()}</p>
       </Button>
+      {showing.status !== 'cancelled' && (
       <GenericModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         header='Cancel Appointment'
-        body={<p>Email support@findingspaces.com to cancel</p>}
+        body={(
+          <>
+            <Col style={{ minHeight: '250px' }} className='p-5 d-flex justify-content-center flex-column'>
+              <p>Please confirm you want to cancel?</p>
+              <Button href={`/scheduling/${showing.doc}?listingId=${listingId}`} variant='success' className='mr-2 w-50'>Yes, I confirm</Button>         
+            </Col>
+            
+          </>
+)}
       />
+    )}
     </>
   ));
 };

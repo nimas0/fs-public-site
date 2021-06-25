@@ -1,6 +1,6 @@
 // Adapted from https://github.com/zeit/next.js/blob/canary/examples/with-firebase-authentication
 
-"use strict";
+
 
 import commonMiddleware from "../../utils/middleware/commonMiddleware";
 import { verifyIdToken } from "../../utils/auth/firebaseAdmin";
@@ -20,12 +20,8 @@ const handler = (req, res) => {
       req.session.token = token;
       return decodedToken;
     })
-    .then(decodedToken => {
-      return res.status(200).json({ status: true, decodedToken });
-    })
-    .catch(error => {
-      return res.status(500).json({ error });
-    });
+    .then(decodedToken => res.status(200).json({ status: true, decodedToken }))
+    .catch(error => res.status(500).json({ error }));
 };
 
 export default commonMiddleware(handler);

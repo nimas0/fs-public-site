@@ -1,6 +1,6 @@
 // Adapted from https://github.com/zeit/next.js/blob/canary/examples/with-firebase-authentication
 
-"use strict";
+
 
 import React from "react";
 import { get } from "lodash/object";

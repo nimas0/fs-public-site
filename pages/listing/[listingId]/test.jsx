@@ -221,103 +221,69 @@ const Tour = ({
         </title>
       </Head>
 
-      <Nav
-        address={
-          breakpoint.up.lg
-            ? `${listing.address[0]}, ${listing.address[1]}`
-            : false
-        }
-        {...{ AuthUser, showLoginModal }}
-      />
+      
 
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
       <Container className='mt-5' bsPrefix='container-md mt-5'>
-        {breakpoint.down.md && (
+        {/* {breakpoint.down.md && (
           <div className='h4 mx-auto mb-5' style={{ width: "max-content" }}>
             {listing.address[0]}
             {breakpoint.xs ? <br /> : ", "}
             {listing.address[1]}
           </div>
-        )}
+        )} */}
 
-        <div className={clsx("mb-5", confirmed && breakpoint.sm && "ml-4")}>
-          <Link
-            className='mt-5'
-            href='/listing/[listingId]'
-            as={`/listing/${router.query.listingId}`}
-            passHref
-          >
-            <a>
-              <FontAwesomeIcon
-                icon={faLongArrowAltLeft}
-                className='mr-1 mt-5'
-                style={{ zIndex: 1020 }}
-              />
-              Return to listing
-            </a>
-          </Link>
-        </div>
+       
 
-        {confirmed ? (
-          <TourRequestConfirmation listing={listing} tourTime={activeTime} />
-        ) : (
-          <main aria-labelledby='pick-a-time'>
-            <h1
-              id='pick-a-time'
-              className={clsx(breakpoint.xs ? "mb-4" : "mb-5")}
-            >
-              <FontAwesomeIcon icon={faCalendarAlt} />
-              {' '}
-              Pick a Time
-            </h1>
 
-            <Row className={clsx(breakpoint.down.lg ? "mb-4" : "mb-5")}>
-              <Col xs={12} md='auto'>
-                <div ref={dateAndTime}>
-                  {userTimeZoneDiffers && (
-                    <div className='text-info text-center mb-3'>
-                      <FontAwesomeIcon icon={faInfoCircle} />
-                      {' '}
-                      All times are in
-                      {" "}
-                      {offsetName}
-                      .
-                    </div>
+        <main aria-labelledby='pick-a-time'>
+          <Row className={clsx(breakpoint.down.lg ? "mb-4" : "mb-5")}>
+            <Col xs={12} md='auto'>
+              <div ref={dateAndTime}>
+                {userTimeZoneDiffers && (
+                <div className='text-info text-center mb-3'>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  {' '}
+                  All times are in
+                  {" "}
+                  {offsetName}
+                  .
+                </div>
                   )}
 
-                  <DatePicker
-                    small={breakpoint.xs}
-                    alignment={breakpoint.down.sm ? "center" : "left"}
-                    setActiveDate={chooseDate}
-                    dayAvailability={dayAvailability}
-                    getTimeAvailability={getSpecificAvailability(
+                <DatePicker
+                  small={breakpoint.xs}
+                  alignment={breakpoint.down.sm ? "center" : "left"}
+                  setActiveDate={chooseDate}
+                  dayAvailability={dayAvailability}
+                  getTimeAvailability={getSpecificAvailability(
                       generalTimeAvailability,
                       hourly ? 1 : 0.5,
                       schedules
                     )}
-                    disableAllDates={submitting}
-                    className='mb-4'
-                    {...{
+                  disableAllDates={submitting}
+                  className='mb-4'
+                  {...{
                       daysDisplayed,
                       firstAvailableDate,
                       firstDate,
                       setFirstDate,
                       activeDate,
                     }}
-                  />
+                />
 
-                  <TimePicker
-                    small={breakpoint.xs}
-                    alignment={breakpoint.down.sm ? "center" : "left"}
-                    availability={getSpecificAvailability(
+                <TimePicker
+                  small={breakpoint.xs}
+                  alignment={breakpoint.down.sm ? "center" : "left"}
+                  availability={getSpecificAvailability(
                       generalTimeAvailability,
                       hourly ? 1 : 0.5,
                       schedules
                     )(activeDate)}
-                    hourIncrement={hourly ? 1 : 0.5}
-                    hidden={!activeDate}
-                    disableAllTimes={submitting}
-                    {...{
+                  hourIncrement={hourly ? 1 : 0.5}
+                  hidden={!activeDate}
+                  disableAllTimes={submitting}
+                  {...{
                       daysDisplayed,
                       firstAvailableHour,
                       firstHour,
@@ -327,28 +293,28 @@ const Tour = ({
                       setActiveTime,
                       timeZone,
                     }}
-                  />
-                </div>
-              </Col>
+                />
+              </div>
+            </Col>
 
-              {breakpoint.up.md && (
-                <Col md style={{ height: dateAndTimeHeight }}>
-                  <Image
-                    src={listing.photos[0].src}
-                    rounded
-                    style={{
+            {breakpoint.up.md && (
+            <Col md style={{ height: dateAndTimeHeight }}>
+              <Image
+                src={listing.photos[0].src}
+                rounded
+                style={{
                       height: "100%",
                       width: "100%",
                       objectFit: "cover",
                     }}
-                  />
-                </Col>
+              />
+            </Col>
               )}
-            </Row>
+          </Row>
 
-            <ChosenTime
-              hourIncrement={hourly ? 1 : 0.5}
-              {...{
+          <ChosenTime
+            hourIncrement={hourly ? 1 : 0.5}
+            {...{
                 activeDate,
                 activeTime,
                 timeZone,
@@ -357,10 +323,10 @@ const Tour = ({
                 setConfirmed,
                 listing
               }}
-              user={AuthUser && AuthUser}
-            />
-          </main>
-        )}
+            user={AuthUser && AuthUser}
+          />
+        </main>
+  
       </Container>
 
       {/* <Footer /> */}

@@ -36,7 +36,7 @@ const GenericModal = ({
       {body}
     </Modal.Body>
     {showFooter && (
-      <Modal.Footer>
+      <Modal.Footer className='bg-info'>
         <Button onClick={handleClose}>Close</Button>
       </Modal.Footer>
     )}
