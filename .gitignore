@@ -30,3 +30,4 @@ yarn-error.log*
 .env
 .env.local
 .vercel
+.env copy.local

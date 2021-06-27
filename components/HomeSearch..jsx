@@ -110,8 +110,8 @@ const HomeSearch = ({ AuthUser, showLoginModal, setModalShow }) => {
           // cant use validation because it causes issues with autoTab() funcitons after submittion
           // isInvalid={props.errors && Boolean(props.errors[`input${props.index}`])}
           name={`input${props.index}`}
-          className={`rounded bg-transparent border border-primary text-uppercase text-white  defaultCard ${
-            breakpoint.up.lg ? "m-3 form-control1" : "m-1 form-control-mobile"
+          className={`rounded  border border-primary text-uppercase text-white  defaultCard ${
+            breakpoint.up.lg ? "bg-transparent m-3 form-control1" : "m-1 form-control-mobile"
           } ${submitting ? "afterSubmitStyle" : "beforeSubmitStyle"}`}
           style={{
             width: breakpoint.up.lg ? "5rem" : "3rem",
@@ -220,7 +220,7 @@ const HomeSearch = ({ AuthUser, showLoginModal, setModalShow }) => {
                       // ref={buttonRef}
                       onClick={() =>
                         submitSearch(elemRefs, setFieldValue, rest.submitForm)}
-                      className='m-1 ml-n1 mb-0 px-3 '
+                      className={`${breakpoint.down.sm && 'text-primary'} m-1 ml-n1 mb-0 px-3 `}
                     >
                       <strong>Unlock Home</strong>
                     </Button>
