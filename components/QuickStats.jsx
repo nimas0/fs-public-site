@@ -33,6 +33,24 @@ const QuickStats = ({
         className='justify-content-between align-items-center mb-2'
       >
         {/* Activity */}
+        {breakpoint.down.md ? (
+          <Col xs={12} className='h3 primary mt-5'>
+            {/* <FontAwesomeIcon icon={faFire} style={{ color: "#fab92d" }} />  */}
+
+            {skeleton ? (
+              <Skeleton
+                style={{ marginBottom: "1rem" }}
+                delay={1000}
+                height={50}
+                count={1}
+              />
+  ) : (
+    <h4 className='mt-5'>{address}</h4>
+  )}
+          </Col>
+        )
+      :
+      (
         <Col xs={12} className='h3 primary mb-2'>
           {/* <FontAwesomeIcon icon={faFire} style={{ color: "#fab92d" }} />  */}
 
@@ -43,10 +61,12 @@ const QuickStats = ({
               height={50}
               count={1}
             />
-          ) : (
-            <h4>{address}</h4>
-          )}
+        ) : (
+          <h4>{address}</h4>
+        )}
         </Col>
+      )}
+      
         <Approval
           key={1}
           verification={verification}

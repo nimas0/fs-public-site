@@ -19,7 +19,11 @@ export default ({ photoSrc, name, greeting }) => {
         rounded
       />
       <Media.Body>
-        <h5>{name} Homeowner</h5>
+        <h5>
+          {name}
+          {' '}
+          Homeowner
+        </h5>
         <p className='mb-0' style={{ fontSize: "0.9em" }}>
           {greeting || defaultGreeting}
         </p>

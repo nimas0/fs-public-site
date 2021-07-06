@@ -165,11 +165,11 @@ firebaseInit();
                  
                
                   <NavDropdown.Header className='mx-n2 mt-4 text-white bg-light'>
-                    <Button size='sm' className='mt-4 py-2 w-100'>Seller dashboard</Button> 
+                    <Button href="https://seller.findingspaces.com/" size='sm' className='mt-4 py-2 w-100'>Seller dashboard</Button> 
                   </NavDropdown.Header>
                   <NavDropdown.Header className='mx-n2 mb-n3 mt-n2 rounded-bottom  text-light bg-light' href='/'> 
                     {' '}
-                    <Button size='sm' className='mb-4  py-2  w-100'>Enter home code</Button>
+                    <Button href="https://findingspaces.com/" size='sm' className='mb-4  py-2  w-100'>Enter home code</Button>
                   </NavDropdown.Header>
           
                 </NavDropdown>

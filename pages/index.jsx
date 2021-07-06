@@ -26,6 +26,7 @@ import {
   faShareAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Nav from "../components/Nav";
+import MobileNav from "../components/MobileNav";
 
 
 import withAuthUser from "../utils/pageWrappers/withAuthUser";
@@ -35,11 +36,6 @@ import GenericModal from "../components/GenericModal";
 
 import "firebase/firestore";
 import "./homepage.module.css";
-import Approval from "../components/buyers/dashboard/approval/Approval";
-import Stat from "../components/Stat";
-import HomeownerInfo from "../components/HomeownerInfo";
-import RenderView from "../components/buyers/sidebar/RenderView";
-import RenderButtons from "../components/buyers/sidebar/RenderButtons";
 
 import WidgetAction from "../components/WidgetAction";
 import DatePicker from "../components/DatePicker";
@@ -58,7 +54,6 @@ const Listing = ({
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
   const breakpoint = useMediaBreakpoints();
   const miniWidget = useRef(0);
-  const router = useRouter();
   console.log('AuthUserInfo', AuthUserInfo);
   const ModalBody = () => (
     <>
@@ -187,292 +182,261 @@ const Listing = ({
       <Head>
         <title>Finding Spaces – Search for Home</title>
       </Head>
-      <Nav showLogo {...{ AuthUser, showLoginModal }} />
-      <Container style={{marginLeft: 'auto', marginTop: '2rem',}}>
-        <img style={{   maxHeight: '42vh', overflow:'hidden', objectFit: "cover" }} alt="Logo" src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/websiteimages%2FFamily%20moving%20boxes%20no%20sidewalk.png?alt=media&token=5c7b62a3-c9d8-4806-9d5e-9d5eba60b3b9" />
-      </Container>
-      <Container style={{  height:'100%', marginTop: 'auto', paddingTop:'3rem', paddingBottom: '11rem'}}>
-        <ModalBodyMobile setModalShow={setModalShow} />
-      </Container>
-      {breakpoint.up.md && (
-      <>
-        <SkeletonTheme color='#d6d6d6' highlightColor='#ffffff'>
-          {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-          <Container style={{ borderRadius: "30px" }} bsPrefix='container-md'>
-            {/* {breakpoint.down.md && (
-    <Row
-      as='h1'
-      className='h4 mx-auto mb-3'
-      style={{ width: "max-content" }}
-    >
-      address medium
-    </Row>
-  )} */}
+      {breakpoint.up.lg ? 
+      (      
+        <>
+          <SkeletonTheme color='#d6d6d6' highlightColor='#ffffff'>
+            {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
+            <Container style={{ borderRadius: "30px" }} bsPrefix='container-md'>
 
-            <Row as='main'>
-              <Col lg={6}>
-                {/* {breakpoint.down.md && (
-        <Col md='auto'>SidebarWidget if small</Col>
-      )} */}
-                <Skeleton
-                  style={{ marginBottom: "1rem" }}
-                  delay={modalShow ? 1000 : 0}
-                  height={50}
-                  count={1}
-                />
-                <Skeleton delay={modalShow ? 1000 : 0} height={220} count={1} />
-
-                <Skeleton
-                  className='mr-4 my-2'
-                  delay={modalShow ? 1000 : 0}
-                  height={30}
-                  width={60}
-                  count={1}
-                />
-                <Skeleton
-                  className='mr-4 my-2'
-                  delay={modalShow ? 1000 : 0}
-                  height={30}
-                  width={60}
-                  count={1}
-                />
-                <Skeleton
-                  className='mr-4 my-2'
-                  delay={modalShow ? 1000 : 0}
-                  height={30}
-                  width={60}
-                  count={1}
-                />
-                <Skeleton
-                  className='mr-4 my-2'
-                  delay={modalShow ? 1000 : 0}
-                  height={30}
-                  width={60}
-                  count={1}
-                />
-                <Skeleton
-                  className='mr-4 my-2'
-                  delay={modalShow ? 1000 : 0}
-                  height={30}
-                  width={60}
-                  count={1}
-                />
-                <Skeleton
-                  className='mr-4 my-2'
-                  delay={modalShow ? 1000 : 0}
-                  height={30}
-                  width={60}
-                  count={1}
-                />
-
-                <Row xs={12}>
-                  <Col className='mr-n2' xs={8}>
-                    <Skeleton
-                      delay={modalShow ? 1000 : 0}
-                      height={260}
-                      count={1}
-                    />
-                  </Col>
-                  <Col xs={4}>
-                    <Skeleton
-                      className='mb-3'
-                      delay={modalShow ? 1000 : 0}
-                      height={120}
-                      count={1}
-                    />
-                    <Skeleton
-                      delay={modalShow ? 1000 : 0}
-                      height={120}
-                      count={1}
-                    />
-                  </Col>
-                </Row>
-                <Media style={{ clear: "left", marginTop: 40 }}>
-                  <Image
-                    width={95}
-                    height={95}
-                    className='mr-3'
-                    src='https://jmcp.edu.pk/wp-content/uploads/2020/10/blank-profile-picture-973460_1280-300x300-1.jpg'
-                    alt='Homeowner'
-                    rounded
+              <Row as='main'>
+                <Col lg={6}>
+                  <Skeleton
+                    style={{ marginBottom: "1rem" }}
+                    delay={modalShow ? 1000 : 0}
+                    height={50}
+                    count={1}
                   />
-                  <Media.Body>
-                    <h5 className='text-muted'>Homeowner</h5>
-                    <Skeleton
-                      className='mb-3'
-                      delay={modalShow ? 1000 : 0}
-                      height={50}
-                      count={1}
+                  <Skeleton delay={modalShow ? 1000 : 0} height={220} count={1} />
+
+                  <Skeleton
+                    className='mr-4 my-2'
+                    delay={modalShow ? 1000 : 0}
+                    height={30}
+                    width={60}
+                    count={1}
+                  />
+                  <Skeleton
+                    className='mr-4 my-2'
+                    delay={modalShow ? 1000 : 0}
+                    height={30}
+                    width={60}
+                    count={1}
+                  />
+                  <Skeleton
+                    className='mr-4 my-2'
+                    delay={modalShow ? 1000 : 0}
+                    height={30}
+                    width={60}
+                    count={1}
+                  />
+                  <Skeleton
+                    className='mr-4 my-2'
+                    delay={modalShow ? 1000 : 0}
+                    height={30}
+                    width={60}
+                    count={1}
+                  />
+                  <Skeleton
+                    className='mr-4 my-2'
+                    delay={modalShow ? 1000 : 0}
+                    height={30}
+                    width={60}
+                    count={1}
+                  />
+                  <Skeleton
+                    className='mr-4 my-2'
+                    delay={modalShow ? 1000 : 0}
+                    height={30}
+                    width={60}
+                    count={1}
+                  />
+
+                  <Row xs={12}>
+                    <Col className='mr-n2' xs={8}>
+                      <Skeleton
+                        delay={modalShow ? 1000 : 0}
+                        height={260}
+                        count={1}
+                      />
+                    </Col>
+                    <Col xs={4}>
+                      <Skeleton
+                        className='mb-3'
+                        delay={modalShow ? 1000 : 0}
+                        height={120}
+                        count={1}
+                      />
+                      <Skeleton
+                        delay={modalShow ? 1000 : 0}
+                        height={120}
+                        count={1}
+                      />
+                    </Col>
+                  </Row>
+                  <Media style={{ clear: "left", marginTop: 40 }}>
+                    <Image
+                      width={95}
+                      height={95}
+                      className='mr-3'
+                      src='https://jmcp.edu.pk/wp-content/uploads/2020/10/blank-profile-picture-973460_1280-300x300-1.jpg'
+                      alt='Homeowner'
+                      rounded
                     />
-                  </Media.Body>
-                </Media>
-                <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
-                  Questions and Answers
-                </h3>
-                <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
+                    <Media.Body>
+                      <h5 className='text-muted'>Homeowner</h5>
+                      <Skeleton
+                        className='mb-3'
+                        delay={modalShow ? 1000 : 0}
+                        height={50}
+                        count={1}
+                      />
+                    </Media.Body>
+                  </Media>
+                  <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
+                    Questions and Answers
+                  </h3>
+                  <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
 
-                <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
-                  Documents
-                </h3>
-                <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
+                  <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
+                    Documents
+                  </h3>
+                  <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
 
-                <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
-                  Home Details
-                </h3>
-                <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
-              </Col>
+                  <h3 style={{ color: "#AEB3B8" }} className='mt-4'>
+                    Home Details
+                  </h3>
+                  <Skeleton delay={modalShow ? 1000 : 0} height={120} count={1} />
+                </Col>
 
-              {breakpoint.up.lg && (
-              <>
-                <Col lg={5}>
-                  <>
-                    <Skeleton
-                      delay={modalShow ? 1000 : 0}
-                      height={50}
-                      count={1}
-                      className={` mb-2 w-100  border-0 rounded-0  text-dark py-3 px-4 mx-n5 mx-md-n3 mx-lg-0 pb-2 mb-5 my-n2 ${
+                {breakpoint.up.lg && (
+                <>
+                  <Col lg={5}>
+                    <>
+                      <Skeleton
+                        delay={modalShow ? 1000 : 0}
+                        height={50}
+                        count={1}
+                        className={` mb-2 w-100  border-0 rounded-0  text-dark py-3 px-4 mx-n5 mx-md-n3 mx-lg-0 pb-2 mb-5 my-n2 ${
                 breakpoint.up.lg ? " position-sticky" : ""
               }`}
-                      style={
+                        style={
                 breakpoint.up.lg
                   ? { top: "6rem", zIndex: 1040 }
                   : { zIndex: 1040 }
               }
-                    />
+                      />
 
-                    <Card
-                      as='section'
-                      id='tour-this-home'
-                      aria-labelledby='tour-this-home-heading2'
-                      className={`rounded-0 px-4 bg-transparent border-0 mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
+                      <Card
+                        as='section'
+                        id='tour-this-home'
+                        aria-labelledby='tour-this-home-heading2'
+                        className={`rounded-0 px-4 bg-transparent border-0 mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
                 breakpoint.up.lg ? " position-sticky" : ""
               }`}
-                      style={
+                        style={
                 breakpoint.up.lg
                   ? { top: "8rem", zIndex: 1020 }
                   : { zIndex: 1021 }
               }
-                    >
-                      {/* <h2
-      id='tour-this-home-heading'
-      className={clsx(
-        "text-center text-info mt-5 mb-5",
-        breakpoint.lg && "h3"
-      )}
-    >
-      Tour This Home.
-    </h2> */}
-                      <div
-                        className='pt-4 mt-1  bg-transparent text-muted text-center  mb-0'
-                        as='h5'
                       >
-                        <Row
-                  // style={
-                  //   breakpoint.up.lg
-                  //     ? { top: "8rem", zIndex: 1030 }
-                  //     : { zIndex: 1030 }
-                  // }
-                          className=''
+                        
+                        <div
+                          className='pt-4 mt-1  bg-transparent text-muted text-center  mb-0'
+                          as='h5'
                         >
-                          {/* { Generate SideBar} */}
-                          <h2
-                            className={clsx(
+                          <Row
+                            className=''
+                          >
+                            {/* { Generate SideBar} */}
+                            <h2
+                              className={clsx(
                       "text-center bg-transparent w-100 border-0 text-secondary mt-4 pb-2 pl-1",
                       "h3"
                     )}
-                          >
-                            {" "}
-                          </h2>
-                        </Row>
-                      </div>
-                      <Row className='pb-1 mb-2 mx-2'>
-                        {/* <InformationBar
+                            >
+                              {" "}
+                            </h2>
+                          </Row>
+                        </div>
+                        <Row className='pb-1 mb-2 mx-2'>
+                          {/* <InformationBar
                   buyerUid={buyerId}
                   listingId={listingId}
                 /> */}
-                      </Row>
+                        </Row>
 
-                      <Skeleton
-                        className='mb-2'
-                        delay={1000}
-                        height={100}
-                        count={1}
-                      />
-
-                      <>
                         <Skeleton
                           className='mb-2'
                           delay={1000}
-                          height={35}
+                          height={100}
                           count={1}
                         />
-                        <Skeleton
-                          className='mb-2'
-                          delay={1000}
-                          height={35}
-                          count={1}
-                        />
-                        <Skeleton
-                          className='mb-2'
-                          delay={1000}
-                          height={35}
-                          count={1}
-                        />
-                      </>
 
-                      <div
-                        className='text-muted mx-auto mb-3'
-                        style={
+                        <>
+                          <Skeleton
+                            className='mb-2'
+                            delay={1000}
+                            height={35}
+                            count={1}
+                          />
+                          <Skeleton
+                            className='mb-2'
+                            delay={1000}
+                            height={35}
+                            count={1}
+                          />
+                          <Skeleton
+                            className='mb-2'
+                            delay={1000}
+                            height={35}
+                            count={1}
+                          />
+                        </>
+
+                        <div
+                          className='text-muted mx-auto mb-3'
+                          style={
                   breakpoint.up.lg
                     ? { width: dateButtonsWidth - 4, fontSize: "80%" }
                     : { fontSize: "80%" }
                 }
-                      />
-                      <Row
-                        noGutters
-                        className='text-center mx-auto'
-                        style={{ width: breakpoint.lg ? "16rem" : "100%" }}
-                      >
-                        <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
-                          <div className='h1-icon'>
-                            <FontAwesomeIcon
-                              size='xs'
-                              color='grey'
-                              icon={faHeart}
-                            />
-                          </div>
-                        </Col>
-                        <Col xs={5} sm={3} lg={5} xl={6} className='mb-3'>
-                          <div className='h1-icon'>
-                            <FontAwesomeIcon
-                              size='xs'
-                              color='grey'
-                              icon={faShareAlt}
-                            />
-                          </div>
-                        </Col>
-                      </Row>
-                    </Card>
+                        />
+                        <Row
+                          noGutters
+                          className='text-center mx-auto'
+                          style={{ width: breakpoint.lg ? "16rem" : "100%" }}
+                        >
+                          <Col xs={7} sm={3} lg={7} xl={6} className='mb-3'>
+                            <div className='h1-icon'>
+                              <FontAwesomeIcon
+                                size='xs'
+                                color='grey'
+                                icon={faHeart}
+                              />
+                            </div>
+                          </Col>
+                          <Col xs={5} sm={3} lg={5} xl={6} className='mb-3'>
+                            <div className='h1-icon'>
+                              <FontAwesomeIcon
+                                size='xs'
+                                color='grey'
+                                icon={faShareAlt}
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </Card>
 
-                    {/* Sticky mini-widget for smaller screen sizes */}
-                    {breakpoint.down.md && (
-                    <Card
-                      ref={miniWidget}
-                      id='tour-this-home-mini'
-                      className='position-sticky py-2 px-2 mx-n2 mx-md-n3 mb-5'
-                      style={{
+                      {/* Sticky mini-widget for smaller screen sizes */}
+                      {breakpoint.down.md && (
+                      <Card
+                        ref={miniWidget}
+                        id='tour-this-home-mini'
+                        className='position-sticky py-2 px-2 mx-n2 mx-md-n3 mb-5'
+                        style={{
                   marginTop:
                     -miniWidget.current.clientHeight - 2 - 3 * 16 || 0,
                   top: 0,
                   zIndex: 1020,
                 }}
-                    >
-                      <div className='d-flex justify-content-around align-items-center mb-3'>
-                        {/* Schedule Tour */}
-                        <>
-                          <Button
-                            variant='info'
-                            onClick={
+                      >
+                        <div className='d-flex justify-content-around align-items-center mb-3'>
+                          {/* Schedule Tour */}
+                          <>
+                            <Button
+                              variant='info'
+                              onClick={
                         AuthUser
                           ? false
                           : (e) => {
@@ -480,46 +444,60 @@ const Listing = ({
                               showLoginModal();
                             }
                       }
-                            className='px-sm-5'
-                          >
-                            Schedule Tour
-                          </Button>
-                        </>
+                              className='px-sm-5'
+                            >
+                              Schedule Tour
+                            </Button>
+                          </>
 
-                        <WidgetAction
-                          title='Subscribe to Updates'
-                          icon={faHeart}
-                        />
-                        <WidgetAction title='Share' icon={faShareAlt} />
-                        <WidgetAction
-                          title='Start a Conversation'
-                          icon={faCommentDots}
-                        />
-                        <WidgetAction
-                          title='Make an Offer'
-                          icon={faCommentsDollar}
-                        />
-                      </div>
-                    </Card>
+                          <WidgetAction
+                            title='Subscribe to Updates'
+                            icon={faHeart}
+                          />
+                          <WidgetAction title='Share' icon={faShareAlt} />
+                          <WidgetAction
+                            title='Start a Conversation'
+                            icon={faCommentDots}
+                          />
+                          <WidgetAction
+                            title='Make an Offer'
+                            icon={faCommentsDollar}
+                          />
+                        </div>
+                      </Card>
             )}
-                  </>
-                </Col>
-              </>
+                    </>
+                  </Col>
+                </>
     )}
-            </Row>
+              </Row>
+            </Container>
+          </SkeletonTheme>
+          <GenericModal
+            backdrop={false}
+            showFooter={false}
+            showHeader={false}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            body={<ModalBody setModalShow={setModalShow} />}
+          />
+          {/* <Footer /> */}
+        </>
+      )
+            : 
+      (
+        <>
+          <MobileNav {...{ AuthUser, showLoginModal }} />
+          <Container style={{marginLeft: 'auto', marginTop: '2rem',}}>
+            {/* <img style={{   maxHeight: '42vh', overflow:'hidden', objectFit: "cover" }} alt="Logo" src="https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/websiteimages%2FFamily%20moving%20boxes%20no%20sidewalk.png?alt=media&token=5c7b62a3-c9d8-4806-9d5e-9d5eba60b3b9" /> */}
           </Container>
-        </SkeletonTheme>
-        <GenericModal
-          backdrop={false}
-          showFooter={false}
-          showHeader={false}
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          body={<ModalBody setModalShow={setModalShow} />}
-        />
-        {/* <Footer /> */}
-      </>
+          <Container style={{  height:'100%', marginTop: 'auto', paddingTop:'3rem', paddingBottom: '11rem'}}>
+            <ModalBodyMobile setModalShow={setModalShow} />
+          </Container>
+        </>
       )}
+     
+     
       <style jsx global>
         {`
           body {

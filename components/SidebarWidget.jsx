@@ -17,6 +17,7 @@ import useMediaBreakpoints from "@tywmick/use-media-breakpoints";
 import { useDocument, useCollectionData } from "react-firebase-hooks/firestore";
 import firebase from "firebase/app";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Share from "./Share"
 import DatePicker from "./DatePicker";
 import WidgetAction from "./WidgetAction";
 
@@ -31,6 +32,8 @@ import Upload from "./buyers/approval/UploadForm";
 import InformationBar from "./buyers/dashboard/subscription/InformationBar";
 import RenderView from "./buyers/sidebar/RenderView";
 import RenderButtons from "./buyers/sidebar/RenderButtons";
+
+
 // Initialize Firebase app
 firebaseInit();
 
@@ -58,7 +61,7 @@ const SidebarWidget = ({
   const breakpoint = useMediaBreakpoints();
   // console.log("verif", verification);
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
-  const [modalShown, setModalShown] = useState(false);
+  const [share, setShareShow] = useState(true);
   const miniWidget = useRef(0);
   const [modalShow, setModalShow] = React.useState(false);
   const router = useRouter();
@@ -470,7 +473,7 @@ if(isSubscribed) {
             </Col>
             <Col xs={5} sm={3} lg={5} xl={6} className='mb-3'>
               <WidgetAction
-                // handleClick={handleSubscribe}
+                handleClick={() => setShareShow(true)}
                 label='Share'
                 icon={faShareAlt}
                 href='#'
@@ -480,43 +483,7 @@ if(isSubscribed) {
         </Card>
 
         {/* Sticky mini-widget for smaller screen sizes */}
-        {breakpoint.down.md && (
-          <Card
-            ref={miniWidget}
-            id='tour-this-home-mini'
-            className='position-sticky py-2 px-2 mx-n2 mx-md-n3 mb-5'
-            style={{
-              marginTop: -miniWidget.current.clientHeight - 2 - 3 * 16 || 0,
-              top: 0,
-              zIndex: 1020,
-            }}
-          >
-            <div className='d-flex justify-content-around align-items-center mb-3'>
-              {/* Schedule Tour */}
-              <Link href={tourLinkHref} as={tourLinkAs} passHref>
-                <Button
-                  variant='info'
-                  onClick={
-                    AuthUser
-                      ? false
-                      : (e) => {
-                          e.preventDefault();
-                          showLoginModal();
-                        }
-                  }
-                  className='px-sm-5'
-                >
-                  Schedule Tour
-                </Button>
-              </Link>
 
-              <WidgetAction title='Subscribe to Updates' icon={faHeart} />
-              <WidgetAction title='Share' icon={faShareAlt} />
-              <WidgetAction title='Start a Conversation' icon={faCommentDots} />
-              <WidgetAction title='Make an Offer' icon={faCommentsDollar} />
-            </div>
-          </Card>
-        )}
       </>
 
       <GenericModal
@@ -526,6 +493,14 @@ if(isSubscribed) {
         onHide={() => setModalShow(false)}
         header='Pre-Approval or Pre-Qualification Required.'
         body={<ModalBody />}
+      />
+      <GenericModal
+        showFooter={false}
+        show={share}
+        handleClose={() => setShareShow(false)}
+        onHide={() => setShareShow(false)}
+        header='Share the listing with friends'
+        body={<Row className='m-5'><Share address={listing.fullAddress} listingId={listingId} /></Row>}
       />
     </>
   );

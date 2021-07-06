@@ -10,6 +10,7 @@ import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
 import absoluteUrl from "next-absolute-url";
 import Nav from "../../../components/Nav";
+import MobileNav from "../../../components/MobileNav";
 import AtAGlance from "../../../components/AtAGlance";
 import QuestionsAndAnswers from "../../../components/QuestionsAndAnswers";
 import Documents from "../../../components/Documents";
@@ -230,16 +231,31 @@ const Listing = ({
           Finding Spaces – {listing.address[0]}, {listing.address[1]}
         </title>
       </Head>
-      <Nav
-        showLogo
-        address={
+      {breakpoint.down.md ? 
+      (
+        <MobileNav
+          showLogo
+          address={
+        breakpoint.up.lg
+          ? `${listing.address[0]}, ${listing.address[1]}`
+          : false
+      }
+          {...{ AuthUser, showLoginModal }}
+        />
+      )
+      :
+      (
+        <Nav
+          showLogo
+          address={
           breakpoint.up.lg
             ? `${listing.address[0]}, ${listing.address[1]}`
             : false
         }
-        {...{ AuthUser, showLoginModal }}
-      />
-
+          {...{ AuthUser, showLoginModal }}
+        />
+)}
+      
       {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
       <Container style={{}} bsPrefix='container-md mt-5'>
         
@@ -305,7 +321,7 @@ const Listing = ({
               features={listing.homeFeatures}
             />
 
-            <TabWidgets />
+            {/* <TabWidgets /> */}
           </Col>
 
           {breakpoint.up.lg && (
