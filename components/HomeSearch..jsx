@@ -216,13 +216,13 @@ const HomeSearch = ({ AuthUser, showLoginModal, setModalShow }) => {
                     <Button
                       block
                       disabled={submitting}
-                      variant='outlined'
+                      
                       // ref={buttonRef}
                       onClick={() =>
                         submitSearch(elemRefs, setFieldValue, rest.submitForm)}
                       className={`${breakpoint.down.sm && 'text-primary'} m-1 ml-n1 mb-0 px-3 `}
                     >
-                      <strong>Unlock Home</strong>
+                      <>Unlock Home</>
                     </Button>
                   </Col>
                 </Row>

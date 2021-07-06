@@ -21,7 +21,7 @@ export default ({
        variant='info'
        className='mr-1 '
        style={({
-            width: small ? '5rem' : '7rem',
+            width: small ? '4rem' : '7rem',
             ...(available ? {} : { cursor: 'not-allowed' })
          })}
        active={activeDate && date.hasSame(activeDate, 'day')}
@@ -35,7 +35,7 @@ export default ({
        disabled={disabled || !available}
      >
        <div>{small ? date.monthShort : date.monthLong}</div>
-       <div className={`display-${small ? 5 : 4}`}>{date.day}</div>
+       <div className={`display-${small ? 7 : 4}`}>{date.day}</div>
        <div>
          <small>{small ? date.weekdayShort : date.weekdayLong}</small>
        </div>

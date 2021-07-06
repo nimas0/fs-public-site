@@ -377,10 +377,10 @@ const SkeletonBuyerDashboard = ({ AuthUserInfo, showLoginModal }) => {
           header={
             // eslint-disable-next-line react/jsx-wrap-multilines
             <>
-              <h5 className='pr-3 text-white'>
+              <h5 className='p-3 text-dark'>
                 <b>Action Required: </b>{" "}
               </h5>
-              <h6 className='text-white'>
+              <h6 className='text-dark'>
                 To unlock this feature please upload a Pre-Qualification,
                 Pre-Approval, or Proof of Funds.
               </h6>

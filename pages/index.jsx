@@ -61,7 +61,7 @@ const Listing = ({
       <Container className='bg-info justify-content-center  p-5'>
         <Row className='justify-content-center mx-5' xs={12}>
           <Col className='d-inline' xs='auto'>
-            <h5 className=' text-dark'>
+            <h5 className=' text-white'>
               <b>Enter Home Code</b>{" "}
             </h5>
           </Col>
@@ -75,9 +75,9 @@ const Listing = ({
           <HomeSearch AuthUser={AuthUser} setModalShow={setModalShow} />
         </Row>
         <Row className='justify-content-center  mx-1 my-2 ml-1'>
-          <Col xs={5}> <Divider className='bg-light' orientation="left" /></Col>
-          <Col className='mt-2 text-light' xs={1}>or</Col>
-          <Col xs={5}> <Divider className='bg-light' orientation="right" /></Col>
+          <Col xs={5}> <Divider style={{paddingBottom: '.2rem', marginBotton: '.1rem'}} className='bg-dark' orientation="left" /></Col>
+          <Col className='mt-2 text-dark mb-n1' xs={1}><b>OR</b></Col>
+          <Col xs={5}> <Divider style={{paddingBottom: '.2rem', marginBotton: '.1rem'}} className='bg-dark' orientation="right" /></Col>
         </Row>
        
  

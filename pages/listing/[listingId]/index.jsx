@@ -284,7 +284,7 @@ const Listing = ({
             />
 
             {breakpoint.down.md && (
-              <Col md='auto'>
+              <Col className='mb-4' md='auto'>
                 <SidebarWidget
                   leadData={leadData}
                   verification={verification}
@@ -338,10 +338,10 @@ const Listing = ({
         header={
           // eslint-disable-next-line react/jsx-wrap-multilines
           <>
-            <h5 className='pr-3 text-white'>
+            <h5 className='px-3 mt-2 text-dark'>
               <b>Action Required: </b>{" "}
             </h5>
-            <h6 className='text-white'>
+            <h6 className='px-3 text-dark'>
               To unlock this feature please upload a Pre-Qualification,
               Pre-Approval, or Proof of Funds.
             </h6>

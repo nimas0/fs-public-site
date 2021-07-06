@@ -140,8 +140,8 @@ export default ({ shown, setShown }) => {
     >
       {page === "auth" ? (
         <>
-          <Modal.Header className='bg-info text-white' closeButton>
-            <Modal.Title>Please Sign In</Modal.Title>
+          <Modal.Header className='bg-white text-dark' closeButton>
+            <Modal.Title>Login or Sign Up</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>

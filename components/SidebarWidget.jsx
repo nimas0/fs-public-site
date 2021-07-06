@@ -389,7 +389,9 @@ if(isSubscribed) {
                       <Col xs='12'>
                         Sign up to sell your home
                         {" "}
-                        <FontAwesomeIcon className='ml-2' icon={faArrowRight} />
+                        {breakpoint.up.lg && <FontAwesomeIcon className='ml-2' icon={faArrowRight} />}
+                        {' '}
+                      
                       </Col>
                     </Row>
                   </Button>
@@ -491,7 +493,18 @@ if(isSubscribed) {
         show={modalShow}
         handleClose={() => setModalShow(false)}
         onHide={() => setModalShow(false)}
-        header='Pre-Approval or Pre-Qualification Required.'
+        header={(
+          <>
+            <h5 className='px-3 mt-2 text-dark'>
+              <b>Action Required: </b>
+              {" "}
+            </h5>
+            <h6 className='px-3 text-dark'>
+              To unlock this feature please upload a Pre-Qualification,
+              Pre-Approval, or Proof of Funds.
+            </h6>
+          </>
+)}
         body={<ModalBody />}
       />
       <GenericModal

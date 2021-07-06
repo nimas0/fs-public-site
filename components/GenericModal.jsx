@@ -13,9 +13,9 @@ const GenericModal = ({
   ...rest
 }) => (
   <Modal
-    contentClassName='home-code'
+    // contentClassName='home-code'
     className='p-0'
-    dialogClassName='rounded-lg modal-border-0 bg-tranparent'
+    dialogClassName='modal-border-0 bg-tranparent'
     {...rest}
     scrollable
     onHide={onHide}
