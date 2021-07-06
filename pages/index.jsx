@@ -94,11 +94,10 @@ const Listing = ({
         <Row className='justify-content-right mt-2 ml-5' xs={12}>
           <Col xs={7}>
             <h5 className='text-white mb-4 text-center'>
-              <strong>Sell your Home. Save Money.</strong>
+              <strong>Sell Your Home For Sale By Owner <br /> It’s Commission Free</strong>
             </h5>
             <p className='text-light text-center'>
-              Finding Space's one-stop online dashboard makes selling without a real estate agent completely
-              effortless by providing: Scheduling, Website, Tips, etc
+              Finding Space’s one-stop dashboard makes buying and selling without an agent completely effortless!
             </p>
             <Button
               as='a'
@@ -108,7 +107,7 @@ const Listing = ({
               className='border border-primary'
               block
             >
-              <strong>Sign up or Login</strong>
+              <>Sign up or Login</>
             </Button>
           </Col>
           <Col xs={5}>
@@ -155,11 +154,10 @@ const Listing = ({
       <Row className='justify-content-center mt-2 mx-2' xs={12}>
         <Col xs={12}>
           <h5 className='text-dark mb-4 text-center'>
-            <strong>Sell your Home. Save Money.</strong>
+            <strong>Sell your Home For Sale By Owner<br /> It’s Commission Free</strong>
           </h5>
           <p className='text-dark text-center'>
-            Finding Space's one-stop online dashboard makes selling without a real estate agent completely
-            effortless by providing: Scheduling, Website, Tips, etc
+            Finding Space’s one-stop dashboard makes buying and selling without an agent completely effortless         
           </p>
           <Button
             as='a'
