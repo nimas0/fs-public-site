@@ -25,12 +25,12 @@ const GenericModal = ({
     centered
   >
     {showHeader && (
-      <Modal.Header className='bg-info text-white'>
+      <Modal.Header className='bg-light text-dark'>
         <Modal.Title id='contained-modal-title-vcenter'>{header}</Modal.Title>
       </Modal.Header>
     )}
     <Modal.Body
-      className='p-0 m-0 rounded-lg border-0 bg-white'
+      className='p-0 m-0  border-0 bg-white'
       // className={padding ? "" : "home-code p-0"}
     >
       {body}

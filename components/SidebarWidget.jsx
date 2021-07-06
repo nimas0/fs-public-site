@@ -61,7 +61,7 @@ const SidebarWidget = ({
   const breakpoint = useMediaBreakpoints();
   // console.log("verif", verification);
   const [dateButtonsWidth, setDateButtonsWidth] = useState(0);
-  const [share, setShareShow] = useState(true);
+  const [share, setShareShow] = useState(false);
   const miniWidget = useRef(0);
   const [modalShow, setModalShow] = React.useState(false);
   const router = useRouter();
@@ -500,7 +500,7 @@ if(isSubscribed) {
         handleClose={() => setShareShow(false)}
         onHide={() => setShareShow(false)}
         header='Share the listing with friends'
-        body={<Row className='m-5'><Share address={listing.fullAddress} listingId={listingId} /></Row>}
+        body={<Row xs={12} className='pl-3 m-5'><Share address={listing.fullAddress} listingId={listingId} /></Row>}
       />
     </>
   );

@@ -13,6 +13,7 @@ import {
 import _ from 'lodash'
 import PropTypes from 'prop-types';
 
+
 const Share = ({address, listingId}) => {
     
     const shareUrl = `${process.env.HOST}/listing/${listingId}`;
