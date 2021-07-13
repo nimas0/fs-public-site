@@ -1,8 +1,8 @@
 import React from 'react'
 import { Row, Container, Button, Col } from 'react-bootstrap';
-import MobileNav from "../../../components/MobileNav";
-const [appointmentState, setAppointmentState] = React.useState('cancelled');
-const Cancelled = ({AuthUser, showLoginModal, submitted, error, submit, setState}) => (
+// import MobileNav from "../../../components/MobileNav";
+// const [appointmentState, setAppointmentState] = React.useState('cancelled');
+const Cancelled = ({ submitted, error, submit, setState}) => (
   <>
     <Container className='d-flex flex-column justify-content-center align-items-center my-5'>
       <Col className='align-items-center' xs='12' lg='6'>
