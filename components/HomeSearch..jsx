@@ -110,12 +110,13 @@ const HomeSearch = ({ AuthUser, showLoginModal, setModalShow }) => {
           // cant use validation because it causes issues with autoTab() funcitons after submittion
           // isInvalid={props.errors && Boolean(props.errors[`input${props.index}`])}
           name={`input${props.index}`}
-          className={`rounded  border border-primary text-uppercase text-white  defaultCard ${
-            breakpoint.up.lg ? "bg-transparent m-3 form-control1" : "m-1 form-control-mobile"
+          className={`rounded  border border-primary text-uppercase   defaultCard ${
+            breakpoint.up.lg ? "bg-transparent m-3 text-white form-control1" : "m-1 text-dark form-control-mobile"
           } ${submitting ? "afterSubmitStyle" : "beforeSubmitStyle"}`}
           style={{
-            width: breakpoint.up.lg ? "5rem" : "3rem",
-            height: breakpoint.up.lg ? "5rem" : "4rem",
+            width: breakpoint.up.lg ? "5rem" : "3.2rem",
+            height: breakpoint.up.lg ? "5rem" : "3.2rem",
+            fontSize: breakpoint.up.lg ? 28 : 20
           }}
           data-index={props.index}
           ref={ref}
@@ -214,6 +215,7 @@ const HomeSearch = ({ AuthUser, showLoginModal, setModalShow }) => {
                 >
                   <Col xs={7}>
                     <Button
+                      variant='contained'
                       block
                       disabled={submitting}
                       
