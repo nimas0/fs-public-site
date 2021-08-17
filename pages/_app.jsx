@@ -8,6 +8,8 @@ import '../style.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
+import 'swiper/swiper-bundle.min.css';
+import 'rc-drawer/assets/index.css';
 
 config.autoAddCss = false;
 

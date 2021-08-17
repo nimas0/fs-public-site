@@ -321,7 +321,7 @@ const Listing = ({
               features={listing.homeFeatures}
             />
 
-            {/* <TabWidgets /> */}
+            <TabWidgets />
           </Col>
 
           {breakpoint.up.lg && (
