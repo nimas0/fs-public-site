@@ -1,13 +1,13 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import Search from '../../components/header/Search';
 
 const asdf = () => (
   <Container>
     <Row>
-      <Col>1 of 2</Col>
-      <Col>2 of 2</Col>
+      <Search />
     </Row>
   </Container>
-    )
+);
 
-export default asdf
+export default asdf;

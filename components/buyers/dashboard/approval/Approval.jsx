@@ -46,7 +46,7 @@ const Approval = ({ verification, AuthUser, setModalShow, showLoginModal }) => {
                </Button>
              </h4> */}
 
-          <Card className='border-0 p-4 bg-white '>
+          <Card className=' p-4 bg-white border rounded'>
             <Card.Body className='text-left py-3 pl-0'>
               <div className='text-warning d-flex justify-content-start  '>
                 {/* <FontAwesomeIcon size='2x' icon={faFrownOpen} /> */}
@@ -55,7 +55,11 @@ const Approval = ({ verification, AuthUser, setModalShow, showLoginModal }) => {
 
               <Card.Text className=' text-dark text-left  pt-0 mt-0 pt-2 w-100'>
                 <>
-                  Unlock <b>scheduling, chat, or submit an offer </b> by
+                  Unlock 
+                  {' '}
+                  <b>scheduling, chat, or submit an offer </b>
+                  {' '}
+                  by
                   uploading a Pre-Qualification, Pre-Approval, or Proof of
                   Funds.
                 </>

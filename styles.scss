@@ -1,16 +1,16 @@
 // Ant Design import
-@import "~antd/dist/antd.css";
+@import '~antd/dist/antd.css';
 
 // Bootstrap responsive font sizes
 $enable-responsive-font-sizes: true;
 
 // Fonts: Open Sans & Nunito first, then falling back on system fonts
-$font-family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  "Open Sans", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$headings-font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  'Open Sans', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+$headings-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
 $blue: #2b3b38 !default;
 $indigo: #015085 !default;
@@ -41,15 +41,15 @@ $grays: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $grays: map-merge(
   (
-    "100": $gray-100,
-    "200": $gray-200,
-    "300": $gray-300,
-    "400": $gray-400,
-    "500": $gray-500,
-    "600": $gray-600,
-    "700": $gray-700,
-    "800": $gray-800,
-    "900": $gray-900,
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900,
   ),
   $grays
 );
@@ -58,19 +58,19 @@ $colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $colors: map-merge(
   (
-    "blue": $blue,
-    "indigo": $indigo,
-    "purple": $purple,
-    "pink": $pink,
-    "red": $red,
-    "orange": $orange,
-    "yellow": $yellow,
-    "green": $green,
-    "teal": $teal,
-    "cyan": $cyan,
-    "white": $white,
-    "gray": $gray-600,
-    "gray-dark": $gray-800,
+    'blue': $blue,
+    'indigo': $indigo,
+    'purple': $purple,
+    'pink': $pink,
+    'red': $red,
+    'orange': $orange,
+    'yellow': $yellow,
+    'green': $green,
+    'teal': $teal,
+    'cyan': $cyan,
+    'white': $white,
+    'gray': $gray-600,
+    'gray-dark': $gray-800,
   ),
   $colors
 );
@@ -96,8 +96,8 @@ $border-radius-sm: 0.2rem !default;
 $rounded-pill: 40rem !default;
 
 // Bootstrap import
-@import "~bootstrap/scss/bootstrap.scss";
-@import "node_modules/bootstrap/scss/variables";
+@import '~bootstrap/scss/bootstrap.scss';
+@import 'node_modules/bootstrap/scss/variables';
 
 // Fix Ant Design Steps component
 .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
@@ -388,4 +388,8 @@ html {
   top: 7;
   margin-top: 1rem;
   @include card(2);
+}
+
+.ais-search-box {
+  max-width: none;
 }

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
 import absoluteUrl from "next-absolute-url";
+import { ThemeProvider } from 'theme-ui';
 import Nav from "../../../components/Nav";
 import MobileNav from "../../../components/MobileNav";
 import AtAGlance from "../../../components/AtAGlance";
@@ -22,12 +23,15 @@ import withAuthUserInfo from "../../../utils/pageWrappers/withAuthUserInfo";
 import withLoginModal from "../../../utils/pageWrappers/withLoginModal";
 import GenericModal from "../../../components/GenericModal";
 import Upload from "../../../components/buyers/approval/UploadForm";
-
+import theme from '../../../theme';
 import firebaseInit from "../../../utils/firebaseInit";
 import "firebase/firestore";
 import SidebarWidget from "../../../components/SidebarWidget";
 import SubscriptionCard from "../../../components/buyers/dashboard/subscription/SubscriptionCard";
 import SkeletonBuyerDashboard from "../../../components/SkeletonBuyerDashboard";
+import { StickyProvider } from '../../../contexts/app/app.provider';
+import Layout from '../../../components/layout';
+
 
 // Initialize Firebase ap
 firebaseInit();
@@ -147,8 +151,8 @@ const Listing = ({
     }
   }
 
-  console.log("env", process.env.NODE_ENV);
-  console.log("env3", process.env);
+  // console.log("env", process.env.NODE_ENV);
+  // console.log("env3", process.env);
 
   // Other scheduling widget state
   const [tourFirstDate, setTourFirstDate] = useState(tourFirstAvailableDate);
@@ -225,13 +229,16 @@ const Listing = ({
   // console.log("userDoc", verification);
   console.log("doc stuff", value.docs.length === 0);
   return (
-    <>
-      <Head>
-        <title>
-          Finding Spaces – {listing.address[0]}, {listing.address[1]}
-        </title>
-      </Head>
-      {breakpoint.down.md ? 
+    <ThemeProvider theme={theme}>
+      <StickyProvider>
+        <Layout auth={AuthUser} showLoginModal={showLoginModal}>
+          <>
+            <Head>
+              <title>
+                Finding Spaces – {listing.address[0]}, {listing.address[1]}
+              </title>
+            </Head>
+            {/* {breakpoint.down.md ? 
       (
         <MobileNav
           showLogo
@@ -254,107 +261,108 @@ const Listing = ({
         }
           {...{ AuthUser, showLoginModal }}
         />
-)}
+)} */}
       
-      {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
-      <Container style={{}} bsPrefix='container-md mt-5'>
+            {/* Switch bsPrefix="container-md" to fluid="md" when react-bootstrap releases fix */}
+            <Container style={{}} bsPrefix='container-md mt-5'>
         
 
-        <Row as='main'>
-          <Col lg={6}>
-            <AtAGlance
-              listing={listing}
-              verification={verification}
-              AuthUserInfo={AuthUserInfo}
-              setModalShow={setModalShow}
-              skeleton={skeleton}
-              activity={listing.activity}
-              price={listing.currentPrice}
-              beds={listing.bedrooms}
-              baths={listing.fullBaths + 0.5 * listing.halfBaths}
-              sqFt={listing.totalFinishedSqFt}
-              pricePerSqFt={Math.round(
+              <Row as='main'>
+                <Col lg={6}>
+                  <AtAGlance
+                    listing={listing}
+                    verification={verification}
+                    AuthUserInfo={AuthUserInfo}
+                    setModalShow={setModalShow}
+                    skeleton={skeleton}
+                    activity={listing.activity}
+                    price={listing.currentPrice}
+                    beds={listing.bedrooms}
+                    baths={listing.fullBaths + 0.5 * listing.halfBaths}
+                    sqFt={listing.totalFinishedSqFt}
+                    pricePerSqFt={Math.round(
                 listing.currentPrice / listing.totalFinishedSqFt
               )}
-              photos={listing.photos}
-              address={`${listing.address[0]}, ${listing.address[1]}`}
-              ownerName={owner.displayName}
-              ownerPhotoSrc={owner.photoURL}
-              {...{ AuthUser, showLoginModal }}
-            />
+                    photos={listing.photos}
+                    address={`${listing.address[0]}, ${listing.address[1]}`}
+                    ownerName={owner.displayName}
+                    ownerPhotoSrc={owner.photoURL}
+                    {...{ AuthUser, showLoginModal }}
+                  />
 
-            {breakpoint.down.md && (
-              <Col className='mb-4' md='auto'>
-                <SidebarWidget
-                  leadData={leadData}
-                  verification={verification}
-                  isSubscribed={!subNotifData}
-                  subNotif={subNotif.length}
-                  listing={listing}
-                  firstAvailableDate={tourFirstAvailableDate}
-                  firstDate={tourFirstDate}
-                  setFirstDate={setTourFirstDate}
-                  activeDate={tourActiveDate}
-                  setActiveDate={setTourActiveDate}
-                  dayAvailability={dayAvailability}
-                  getTimeAvailability={getSpecificAvailability(
+                  {breakpoint.down.md && (
+                  <Col className='mb-4' md='auto'>
+                    <SidebarWidget
+                      leadData={leadData}
+                      verification={verification}
+                      isSubscribed={!subNotifData}
+                      subNotif={subNotif.length}
+                      listing={listing}
+                      firstAvailableDate={tourFirstAvailableDate}
+                      firstDate={tourFirstDate}
+                      setFirstDate={setTourFirstDate}
+                      activeDate={tourActiveDate}
+                      setActiveDate={setTourActiveDate}
+                      dayAvailability={dayAvailability}
+                      getTimeAvailability={getSpecificAvailability(
                     generalTimeAvailability,
                     hourly ? 1 : 0.5,
                     schedules
                   )}
-                  {...{ timeZone, AuthUser, showLoginModal }}
-                />
-              </Col>
+                      {...{ timeZone, AuthUser, showLoginModal }}
+                    />
+                  </Col>
             )}
 
-            <QuestionsAndAnswers
-              as='section'
-              questions={questions}
-              limit={6}
-              AuthUser={AuthUser}
-            />
+                  <QuestionsAndAnswers
+                    as='section'
+                    questions={questions}
+                    limit={6}
+                    AuthUser={AuthUser}
+                  />
 
-            <Documents documents={documents} />
+                  <Documents documents={documents} />
 
-            <HomeDetails
-              details={listing.homeDetails}
-              features={listing.homeFeatures}
-            />
+                  <HomeDetails
+                    details={listing.homeDetails}
+                    features={listing.homeFeatures}
+                  />
 
-            {/* <TabWidgets /> */}
-          </Col>
+                  <TabWidgets />
+                </Col>
 
-          {breakpoint.up.lg && (
-            <>
-              <Col lg={5}>{renderSideBar()}</Col>
-            </>
+                {breakpoint.up.lg && (
+                <>
+                  <Col lg={5}>{renderSideBar()}</Col>
+                </>
           )}
-        </Row>
-      </Container>
-      <GenericModal
-        showFooter={false}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        header={
+              </Row>
+            </Container>
+            <GenericModal
+              showFooter={false}
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              header={
           // eslint-disable-next-line react/jsx-wrap-multilines
-          <>
-            <h5 className='px-3 mt-2 text-dark'>
-              <b>Action Required: </b>{" "}
-            </h5>
-            <h6 className='px-3 text-dark'>
-              To unlock this feature please upload a Pre-Qualification,
-              Pre-Approval, or Proof of Funds.
-            </h6>
-          </>
+                <>
+                  <h5 className='px-3 mt-2 text-dark'>
+                    <b>Action Required: </b>{" "}
+                  </h5>
+                  <h6 className='px-3 text-dark'>
+                    To unlock this feature please upload a Pre-Qualification,
+                    Pre-Approval, or Proof of Funds.
+                  </h6>
+                </>
         }
-        body={<ModalBody />}
-      />
-      {/* <Footer /> */}
+              body={<ModalBody />}
+            />
+            {/* <Footer /> */}
 
-      <style jsx global>
-        {`
+            <style jsx global>
+              {`
           body {
-            background-color: #ededed;
+
+            margin-top: 100px
           }
           h1 {
             font-weight: 700;
@@ -363,8 +371,11 @@ const Listing = ({
             margin-bottom: 10px;
           }
         `}
-      </style>
-    </>
+            </style>
+          </>
+        </Layout>
+      </StickyProvider>
+    </ThemeProvider>
   );
 };
 
