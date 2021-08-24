@@ -186,7 +186,7 @@ const Pricing = () => {
           title='What deal suit you perfect'
           text='Meet our pricing plan'
         />
-        <Box sx={styles.btnWrap}>
+        {/* <Box sx={styles.btnWrap}>
           <Button
             onClick={() => handlePlan('monthly')}
             className={`${plan.active === 'monthly' ? 'active' : ''}`}
@@ -199,7 +199,7 @@ const Pricing = () => {
           >
             Annual Plan
           </Button>
-        </Box>
+        </Box> */}
         <Grid sx={styles.grid}>
           {plan.pricingPlan.map((price, index) => (
             <PriceCard data={price} key={`${plan.active}-card--key${index}`} />
