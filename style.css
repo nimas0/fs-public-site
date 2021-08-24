@@ -46,7 +46,7 @@
 /* ******************************
 :: 1.0 WEB FONTS
 ****************************** */
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
 
 /* ******************************
 :: 2.0 IMPORT ALL CSS
@@ -56,9 +56,9 @@
 @import url(slick.css);
 @import url(fancybox.min.css);
 
-body {
-  background: #f5f5f5;
-}
+/* body {
+  background: #f7dbdb;
+} */
 
 /* beta tag */
 /* body:after{
@@ -175,7 +175,7 @@ body {
 
 .section-heading > h2::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 2px;
   width: 70px;
   bottom: -15px;
@@ -249,7 +249,7 @@ body {
 
 .btnnn.sApp-btnnn:before {
   position: absolute;
-  content: "";
+  content: '';
   height: calc(100% + 4px);
   width: calc(100% + 4px);
   top: -2px;
@@ -262,7 +262,7 @@ body {
 
 .btnnn.sApp-btnnn:after {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 100%;
   top: 0;
@@ -277,7 +277,7 @@ body {
 .btnnn.sApp-btnnn:hover:after,
 .btnnn.sApp-btnnn:focus:after {
   opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
 }
 .btn {
   font-size: 14px;
@@ -315,7 +315,7 @@ body {
 
 .btn.sApp-btn:before {
   position: absolute;
-  content: "";
+  content: '';
   height: calc(100% + 4px);
   width: calc(100% + 4px);
   top: -2px;
@@ -328,7 +328,7 @@ body {
 
 .btn.sApp-btn:after {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 100%;
   top: 0;
@@ -343,7 +343,7 @@ body {
 .btn.sApp-btn:hover:after,
 .btn.sApp-btn:focus:after {
   opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
 }
 
 /*.btn-success {
@@ -434,7 +434,7 @@ body {
 .bg-overlay::after,
 .overlay-dark:after {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 100%;
   top: 0;
@@ -449,7 +449,7 @@ body {
 .overlay-dark::after {
   background-color: rgba(16, 16, 45, 1);
   opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=85)';
   z-index: -1;
 }
 
@@ -516,73 +516,73 @@ body {
 }
 
 .homepage-3 .welcome-area {
-  background: rgba(0, 0, 0, 0) url("/img/blog-5.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/blog-5.jpg') no-repeat scroll center
     center / cover;
 }
 
 .homepage-4 .welcome-area {
-  background: rgba(0, 0, 0, 0) url("/img/blog-7.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/blog-7.jpg') no-repeat scroll center
     center / cover;
 }
 
 .homepage-5 .welcome-area {
   background: rgb(245, 245, 245)
-    url("https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/websiteimages%2FFamily%20moving%20boxes.png?alt=media&token=67fde286-6da8-40f7-8f7d-83346247c909")
+    url('https://firebasestorage.googleapis.com/v0/b/finding-spaces-73b23.appspot.com/o/websiteimages%2FFamily%20moving%20boxes.png?alt=media&token=67fde286-6da8-40f7-8f7d-83346247c909')
     no-repeat scroll center bottom / 51%;
 }
 
 .homepage-6 .welcome-area {
-  background: rgba(0, 0, 0, 0) url("/img/blog-9.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/blog-9.jpg') no-repeat scroll center
     center / cover;
 }
 
 .accounts .welcome-area {
-  background: rgba(0, 0, 0, 0) url("/img/accounts.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/accounts.jpg') no-repeat scroll center
     center / cover;
 }
 
 .features-slider-wrapper {
-  background: rgba(0, 0, 0, 0) url("/img/mobile-slider.png") no-repeat scroll
+  background: rgba(0, 0, 0, 0) url('/img/mobile-slider.png') no-repeat scroll
     top center / cover;
 }
 
 .statistic-area {
-  background: rgba(0, 0, 0, 0) url("/img/pattern-bg.png") repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/pattern-bg.png') repeat scroll center
     center / cover;
 }
 
 .download-area {
-  background: rgba(0, 0, 0, 0) url("/img/download-bg.jpg") no-repeat fixed
+  background: rgba(0, 0, 0, 0) url('/img/download-bg.jpg') no-repeat fixed
     center center / cover;
 }
 
 .subscribe-area {
-  background: rgba(0, 0, 0, 0) url("/img/subscribe-bg.png") no-repeat scroll
+  background: rgba(0, 0, 0, 0) url('/img/subscribe-bg.png') no-repeat scroll
     center center / cover;
 }
 
 .breadcrumb-area {
-  background: rgba(0, 0, 0, 0) url("/img/download-bg.jpg") no-repeat scroll
+  background: rgba(0, 0, 0, 0) url('/img/download-bg.jpg') no-repeat scroll
     center center / cover;
 }
 
 .blog .breadcrumb-area {
-  background: rgba(0, 0, 0, 0) url("/img/blog-5.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/blog-5.jpg') no-repeat scroll center
     center / cover;
 }
 
 .inner-area {
-  background: rgba(0, 0, 0, 0) url("/img/welcome-bg.jpg") no-repeat scroll
+  background: rgba(0, 0, 0, 0) url('/img/welcome-bg.jpg') no-repeat scroll
     center center / cover;
 }
 
 .download-page .welcome-area {
-  background: rgba(0, 0, 0, 0) url("/img/download.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/download.jpg') no-repeat scroll center
     center / cover;
 }
 
 .inner .welcome-area {
-  background: rgba(0, 0, 0, 0) url("/img/inner-bg.jpg") no-repeat scroll center
+  background: rgba(0, 0, 0, 0) url('/img/inner-bg.jpg') no-repeat scroll center
     center / cover;
 }
 
@@ -735,7 +735,7 @@ body {
 ****************************** */
 .navHEADER {
   position: absolute;
-  top: -50;
+
   left: 0;
   right: 0;
   padding-top: 0;
@@ -774,7 +774,7 @@ body {
   margin-top: -100px;
 }
 
-[data-theme="dark"] .navbar-sticky-moved-up {
+[data-theme='dark'] .navbar-sticky-moved-up {
   background: #01081f;
   -webkit-box-shadow: 0 4px 25px rgba(30, 39, 69, 0.3),
     0 1px 0px rgba(30, 39, 69, 0.4);
@@ -810,7 +810,7 @@ body {
   color: #7e8085;
 }
 
-[data-theme="dark"] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link {
+[data-theme='dark'] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link {
   color: #e7eaee;
 }
 
@@ -821,10 +821,10 @@ body {
   color: #2c2e30;
 }
 
-[data-theme="dark"] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link:hover,
-[data-theme="dark"] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link:focus,
-[data-theme="dark"] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link.active,
-[data-theme="dark"]
+[data-theme='dark'] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link:hover,
+[data-theme='dark'] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link:focus,
+[data-theme='dark'] .navbar-dark.navbar-sticky-on .navbar-nav .nav-link.active,
+[data-theme='dark']
   .navbar-dark.navbar-sticky-on
   .navbar-nav
   .nav-link.current-menu-item {
@@ -1145,7 +1145,7 @@ body {
 
 .single-counter::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 70%;
   width: 1px;
   background-color: #222;
@@ -1240,11 +1240,11 @@ body {
 
 .single-work::after {
   position: absolute;
-  content: "\f054";
+  content: '\f054';
   font-size: 45px;
   font-weight: 900;
   color: #fff;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   top: 50%;
   right: 0;
   margin-right: -50px;
@@ -1333,7 +1333,7 @@ body {
 
 .single-review .reviewer::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 20px;
   width: 20px;
   background-color: #f5f7fb;
@@ -1453,15 +1453,15 @@ body {
   transform: translateY(-50%);
   font-size: 18px;
   font-weight: 900;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
 }
 
 .card-header .btn::after {
-  content: "\f107";
+  content: '\f107';
 }
 
 .card-header .btn.collapsed::after {
-  content: "\f105";
+  content: '\f105';
 }
 
 .faq-area.style-two .card-header .btn::after {
@@ -1516,7 +1516,7 @@ body {
 
 .team-overlay::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 100%;
   top: 0;
@@ -1650,9 +1650,9 @@ body {
 
 .blog-btn::after {
   position: absolute;
-  content: "\f101";
+  content: '\f101';
   font-weight: 900;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   opacity: 0;
   visibility: hidden;
   top: 50%;
@@ -1694,7 +1694,7 @@ body {
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
+  content: '>';
   color: #fff;
 }
 
@@ -1804,7 +1804,7 @@ body {
 
 .widget-items li a::before {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 0px;
   top: 0;
@@ -1881,7 +1881,7 @@ body {
 
 .meta-info > ul > li::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 30%;
   width: 2px;
   background-color: #777;
@@ -1939,7 +1939,7 @@ body {
 
 .blockquote::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 100%;
   width: 2px;
   top: 0;

@@ -9,19 +9,24 @@ import Jackpot from '../sections/jackpot';
 import CallToAction from '../sections/call-to-action';
 import Featured from '../sections/featured';
 import Pricing from '../sections/pricing';
-import Testimonials from '../sections/testimonials';
+// import Testimonials from '../sections/testimonials';
 import Blogs from '../sections/blogs';
 import FAQ from '../sections/faq';
 import Subscribe from '../sections/subscribe';
 import QrCode from '../sections/QR_Code';
 import SEO from '../components/seo';
+import withAuthUser from '../utils/pageWrappers/withAuthUser';
+import withAuthUserInfo from '../utils/pageWrappers/withAuthUserInfo';
+import withLoginModal from '../utils/pageWrappers/withLoginModal';
 
-export default function IndexPage() {
+const IndexPage = ({AuthUserInfo, showLoginModal}) => {
+  const {AuthUser = null } = AuthUserInfo
+
   return (
     <ThemeProvider theme={theme}>
       <StickyProvider>
-        <Layout>
-          <SEO title='Startup Landing 014' />
+        <Layout auth={AuthUser} showLoginModal={showLoginModal}>
+          <SEO title='Finding Spaces' />
           <Banner />
           <Services />
           <Jackpot />
@@ -29,12 +34,14 @@ export default function IndexPage() {
           <CallToAction />
           <Featured />
           <Pricing />
-          <Testimonials />
-          <Blogs />
+          {/* <Testimonials /> */}
+          {/* <Blogs /> */}
           <FAQ />
-          <Subscribe />
+          {/* <Subscribe /> */}
         </Layout>
       </StickyProvider>
     </ThemeProvider>
   );
 }
+
+export default withAuthUser(withAuthUserInfo(withLoginModal(IndexPage)));
