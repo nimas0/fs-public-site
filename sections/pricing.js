@@ -3,12 +3,12 @@ import { keyframes } from '@emotion/core';
 import { Box, Container, Grid, Button, Text } from 'theme-ui';
 import BlockTitle from '../components/block-title';
 import PriceCard from '../components/cards/price-card';
-import priceIcon1 from '../public/assets/price-user-1-1.svg';
-import priceIcon2 from '../public/assets/price-user-1-2.svg';
+import priceIcon1 from '../public/img/basicserviceicon.png';
+import priceIcon2 from '../public/img/premiumserviceicon.png';
 
 const PRICE_MONTHLY_DATA = [
   {
-    recommended: null,
+    recommended: 'BETA VERSION',
     title: 'Free - (some experience required)',
     icon: priceIcon1,
     amount: '$0/ forever',
@@ -39,41 +39,42 @@ const PRICE_MONTHLY_DATA = [
         status: true,
         label: 'Access to our partnered vendors.          ',
       },
-      {
-        status: false,
-        label:
-          'All-inclusive package. All tools and resources and a complete walk-through of the selling process.',
-      },
     ],
   },
   {
-    recommended: 'Recommended',
+    recommended: 'COMING SOON',
+    recommendedColor: 'secondary',
     title: 'Premium Package - (Zero Experience Required)',
     icon: priceIcon2,
     amount: '499.99/once',
     options: [
       {
         status: true,
-        label: 'Access to the dashboard and its features.',
+        label: 'Contact us for more information.',
       },
       {
         status: true,
-        label:
-          'Create a listing page with unlimited photos, videos, and documents.',
+        label: 'Support@findingspaces.com.',
       },
-      {
-        status: true,
-        label: 'QR code issued to the seller.',
-      },
-      {
-        status: true,
-        label:
-          'Yard sign decal sticker. Size = standard yard sign (24”wX18”h))',
-      },
-      {
-        status: true,
-        label: 'Professionally drafted legal documents available for download',
-      },
+
+      // {
+      //   status: true,
+      //   label:
+      //     'Create a listing page with unlimited photos, videos, and documents.',
+      // },
+      // {
+      //   status: true,
+      //   label: 'QR code issued to the seller.',
+      // },
+      // {
+      //   status: true,
+      //   label:
+      //     'Yard sign decal sticker. Size = standard yard sign (24”wX18”h))',
+      // },
+      // {
+      //   status: true,
+      //   label: 'Professionally drafted legal documents available for download',
+      // },
       {
         status: true,
         label:

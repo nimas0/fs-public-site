@@ -72,9 +72,9 @@ const Banner = () => (
           offset={-70}
           duration={500}
         >
-          <Link path='#' sx={styles.button}>
+          {/* <Link path='#' sx={styles.button}>
             Learn More
-          </Link>
+          </Link> */}
         </ScrollLink>
       </Heading>
 
@@ -147,7 +147,7 @@ const bannerAnim3 = keyframes`
 const styles = {
   banner: {
     overflow: 'hidden',
-    backgroundColor: '#F9FBFD',
+    // backgroundColor: '#F9FBFD',
     textAlign: 'center',
     pt: ['110px', null, null, null, '130px'],
     h2: {

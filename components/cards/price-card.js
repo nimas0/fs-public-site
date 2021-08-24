@@ -64,6 +64,8 @@ const styles = {
     border: '1px solid #E0E2E4',
     borderRadius: '10px',
     backgroundColor: '#ffffff',
+    position: 'relative',
+    minHeight: '850px',
     ul: {
       p: 0,
       mt: ['30px', null, null, null, '50px'],
@@ -127,6 +129,9 @@ const styles = {
     left: '0px',
   },
   buttonWrap: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
     borderBottomLeftRadius: '10px',
     borderBottomRightRadius: '10px',
     py: '44px',
