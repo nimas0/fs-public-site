@@ -54,7 +54,7 @@ const PRICE_MONTHLY_DATA = [
       },
       {
         status: true,
-        label: 'Support@findingspaces.com.',
+        label: 'Support@findingspaces.com',
       },
 
       // {
