@@ -56,9 +56,9 @@
 @import url(slick.css);
 @import url(fancybox.min.css);
 
-/* body {
-  background: #f7dbdb;
-} */
+body {
+  background: #fff;
+}
 
 /* beta tag */
 /* body:after{
