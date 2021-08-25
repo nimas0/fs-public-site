@@ -147,7 +147,7 @@ const bannerAnim3 = keyframes`
 const styles = {
   banner: {
     overflow: 'hidden',
-    // backgroundColor: '#F9FBFD',
+    backgroundColor: '#F9FBFD',
     textAlign: 'center',
     pt: ['110px', null, null, null, '130px'],
     h2: {
