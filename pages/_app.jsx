@@ -14,12 +14,14 @@ import TagManager from "react-gtm-module";
 
 config.autoAddCss = false;
 
-const tagManagerArgs = {
-  id: "GTM-KSKMSHD",
-}
 
-export default ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }) => {
   
+  const tagManagerArgs = {
+    id: "GTM-KSKMSHD",
+  }
+  
+
   React.useEffect(() => {
     TagManager.initialize(tagManagerArgs)
   }, [])
@@ -58,3 +60,5 @@ export default ({ Component, pageProps }) => {
     </>
    )
          };
+
+         export default MyApp;
