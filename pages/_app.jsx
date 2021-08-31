@@ -20,7 +20,7 @@ const tagManagerArgs = {
 
 export default ({ Component, pageProps }) => {
   
-  useEffect(() => {
+  React.useEffect(() => {
     TagManager.initialize(tagManagerArgs)
   }, [])
   
