@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'theme-ui';
-import TagManager from 'react-gtm-module'
+
 import { StickyProvider } from '../contexts/app/app.provider';
 import theme from '../theme';
 import Layout from '../components/layout';
@@ -25,16 +25,7 @@ import withLoginModal from '../utils/pageWrappers/withLoginModal';
 const IndexPage = ({AuthUserInfo, showLoginModal}) => {
   const {AuthUser = null } = AuthUserInfo
 
-  const tagManagerArgs = {
-    dataLayer: {
-        userId: '001',
-        userProject: 'project',
-        page: 'home'
-    },
-    dataLayerName: 'PageDataLayer'
-}
 
-TagManager.dataLayer(tagManagerArgs);
 
   return (
     <ThemeProvider theme={theme}>
