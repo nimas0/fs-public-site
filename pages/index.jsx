@@ -19,12 +19,16 @@ import SEO from '../components/seo';
 import withAuthUser from '../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../utils/pageWrappers/withLoginModal';
-
+import gtm from '../config/gmt';
 
 
 const IndexPage = ({AuthUserInfo, showLoginModal}) => {
   const {AuthUser = null } = AuthUserInfo
-
+  
+  
+  React.useEffect(() => {
+    gtm.push({ event: 'page_view' });
+  }, []);
 
 
   return (
