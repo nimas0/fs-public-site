@@ -17,7 +17,7 @@ config.autoAddCss = false;
 
 const MyApp = ({ Component, pageProps }) => {
   
-  const gtmConfig = "GTM-KSKMSHD";
+  const gtmConfig = {containerId: "GTM-KSKMSHD"};
     
 
   
