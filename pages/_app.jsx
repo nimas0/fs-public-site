@@ -19,6 +19,9 @@ const MyApp = ({ Component, pageProps }) => {
   
   const tagManagerArgs = {
     gtmId: "GTM-KSKMSHD",
+    events: {
+      sendUserInfo: 'userInfo'
+  }
   }
   
 
