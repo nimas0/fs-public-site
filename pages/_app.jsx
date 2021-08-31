@@ -18,7 +18,7 @@ config.autoAddCss = false;
 const MyApp = ({ Component, pageProps }) => {
   
   const tagManagerArgs = {
-    id: "GTM-KSKMSHD",
+    gtmId: "GTM-KSKMSHD",
   }
   
 
