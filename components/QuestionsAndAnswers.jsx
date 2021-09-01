@@ -7,6 +7,7 @@ import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import Question from "./Question";
 import NewQuestionModal from "./NewQuestionModal";
+import gtm from '../config/gmt'
 
 export default ({ as, questions, limit, AuthUser }) => {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default ({ as, questions, limit, AuthUser }) => {
   const [modalShown, setModalShown] = useState(false);
   const showModal = () => {
     setModalShown(true);
+    gtm.push({ event: 'question' });
   };
   const hideModal = () => {
     setModalShown(false);
@@ -55,7 +57,11 @@ export default ({ as, questions, limit, AuthUser }) => {
               href='/listing/[listingId]/questions'
               as={`/listing/${router.query.listingId}/questions`}
             >
-              <a>See all questions ({questions.length})</a>
+              <a>
+                See all questions (
+                {questions.length}
+                )
+              </a>
             </Link>
           </div>
         )}
