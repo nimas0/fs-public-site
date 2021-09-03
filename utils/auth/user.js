@@ -1,6 +1,6 @@
 // Adapted from https://github.com/zeit/next.js/blob/canary/examples/with-firebase-authentication
 
-import { get, has } from "lodash/object";
+import { get, has } from 'lodash/object';
 
 /**
  * Take the user object from Firebase (from either the Firebase admin SDK or
@@ -17,17 +17,18 @@ export const createAuthUser = (firebaseUser) => {
     return null;
   }
   return {
-    id: get(firebaseUser, "uid"),
-    displayName: get(firebaseUser, "displayName"),
-    email: get(firebaseUser, "email"),
-    emailVerified: has(firebaseUser, "emailVerified")
-      ? get(firebaseUser, "emailVerified") // Firebase JS SDK
-      : get(firebaseUser, "email_verified"), // Firebase admin SDK
+    id: get(firebaseUser, 'uid'),
+    displayName: get(firebaseUser, 'displayName'),
+    email: get(firebaseUser, 'email'),
+    emailVerified: has(firebaseUser, 'emailVerified')
+      ? get(firebaseUser, 'emailVerified') // Firebase JS SDK
+      : get(firebaseUser, 'email_verified'), // Firebase admin SDK
     photoURL: get(
       firebaseUser,
-      "photoURL",
-      get(firebaseUser, "photo_url", null)
+      'photoURL',
+      get(firebaseUser, 'photo_url', null)
     ),
+    verification: { status: 'approved' },
   };
 };
 

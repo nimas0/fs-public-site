@@ -67,13 +67,13 @@ const QuickStats = ({
         </Col>
       )}
       
-        <Approval
+        {/* <Approval
           key={1}
           verification={verification}
           AuthUser={AuthUser}
           setModalShow={setModalShow}
           showLoginModal={showLoginModal}
-        />
+        /> */}
         {/* Quick stats */}
         <Col
           xs={12}
