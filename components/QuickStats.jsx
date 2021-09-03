@@ -66,7 +66,7 @@ const QuickStats = ({
         )}
         </Col>
       )}
-      
+        {/* //asdfasdf */}
         {/* <Approval
           key={1}
           verification={verification}
