@@ -32,7 +32,7 @@ export default async (req, res) => {
         photoURL,
         createdAt: new Date(),
         verification: {
-          status: false,
+          status: 'approved',
         },
       };
       await userRef.set(newUserData);
