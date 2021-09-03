@@ -1,8 +1,6 @@
-"use strict";
-
-import firebase from "firebase/app";
-import "firebase/firestore";
-import firebaseInit from "../../utils/firebaseInit";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import firebaseInit from '../../utils/firebaseInit';
 
 firebaseInit();
 
@@ -12,20 +10,21 @@ export default async (req, res) => {
 
   // Connect to user reference;
   const db = firebase.firestore();
-  const userRef = db.collection("users").doc(id);
+  const userRef = db.collection('users').doc(id);
 
   try {
     // Check if user exists
     const user = await userRef.get();
     if (user.exists) {
       // Make sure verification field exists
-      if (user.get("verification.status") === undefined) {
+      if (user.get('verification.status') === undefined) {
         // Set verification
-        userRef.set({ verification: { status: false } }, { merge: true });
+        // todo: change to false to reenable verification
+        userRef.set({ verification: { status: 'approved' } }, { merge: true });
       }
 
       // Return existing user
-      res.status(200).json(Object.assign({ created: false }, user.data()));
+      res.status(200).json({ created: false, ...user.data() });
     } else {
       // Create new user at id
       const newUserData = {
@@ -33,13 +32,13 @@ export default async (req, res) => {
         photoURL,
         createdAt: new Date(),
         verification: {
-          status: false
-        }
+          status: false,
+        },
       };
       await userRef.set(newUserData);
 
       // Return new user
-      res.status(200).json(Object.assign({ created: true }, newUserData));
+      res.status(200).json({ created: true, ...newUserData });
     }
   } catch (err) {
     console.log(err);
