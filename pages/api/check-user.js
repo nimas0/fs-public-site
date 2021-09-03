@@ -20,7 +20,7 @@ export default async (req, res) => {
       if (user.get('verification.status') === undefined) {
         // Set verification
         // todo: change to false to reenable verification
-        userRef.set({ verification: { status: 'approved' } }, { merge: true });
+        userRef.set({ verification: { status: 'accepted' } }, { merge: true });
       }
 
       // Return existing user
@@ -32,7 +32,8 @@ export default async (req, res) => {
         photoURL,
         createdAt: new Date(),
         verification: {
-          status: 'approved',
+          // change back to false to reenable verification
+          status: 'accepted',
         },
       };
       await userRef.set(newUserData);

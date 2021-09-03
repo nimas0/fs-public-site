@@ -28,7 +28,7 @@ export const createAuthUser = (firebaseUser) => {
       'photoURL',
       get(firebaseUser, 'photo_url', null)
     ),
-    verification: { status: 'approved' },
+    verification: { status: 'accepted' },
   };
 };
 
