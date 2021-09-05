@@ -21,7 +21,7 @@ import {
   makeMessages,
   timeFormatter,
   addTextToMessageList,
-} from '../../config/dataMsg';
+} from '../../components/dataMsg';
 import ChatComponent from './chat-ui/index';
 import './standard.css';
 
