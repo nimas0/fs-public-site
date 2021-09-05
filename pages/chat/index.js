@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import { ThemeProvider } from 'theme-ui';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCheck,
-  faCross,
-  faTimes,
-  faTimesCircle,
-  faUserCircle,
-  faWindowClose,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import Layout from '../../components/layout';
-import { StickyProvider } from '../../contexts/app/app.provider';
-import theme from '../../theme';
 import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
@@ -22,7 +11,7 @@ import {
   timeFormatter,
   addTextToMessageList,
 } from '../../components/dataMsg';
-import ChatComponent from './chat-ui/index';
+import ChatComponent from '../../components/chat-ui/index';
 import './standard.css';
 
 const Chat = ({ AuthUserInfo, showLoginModal }) => {
