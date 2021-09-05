@@ -11,7 +11,7 @@ import withLoginModal from '../../utils/pageWrappers/withLoginModal';
 //   timeFormatter,
 //   addTextToMessageList,
 // } from '../../components/dataMsg';
-import ChatComponent from '../../components/chat-ui/index';
+import ChatComponent from '../../components/chat-ui/ChatComponent';
 import './standard.css';
 
 const Chat = ({ AuthUserInfo, showLoginModal }) => {
