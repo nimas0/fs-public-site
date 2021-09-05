@@ -24,23 +24,27 @@
 }
 /*the input itself*/
 .chat-input {
-  padding-top: 3ch;
-  padding-left: 4ch;
-  border-top-left-radius: 5ch;
-  border-bottom-left-radius: 5ch;
+  padding-top: 1ch;
+  padding-left: 2ch;
+  border-top-left-radius: 1ch;
+  border-bottom-left-radius: 1ch;
   box-shadow: 0px -5px 5px rgba(0, 0, 0, 0);
   vertical-align: middle;
 }
 /*span that wrapps all the button*/
 .chat-button-wrapper {
-  border-top-right-radius: 5ch;
-  border-bottom-right-radius: 5ch;
+  border-top-right-radius: 2ch;
+  border-bottom-right-radius: 2ch;
 }
 /*stop button*/
 .chat-button-stop {
 }
 /*send button*/
 .chat-button-send {
+  border-top-left-radius: 0ch;
+  border-bottom-left-radius: 0ch;
+  border-top-right-radius: 1ch !important;
+  border-bottom-right-radius: 1ch !important;
 }
 /*4. the component that has all. aka Chat Component*/
 /* wraps everything */
@@ -57,7 +61,7 @@
 }
 /* wraps the input */
 .chat-component-bottom {
-  /* box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.2); */
+  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.2);
   position: fixed;
   bottom: 0;
   background-color: #2b3b38;

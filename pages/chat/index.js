@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCheck,
+  faTimes,
+  faUserCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
@@ -32,25 +36,31 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
           <Navbar.Toggle />
 
           <Navbar.Text>
-            <h6 className='text-left text-white'>Brandon Mcgee</h6>
-            <h4 className='mt-1 text-white'>1234 Main Street Phoenix AZ</h4>
+            <h5 className='mt-1 text-white'>1234 Main Street Phoenix AZ</h5>
           </Navbar.Text>
           <Navbar.Text className='ml-3'>
             {/* <FontAwesomeIcon size='2x' icon={faUserCircle} /> */}
           </Navbar.Text>
           <Nav>
-            <Nav.Link eventKey={2} href='#memes'>
+            <Nav.Link>
               <FontAwesomeIcon size='2x' color='lightGreen' icon={faTimes} />
             </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
       <div className='row p-3 ml bg-light action-buttons'>
+        <FontAwesomeIcon
+          className='ml-3 mr-2'
+          color='darkGrey'
+          size='2x'
+          icon={faUserCircle}
+        />
+
         <Button size='lg' className='ml-3'>
-          Make on Offer
+          Make Offer
         </Button>
         <Button size='lg' className='ml-3'>
-          Schedule Showing
+          Schedule
         </Button>
         {/* <h6 className='mt-2 ml-2'>It's easy!</h6> */}
       </div>
