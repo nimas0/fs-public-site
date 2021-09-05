@@ -36,7 +36,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
           <Navbar.Toggle />
 
           <Navbar.Text>
-            <h5 className='mt-1 text-white'>1234 Main Street Phoenix AZ</h5>
+            <h6 className='mt-1 text-white'>1234 Main Street Phoenix AZ</h6>
           </Navbar.Text>
           <Navbar.Text className='ml-3'>
             {/* <FontAwesomeIcon size='2x' icon={faUserCircle} /> */}
