@@ -72,11 +72,12 @@ export default ({ shown, setShown }) => {
           body: JSON.stringify({ number, userId }),
         }
       );
-      setPage("verification");
+      // setPage("verification");
       if (response.ok) {
         // Move on
-        setPage("verification");
+        // setPage("verification");
         setUploading(false);
+        setPage('welcome')
       } else {
         // https://github.com/developit/unfetch#caveats
         const error = new Error(response.statusText);
@@ -114,10 +115,11 @@ export default ({ shown, setShown }) => {
         processUser(authResult, (isNew, verified) => {
           console.log(verified);
           setNewUser(isNew);
-          if (verified) {
+          if (!isNew) {
             // (fulfills on true or "pending")
             // Login complete
             close();
+            setPage("number");
           } else {
             // Go to verification
             setPage("number");
@@ -138,7 +140,7 @@ export default ({ shown, setShown }) => {
       onHide={close}
       backdrop={uploading ? "static" : true}
     >
-      {page === "auth" ? (
+      {page === "auth" && (
         <>
           <Modal.Header className='bg-white text-dark' closeButton>
             <Modal.Title>Login or Sign Up</Modal.Title>
@@ -153,7 +155,8 @@ export default ({ shown, setShown }) => {
             ) : null}
           </Modal.Body>
         </>
-      ) : page === "authWait" ? (
+      )}
+      {page === "authWait" && (
         <>
           <Modal.Header className='text-white' closeButton>
             <Modal.Title>Please Sign In</Modal.Title>
@@ -163,7 +166,8 @@ export default ({ shown, setShown }) => {
             <Spinner animation='border' variant='primary' />
           </Modal.Body>
         </>
-      ) : page === "verification" ? (
+      )}
+      {page === "verification" && (
         <>
           <Upload userId={userId} setPage={setPage} setModalShow={setShown} newUser={newUser} />
           {/* <Modal.Footer>
@@ -196,7 +200,8 @@ export default ({ shown, setShown }) => {
                   </Button>
                </Modal.Footer> */}
         </>
-      ) : page === "number" ? (
+      )}
+      {page === "number" && (
         <>
           <Modal.Header>
             <Modal.Title>Enter your phone number</Modal.Title>
@@ -255,47 +260,48 @@ export default ({ shown, setShown }) => {
                   Loading...
                 </>
               ) : (
-                "Next"
+                "Submit"
               )}
             </Button>
           </Modal.Footer>
         </>
-      ) : page === "welcome" ? (
-        <>
-          <Modal.Header className='bg-info text-white' closeButton>
-            <Modal.Title>Welcome!</Modal.Title>
-          </Modal.Header>
+      )}
+      {page === "welcome" && (
+      <>
+        <Modal.Header className='bg-info text-white' closeButton>
+          <Modal.Title>Welcome!</Modal.Title>
+        </Modal.Header>
 
-          <Modal.Body className='p-5 text-centered'>
+        <Modal.Body className='p-5 text-centered'>
+          <p>
             <p>
-              <p>
-                “Finding Spaces Beta is a public feature-testing version of
-                Finding Spaces, offering the newest features before they are
-                available to the general public. In contrast, Finding Spaces
-                Beta is feature conservative, ensuring its functionality is
-                maximally reliable and dependable for the general public. We
-                highly appreciate any constructive criticism. Please reach out
-                to us at support@findingspaces.com if you come across any
-                complications with the platform or have any suggestions for a
-                better customer experience. To show our appreciation for being
-                early users, professional photography, and our yard sign service
-                is entirely free! Use coupon code - FINDINGSPACES”
-              </p>
+              “Finding Spaces Beta is a public feature-testing version of
+              Finding Spaces, offering the newest features before they are
+              available to the general public. In contrast, Finding Spaces
+              Beta is feature conservative, ensuring its functionality is
+              maximally reliable and dependable for the general public. We
+              highly appreciate any constructive criticism. Please reach out
+              to us at support@findingspaces.com if you come across any
+              complications with the platform or have any suggestions for a
+              better customer experience. To show our appreciation for being
+              early users, professional photography, and our yard sign service
+              is entirely free! Use coupon code - FINDINGSPACES”
             </p>
-          </Modal.Body>
+          </p>
+        </Modal.Body>
 
-          <Modal.Footer>
-            <Button variant='secondary' onClick={close}>
-              Close
-            </Button>
-            {/* <Button variant='primary' onClick={() => router.push('/buyer/dashboard')}>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={close}>
+            Close
+          </Button>
+          {/* <Button variant='primary' onClick={() => router.push('/buyer/dashboard')}>
                    
                      Go to buyer dashboard
                   </Button> */}
-          </Modal.Footer>
-        </>
-      ) : (
-        // page === "uploaded"
+        </Modal.Footer>
+      </>
+      )}
+      {page === "uploaded" && (
         <>
           <Modal.Header closeButton>
             <Modal.Title>Upload complete!</Modal.Title>
@@ -328,7 +334,7 @@ export default ({ shown, setShown }) => {
           body: JSON.stringify({ id, displayName, photoURL }),
         }
       );
-
+console.log('response', response)
       if (response.ok) {
         // Return whether this user is new and user's verification status
         const { created: isNew, verification } = await response.json();
@@ -344,7 +350,7 @@ export default ({ shown, setShown }) => {
         "Auth success but database failure. Either a coding error or network issues.",
         err
       );
-      close();
+      // close();
     }
   }
 

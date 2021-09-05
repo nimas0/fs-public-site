@@ -11,7 +11,12 @@ import {
 import Header from './header/header';
 import Footer from './footer/footer';
 
-export default function Layout({ auth, showLoginModal, children }) {
+export default function Layout({
+  auth,
+  showLoginModal,
+  displayFooter = true,
+  children,
+}) {
   const isSticky = useStickyState('isSticky');
   const dispatch = useStickyDispatch();
   const setSticky = useCallback(() => dispatch({ type: 'SET_STICKY' }), [
@@ -31,7 +36,7 @@ export default function Layout({ auth, showLoginModal, children }) {
   };
 
   return (
-    <React.Fragment>
+    <div>
       <Sticky enabled={isSticky} innerZ={991}>
         <Header
           showLoginModal={showLoginModal}
@@ -51,7 +56,7 @@ export default function Layout({ auth, showLoginModal, children }) {
       >
         {children}
       </main>
-      <Footer />
-    </React.Fragment>
+      {displayFooter && <Footer />}
+    </div>
   );
 }

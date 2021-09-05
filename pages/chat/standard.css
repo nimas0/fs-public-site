@@ -1,0 +1,77 @@
+/*1. single chat entry*/
+/* time of the message */
+.single-chat-time {
+  width: 8em;
+  font-size: 0.8rem;
+}
+/* wrapper the a single message */
+.single-chat {
+}
+/* text of the message */
+.single-chat-text {
+  box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/*2. messages group*/
+/*div to a single message*/
+.chat-message-list {
+  width: 100%;
+}
+/*3. input and button to the right*/
+/* wrapper to the input*/
+.chat-input-wrapper {
+  background-color: #2b3b38;
+}
+/*the input itself*/
+.chat-input {
+  padding-top: 3ch;
+  padding-left: 4ch;
+  border-top-left-radius: 5ch;
+  border-bottom-left-radius: 5ch;
+  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0);
+  vertical-align: middle;
+}
+/*span that wrapps all the button*/
+.chat-button-wrapper {
+  border-top-right-radius: 5ch;
+  border-bottom-right-radius: 5ch;
+}
+/*stop button*/
+.chat-button-stop {
+}
+/*send button*/
+.chat-button-send {
+}
+/*4. the component that has all. aka Chat Component*/
+/* wraps everything */
+.chat-component {
+  max-height: 82vh;
+  overflow-y: scroll;
+}
+/* wraps the message groups */
+.chat-messages-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20ch;
+  margin-top: 10ch;
+}
+/* wraps the input */
+.chat-component-bottom {
+  /* box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.2); */
+  position: fixed;
+  bottom: 0;
+  background-color: #2b3b38;
+
+  width: 100%;
+  margin: auto;
+}
+
+.nav-color {
+  background-color: #2b3b38;
+
+  padding-bottom: 0ch;
+}
+
+.action-buttons {
+  box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.2);
+}

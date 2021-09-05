@@ -20,7 +20,7 @@ export default function Footer() {
           <Text
             as='p'
             sx={{
-              color: '#ffffff',
+              color: 'black',
               opacity: '0.7',
               fontSize: '14px',
               mt: ['10px', null, null, null, null, '0'],
@@ -30,10 +30,10 @@ export default function Footer() {
           </Text>
         </Box>
         <Box sx={styles.linksWrap}>
-          <Link path='/'>Home</Link>
-          <Link path='/'>Advertise</Link>
-          <Link path='/'>Supports</Link>
-          <Link path='/'>Marketing</Link>
+          <Link path='/'>Sell your home</Link>
+          <Link path='/'>Learn More</Link>
+          <Link path='/'>Support</Link>
+          <Link path='/'>Pricing</Link>
           <Link path='/'>FAQ</Link>
         </Box>
       </Container>
@@ -44,7 +44,8 @@ export default function Footer() {
 const styles = {
   footer: {
     py: ['40px', null, null, null, null, '30px', '40px'],
-    backgroundColor: '#020718',
+    backgroundColor: '#FFFFFF',
+    borderTop: '1px solid grey',
     position: 'relative',
     '&::before': {
       content: '""',
@@ -71,7 +72,7 @@ const styles = {
     flexWrap: 'wrap',
     a: {
       fontSize: ['14px', null, null, null, '16px'],
-      color: '#ffffff',
+      color: 'black',
       transition: 'all 500ms ease',
       '&:hover': { opacity: 0.7 },
     },

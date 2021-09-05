@@ -24,11 +24,17 @@ import menuItems from './header.data';
 import logoDark from '../../public/assets/logo idea-2-transparent extra small.png';
 import UserDrawer from './UserDrawer';
 
-export default function Header({ auth, showLoginModal, className }) {
+export default function Header({
+  auth,
+  showLoginModal,
+  className,
+  solidBackground = false,
+}) {
   const router = useRouter();
   const isListingPage = router.pathname.toString().match('listing');
   const isSearchPage = router.pathname.toString().match('search');
-  const hideMenu = isListingPage || isSearchPage;
+  const isChatPage = router.pathname.toString().match('chat');
+  const hideMenu = isListingPage || isSearchPage || isChatPage;
   return (
     <DrawerProvider>
       <header sx={styles.header} className={className}>
@@ -120,7 +126,7 @@ const styles = {
     position: 'fixed',
     top: 0,
     left: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: 'background',
     transition: 'all 0.4s ease',
 
     '&.sticky': {

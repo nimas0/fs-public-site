@@ -271,7 +271,7 @@ if(isSubscribed) {
           as='section'
           id='tour-this-home'
           aria-labelledby='tour-this-home-heading2'
-          className={` px-4  mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
+          className={` px-1  mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
             breakpoint.up.lg ? " position-sticky" : ""
           }`}
           // style={
@@ -282,7 +282,7 @@ if(isSubscribed) {
               ? {
                   top: "8rem",
                   zIndex: 1020,
-                  boxShadow: "inset 4px 4px 30px #bdbdbd",
+                 
                 }
               : { zIndex: 1021 }
           }
