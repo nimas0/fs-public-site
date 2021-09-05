@@ -17,7 +17,11 @@ import theme from '../../theme';
 import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
-import { makeMessages, timeFormatter, addTextToMessageList } from './dataMsg';
+import {
+  makeMessages,
+  timeFormatter,
+  addTextToMessageList,
+} from '../../config/dataMsg';
 import ChatComponent from './chat-ui/index';
 import './standard.css';
 
