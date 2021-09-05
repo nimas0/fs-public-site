@@ -6,17 +6,17 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import withAuthUser from '../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../utils/pageWrappers/withLoginModal';
-import {
-  makeMessages,
-  timeFormatter,
-  addTextToMessageList,
-} from '../../components/dataMsg';
+// import {
+//   makeMessages,
+//   timeFormatter,
+//   addTextToMessageList,
+// } from '../../components/dataMsg';
 import ChatComponent from '../../components/chat-ui/index';
 import './standard.css';
 
 const Chat = ({ AuthUserInfo, showLoginModal }) => {
   const AuthUser = AuthUserInfo.authUser;
-  const [msgs, setMsg] = useState(makeMessages(20));
+  const [msgs, setMsg] = useState('makeMessages(20)');
   return (
     <div>
       <Head>
@@ -59,8 +59,8 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
         messages={msgs}
         agentUser='Agent'
         iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
-        onMessageSend={(text) => setMsg(addTextToMessageList(text, msgs))}
-        timeFormatter={timeFormatter}
+        onMessageSend={(text) => setMsg('addTextToMessageList(text, msgs)')}
+        timeFormatter='timeFormatter'
         displayStop
         onMessageStop={() => null}
       />
