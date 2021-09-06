@@ -19,11 +19,11 @@ import ChatHeader from '../../../components/chat-ui/ChatHeader';
 
 const Chat = ({ AuthUserInfo, showLoginModal }) => {
   const { AuthUser = null } = AuthUserInfo;
-  // const router = useRouter();
+  const router = useRouter();
 
   // todo: migrate interestId to be called chatId
   // will affect database and seller app
-  // const { chatId } = router.query;
+  const { chatId } = router.query;
   // const { messages, loading } = useMessenger(chatId);
 
   // const submitMessage = async (message) => {
@@ -62,7 +62,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
         <title>Chat with Seller</title>
       </Head>
       <h6>jsldfjsldfj</h6>
-      {/* <ChatHeader AuthUser={AuthUser} /> */}
+      <ChatHeader AuthUser={AuthUser} />
       {/* <ChatComponent
         messages='messages'
         agentUser={AuthUser.id}
