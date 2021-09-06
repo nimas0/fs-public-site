@@ -271,7 +271,7 @@ if(isSubscribed) {
           as='section'
           id='tour-this-home'
           aria-labelledby='tour-this-home-heading2'
-          className={` px-4  mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
+          className={` px-1  mx-md-n3 mx-lg-0 mt-2 mb-4 my-n2${
             breakpoint.up.lg ? " position-sticky" : ""
           }`}
           // style={
@@ -282,7 +282,7 @@ if(isSubscribed) {
               ? {
                   top: "8rem",
                   zIndex: 1020,
-                  boxShadow: "inset 4px 4px 30px #bdbdbd",
+                 
                 }
               : { zIndex: 1021 }
           }
@@ -412,12 +412,13 @@ if(isSubscribed) {
                   leadData={leadData}
                   type='chat'
                   label='Chat with Seller'
+                  listing={listing}
                   router={router}
                   handleLeadInitialization={handleLeadInitialization}
                   listingId={listingId}
                   buyerId={buyerId}
                 />
-                <RenderButtons
+                {/* <RenderButtons
                   leadData={leadData}
                   type='proposal'
                   label='Make an Offer'
@@ -425,7 +426,7 @@ if(isSubscribed) {
                   router={router}
                   listingId={listingId}
                   handleLeadInitialization={handleLeadInitialization}
-                />
+                /> */}
                 <Button
                   target='_blank'
                   href='https://seller.findingspaces.com'

@@ -34,7 +34,7 @@ const QuickStats = ({
       >
         {/* Activity */}
         {breakpoint.down.md ? (
-          <Col xs={12} className='h3 primary mt-5'>
+          <Col xs={12} className='h3 primary '>
             {/* <FontAwesomeIcon icon={faFire} style={{ color: "#fab92d" }} />  */}
 
             {skeleton ? (
@@ -45,7 +45,8 @@ const QuickStats = ({
                 count={1}
               />
   ) : (
-    <h4 className='mt-5'>{address}</h4>
+  
+    <h4 className=''>{address}</h4>
   )}
           </Col>
         )

@@ -6,6 +6,7 @@ import GenericModal from "../../GenericModal";
 
 const RenderButtons = ({
   leadData,
+  listing,
   verification,
   tourLinkAs,
   router,
@@ -80,8 +81,8 @@ const RenderButtons = ({
           e.preventDefault();
           if (!leadData) await handleLeadInitialization();
           router.push(
-            `/buyer/interest?interestId=${listingId}_${buyerId}`,
-            `/buyer/interest/${listingId}_${buyerId}`
+            `/chat?chatId=${listingId}_${buyerId}&address=${listing.address[0]}`,
+            `/chat/${listingId}_${buyerId}?address=${listing.address[0]}`
           );
         }}
         className={clsx(
