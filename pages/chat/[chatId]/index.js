@@ -17,7 +17,7 @@ import firebaseInit from '../../../utils/firebaseInit';
 // Initialize Firebase app
 firebaseInit();
 
-const Chat = ({ AuthUserInfo, showLoginModal }) => {
+const Chat = ({ AuthUserInfo }) => {
   const { AuthUser = null } = AuthUserInfo;
   const router = useRouter();
 
@@ -57,8 +57,8 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
         .database()
         .ref()
         .update(update);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -69,7 +69,11 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
       <Head>
         <title>Chat with Seller</title>
       </Head>
-      <ChatHeader AuthUser={AuthUser} />
+      <ChatHeader
+        AuthUser={AuthUser}
+        router={router}
+        listingId={router.query.chatId.split('_')[0]}
+      />
       <ChatComponent
         messages={messages}
         agentUser={AuthUser.id}

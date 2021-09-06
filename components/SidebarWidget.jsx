@@ -412,12 +412,13 @@ if(isSubscribed) {
                   leadData={leadData}
                   type='chat'
                   label='Chat with Seller'
+                  listing={listing}
                   router={router}
                   handleLeadInitialization={handleLeadInitialization}
                   listingId={listingId}
                   buyerId={buyerId}
                 />
-                <RenderButtons
+                {/* <RenderButtons
                   leadData={leadData}
                   type='proposal'
                   label='Make an Offer'
@@ -425,7 +426,7 @@ if(isSubscribed) {
                   router={router}
                   listingId={listingId}
                   handleLeadInitialization={handleLeadInitialization}
-                />
+                /> */}
                 <Button
                   target='_blank'
                   href='https://seller.findingspaces.com'
