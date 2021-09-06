@@ -18,11 +18,18 @@ export function useMessenger(chatId) {
     const listener = async () =>
       reference.on('value', (snapshot) => {
         const data = snapshot.val();
+        console.log('data');
+        console.log('data', data, !data);
         if (!data === true) {
-          setError(
-            'Sorry we could not find this conversation. If this error persists please contact support.'
-          );
+          // setError(
+          //   'Sorry we could not find this conversation. If this error persists please contact support.'
+          // );
+          // setLoading(false);
+          const arrayOfObj = Object.entries(data).map((e) => e[1]);
+          console.log('arrayOfObj', arrayOfObj);
+          setMessages(arrayOfObj);
           setLoading(false);
+          setError(false);
         } else {
           const arrayOfObj = Object.entries(data).map((e) => e[1]);
           console.log('arrayOfObj', arrayOfObj);
