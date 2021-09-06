@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SingleChat = ({ message, left, timeFormatter }) => {
-  let { body, time } = message;
+const SingleChat = ({ messageObject, left, timeFormatter }) => {
+  console.log('messageObject', messageObject);
+  const { message, timestamp, photoURL } = messageObject;
   const rightSpanClass = left ? 'hidden ml-2' : 'ml-2 single-chat-time';
   const leftSpanClass = left ? 'mr-2 single-chat-time' : 'hidden mr-2';
   const upperClass = left
@@ -11,13 +12,14 @@ const SingleChat = ({ message, left, timeFormatter }) => {
   const bodyClass = left
     ? 'bg-secondary text-white p-2 w-50 single-chat-text rounded text-left '
     : 'bg-success text-white  p-2 w-50 single-chat-text rounded text-left';
-  time = timeFormatter(time);
+  // time = timeFormatter(time);
+
   return (
     <div className={upperClass}>
-      <span className={leftSpanClass} hidden={!left}>
+      {/* <span className={leftSpanClass} hidden={!left}>
         {time}
-      </span>
-      <span className={bodyClass}>{body}</span>
+      </span> */}
+      <span className={bodyClass}>{message}</span>
       {/* <span className={rightSpanClass} hidden={left}>
         {time}
       </span> */}

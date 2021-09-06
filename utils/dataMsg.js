@@ -18,6 +18,7 @@ const makeSingleMsg = () => {
     time
   );
 };
+
 export const timeFormatter = (timeString) => {
   try {
     const date = new Date(timeString);

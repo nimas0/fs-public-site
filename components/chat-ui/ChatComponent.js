@@ -61,8 +61,6 @@ class ChatComponent extends Component {
               <ChatInput
                 iconSend={iconSend}
                 onMessageSend={(text) => this.onMessageSend(text)}
-                displayStop={displayStop}
-                onMessageStop={onMessageStop}
               />
             </div>
           </div>
