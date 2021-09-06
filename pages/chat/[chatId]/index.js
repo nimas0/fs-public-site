@@ -61,7 +61,8 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
       <Head>
         <title>Chat with Seller</title>
       </Head>
-      <ChatHeader AuthUser={AuthUser} />
+      <h6>jsldfjsldfj</h6>
+      {/* <ChatHeader AuthUser={AuthUser} /> */}
       {/* <ChatComponent
         messages='messages'
         agentUser={AuthUser.id}
