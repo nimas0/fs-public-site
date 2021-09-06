@@ -13,6 +13,7 @@ import ChatHeader from '../../../components/chat-ui/ChatHeader';
 import { useMessenger } from '../../../utils/hooks/useMessenger';
 import 'firebase/database';
 import firebaseInit from '../../../utils/firebaseInit';
+import useOnlineChat from '../../../utils/hooks/useOnlineChat';
 
 // Initialize Firebase app
 firebaseInit();
@@ -32,7 +33,7 @@ const Chat = ({ AuthUserInfo }) => {
   // will affect database and seller app
   const { chatId } = router.query;
   const { messages, loading, error } = useMessenger(chatId);
-
+  const { isOnline, loading: processing } = useOnlineChat(chatId);
   const submitMessage = async (message) => {
     try {
       const { displayName, photoURL, id } = AuthUser;
@@ -61,7 +62,7 @@ const Chat = ({ AuthUserInfo }) => {
       console.log(err);
     }
   };
-
+  if (processing) console.log('isOnline', isOnline);
   if (loading) return <p>loading</p>;
   if (error) return <p>{error}</p>;
   return (

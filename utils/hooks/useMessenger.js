@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import firebaseInit from '../firebaseInit';
-import { useLead } from './useLead';
+
 // Initialize Firebase app
 firebaseInit();
 
