@@ -1,13 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/router';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCheck } from '@fortawesome/free-solid-svg-icons';
+// import { useRouter } from 'next/router';
 // import firebase from 'firebase/app';
 import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
-import ChatComponent from '../../../components/chat-ui/ChatComponent';
+// import ChatComponent from '../../../components/chat-ui/ChatComponent';
 import './standard.css';
 import ChatHeader from '../../../components/chat-ui/ChatHeader';
 // import { useMessenger } from '../../../utils/hooks/useMessenger';
@@ -19,11 +19,11 @@ import ChatHeader from '../../../components/chat-ui/ChatHeader';
 
 const Chat = ({ AuthUserInfo, showLoginModal }) => {
   const { AuthUser = null } = AuthUserInfo;
-  const router = useRouter();
+  // const router = useRouter();
 
   // todo: migrate interestId to be called chatId
   // will affect database and seller app
-  const { chatId } = router.query;
+  // const { chatId } = router.query;
   // const { messages, loading } = useMessenger(chatId);
 
   // const submitMessage = async (message) => {
@@ -62,15 +62,15 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
         <title>Chat with Seller</title>
       </Head>
       <ChatHeader AuthUser={AuthUser} />
-      <ChatComponent
+      {/* <ChatComponent
         messages='messages'
         agentUser={AuthUser.id}
         iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
-        onMessageSend={(message) => 'submitMessage(message)'}
+        onMessageSend={"(message) => 'submitMessage(message)'"}
         timeFormatter='timeFormatter'
         displayStop
         onMessageStop={() => null}
-      />
+      /> */}
     </div>
   );
 };
