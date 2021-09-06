@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCheck } from '@fortawesome/free-solid-svg-icons';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 // import firebase from 'firebase/app';
 import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
