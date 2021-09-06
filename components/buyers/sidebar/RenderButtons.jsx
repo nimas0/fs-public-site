@@ -77,8 +77,7 @@ const RenderButtons = ({
             ? "outline-primary"
             : "primary"
         }
-        onClick={async (e) => {
-          e.preventDefault();
+        onClick={async () => {
           if (!leadData) await handleLeadInitialization();
           router.push(
             `/chat?chatId=${listingId}_${buyerId}&address=${listing.address[0]}`,
