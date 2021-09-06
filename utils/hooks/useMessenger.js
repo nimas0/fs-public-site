@@ -15,12 +15,12 @@ export function useMessenger(chatId) {
   //   const listingId = (chatId && chatId.split('_')[0]) || null;
   //   const userId = (chatId && chatId.split('_')[1]) || null;
   console.log('chatid', chatId);
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log('called me');
 
   useEffect(() => {
-    const reference = firebase.database().ref(`interest_chat/${chatId}/`);
+    const reference = firebase.database().ref(`interest_chat/${chatId}`);
     console.log('got this far');
     const listener = async () =>
       reference.on('value', (snapshot) => {
