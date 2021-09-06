@@ -24,7 +24,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
   // todo: migrate interestId to be called chatId
   // will affect database and seller app
   const { chatId } = router.query;
-  const { messages, loading } = useMessenger(chatId);
+  // const { messages, loading } = useMessenger(chatId);
 
   const submitMessage = async (message) => {
     try {
@@ -38,7 +38,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
         timestamp: Date.now(),
       };
       // Get a key for a new Post.
-      const newPostKey = await firebase
+      const newPostKey = firebase
         .database()
         .ref()
         .child('posts')
