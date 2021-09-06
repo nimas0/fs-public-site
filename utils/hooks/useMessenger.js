@@ -9,30 +9,31 @@ import firebaseInit from '../firebaseInit';
 firebaseInit();
 
 export function useMessenger(chatId) {
-  // listingId_userId chat id follows this convention
-  // listingId will always represent the homeowner
-  // userId will always represent the other person
-  //   const listingId = (chatId && chatId.split('_')[0]) || null;
-  //   const userId = (chatId && chatId.split('_')[1]) || null;
-  console.log('chatid', chatId);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log('called me');
+  const [error, setError] = useState(true);
 
   useEffect(() => {
     const reference = firebase.database().ref(`interest_chat/${chatId}`);
-    console.log('got this far');
     const listener = async () =>
       reference.on('value', (snapshot) => {
         const data = snapshot.val();
-        const arrayOfObj = Object.entries(data).map((e) => e[1]);
-        console.log('arrayOfObj', arrayOfObj);
-        setMessages(arrayOfObj);
-        setLoading(false);
+        if (!data === true) {
+          setError(
+            'Sorry we could not find this conversation. If this error persists please contact support.'
+          );
+          setLoading(false);
+        } else {
+          const arrayOfObj = Object.entries(data).map((e) => e[1]);
+          console.log('arrayOfObj', arrayOfObj);
+          setMessages(arrayOfObj);
+          setLoading(false);
+          setError(false);
+        }
       });
     listener();
     return reference.off('value', listener);
   }, []);
 
-  return { messages, loading };
+  return { messages, loading, error };
 }

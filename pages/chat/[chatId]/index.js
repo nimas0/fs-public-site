@@ -31,7 +31,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
   // todo: migrate interestId to be called chatId
   // will affect database and seller app
   const { chatId } = router.query;
-  const { messages, loading } = useMessenger(chatId);
+  const { messages, loading, error } = useMessenger(chatId);
 
   const submitMessage = async (message) => {
     try {
@@ -63,6 +63,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
   };
 
   if (loading) return <p>loading</p>;
+  if (error) return <p>{error}</p>;
   return (
     <div>
       <Head>
