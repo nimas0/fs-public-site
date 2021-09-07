@@ -28,8 +28,8 @@ export function useMessenger(chatId) {
     const listener = async () =>
       reference.on('value', async (snapshot) => {
         const data = snapshot.val();
-        console.log('data');
-        console.log('data', data, !data);
+        // console.log('data');
+        // console.log('data', data, !data);
         if (!data === true) {
           // setError(
           //   'Sorry we could not find this conversation. If this error persists please contact support.'
@@ -43,7 +43,7 @@ export function useMessenger(chatId) {
             .push().key;
           const update = {};
           update[`/interest_chat/${chatId}/${newPostKey}`] = postData;
-          console.log(newPostKey);
+          // console.log(newPostKey);
 
           // Post to firebase real time
           await firebase
@@ -58,7 +58,7 @@ export function useMessenger(chatId) {
           setLoading(false);
         } else {
           const arrayOfObj = Object.entries(data).map((e) => e[1]);
-          console.log('arrayOfObj', arrayOfObj);
+          // console.log('arrayOfObj', arrayOfObj);
           setMessages(arrayOfObj);
           setLoading(false);
           setError(false);

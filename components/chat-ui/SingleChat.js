@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SingleChat = ({ messageObject, left, timeFormatter }) => {
-  console.log('messageObject', messageObject);
+const SingleChat = ({
+  messageObject,
+  left,
+  timeFormatter,
+  AuthUser,
+  showLoginModal,
+}) => {
   const { message, timestamp, photoURL } = messageObject;
   const rightSpanClass = left ? 'hidden ml-2' : 'ml-2 single-chat-time';
   const leftSpanClass = left ? 'mr-2 single-chat-time' : 'hidden mr-2';
@@ -20,6 +25,7 @@ const SingleChat = ({ messageObject, left, timeFormatter }) => {
         {time}
       </span> */}
       <span className={bodyClass}>{message}</span>
+
       {/* <span className={rightSpanClass} hidden={left}>
         {time}
       </span> */}

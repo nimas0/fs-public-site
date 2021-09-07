@@ -14,11 +14,12 @@ import { useMessenger } from '../../../utils/hooks/useMessenger';
 import 'firebase/database';
 import firebaseInit from '../../../utils/firebaseInit';
 import useOnlineChat from '../../../utils/hooks/useOnlineChat';
+import { DrawerProvider } from '../../../contexts/drawer/drawer.provider';
 
 // Initialize Firebase app
 firebaseInit();
 
-const Chat = ({ AuthUserInfo }) => {
+const Chat = ({ AuthUserInfo, showLoginModal }) => {
   const { AuthUser = null } = AuthUserInfo;
   const router = useRouter();
 
@@ -66,25 +67,28 @@ const Chat = ({ AuthUserInfo }) => {
   if (loading) return <p>loading</p>;
   if (error) return <p>{error}</p>;
   return (
-    <div>
-      <Head>
-        <title>Chat with Seller</title>
-      </Head>
-      <ChatHeader
-        AuthUser={AuthUser}
-        router={router}
-        listingId={router.query.chatId.split('_')[0]}
-      />
-      <ChatComponent
-        messages={messages}
-        agentUser={AuthUser.id}
-        iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
-        onMessageSend={(message) => submitMessage(message)}
-        timeFormatter='timeFormatter'
-        displayStop
-        onMessageStop={() => null}
-      />
-    </div>
+    <DrawerProvider>
+      <div>
+        <Head>
+          <title>Chat with Seller</title>
+        </Head>
+        <ChatHeader
+          AuthUser={AuthUser}
+          router={router}
+          listingId={router.query.chatId.split('_')[0]}
+        />
+        <ChatComponent
+          showLoginModal={showLoginModal}
+          messages={messages}
+          agentUser={AuthUser.id}
+          iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
+          onMessageSend={(message) => submitMessage(message)}
+          timeFormatter='timeFormatter'
+          displayStop
+          onMessageStop={() => null}
+        />
+      </div>
+    </DrawerProvider>
   );
 };
 

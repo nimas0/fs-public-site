@@ -33,12 +33,14 @@ class ChatComponent extends Component {
 
   render() {
     const {
+      AuthUser,
       messages,
       agentUser,
       iconSend,
       displayStop,
       onMessageStop,
       timeFormatter,
+      showLoginModal,
     } = this.props;
     return (
       <>
@@ -46,6 +48,8 @@ class ChatComponent extends Component {
           <div className='container chat-messages-container row'>
             <ChatMessagesGroup
               left
+              showLoginModal={showLoginModal}
+              AuthUser={AuthUser}
               messages={messages}
               agentUser={agentUser}
               timeFormatter={timeFormatter}
