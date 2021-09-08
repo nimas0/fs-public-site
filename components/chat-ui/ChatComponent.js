@@ -22,10 +22,14 @@ class ChatComponent extends Component {
   componentDidUpdate(prevProps) {
     const prevMsgs = prevProps.messages;
     const msgs = this.props.messages;
+    console.log('prev', prevMsgs[prevMsgs.length - 1].timestamp);
+    console.log('msgs', msgs[msgs.length - 1].timestamp);
     if (
       Array.isArray(prevMsgs) &&
       Array.isArray(msgs) &&
-      msgs.length !== prevMsgs.length
+      msgs[msgs.length - 1].timestamp !==
+        prevMsgs[prevMsgs.length - 1].timestamp
+      // msgs.length === prevMsgs.length + 1
     ) {
       this.scrollToBottom();
     }
@@ -39,15 +43,18 @@ class ChatComponent extends Component {
       iconSend,
       displayStop,
       onMessageStop,
+      setMessageGroupCounter,
       timeFormatter,
       showLoginModal,
     } = this.props;
+
     return (
       <>
         <div className='chat-component'>
           <div className='container chat-messages-container row'>
             <ChatMessagesGroup
               left
+              setMessageGroupCounter={setMessageGroupCounter}
               showLoginModal={showLoginModal}
               AuthUser={AuthUser}
               messages={messages}

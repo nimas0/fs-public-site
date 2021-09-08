@@ -8,10 +8,14 @@ import firebaseInit from '../firebaseInit';
 // Initialize Firebase app
 firebaseInit();
 
-export function useMessenger(chatId) {
+export function useMessenger(chatId, count) {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  // state to handle infinite loader
+
+  const [firstKnownKey, setFirstKnownKey] = useState('');
 
   const postData = {
     author: 'HITFymnB6XahFv1IUtST0S1zuSl2',
@@ -21,12 +25,58 @@ export function useMessenger(chatId) {
       'https://lh3.googleusercontent.com/a/AATXAJwlxBo7ZLsvzN4twhzyAABiWPFvBpXN61qLNHtq=s96-c',
     timestamp: 1630869154948,
   };
-
+  const reference = firebase.database().ref(`interest_chat/${chatId}`);
   useEffect(() => {
-    const reference = firebase.database().ref(`interest_chat/${chatId}`);
+    // const childrenVal = [];
+    // const childrenKey = [];
+    // const getFirst = async () => {
+    //   if (chatId) {
+    //     await reference
+    //       .limitToLast(5)
+    //       .once('value')
+    //       .then((snap) => {
+    //         snap.forEach((childSnap) => {
+    //           childrenVal.unshift(childSnap.val());
+    //           childrenKey.unshift(childSnap.key);
+    //         });
+    //         setFirstKnownKey(childrenKey[childrenKey.length - 1]);
+    //         setMessages(() => [...childrenVal]);
+    //       })
+    //       .catch((err) => setError(err));
+    //   }
+    // };
 
+    // const exclude = (key) =>
+    //   key.substring(0, key.length - 1) +
+    //   String.fromCharCode(key.charCodeAt(key.length - 1) - 1);
+
+    // const getNext = () => {
+    //   console.log('called in GETNEXT');
+    //   reference
+    //     .orderByKey()
+    //     .endAt(exclude(firstKnownKey))
+    //     .limitToLast(5)
+    //     .once('value')
+    //     .then((snap) => {
+    //       snap.forEach((childSnap) => {
+    //         childrenVal.unshift(childSnap.val());
+    //         childrenKey.unshift(childSnap.key);
+    //       });
+    //       setFirstKnownKey(childrenKey[childrenKey.length - 1]);
+    //       setMessages((prev) => [...prev, ...childrenVal]);
+    //     });
+    // };
+    // console.log('messages', messages);
+    // if (messages.length === 0) {
+    //   getFirst();
+    //   console.log('called get first');
+    // } else {
+    //   getNext();
+    // }
+
+    // console.log('messagesResult', messages);
     const listener = async () =>
-      reference.on('value', async (snapshot) => {
+      reference.limitToLast(count).on('value', async (snapshot) => {
         const data = snapshot.val();
         // console.log('data');
         // console.log('data', data, !data);
@@ -66,7 +116,9 @@ export function useMessenger(chatId) {
       });
     listener();
     return reference.off('value', listener);
-  }, []);
+    setLoading(false);
+    console.log(error);
+  }, [count]);
 
   return { messages, loading, error };
 }

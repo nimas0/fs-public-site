@@ -1,35 +1,16 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Box } from 'theme-ui';
+import { Box } from 'theme-ui';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { IoMdClose, IoMdMenu } from 'react-icons/io';
-import { Link as ScrollLink } from 'react-scroll';
+import { IoMdClose } from 'react-icons/io';
 import firebase from 'firebase';
-import { useCollection } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Avatar } from 'antd';
 import { Col, Container, Row } from 'react-bootstrap';
-import logoDark from '../../public/assets/logo-dark.svg';
-import Logo from '../logo';
-
 import { DrawerContext } from '../../contexts/drawer/drawer.context';
-import menuItems from '../header/header.data';
 import Drawer from '../drawer';
-import logout from '../../utils/auth/logout';
-import Image from '../image';
 import MessageProposal from './MessageProposal';
-import { useProposal } from '../../utils/hooks/useProposal';
 
-const ProposalMessageWithDrawer = ({
-  AuthUser,
-  showLoginModal,
-  isMine,
-  messageData,
-  setSelected,
-  selected,
-}) => {
+const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
   const [proposal, setProposal] = useState(null);
   const { state, dispatch } = useContext(DrawerContext);
   const router = useRouter();
@@ -38,6 +19,7 @@ const ProposalMessageWithDrawer = ({
   const { proposalId } = router.query;
   useEffect(() => {
     if (!state.isOpen) router.query.proposalId = null;
+    if (!state.isOpen) return;
     console.log('got called in useProposal222', proposalId);
     const unsubscribe = async () => {
       const proposalsRef = firebase
@@ -70,15 +52,13 @@ const ProposalMessageWithDrawer = ({
 
   return (
     <Drawer
-      width='320px'
+      width='420px'
       drawerHandler={
-        <div>
-          <MessageProposal
-            setSelected={setSelected}
-            isMine={isMine}
-            data={messageData}
-          />
-        </div>
+        <MessageProposal
+          setSelected={setSelected}
+          isMine={isMine}
+          data={messageData}
+        />
       }
       open={state.isOpen}
       toggleHandler={toggleHandler}

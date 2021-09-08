@@ -12,7 +12,7 @@ export const useProposal = (proposalId) => {
   const [error, setError] = useState(false);
   console.log('got called in useProposal', proposalId);
   useEffect(() => {
-    if (proposalId) return;
+    if (!proposalId) return;
     console.log('got called in useProposal222', proposalId);
     const unsubscribe = async () => {
       const proposalsRef = firebase
