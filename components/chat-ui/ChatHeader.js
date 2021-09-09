@@ -8,6 +8,7 @@ import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 const ChatHeader = ({ AuthUser, listingId }) => {
   const router = useRouter();
   console.log(AuthUser, 'AuthUser');
+  console.log('params', router.query.chatId);
   return (
     <>
       <Navbar
@@ -29,7 +30,7 @@ const ChatHeader = ({ AuthUser, listingId }) => {
               onClick={async (e) => {
                 e.preventDefault();
                 router.push(
-                  `/listing?chatId=${listingId}`,
+                  `/listing?listinId=${listingId}`,
                   `/listing/${listingId}`
                 );
               }}
@@ -52,7 +53,14 @@ const ChatHeader = ({ AuthUser, listingId }) => {
         ) : (
           <FontAwesomeIcon color='darkGrey' size='2x' icon={faUserCircle} />
         )}
-        <Button disabled size='lg' className='ml-3'>
+        <Button
+          onClick={async (e) => {
+            e.preventDefault();
+            router.push(`/buyer/Offer/${router.query.chatId}`);
+          }}
+          size='lg'
+          className='ml-3'
+        >
           Offer
         </Button>
         <Button

@@ -12,8 +12,10 @@ import {
   Navbar,
   Jumbotron,
   Table,
+  ListGroup,
 } from "react-bootstrap";
 import { useRouter } from "next/router";
+import _ from 'lodash'
 import Body from "../../generic/Dialog/Body";
 import SideBar from "../../generic/Dialog/SideBar";
 import Footer from "../../generic/Dialog/Footer";
@@ -33,43 +35,7 @@ const Summary = ({
   ...rest
 }) => {
   const router = useRouter();
-  // if (sending)
-  //    return (
-  //       <div data-test='step-summary'>
-  //          <Row>
-  //             <Body className='d-flex justify-content-center'>
-  //                <div className='m-3 d-block'>
-  //                   <div className='py-4'>
-  //                      <Spinner animation='grow' />
-  //                   </div>
-  //                </div>
-  //             </Body>
-  //          </Row>
-  //          <div>
-  //             <Card.Footer className='p-4 d-flex justify-content-between align-items-center'>
-  //                <Col xs='1' className='pl-1'>
-  //                   <Button
-  //                      onClick={rest.cancelAction}
-  //                      as='a'
-  //                      className='rounded-lg'
-  //                      variant='light'>
-  //                      CANCEL
-  //                   </Button>
-  //                </Col>
-  //                <Col className='d-flex justify-content-end mr-5'>
-  //                   <Button
-  //                      size='lg'
-  //                      type='submit'
-  //                      className=' w-25 rounded-lg ml-3 my-1'
-  //                      variant='primary'
-  //                      block>
-  //                      Send Offer
-  //                   </Button>
-  //                </Col>
-  //             </Card.Footer>
-  //          </div>
-  //       </div>
-  //    );
+  console.log("values", Object.entries(values))
   return (
     <>
       <Row data-test='step-summary'>
@@ -93,29 +59,20 @@ const Summary = ({
               </div>
               <b className='mb-5'>Please Review Offer before submitting:</b>
               <br />
-     
-              <Table
-                responsive="sm"
-                className='mt-1'
-                hover
-                variant='light'
-                
-              >
-                <thead>
-                  <tr>
-                    {Object.keys(values).map((title) => (
-                      <td>{toTitleCase(title)}</td>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className='text-break'>
-                    {Object.values(values).map((value) => (
-                      <td>{value.toString()}</td>
-                    ))}
-                  </tr>
-                </tbody>
-              </Table>
+              <div>
+               
+                {Object.entries(values).map((keyValueArray, idx) => (
+                  <ListGroup as={Row} lg='2' key={keyValueArray[0]} horizontal='md' className="mx-2 my-3">
+                    <ListGroup.Item className='bg-dark text-white '>{_.startCase(keyValueArray[0].toString())}</ListGroup.Item>
+                    <ListGroup.Item>
+                      {keyValueArray[1].toString()}
+                    </ListGroup.Item>
+                  </ListGroup>
+                ))}
+               
+
+              </div>
+
               <Button
                 onClick={() => goToStep(2)}
                 className='rounded-lg mb-5 text-info'
@@ -123,6 +80,12 @@ const Summary = ({
               >
                 EDIT OFFER
               </Button>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
             </div>
           )}
         </div>

@@ -12,27 +12,18 @@ const Footer = (props) => {
   // props.custom = boolean
   if (props.custom) {
     return (
-      <div>
-        <Card.Footer className='p-4 d-flex justify-content-between align-items-center'>
-          {props.children}
-        </Card.Footer>
-      </div>
+   
+      <Navbar style={{backgroundColor: '#ededed', borderColor: '#bdbdbd', borderTopWidth: '.2ch', borderLeftWidth: 0, borderRightWidth: 0, borderBottomWidth: 0, borderRadius: 0, borderStyle: 'solid'}} fixed='bottom' className='p-4 d-flex justify-content-between align-items-center'>
+        {props.children}
+      </Navbar>
+     
     );
   }
 
   // default => return standard navigation footer
   return (
     <Navbar style={{backgroundColor: '#ededed', borderColor: '#bdbdbd', borderTopWidth: '.2ch', borderLeftWidth: 0, borderRightWidth: 0, borderBottomWidth: 0, borderRadius: 0, borderStyle: 'solid'}} fixed='bottom' className='p-4 d-flex justify-content-between align-items-center'>
-      <Col xs='1' className='pl-1'>
-        {/* <Button
-          onClick={props.cancelAction}
-          as='a'
-          className='rounded-lg'
-          variant='light'
-        >
-          <a>CANCEL</a>
-        </Button> */}
-      </Col>
+
       <Col className='d-flex justify-content-end mr-5'>
         <Button
           disabled={props.disabledBack}
