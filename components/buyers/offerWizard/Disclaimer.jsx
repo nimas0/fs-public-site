@@ -44,14 +44,18 @@ const Disclaimer = (props) => {
       </Col>
       <Col className='d-flex justify-content-end mr-5'>
         <Spinner animation='grow' role='status' />
-        <h4 className='mx-4'>Continue in {seconds}</h4>
+        <h4 className='mx-4'>
+          Continue in
+          {' '}
+          {seconds}
+        </h4>
       </Col>
     </>
   );
 
   return (
     <>
-      <div data-test='step-disclaimer'>
+      <div>
         <Body className='text-center p-3 m-3 '>
           <Col xs={12}>
             <h2 className='pb-1 text-center' data-test='step-disclaimer-header'>
@@ -62,8 +66,11 @@ const Disclaimer = (props) => {
               data-test='step-disclaimer-sub-header'
             >
               After both parties have agreed to mutual terms, an official
-              binding purchase agreement will be{" "}
-              <strong>provided for you</strong> and the seller to complete.
+              binding purchase agreement will be
+              {" "}
+              <strong>provided for you</strong>
+              {' '}
+              and the seller to complete.
             </p>
           </Col>
         </Body>
@@ -73,14 +80,6 @@ const Disclaimer = (props) => {
           </Footer>
         ) : (
           <Footer
-            customButtonIcon={
-              <FontAwesomeIcon
-                size='lg'
-                className='ml-4 pt-1'
-                icon={faLongArrowAltRight}
-                pull='right'
-              />
-            }
             customButtonName='Propose Informal Offer'
             disabledBack
             cancelAction={props.cancelAction}

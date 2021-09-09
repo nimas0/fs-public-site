@@ -418,7 +418,7 @@ if(isSubscribed) {
                   listingId={listingId}
                   buyerId={buyerId}
                 />
-                {/* <RenderButtons
+                <RenderButtons
                   leadData={leadData}
                   type='proposal'
                   label='Make an Offer'
@@ -426,7 +426,7 @@ if(isSubscribed) {
                   router={router}
                   listingId={listingId}
                   handleLeadInitialization={handleLeadInitialization}
-                /> */}
+                />
                 <Button
                   target='_blank'
                   href='https://seller.findingspaces.com'

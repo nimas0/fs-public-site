@@ -9,31 +9,32 @@ const Nav = (props) => {
    for (let i = 1; i <= props.totalSteps; i += 1) {
       const isActive = props.currentStep === i;
       dots.push(
-         <FontAwesomeIcon
-            key={`step-${i}`}
-            onClick={() => props.goToStep(i)}
-            size='xs'
-            className={`${'dot'} ${isActive ? 'active mr-3' : 'mr-3'}`}
-            color={isActive ? 'green' : 'lightGrey'}
-            icon={faSquare}
-            fixedWidth
-         />
+        <FontAwesomeIcon
+          key={`step-${i}`}
+          onClick={() => props.goToStep(i)}
+          size='xs'
+          className={`${'dot'} ${isActive ? 'active mr-3' : 'mr-3'}`}
+          color={isActive ? 'green' : 'lightGrey'}
+          icon={faSquare}
+          fixedWidth
+        />
       );
    }
 
    return (
-      <>
-         <div className='nav' style={{ padding: 0, display: 'block' }}>
+     <>
+       <div className='nav' style={{ paddingBottom: '2rem', display: 'block', marginRight: '2rem' }}>
          
-            <h2 className='text-secondary text-left mb-5'>
-               {props.titles[props.currentStep]}
-            </h2>
-            <div className='d-flex justify-content-start'>
-         {dots}
-            </div>
-           
+         <h2 className='text-secondary text-left'>
+           {props.titles[props.currentStep]}
+         </h2>
+         <div className='d-flex justify-content-start'>
+           {dots}
          </div>
-         <style jsx>{`
+           
+       </div>
+       <style jsx>
+         {`
             .nav {
                padding: 0;
                margin-bottom: 0.2em;
@@ -53,8 +54,10 @@ const Nav = (props) => {
                text-shadow: none;
                transition: opacity 1s ease, text-shadow 1s ease;
             }
-         `}</style>
-      </>
+         `}
+
+       </style>
+     </>
    );
 };
 

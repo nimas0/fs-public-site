@@ -88,6 +88,7 @@
   "theme-ui": "^0.10.0",
   "typeface-dm-sans": "^1.1.13",
   "uid": "^1.0.0",
+  "uifx": "^2.0.7",
   "yup": "^0.28.1"
  },
  "devDependencies": {

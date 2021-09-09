@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
+import { Button } from 'react-bootstrap';
 import withAuthUser from '../../../utils/pageWrappers/withAuthUser';
 import withAuthUserInfo from '../../../utils/pageWrappers/withAuthUserInfo';
 import withLoginModal from '../../../utils/pageWrappers/withLoginModal';
@@ -13,14 +14,17 @@ import ChatHeader from '../../../components/chat-ui/ChatHeader';
 import { useMessenger } from '../../../utils/hooks/useMessenger';
 import 'firebase/database';
 import firebaseInit from '../../../utils/firebaseInit';
+import useOnlineChat from '../../../utils/hooks/useOnlineChat';
+import { DrawerProvider } from '../../../contexts/drawer/drawer.provider';
 
 // Initialize Firebase app
 firebaseInit();
 
-const Chat = ({ AuthUserInfo }) => {
+const Chat = ({ AuthUserInfo, showLoginModal }) => {
   const { AuthUser = null } = AuthUserInfo;
+  const [messageGroupCounter, setMessageGroupCounter] = useState(20);
   const router = useRouter();
-
+  console.log('counterMessage', messageGroupCounter);
   useEffect(() => {
     if (!AuthUser) {
       router.back();
@@ -31,8 +35,13 @@ const Chat = ({ AuthUserInfo }) => {
   // todo: migrate interestId to be called chatId
   // will affect database and seller app
   const { chatId } = router.query;
-  const { messages, loading, error } = useMessenger(chatId);
 
+  const { messages, loading, error } = useMessenger(
+    chatId,
+    messageGroupCounter
+  );
+
+  const { isOnline, loading: processing } = useOnlineChat(chatId);
   const submitMessage = async (message) => {
     try {
       const { displayName, photoURL, id } = AuthUser;
@@ -62,28 +71,33 @@ const Chat = ({ AuthUserInfo }) => {
     }
   };
 
+  if (processing) console.log('isOnline', isOnline);
   if (loading) return <p>loading</p>;
   if (error) return <p>{error}</p>;
   return (
-    <div>
-      <Head>
-        <title>Chat with Seller</title>
-      </Head>
-      <ChatHeader
-        AuthUser={AuthUser}
-        router={router}
-        listingId={router.query.chatId.split('_')[0]}
-      />
-      <ChatComponent
-        messages={messages}
-        agentUser={AuthUser.id}
-        iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
-        onMessageSend={(message) => submitMessage(message)}
-        timeFormatter='timeFormatter'
-        displayStop
-        onMessageStop={() => null}
-      />
-    </div>
+    <DrawerProvider>
+      <div>
+        <Head>
+          <title>Chat with Seller</title>
+        </Head>
+        <ChatHeader
+          AuthUser={AuthUser}
+          router={router}
+          listingId={router.query.chatId.split('_')[0]}
+        />
+
+        <ChatComponent
+          setMessageGroupCounter={setMessageGroupCounter}
+          showLoginModal={showLoginModal}
+          messages={messages}
+          agentUser={AuthUser.id}
+          iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
+          onMessageSend={(message) => submitMessage(message)}
+          timeFormatter='timeFormatter' // remove or finish coding this
+          displayStop
+        />
+      </div>
+    </DrawerProvider>
   );
 };
 

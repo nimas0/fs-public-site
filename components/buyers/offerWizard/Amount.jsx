@@ -1,11 +1,11 @@
 import React from "react";
 import { Field } from "formik";
 import { Row, Col, Button, Form, FormControl } from "react-bootstrap";
+import NumberFormat from "react-number-format";
 import Body from "../../generic/Dialog/Body";
 import SideBar from "../../generic/Dialog/SideBar";
 import Footer from "../../generic/Dialog/Footer";
 
-import NumberFormat from "react-number-format";
 
 const Amount = ({
   errors,
@@ -49,20 +49,9 @@ const Amount = ({
     <div data-test="step-amount">
       <Row>
         <Body className="d-flex justify-content-center">
-          <div className="w-75">
+          <div className="w-100">
             <Form.Group controlId="formGridAddress1">
-              {/*
-                     // snippit shows the counter offer if proposal is true
-                     { proposal && (
-                     <>
-                        <h6 data-test='step-amount-header'>
-                           Homeowner has offered you: ${proposal && proposal.offerDetails.amount}
-                        </h6>
-                        <Form.Label data-test='step-amount-header'>
-                           How much can you offer?
-                        </Form.Label>
-                     </>
-                     )} */}
+
 
               <>
                 <h4 data-test="step-amount-header">
@@ -74,7 +63,7 @@ const Amount = ({
                 allowLeadingZeros={false}
                 data-test="step-amount-field"
                 decimalScale={2}
-                fixedDecimalScale={true}
+                fixedDecimalScale
                 className="rounded-sm w-100"
                 thousandSeparator
                 customInput={FormControl}
@@ -86,7 +75,7 @@ const Amount = ({
                   setFieldValue("amount", floatValue) || "";
                   touched.amount = true;
                 }}
-                prefix={"$"}
+                prefix="$"
                 value={values.floatValue}
                 onBlur={handleBlur}
                 isValid={dirty && !errors.amount}
@@ -100,12 +89,12 @@ const Amount = ({
         <SideBar
           sidebarHeader="Need help pricing an offer?"
           subHeaderText={subHeaderText}
-          enabled={true}
+          enabled
           links={links}
         />
       </Row>
       <Footer
-        disabledBack={true}
+        disabledBack
         disabledNext={!touched.amount || !!errors.amount}
         {...rest}
       />

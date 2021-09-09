@@ -4,15 +4,27 @@ import { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import firebaseInit from '../firebaseInit';
-import { useLead } from './useLead';
+
 // Initialize Firebase app
 firebaseInit();
 
-export function useMessenger(chatId) {
+/**
+ * Creates a firebase real time connection to the chat user db and displays
+ * x number of results based on count input.
+ * Initializes first message if one doesnt exists
+ * todo: remove hard coded values such as : document route
+ * @param {string} chatId - accepts this type of string listingId_buyerId
+ * @param {number} count - use for pagination
+ * @returns {messages, loading, error}
+ */
+
+export function useMessenger(chatId, count) {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  // todo: remove hard coded initializer
+  // Uses this data to initalize a new conversation if it doesnt already exist
   const postData = {
     author: 'HITFymnB6XahFv1IUtST0S1zuSl2',
     displayName: 'Smart Bot',
@@ -22,18 +34,13 @@ export function useMessenger(chatId) {
     timestamp: 1630869154948,
   };
 
+  const reference = firebase.database().ref(`interest_chat/${chatId}`);
   useEffect(() => {
-    const reference = firebase.database().ref(`interest_chat/${chatId}`);
-
     const listener = async () =>
-      reference.on('value', async (snapshot) => {
+      reference.limitToLast(count).on('value', async (snapshot) => {
         const data = snapshot.val();
-        console.log('data');
-        console.log('data', data, !data);
+
         if (!data === true) {
-          // setError(
-          //   'Sorry we could not find this conversation. If this error persists please contact support.'
-          // );
           // Write the new post's data simultaneously in the posts list and the user's post list.
           // Get a key for a new Post.
           const newPostKey = await firebase
@@ -43,7 +50,6 @@ export function useMessenger(chatId) {
             .push().key;
           const update = {};
           update[`/interest_chat/${chatId}/${newPostKey}`] = postData;
-          console.log(newPostKey);
 
           // Post to firebase real time
           await firebase
@@ -53,20 +59,21 @@ export function useMessenger(chatId) {
               if (er) {
                 throw error;
               }
-            });
+            })
+            .catch((er) => setError(er));
 
           setLoading(false);
         } else {
           const arrayOfObj = Object.entries(data).map((e) => e[1]);
-          console.log('arrayOfObj', arrayOfObj);
           setMessages(arrayOfObj);
           setLoading(false);
           setError(false);
         }
       });
     listener();
+
     return reference.off('value', listener);
-  }, []);
+  }, [count]);
 
   return { messages, loading, error };
 }

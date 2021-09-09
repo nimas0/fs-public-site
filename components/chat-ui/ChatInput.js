@@ -44,8 +44,7 @@ ChatInput.propTypes = {
 };
 
 ChatInput.defaultProps = {
-  onMessageSend: (text) => null,
-  onMessageStop: () => null,
-  displayStop: true,
+  onMessageSend: () => null,
 };
+
 export default ChatInput;
