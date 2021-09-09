@@ -14,7 +14,7 @@ import Footer from './footer/footer';
 export default function Layout({
   auth,
   showLoginModal,
-  displayFooter = true,
+  displayFooter = false,
   children,
 }) {
   const isSticky = useStickyState('isSticky');
