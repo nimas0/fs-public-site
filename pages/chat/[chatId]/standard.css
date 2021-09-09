@@ -16,11 +16,12 @@
 /*div to a single message*/
 .chat-message-list {
   width: 100%;
+  background-color: #fffdfd;
 }
 /*3. input and button to the right*/
 /* wrapper to the input*/
 .chat-input-wrapper {
-  background-color: #2b3b38;
+  background-color: transparent;
 }
 /*the input itself*/
 .chat-input {
@@ -51,6 +52,14 @@
 .chat-component {
   max-height: 82vh;
   overflow-y: scroll;
+  background-color: #fffdfd;
+}
+.chat-component::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-component {
+  -ms-overflow-style: none;
 }
 /* wraps the message groups */
 .chat-messages-container {
@@ -61,12 +70,11 @@
 }
 /* wraps the input */
 .chat-component-bottom {
-  box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.2); */
   position: fixed;
   bottom: 0;
   background-color: #2b3b38;
 
-  width: 100%;
   margin: auto;
 }
 

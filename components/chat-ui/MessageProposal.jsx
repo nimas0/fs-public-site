@@ -42,7 +42,7 @@ export default function MessageProposal(props) {
              {title}
            </Card.Title>
          </Card.Header>
-         <Card.Body className="bg-white p-3">
+         <Card.Body className="bg-light p-3">
            <div className='timestamp'>{friendlyTimestamp}</div>
            <div className='p-4 text-center d-flex justify-content-center' />
            {body}

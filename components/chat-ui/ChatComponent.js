@@ -67,7 +67,7 @@ class ChatComponent extends Component {
           </div>
         </div>
         <div>
-          <div className='row'>
+          <div>
             <div className='col chat-component-bottom'>
               <ChatInput
                 iconSend={iconSend}
