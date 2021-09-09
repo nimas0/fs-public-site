@@ -28,9 +28,13 @@ export default function MessageProposal(props) {
    const CardView = ({ title, body, footer, color }) => (
      <>
        <Card
+         style={{
+          cursor: 'pointer',
+         
+        }}
          onClick={handleClick}
          border={color}
-         className="bg-light m-2 mt-4 w-100"
+         className=" bg-light m-2 mt-4 w-100"
          title={friendlyTimestamp}
        >
          <Card.Header>
@@ -54,6 +58,7 @@ export default function MessageProposal(props) {
          </Card.Footer>
          
        </Card>
+
      </>
    )
 console.log('data', data)

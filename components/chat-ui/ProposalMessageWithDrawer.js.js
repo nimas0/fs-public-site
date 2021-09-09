@@ -98,7 +98,8 @@ const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { proposalId } = router.query;
-
+  console.log('isMine', isMine);
+  const myOffer = proposalId;
   // retrieve proposal id every time state changes
   // or bail out early if state === false
   useEffect(() => {
@@ -140,15 +141,18 @@ const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
         <p>Contact Support: </p> <br /> {error}{' '}
       </div>
     );
+  console.log('proposal', proposal);
   return (
     <Drawer
       width='420px'
       drawerHandler={
-        <MessageProposal
-          setSelected={setSelected}
-          isMine={isMine}
-          data={messageData}
-        />
+        <div>
+          <MessageProposal
+            setSelected={setSelected}
+            isMine={isMine}
+            data={messageData}
+          />
+        </div>
       }
       open={state.isOpen}
       toggleHandler={toggleHandler}
@@ -160,8 +164,9 @@ const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
             <Container>
-              <Row>
-                You made a proposal for ${' '}
+              <Row key={state}>
+                {proposal && `Offer  ${proposal.state}.  $`}
+
                 {(proposal && proposal.offerDetails.amount) || 'coming soon'}
               </Row>
               <Row className='border border-top-0 my-3' />

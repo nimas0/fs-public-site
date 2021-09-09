@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable no-use-before-define */
 import React, { useEffect, useState } from 'react';
 import {
@@ -8,6 +9,7 @@ import {
   Button,
   Form,
   Spinner,
+  Nav,
 } from 'react-bootstrap';
 import StepWizard from 'react-step-wizard';
 import fetch from 'isomorphic-unfetch';
@@ -20,6 +22,8 @@ import * as Yup from 'yup';
 import { useToasts } from 'react-toast-notifications';
 import { useRouter } from 'next/router';
 import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import firebaseInit from '../../../../utils/firebaseInit';
 
 // Step Components for Wizard
@@ -28,7 +32,7 @@ import Amount from '../../../../components/buyers/offerWizard/Amount';
 import Deposit from '../../../../components/buyers/offerWizard/Deposit';
 import Contingency from '../../../../components/buyers/offerWizard/Contingency';
 import Possession from '../../../../components/buyers/offerWizard/Possession';
-import Nav from '../../../../components/buyers/offerWizard/Nav';
+import NavOffer from '../../../../components/buyers/offerWizard/Nav';
 import Summary from '../../../../components/buyers/offerWizard/Summary';
 
 import MainNav from '../../../../components/Nav';
@@ -192,6 +196,23 @@ const OfferPage = ({
                 transitions={custom}
                 nav={
                   <Header
+                    toolbar={
+                      <Nav.Link
+                        className='bg-dark mr-auto text-left text-white'
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          cancelAction();
+                        }}
+                      >
+                        <FontAwesomeIcon
+                          size='1x'
+                          className='mr-2'
+                          color='lightGreen'
+                          icon={faArrowLeft}
+                        />
+                        Return to Listing Page
+                      </Nav.Link>
+                    }
                     headerText='Estimated Time [2 min]'
                     subHeaderText={
                       (error && <strong>Error Displaying Address</strong>) ||
@@ -199,7 +220,7 @@ const OfferPage = ({
                       (value && value.data().address[0])
                     }
                   >
-                    <Nav titles={stepTitles} />
+                    <NavOffer titles={stepTitles} />
                   </Header>
                 }
               >
