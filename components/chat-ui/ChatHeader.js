@@ -2,10 +2,12 @@ import { faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 
 const ChatHeader = ({ AuthUser, listingId }) => {
   const router = useRouter();
+  console.log(AuthUser, 'AuthUser');
   return (
     <>
       <Navbar
@@ -38,13 +40,6 @@ const ChatHeader = ({ AuthUser, listingId }) => {
         </Container>
       </Navbar>
       <div className='row p-3 ml bg-light action-buttons'>
-        {/* <FontAwesomeIcon
-          className='ml-3 mr-2'
-          color='darkGrey'
-          size='2x'
-          icon={faUserCircle}
-        /> */}
-
         {AuthUser.photoURL ? (
           <div>
             <Image
@@ -70,10 +65,24 @@ const ChatHeader = ({ AuthUser, listingId }) => {
         >
           Schedule
         </Button>
-        {/* <h6 className='mt-2 ml-2'>It's easy!</h6> */}
       </div>
     </>
   );
 };
+
+ChatHeader.propTypes = {
+  AuthUser: PropTypes.shape({
+    photoURL: PropTypes.string,
+    displayName: PropTypes.string,
+    emailVerified: PropTypes.bool,
+    id: PropTypes.string,
+    verification: PropTypes.shape({
+      status: PropTypes.string,
+    }),
+  }).isRequired,
+  listingId: PropTypes.string.isRequired,
+};
+
+ChatHeader.defaultProps = {};
 
 export default ChatHeader;

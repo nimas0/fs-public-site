@@ -40,6 +40,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
     chatId,
     messageGroupCounter
   );
+
   const { isOnline, loading: processing } = useOnlineChat(chatId);
   const submitMessage = async (message) => {
     try {
@@ -69,7 +70,7 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
       console.log(err);
     }
   };
-  console.log('error', error);
+
   if (processing) console.log('isOnline', isOnline);
   if (loading) return <p>loading</p>;
   if (error) return <p>{error}</p>;
@@ -92,9 +93,8 @@ const Chat = ({ AuthUserInfo, showLoginModal }) => {
           agentUser={AuthUser.id}
           iconSend={<FontAwesomeIcon icon={faCheck} size={15} />}
           onMessageSend={(message) => submitMessage(message)}
-          timeFormatter='timeFormatter'
+          timeFormatter='timeFormatter' // remove or finish coding this
           displayStop
-          onMessageStop={() => null}
         />
       </div>
     </DrawerProvider>

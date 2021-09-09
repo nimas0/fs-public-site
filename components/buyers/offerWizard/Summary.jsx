@@ -9,6 +9,7 @@ import {
   Spinner,
   Dropdown,
   Container,
+  Navbar,
   Jumbotron,
   Table,
 } from "react-bootstrap";
@@ -71,8 +72,8 @@ const Summary = ({
   //    );
   return (
     <>
-      <Row style={{ minHeight: '50vh' }} data-test='step-summary'>
-        <div style={{ width: '100%' }} className='d-flex justify-content-center'>
+      <Row data-test='step-summary'>
+        <div className='d-flex justify-content-center'>
           {sending ? (
             <>
               <div className='m-5' />
@@ -82,8 +83,8 @@ const Summary = ({
               <div className=' m-5' />
             </>
           ) : (
-            <div style={{ height: '100%', width: '100%' }} className=' h-100 m-5 d-block'>
-              <div className='py-4'>
+            <div className='m-5'>
+              <div className='py-2'>
                 <p>
                   After submitting, seller will be notified of offer. He/She
                   will have 24 hours to respond. Seller may accept, reject, or
@@ -92,12 +93,13 @@ const Summary = ({
               </div>
               <b className='mb-5'>Please Review Offer before submitting:</b>
               <br />
+     
               <Table
+                responsive="sm"
                 className='mt-1'
-                borderless
                 hover
                 variant='light'
-                responsive
+                
               >
                 <thead>
                   <tr>
@@ -126,8 +128,8 @@ const Summary = ({
         </div>
       </Row>
 
-      <Card.Footer className='p-4 d-flex justify-content-between align-items-end'>
-        <Col xs='1' className='pl-1'>
+      <Navbar style={{backgroundColor: '#ededed', borderColor: '#bdbdbd', borderTopWidth: '.2ch', borderLeftWidth: 0, borderRightWidth: 0, borderBottomWidth: 0, borderRadius: 0, borderStyle: 'solid'}} fixed='bottom' className='p-4 d-flex justify-content-between align-items-center'>
+        <Col xs='4' className='pl-1'>
           <Button
             onClick={rest.cancelAction}
             as='a'
@@ -137,18 +139,18 @@ const Summary = ({
             CANCEL
           </Button>
         </Col>
-        <Col className='d-flex justify-content-end mr-5'>
+        <Col xs='6' className='d-flex justify-content-end mr-5'>
           <Button
             size='lg'
             type='submit'
-            className=' w-25 rounded-lg ml-3 my-1'
+            className=' rounded-lg ml-3 my-1'
             variant='primary'
             block
           >
             Send Offer
           </Button>
         </Col>
-      </Card.Footer>
+      </Navbar>
     </>
   );
 };

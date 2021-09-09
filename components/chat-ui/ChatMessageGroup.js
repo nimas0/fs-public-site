@@ -13,15 +13,26 @@ const ChatMessagesGroup = ({
   AuthUser,
   showLoginModal,
 }) => {
-  console.log('counter!!!', setMessageGroupCounter);
+  // console.log('counter!!!', setMessageGroupCounter);
   const [selected, setSelected] = useState(null);
   const { proposal, loading, error } = useProposal(selected);
   console.log('setMessageGroupCounter', setMessageGroupCounter);
-  if (!loading) console.log('ss', proposal);
+  if (loading) return <p>loading</p>;
+  if (error)
+    return (
+      <div>
+        <p>Please contact support.</p>
+        <p>{error}</p>
+      </div>
+    );
   if (Array.isArray(messages)) {
     return (
       <div className='chat-message-list'>
-        <Button onClick={() => setMessageGroupCounter((prev) => prev + 10)}>
+        <Button
+          variant='outlined-dark'
+          className='w-100 mb-5 text-dark'
+          onClick={() => setMessageGroupCounter((prev) => prev + 10)}
+        >
           Load More
         </Button>
         {messages.map((d, i) => {
@@ -62,9 +73,27 @@ const ChatMessagesGroup = ({
 };
 
 ChatMessagesGroup.propTypes = {
-  messages: PropTypes.array,
-  agentUser: PropTypes.any,
+  AuthUser: PropTypes.shape({
+    photoURL: PropTypes.string,
+    displayName: PropTypes.string,
+    emailVerified: PropTypes.bool,
+    id: PropTypes.string,
+    verification: PropTypes.shape({
+      status: PropTypes.string,
+    }),
+  }).isRequired,
+  agentUser: PropTypes.string.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object),
+  setMessageGroupCounter: PropTypes.func,
+  showLoginModal: PropTypes.bool,
   timeFormatter: PropTypes.func,
+};
+
+ChatMessagesGroup.defaultProps = {
+  messages: [],
+  setMessageGroupCounter: 20,
+  showLoginModal: false,
+  timeFormatter: () => null,
 };
 
 export default ChatMessagesGroup;

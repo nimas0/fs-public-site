@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useContext, useEffect, useState } from 'react';
 import { Box } from 'theme-ui';
@@ -10,6 +11,86 @@ import { DrawerContext } from '../../contexts/drawer/drawer.context';
 import Drawer from '../drawer';
 import MessageProposal from './MessageProposal';
 
+const styles = {
+  handler: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: '0',
+    width: '26px',
+    mx: '1rem',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  profile: {},
+  drawer: {
+    width: '100%',
+    height: '100%',
+    background: '#fff',
+  },
+
+  close: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: '30px',
+    right: '30px',
+    zIndex: '1',
+  },
+
+  content: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    pt: '40px',
+    pb: '40px',
+    px: '30px',
+  },
+
+  menu: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: '30px',
+
+    a: {
+      fontSize: '16px',
+      fontWeight: '400',
+      color: 'black',
+      py: '5px',
+      cursor: 'pointer',
+    },
+  },
+
+  menuFooter: {
+    width: '100%',
+    padding: '2',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    mt: 'auto',
+  },
+
+  button: {
+    fontSize: '15px',
+    fw: '700',
+    height: '48px',
+    borderRadius: '3px',
+    cursor: 'pointer',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    py: '0',
+    my: '7px',
+    backgroundColor: '#1A2321',
+    color: '#fff',
+  },
+};
+
 const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
   const [proposal, setProposal] = useState(null);
   const { state, dispatch } = useContext(DrawerContext);
@@ -17,6 +98,9 @@ const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { proposalId } = router.query;
+
+  // retrieve proposal id every time state changes
+  // or bail out early if state === false
   useEffect(() => {
     if (!state.isOpen) router.query.proposalId = null;
     if (!state.isOpen) return;
@@ -48,8 +132,14 @@ const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
     });
   }, [dispatch]);
 
+  // while effects is running
   if (loading) return <p>loading</p>;
-
+  if (error)
+    return (
+      <div>
+        <p>Contact Support: </p> <br /> {error}{' '}
+      </div>
+    );
   return (
     <Drawer
       width='420px'
@@ -132,86 +222,6 @@ const ProposalMessageWithDrawer = ({ isMine, messageData, setSelected }) => {
       </Scrollbars>
     </Drawer>
   );
-};
-
-const styles = {
-  handler: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: '0',
-    width: '26px',
-    mx: '1rem',
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-  profile: {},
-  drawer: {
-    width: '100%',
-    height: '100%',
-    background: '#fff',
-  },
-
-  close: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    top: '30px',
-    right: '30px',
-    zIndex: '1',
-  },
-
-  content: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    pt: '40px',
-    pb: '40px',
-    px: '30px',
-  },
-
-  menu: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '30px',
-
-    a: {
-      fontSize: '16px',
-      fontWeight: '400',
-      color: 'black',
-      py: '5px',
-      cursor: 'pointer',
-    },
-  },
-
-  menuFooter: {
-    width: '100%',
-    padding: '2',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    mt: 'auto',
-  },
-
-  button: {
-    fontSize: '15px',
-    fw: '700',
-    height: '48px',
-    borderRadius: '3px',
-    cursor: 'pointer',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    py: '0',
-    my: '7px',
-    backgroundColor: '#1A2321',
-    color: '#fff',
-  },
 };
 
 export default ProposalMessageWithDrawer;

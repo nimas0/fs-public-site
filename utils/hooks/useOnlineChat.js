@@ -9,9 +9,10 @@ import firebaseInit from '../firebaseInit';
 // Initialize Firebase app
 firebaseInit();
 /**
- *
+ * This hook generates a users presence
+ * and disconnects automatically when leaving page.
  * @param {string} userId - get this from the auth() provider instead of props
- * @param {*} listingId - self explanatory
+ * @param {*} listingId - reference to a home
  * @returns {loading, error, status} - status return either true or false
  */
 const useOnlineChat = (chatId) => {
@@ -21,8 +22,6 @@ const useOnlineChat = (chatId) => {
   const userId = chatId.split('_')[1];
   const listingId = chatId.split('_')[0];
 
-  // console.log(userId);
-  // console.log('im in the hook');
   const isOfflineForDatabase = {
     state: 'offline',
     last_changed: firebase.database.ServerValue.TIMESTAMP,
@@ -36,7 +35,6 @@ const useOnlineChat = (chatId) => {
   // Create a reference to the special '.info/connected' path in
   // Realtime Database. This path returns `true` when connected
   // and `false` when disconnected.
-  // console.log('im in the hook');
   useEffect(() => {
     const userStatusDatabaseRef = firebase
       .database()

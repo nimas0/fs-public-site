@@ -1,10 +1,10 @@
 import React from 'react';
 import { Row, Form, FormControl, Button, FormLabel } from 'react-bootstrap';
+import { Divider } from 'antd';
+import NumberFormat from 'react-number-format';
 import Body from '../../generic/Dialog/Body';
 import SideBar from '../../generic/Dialog/SideBar';
 import Footer from '../../generic/Dialog/Footer';
-import { Divider } from 'antd';
-import NumberFormat from 'react-number-format';
 
 const Deposit = ({
    errors,
@@ -41,12 +41,12 @@ const Deposit = ({
    console.log(queryObject)
 
    return (
-      <div data-test='step-amount'>
-         <Row>
-            <Body className='d-flex justify-content-center'>
-               <div className='w-75'>
-                  <Form.Group controlId='formGridAddress1'>
-                     {/* { proposal && 
+     <div data-test='step-amount'>
+       <Row>
+         <Body className='d-flex justify-content-center'>
+           <div className='w-100'>
+             <Form.Group controlId='formGridAddress1'>
+               {/* { proposal && 
                      <>
                         <p data-test='step-deposit-header'>
                            Homeowner has offered ${proposal.offerDetails.deposit}
@@ -64,59 +64,60 @@ const Deposit = ({
                         )
                      } */}
 
-<h5 className='mb-3' data-test='step-deposit-header'>
-                              2.) How much can you deposit?
-                           </h5>
+               <h5 className='mb-3' data-test='step-deposit-header'>
+                 2.) How much can you deposit?
+               </h5>
                         
-                     <NumberFormat
-                        allowLeadingZeros={false}
-                        data-test='step-amount-field'
-                        decimalScale={2}
-                        fixedDecimalScale={true}
-                        className='rounded-sm w-100'
-                        thousandSeparator
-                        customInput={FormControl}
-                        name='deposit'
-                        placeholder='Common deposits:  $500, $1000, $5000'
-                        allowNegative={false}
-                        isInvalid={touched.deposit && !!errors.deposit}
-                        onValueChange={({ floatValue }) => {
+               <NumberFormat
+                 allowLeadingZeros={false}
+                 data-test='step-amount-field'
+                 decimalScale={2}
+                 fixedDecimalScale
+                 className='rounded-sm w-100'
+                 thousandSeparator
+                 customInput={FormControl}
+                 name='deposit'
+                 placeholder='Common deposits:  $500, $1000, $5000'
+                 allowNegative={false}
+                 isInvalid={touched.deposit && !!errors.deposit}
+                 onValueChange={({ floatValue }) => {
                            setFieldValue('deposit', floatValue);
                            touched.deposit = true;
                         }}
-                        prefix={'$'}
-                        value={values.deposit}
-                        onBlur={handleBlur}
-                        isValid={touched.deposit && !errors.deposit}
-                     />
+                 prefix="$"
+                 value={values.deposit}
+                 onBlur={handleBlur}
+                 isValid={touched.deposit && !errors.deposit}
+               />
 
-                     <Form.Control.Feedback type='invalid'>{errors.deposit}</Form.Control.Feedback>
-                  </Form.Group>
-                  <Divider className='my-4' />
-                  <h6 className='pl-2 text-secondary'>
-                     NOTICE: You may choose to opt out of the deposit, however, this is not a best practice and
-                     could make your offer less attractive.
-                  </h6>
-                  <Button
-                     onClick={() => setFieldValue('deposit', 0)}
-                     variant='light'
-                     className='mt-2 text-info'>
-                     Opt Out the Deposit
-                  </Button>
-               </div>
-            </Body>
-            <SideBar
-               sidebarHeader='Is a deposit neccessary?'
-               subHeaderText={subHeaderText}
-               enabled={true}
-               links={links}
-            />
-         </Row>
-         <Footer
-            disabledNext={!touched.deposit || (touched.deposit && !!errors.deposit)}
-            {...rest}
+               <Form.Control.Feedback type='invalid'>{errors.deposit}</Form.Control.Feedback>
+             </Form.Group>
+             <Divider className='my-4' />
+             <h6 className='pl-2 text-secondary'>
+               NOTICE: You may choose to opt out of the deposit, however, this is not a best practice and
+               could make your offer less attractive.
+             </h6>
+             <Button
+               onClick={() => setFieldValue('deposit', 0)}
+               variant='light'
+               className='mt-2 text-info'
+             >
+               Opt Out the Deposit
+             </Button>
+           </div>
+         </Body>
+         <SideBar
+           sidebarHeader='Is a deposit neccessary?'
+           subHeaderText={subHeaderText}
+           enabled
+           links={links}
          />
-      </div>
+       </Row>
+       <Footer
+         disabledNext={!touched.deposit || (touched.deposit && !!errors.deposit)}
+         {...rest}
+       />
+     </div>
    );
 };
 
