@@ -58,8 +58,7 @@ const Hit = ({hit}) => {
           <Card.Body>
             <Card.Title className='text-white'>{hit.fullAddress}</Card.Title>
             <Card.Text className='text-white'>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+              1. View Home Details  2. Schedule an appointment 3. Chat with seller  4. Make an offer
             </Card.Text>
             <Button onClick={() => router.push(`/listing/${hit.id}`)} variant="primary">Visit Home</Button>
           </Card.Body>
