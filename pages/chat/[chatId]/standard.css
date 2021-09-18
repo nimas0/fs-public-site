@@ -37,9 +37,7 @@
   border-top-right-radius: 2ch;
   border-bottom-right-radius: 2ch;
 }
-/*stop button*/
-.chat-button-stop {
-}
+
 /*send button*/
 .chat-button-send {
   border-top-left-radius: 0ch;
