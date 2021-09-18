@@ -29,9 +29,7 @@ const IndexPage = ({ AuthUserInfo, showLoginModal }) => {
         <Layout auth={AuthUser} showLoginModal={showLoginModal}>
           <SEO title='Startup Landing 014' />
           <Box as='section' id='banner' sx={styles.banner}>
-            <Container sx={styles.container}>
-              <Search />
-            </Container>
+            <Search />
           </Box>
         </Layout>
       </StickyProvider>
@@ -83,12 +81,14 @@ const styles = {
     display: 'block',
     mx: 'auto',
     position: 'relative',
-    maxWidth: ['100%', null, null, '80%', null, '100%'],
+    maxWidth: ['100%'],
   },
   container: {
     position: 'center',
     minHeight: '85vh',
     width: '100%',
+    padding: 0,
+    margin: 0,
   },
 
   bannerIcon7: {
