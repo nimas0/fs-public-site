@@ -89,29 +89,31 @@ const Search = () => {
   
  
   
-   const handleChange = (e) => {
-    if(!e || e.query.length === 0) {
-        setHide(true)
-    } else {
-        setHide(false)
-    }
-}
+//    const handleChange = (e) => {
+//     if(!e || e.query.length === 0) {
+//         setHide(true)
+//     } else {
+//         setHide(false)
+//     }
+// }
 
+// onSearchStateChange={(e) => handleChange(e)}
+// attach above line to instant search to activate hiding
 
 
     return (
       <>
-        <InstantSearch onSearchStateChange={(e) => handleChange(e)} searchClient={searchClient} indexName="listings">
+        <InstantSearch searchClient={searchClient} indexName="listings">
       
 
           <CustomSearchBox reset={<img src="/reset.png" alt="ss" />} />
 
       
-          {
-            !hide && (
-            <CustomHits  />
-            )
-          }
+ 
+            
+          <CustomHits  />
+            
+     
          
        
           {/* <Configure
