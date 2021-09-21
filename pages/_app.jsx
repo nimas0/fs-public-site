@@ -46,8 +46,7 @@ const MyApp = ({ Component, pageProps }) => {
            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
          />
 
-         <script src="https://cdn.lr-in.com/LogRocket.min.js" crossOrigin="anonymous" />
-         <script>window.LogRocket && window.LogRocket.init('wj5nz4/buyer-application');</script>
+
 
          {/* Fonts */}
          <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700|Roboto:300,400,600,700&display=swap" rel="stylesheet" />
