@@ -3,6 +3,7 @@
  */
 
 import React, { useEffect, useState, useRef } from "react";
+import LogRocket from 'logrocket';
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase/app";
@@ -112,6 +113,14 @@ export default ({ shown, setShown }) => {
     callbacks: {
       signInSuccessWithAuthResult: (authResult) => {
         setUserId(authResult.user.uid);
+        console.log('authResult',authResult)
+        LogRocket.identify(authResult.user.uid, {
+          name: authResult.user.displayName,
+          email: authResult.user.email,
+        
+          // Add your own custom user variables here, ie:
+          subscriptionType: 'pro'
+        });
         processUser(authResult, (isNew, verified) => {
           console.log(verified);
           setNewUser(isNew);

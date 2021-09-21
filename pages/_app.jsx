@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 
 
 import React, { useEffect } from 'react';
@@ -10,6 +11,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import 'swiper/swiper-bundle.min.css';
 import 'rc-drawer/assets/index.css';
+import LogRocket from 'logrocket';
 import gtm from '../config/gmt';
 
 config.autoAddCss = false;
@@ -24,6 +26,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   useEffect(() => {
     gtm.initialize(gtmConfig);
+    LogRocket.init('wj5nz4/buyer-application');
   }, []);
   
    return (
@@ -42,6 +45,9 @@ const MyApp = ({ Component, pageProps }) => {
            rel="stylesheet"
            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
          />
+
+         <script src="https://cdn.lr-in.com/LogRocket.min.js" crossOrigin="anonymous" />
+         <script>window.LogRocket && window.LogRocket.init('wj5nz4/buyer-application');</script>
 
          {/* Fonts */}
          <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700|Roboto:300,400,600,700&display=swap" rel="stylesheet" />

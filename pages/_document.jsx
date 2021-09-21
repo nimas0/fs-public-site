@@ -5,6 +5,7 @@
 import React from "react";
 import { get } from "lodash/object";
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import LogRocket from 'logrocket';
 
 class CustomDocument extends Document {
   render() {
