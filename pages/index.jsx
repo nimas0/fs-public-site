@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'theme-ui';
 
+import { Navbar, Button, Container } from 'react-bootstrap';
 import { StickyProvider } from '../contexts/app/app.provider';
 import theme from '../theme';
 import Layout from '../components/layout';
@@ -24,10 +25,13 @@ import gtm from '../config/gmt';
 
 const IndexPage = ({AuthUserInfo, showLoginModal}) => {
   const {AuthUser = null } = AuthUserInfo
-  
+  const [showSignUp, setShowSignUp] = React.useState(false);
   
   React.useEffect(() => {
     gtm.push({ event: 'page_view_home' });
+    setTimeout(() => {
+      setShowSignUp(true);
+    }, 10000)
   }, []);
 
 
@@ -49,10 +53,31 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
           {/* <Blogs /> */}
           <FAQ />
           <Subscribe />
+
+          <Navbar style={{  transition: '1.5s', padding: "20px", paddingBottom: '2rem', marginLeft: 'auto', opacity: showSignUp ?'.90' : 0}} fixed='bottom' bg="dark" expand="lg">
+            <Container fluid>
+              <Navbar.Brand href="#home"><h6 style={{color: 'white', wordWrap: 'normal', marginTop: '.2rem' }}>Try it out. Sign up only takes 2 minutes.</h6></Navbar.Brand>
+
+               
+                
+              <Button
+                as='a'
+                size='large'
+                href='https://findingspaces.com'
+                type='submit'
+                style={{paddingRight: '1rem', paddingLeft: '1rem'}}
+              >
+                Sell Your Home
+              </Button>
+     
+            </Container>
+          </Navbar>
+
         </Layout>
       </StickyProvider>
     </ThemeProvider>
   );
 }
+
 
 export default withAuthUser(withAuthUserInfo(withLoginModal(IndexPage)));

@@ -33,7 +33,7 @@ export default Subscribe;
 
 const styles = {
   subscribe: {
-    py: ['80px', null, null, null, '80px', '100px', '140px'],
+    py: ['180px', null, null, null, '80px', '100px', '140px'],
     backgroundColor: '#2b3b38',
     h3: {
       textAlign: 'center',
