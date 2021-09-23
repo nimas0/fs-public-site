@@ -63,7 +63,7 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
               <Button
                 as='a'
                 size='large'
-                href='https://findingspaces.com'
+                href='https://seller.findingspaces.com'
                 type='submit'
                 style={{paddingRight: '1rem', paddingLeft: '1rem'}}
               >
