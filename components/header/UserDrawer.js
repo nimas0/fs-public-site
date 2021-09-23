@@ -164,6 +164,22 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
               Go to Seller Dashboard
             </Button>
             <Button
+              as='a'
+              href='https://seller.findingspaces.com'
+              variant='primary'
+              sx={styles.button1}
+            >
+              Sign Up as a Seller
+            </Button>
+
+            <Button
+              variant='primary'
+              sx={styles.button2}
+              onClick={AuthUser ? logoutRefresh : handleLogin}
+            >
+              {AuthUser ? '' : 'Sign up as a Buyer'}
+            </Button>
+            <Button
               variant='primary'
               sx={styles.button2}
               onClick={AuthUser ? logoutRefresh : handleLogin}
