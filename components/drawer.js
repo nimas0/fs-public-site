@@ -18,6 +18,7 @@ const Drawer = ({
 }) => (
   <>
     <RcDrawer
+      showMask={false}
       open={open}
       onClose={toggleHandler}
       className={`drawer ${className || ''}`.trim()}
@@ -25,7 +26,7 @@ const Drawer = ({
       placement={placement}
       handler={false}
       level={null}
-      duration='0.4s'
+      duration='0.5s'
       {...props}
     >
       {closeButton && (

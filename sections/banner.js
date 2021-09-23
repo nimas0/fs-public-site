@@ -150,14 +150,14 @@ const Banner = () => {
           </div>
         ) : (
           <YouTube
-            autoPlay
+            // autoPlay={false}
             videoId='2prAwVk_RI0'
             onEnd={handleEnding}
             opts={{
               height: breakpoints.xs ? 210 : 480,
               width: breakpoints.xs ? '100%' : '73%',
               playerVars: {
-                autoplay: 1,
+                autoplay: 0,
               },
             }}
           />
@@ -233,7 +233,7 @@ const styles = {
     overflow: 'hidden',
     backgroundColor: 'transparent',
     textAlign: 'center',
-    pt: ['110px', null, null, null, '130px'],
+    pt: ['110px', null, null, null, '110px'],
     h2: {
       fontSize: ['28px', null, null, '32px', '38px', '48px', '64px'],
       lineHeight: 1.25,

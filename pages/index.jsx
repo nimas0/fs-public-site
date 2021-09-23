@@ -37,16 +37,18 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
         <Layout auth={AuthUser} showLoginModal={showLoginModal}>
           <SEO title='Finding Spaces' />
           <Banner />
-          <Services />
-          <Jackpot />
-          <QrCode />
-          <CallToAction />
-          <Featured />
+          <div id='services'>
+            <Services />
+            <Jackpot />
+            <QrCode />
+            <CallToAction />
+            <Featured />
+          </div>
           <Pricing />
           {/* <Testimonials /> */}
           {/* <Blogs /> */}
           <FAQ />
-          {/* <Subscribe /> */}
+          <Subscribe />
         </Layout>
       </StickyProvider>
     </ThemeProvider>

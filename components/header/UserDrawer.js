@@ -76,7 +76,7 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
               <Avatar sx={styles.profile} src={AuthUser.photoURL} />
             </div>
           ) : (
-            <FontAwesomeIcon color='darkGrey' size='2x' icon={faUserCircle} />
+            <FontAwesomeIcon color='white' size='lg' icon={faUserCircle} />
           )}
         </Box>
       }
@@ -100,7 +100,9 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
 
       open={state.isOpen}
       toggleHandler={toggleHandler}
-      closeButton={<IoMdClose size='24px' color='#02073E' />}
+      closeButton={
+        <IoMdClose style={{ cursor: 'pointer' }} size='24px' color='#fff' />
+      }
       drawerStyle={styles.drawer}
       closeBtnStyle={styles.close}
     >
@@ -108,11 +110,13 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
         <Box sx={styles.content}>
           {AuthUser ? (
             <div>
-              <Avatar sx={styles.profile} src={AuthUser.photoURL} />
-              <h5 style={{ marginTop: '1rem' }}>{AuthUser.displayName}</h5>
+              {/* <Avatar sx={styles.profile} src={AuthUser.photoURL} /> */}
+              <h5 style={{ marginTop: '1rem', color: 'white' }}>
+                {AuthUser.displayName}
+              </h5>
             </div>
           ) : (
-            <FontAwesomeIcon color='darkGrey' size='2x' icon={faUserCircle} />
+            <h4 style={{ color: 'white' }}>Get Started</h4>
           )}
           {loadingSubscriptions && 'Loading...'}
           {subscriptions &&
@@ -158,30 +162,23 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
             <Button
               as='a'
               href='https://seller.findingspaces.com'
-              variant='primary'
-              sx={styles.button1}
-            >
-              Go to Seller Dashboard
-            </Button>
-            <Button
-              as='a'
-              href='https://seller.findingspaces.com'
-              variant='primary'
-              sx={styles.button1}
-            >
-              Sign Up as a Seller
-            </Button>
-
-            <Button
-              variant='primary'
+              variant='secondary'
               sx={styles.button2}
-              onClick={AuthUser ? logoutRefresh : handleLogin}
             >
-              {AuthUser ? '' : 'Sign up as a Buyer'}
+              {AuthUser ? 'Go to Seller Dashboard' : 'Sign up as a Seller'}
             </Button>
+            {!AuthUser && (
+              <Button
+                variant='secondary'
+                sx={styles.button2}
+                onClick={AuthUser ? logoutRefresh : handleLogin}
+              >
+                Sign up as a Buyer
+              </Button>
+            )}
             <Button
-              variant='primary'
-              sx={styles.button2}
+              variant='secondary'
+              sx={styles.buttonLogin}
               onClick={AuthUser ? logoutRefresh : handleLogin}
             >
               {AuthUser ? 'Logout' : 'Login'}
@@ -200,16 +197,38 @@ const styles = {
     justifyContent: 'center',
     flexShrink: '0',
     width: '26px',
-    mx: '1rem',
+    mx: '0rem',
+    px: '2rem',
+    py: '.5rem',
+    borderRadius: 5,
     '&:hover': {
       cursor: 'pointer',
+      backgroundColor: 'green',
+      transition: '0.2s',
+      color: 'green',
+    },
+    '&:active': {
+      cursor: 'pointer',
+      backgroundColor: 'lightGreen',
+      transition: '0.4s',
+      color: 'green',
     },
   },
-  profile: {},
+  profile: {
+    px: '2rem',
+    py: '.5rem',
+    borderRadius: 15,
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: 'green',
+
+      color: 'green',
+    },
+  },
   drawer: {
     width: '100%',
     height: '100%',
-    background: '#fff',
+    background: '#2b3b38',
   },
 
   close: {
@@ -253,8 +272,9 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     mb: 'auto',
+    marginTop: '2rem',
   },
-  button1: {
+  buttonLogin: {
     fontSize: '15px',
     fw: '700',
     height: '48px',
@@ -263,11 +283,19 @@ const styles = {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: 'green',
+    backgroundColor: 'white',
+    color: 'black',
     justifyContent: 'center',
     py: '0',
+    my: '3',
   },
   button2: {
+    '&:hover': {
+      backgroundColor: '#fff',
+
+      textDecoration: 'none',
+      color: '#1d5900',
+    },
     fontSize: '15px',
     fw: '700',
     height: '48px',
@@ -279,7 +307,7 @@ const styles = {
     justifyContent: 'center',
     py: '0',
     my: '7px',
-    backgroundColor: 'green',
+    backgroundColor: '#34a010',
     color: '#fff',
   },
 };

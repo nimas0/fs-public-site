@@ -21,7 +21,7 @@ import { Link } from '../link';
 import Logo from '../logo';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
 import menuItems from './header.data';
-import logoDark from '../../public/assets/logo idea-2-transparent extra small.png';
+import logoDark from '../../public/assets/logo-white.svg';
 import UserDrawer from './UserDrawer';
 
 export default function Header({
@@ -58,15 +58,15 @@ export default function Header({
             ))}
           </Flex>
 
-          <Link
+          {/* <Link
             path='https://seller.findingspaces.com'
             ml={4}
             label='Get Started'
             sx={styles.headerBtn}
             variant='buttons.primary'
-          />
+          /> */}
           <Box onClick={() => router.push('/search')} sx={styles.handler}>
-            <FontAwesomeIcon icon={faSearch} color='darkGrey' size='2x' />
+            <FontAwesomeIcon icon={faSearch} color='white' size='lg' />
           </Box>
           <UserDrawer AuthUser={auth} showLoginModal={showLoginModal} />
         </Container>
@@ -92,7 +92,7 @@ const styles = {
     },
   },
   profileButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     fontSize: '16px',
     fontWeight: 'bold',
     letterSpacing: '-0.16px',
@@ -114,26 +114,38 @@ const styles = {
     width: '26px',
     mx: '1rem',
     ml: '2rem',
+    px: '2rem',
+    py: '.45rem',
+    borderRadius: 5,
     '&:hover': {
       cursor: 'pointer',
+      backgroundColor: 'green',
+      transition: '0.4s',
+      color: 'green',
+    },
+    '&:active': {
+      cursor: 'pointer',
+      backgroundColor: 'lightGreen',
+      transition: '0.1s',
+      color: 'green',
     },
   },
   header: {
-    color: 'text_white',
+    color: 'white',
     fontWeight: 'normal',
-    py: '25px',
+    py: '15px',
     width: '100%',
     position: 'fixed',
     top: 0,
     left: 0,
-    backgroundColor: 'background',
+    backgroundColor: '#2b3b38',
     transition: 'all 0.4s ease',
 
     '&.sticky': {
-      backgroundColor: 'background',
-      color: 'text',
+      backgroundColor: '#2b3b38',
+      color: 'white',
 
-      py: '15px',
+      py: '3px',
       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
     },
   },
@@ -153,7 +165,7 @@ const styles = {
     },
     navLink: {
       fontSize: '16px',
-      color: '#02073E',
+      color: '#8bc34a',
       fontWeight: '400',
       cursor: 'pointer',
       lineHeight: '1.2',
@@ -163,7 +175,7 @@ const styles = {
         mr: '0',
       },
       '&:hover, &.active': {
-        color: 'primary',
+        color: '#8bc34a',
       },
     },
     top: 0,

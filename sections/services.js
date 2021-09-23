@@ -54,7 +54,7 @@ const SERVICES_DATA = [
   },
 ];
 const Services = () => (
-  <Box as='section' id='services' sx={styles.services}>
+  <Box as='section' sx={styles.services}>
     <Container>
       <BlockTitle
         title='What does this platform offer?'

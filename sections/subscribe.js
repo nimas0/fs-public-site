@@ -1,39 +1,40 @@
 import React from 'react';
 import { Button, Input, Box, Container, Heading, Text } from 'theme-ui';
 
-const Subscribe = () => {
-  return (
-    <Box as="section" sx={styles.subscribe}>
-      <Container>
-        <Heading as="h3">Subscribe to get notified about event</Heading>
-        <Text as="p">
-          By subscribing with your mail, you will accept our privacy policy
-        </Text>
-        <Box as="form" sx={styles.form}>
-          <Box as="label" htmlFor="subscribeEmail" variant="styles.srOnly">
-            Email
-          </Box>
-          <Input
-            placeholder="Enter your email"
-            type="email"
-            id="subscribeEmail"
-            sx={styles.input}
-          />
-          <Button type="submit" sx={styles.button}>
-            Subscribe us
-          </Button>
+const Subscribe = () => (
+  <Box as='section' sx={styles.subscribe}>
+    <Container>
+      <Heading as='h3'>Thinking about Selling?</Heading>
+      <Text as='p'>Sign up now and recieve a free yard sign</Text>
+      <Box as='form' sx={styles.form}>
+        <Box as='label' htmlFor='subscribeEmail' variant='styles.srOnly'>
+          Email
         </Box>
-      </Container>
-    </Box>
-  );
-};
+        {/* <Input
+          placeholder='Enter your email'
+          type='email'
+          id='subscribeEmail'
+          sx={styles.input}
+        /> */}
+        <Button
+          as='a'
+          href='https://findingspaces.com'
+          type='submit'
+          sx={styles.button}
+        >
+          Sign Up
+        </Button>
+      </Box>
+    </Container>
+  </Box>
+);
 
 export default Subscribe;
 
 const styles = {
   subscribe: {
     py: ['80px', null, null, null, '80px', '100px', '140px'],
-    backgroundColor: '#020718',
+    backgroundColor: '#2b3b38',
     h3: {
       textAlign: 'center',
       fontSize: ['23px', null, null, null, null, '30px', '36px'],
@@ -78,21 +79,23 @@ const styles = {
     textAlign: ['center', null, null, 'left'],
   },
   button: {
-    backgroundColor: '#fff',
+    backgroundColor: '#8bc34a',
     borderRadius: '5px',
     fontWeight: '500',
     fontSize: ['18px'],
-    color: '#020718',
+    color: 'white',
+    textDecoration: 'none',
     letterSpacing: '-0.5px',
     outline: 'none',
-    padding: ['0px 30.75px'],
+    padding: ['20px'],
     minHeight: ['50px', null, null, '60px'],
-    width: ['100%', null, null, 'auto'],
-    mt: ['10px', null, null, '0'],
+    width: ['100%', null, null, '100%'],
+    my: ['10px', null, null, '0'],
     mx: ['auto', null, null, '0'],
     '&:hover': {
       backgroundColor: '#fff',
       opacity: '0.8',
+      textDecoration: 'none',
     },
   },
 };
