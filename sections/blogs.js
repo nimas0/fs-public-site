@@ -16,7 +16,7 @@ const BLOG_DATA = [
     description:
       'The 2019 Innovation by Design Awards honor the designers and businesses solving the problems of today and tomorrow. It is one of the most sought-after design',
     path: '/',
-    linkLabel: 'Learn More',
+    // linkLabel: 'Learn More',
   },
   {
     image: null,

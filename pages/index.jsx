@@ -27,7 +27,7 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
   
   
   React.useEffect(() => {
-    gtm.push({ event: 'page_view' });
+    gtm.push({ event: 'page_view_home' });
   }, []);
 
 

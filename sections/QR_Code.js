@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Container, Flex, Image, Text, Heading } from 'theme-ui';
+import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 import JackpotCard from '../components/cards/jackpot-card';
 import jackpotImage from '../public/assets/real-estate-display-closeup.png';
 import jackpotImage1 from '../public/assets/real-estate-app-image-gallery-screenshot.png';
@@ -26,34 +27,42 @@ const JACKPOT_DATA = [
   // },
 ];
 
-const QrCode = () => (
-  <Box as='section' sx={styles.jackpot}>
-    <Container>
-      <Flex sx={styles.flex}>
-        <Box sx={styles.container}>
-          <Image src={jackpotImage} alt='jackpot image' />
-          <Image sx={styles.overlay} src={jackpotImage1} alt='jackpot image' />
-        </Box>
-        <Box sx={styles.content}>
-          <Box sx={styles.heading}>
-            <Text as='span'>WEBSITE AND IMAGE GALLERY QR CODE</Text>
-            <Heading as='h3'>Show off your property</Heading>
+const QrCode = () => {
+  const breakpoints = useMediaBreakpoints();
+
+  return (
+    <Box as='section' sx={styles.jackpot}>
+      <Container>
+        <Flex sx={styles.flex}>
+          <Box sx={breakpoints.xs ? styles.container2 : styles.container}>
+            <Image src={jackpotImage} alt='jackpot image' />
+            <Image
+              sx={breakpoints.xs ? styles.overlay2 : styles.overlay}
+              src={jackpotImage1}
+              alt='jackpot image'
+            />
           </Box>
-          <Box sx={styles.jackpotCardBox}>
-            <Text as='div'>
-              Advertising your house with your QR code. A custom yard sign will
-              display your QR code, and the best practices for displaying your
-              code on Zillow and other marketing sites are explained in detail
-              when signing up. When a buyer passes by your home or sees it on
-              Zillow, they will scan the QR Code and get instant access to your
-              listing page.
-            </Text>
+          <Box sx={styles.content}>
+            <Box sx={styles.heading}>
+              <Text as='span'>WEBSITE AND IMAGE GALLERY QR CODE</Text>
+              <Heading as='h3'>Show off your property</Heading>
+            </Box>
+            <Box sx={styles.jackpotCardBox}>
+              <Text as='div'>
+                Advertising your house with your QR code. A custom yard sign
+                will display your QR code, and the best practices for displaying
+                your code on Zillow and other marketing sites are explained in
+                detail when signing up. When a buyer passes by your home or sees
+                it on Zillow, they will scan the QR Code and get instant access
+                to your listing page.
+              </Text>
+            </Box>
           </Box>
-        </Box>
-      </Flex>
-    </Container>
-  </Box>
-);
+        </Flex>
+      </Container>
+    </Box>
+  );
+};
 
 export default QrCode;
 
@@ -69,11 +78,23 @@ const styles = {
     float: 'left',
     marginRight: '5rem',
   },
+  container2: {
+    marginTop: '7rem',
+    position: 'relative',
+    float: 'auto',
+    marginRight: '0rem',
+  },
 
   overlay: {
     position: 'absolute',
     top: 30,
     left: -90,
+  },
+  overlay2: {
+    position: 'absolute',
+    top: -180,
+    left: 55,
+    height: '90%',
   },
   content: {
     flex: ['0 0 100%', null, null, null, null, '0 0 37.5%'],

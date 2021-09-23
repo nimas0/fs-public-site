@@ -55,7 +55,7 @@ const Featured = () => {
               <AiFillDollarCircle />
               Negotiate Offers
             </Button>
-            <Button
+            {/* <Button
               onClick={() => handleTab('adjust')}
               className={`${tab.active === 'adjust' ? 'active' : ''}`}
             >
@@ -75,7 +75,7 @@ const Featured = () => {
             >
               <FaBriefcase />
               Publish Common Questions
-            </Button>
+            </Button> */}
           </Box>
         </Box>
         <Box sx={styles.tabContent}>
@@ -110,7 +110,7 @@ const fadeIn = keyframes`
 const styles = {
   featured: {
     pt: ['80px', null, null, null, '80px', null, '100px'],
-    backgroundColor: '#F9FAFC',
+    backgroundColor: 'transparent',
   },
   container: {
     position: 'relative',

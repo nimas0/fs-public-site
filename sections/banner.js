@@ -4,6 +4,7 @@ import { Box, Container, Image, Heading, Button, IconButton } from 'theme-ui';
 import { keyframes } from '@emotion/core';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 import YouTube from 'react-youtube';
+import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 import { Link } from '../components/link';
 import logoImage from '../public/assets/Family moving boxes no sidewalk.png';
 import bannerImage from '../public/assets/banner-mockup.png';
@@ -17,7 +18,7 @@ import bannerIcon7 from '../public/assets/dot-pattern.svg';
 
 const Banner = () => {
   const [showImage, setShowImage] = useState(false);
-
+  const breakpoints = useMediaBreakpoints();
   const handleEnding = () => {
     setShowImage(true);
     scroller.scrollTo('scrollalittle', {
@@ -148,25 +149,18 @@ const Banner = () => {
             <Image src={bannerImage} sx={styles.bannerImage} alt='banner moc' />
           </div>
         ) : (
-          <div>
-            <YouTube
-              videoId='2prAwVk_RI0'
-              onEnd={handleEnding}
-              opts={{
-                height: '480',
-                width: '70%',
-                playerVars: {
-                  autoplay: 1,
-                },
-              }}
-            />
-            {/* <YoutubePlayer
+          <YouTube
             autoPlay
-            src='https://youtu.be/2prAwVk_RI0' // Reqiured
-            width='100%'
-            height={700}
-          /> */}
-          </div>
+            videoId='2prAwVk_RI0'
+            onEnd={handleEnding}
+            opts={{
+              height: breakpoints.xs ? 210 : 480,
+              width: breakpoints.xs ? '100%' : '73%',
+              playerVars: {
+                autoplay: 1,
+              },
+            }}
+          />
         )}
       </Container>
     </Box>
@@ -237,7 +231,7 @@ const bannerAnim3 = keyframes`
 const styles = {
   banner: {
     overflow: 'hidden',
-    backgroundColor: '#F9FBFD',
+    backgroundColor: 'transparent',
     textAlign: 'center',
     pt: ['110px', null, null, null, '130px'],
     h2: {
@@ -277,7 +271,7 @@ const styles = {
     display: 'block',
     mx: 'auto',
     position: 'relative',
-    maxWidth: ['100%', null, null, '80%', null, '100%'],
+    maxWidth: ['100%', null, null, '100%', null, '100%'],
   },
   container: {
     position: 'relative',
@@ -321,6 +315,7 @@ const styles = {
   },
   overlay: {
     position: 'relative',
+    height: '100%',
   },
   playButton: {
     position: 'absolute',

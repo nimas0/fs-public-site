@@ -111,35 +111,31 @@ const accordionData = [
   },
 ];
 
-const FAQ = () => {
-  return (
-    <Box as='section' id='fandq'>
-      <Container>
-        <BlockTitle
-          title='Frequently Ask Question'
-          text='Ask your question and meet'
-        />
-        <Flex sx={styles.flex}>
-          <Box sx={styles.faqWrapper}>
-            <Accordion items={accordionData} />
-          </Box>
-          <Box sx={styles.content}>
-            <Heading as='h3'>
-              Do you have any quesiton? Please ask here we ready to support
-            </Heading>
-            <Text as='p'>
-              If your question is not list here, please feel free to make a
-              manual support.
-            </Text>
-            <Link sx={styles.askButton} path='#'>
-              Ask your Question
-            </Link>
-          </Box>
-        </Flex>
-      </Container>
-    </Box>
-  );
-};
+const FAQ = () => (
+  <Box as='section' id='fandq'>
+    <Container>
+      <BlockTitle
+        title='Frequently Ask Question'
+        text='Ask your question and meet'
+      />
+      <Flex sx={styles.flex}>
+        <Box sx={styles.faqWrapper}>
+          <Accordion items={accordionData} />
+        </Box>
+        <Box sx={styles.content}>
+          <Heading as='h3'>
+            Do you have any quesiton? Please ask here we ready to support
+          </Heading>
+          <Text as='p'>
+            If your question is not list here, please feel free to make a manual
+            support.
+          </Text>
+          <Link path='#'>Support@findingspaces.com</Link>
+        </Box>
+      </Flex>
+    </Container>
+  </Box>
+);
 
 export default FAQ;
 

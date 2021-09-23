@@ -15,8 +15,4 @@ export default [
     path: 'fandq',
     label: 'F&Q',
   },
-  {
-    path: 'resources',
-    label: 'Resources',
-  },
 ];

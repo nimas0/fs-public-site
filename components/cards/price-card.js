@@ -38,21 +38,20 @@ const PriceCard = ({ data: { title, icon, amount, options, recommended } }) => (
         </Box>
       ))}
     </Box>
-    <Box sx={styles.buttonWrap}>
-      <Box className='priceAmount'>
-        <Text as='p'>Starting from</Text>
-        <Link path='#' sx={styles.heading}>
-          {amount}
-        </Link>
-      </Box>
-      <Link
-        passHref
-        path='https://seller.findingspaces.com'
-        className='priceButton'
-      >
+    <Link
+      passHref
+      path='https://seller.findingspaces.com'
+      className='priceButton'
+    >
+      <Box sx={styles.buttonWrap}>
+        <Box className='priceAmount'>
+          <Text as='p'>Starting from</Text>
+          <h3 path='#'>{amount}</h3>
+        </Box>
+
         <Image src={priceArrow} alt='price button' />
-      </Link>
-    </Box>
+      </Box>
+    </Link>
   </Box>
 );
 
@@ -73,7 +72,6 @@ const styles = {
       li: {
         display: 'flex',
         alignItems: 'flex-start',
-        color: '#343D48',
         fontSize: '16px',
         lineHeight: '26px',
         width: '100%',
@@ -106,7 +104,7 @@ const styles = {
       mb: ['20px', null, '0'],
       h3: {
         lineHeight: 1,
-        color: '#0F2137',
+
         fontSize: '22px',
         fontWeight: 700,
         letterSpacing: '-0.55px',
@@ -138,6 +136,10 @@ const styles = {
     mt: '60px',
     display: 'flex',
     justifyContent: 'space-between',
+    '&:hover': {
+      backgroundColor: 'green',
+      color: 'white',
+    },
     alignItems: 'center',
     backgroundColor: '#F8F8FA',
     mx: ['-20px', null, null, null, '-40px'],
@@ -149,13 +151,12 @@ const styles = {
       p: {
         lineHeight: 1,
         fontSize: '16px',
-        color: '#343D48',
+
         mb: '10px',
       },
     },
   },
   heading: {
-    color: 'primary',
     fontSize: '26px',
     fontWeight: 700,
     lineHeight: 1,

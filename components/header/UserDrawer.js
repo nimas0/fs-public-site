@@ -137,8 +137,8 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
             ))}
           <Box sx={styles.menu}>
             {[
-              { path: 'asdfasdf', label: 'Learn More' },
-              { path: 'asdfasdf', label: 'Settings' },
+              // { path: 'asdfasdf', label: 'Learn More' },
+              // { path: 'asdfasdf', label: 'Settings' },
             ].map(({ path, label }, i) => (
               <ScrollLink
                 activeClass='active'
@@ -159,13 +159,13 @@ const UserDrawer = ({ AuthUser, showLoginModal }) => {
               as='a'
               href='https://seller.findingspaces.com'
               variant='primary'
-              sx={styles.button}
+              sx={styles.button1}
             >
               Go to Seller Dashboard
             </Button>
             <Button
               variant='primary'
-              sx={styles.button}
+              sx={styles.button2}
               onClick={AuthUser ? logoutRefresh : handleLogin}
             >
               {AuthUser ? 'Logout' : 'Login'}
@@ -236,10 +236,22 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    mt: 'auto',
+    mb: 'auto',
   },
-
-  button: {
+  button1: {
+    fontSize: '15px',
+    fw: '700',
+    height: '48px',
+    borderRadius: '3px',
+    cursor: 'pointer',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    py: '0',
+  },
+  button2: {
     fontSize: '15px',
     fw: '700',
     height: '48px',
@@ -251,7 +263,7 @@ const styles = {
     justifyContent: 'center',
     py: '0',
     my: '7px',
-    backgroundColor: '#1A2321',
+    backgroundColor: 'green',
     color: '#fff',
   },
 };

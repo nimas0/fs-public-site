@@ -21,9 +21,9 @@ const CallToAction = () => (
             questions or need help, Support is always just an online chat, phone
             call, or an email away.
           </Text>
-          <Link path='#' sx={styles.button}>
+          {/* <Link path='#' sx={styles.button}>
             Explore More
-          </Link>
+          </Link> */}
         </Box>
         <Box sx={styles.images}>
           <Image src={callImage} alt='call image' />
