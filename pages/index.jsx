@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'theme-ui';
 
 import { Navbar, Button, Container } from 'react-bootstrap';
+import { IoMdClose } from 'react-icons/io';
 import { StickyProvider } from '../contexts/app/app.provider';
 import theme from '../theme';
 import Layout from '../components/layout';
@@ -69,7 +70,7 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
               >
                 Sell Your Home
               </Button>
-     
+              <IoMdClose onClick={() => setShowSignUp(false)} style={{ cursor: 'pointer' }} size='24px' color='#fff' />
             </Container>
           </Navbar>
 
