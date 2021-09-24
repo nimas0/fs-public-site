@@ -161,7 +161,7 @@ const Banner = () => {
               },
             }}
           />
-        )}
+      )}
       </Container>
     </Box>
   );

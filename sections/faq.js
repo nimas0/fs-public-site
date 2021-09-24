@@ -99,13 +99,67 @@ const accordionData = [
     title: 'How Do Buyers Submit Offers?',
     contents: (
       <div>
-        Sellers will give potential buyers their property code where buyers go
-        to make “quick offers”. Quick offers are designed to get the buyer and
-        seller to agree on the essential terms of an offer before filling out
-        the purchase agreement. These are NOT binding agreements. Finding Spaces
-        will walk the buyer through our quick offer process. Once all terms are
-        agreed on, a purchase agreement will be provided along with instructions
-        on the next steps of the process
+        Buyers can make quick “unofficial” offers on your listing page. Once
+        sellers and buyers have agreed on essential terms, both parties will
+        review and sign a generated purchase agreement.
+      </div>
+    ),
+  },
+  {
+    isExpanded: false,
+    title: 'Does Finding Spaces charge anything at closing?',
+    contents: (
+      <div>
+        Absolutely not! Our purchase agreement is customized for buyers and
+        sellers to select their own title/escrow company and hash out who pays
+        for what.
+      </div>
+    ),
+  },
+  {
+    isExpanded: false,
+    title: 'How does Finding Spaces help sellers sell their home?',
+    contents: (
+      <div>
+        We educate buyers and sellers on the real estate process and provide
+        tools needed for smooth transactions. By educating both buyers and
+        sellers, we eliminate the need for either party to hire a real estate
+        agent. This means, no sellers commission & no buyers commission!
+      </div>
+    ),
+  },
+  {
+    isExpanded: false,
+    title: 'Does Finding Spaces put my home on the MLS?',
+    contents: (
+      <div>
+        No. The MLS is for real estate agents to find properties, not
+        homebuyers. We encourage marketing on listing websites that allow you to
+        interact directly with buyers to eliminate commission. 90% of home
+        buyers start their search on Zillow.
+      </div>
+    ),
+  },
+  {
+    isExpanded: false,
+    title: 'How do buyers find my property?',
+    contents: (
+      <div>
+        Buyers will find your home on listing websites (such as Zillow), Yard
+        signs, and social media marketing. The Finding Spaces dashboard will
+        teach you the best practices.
+      </div>
+    ),
+  },
+  {
+    isExpanded: false,
+    title: 'Should I give buyers my phone number?',
+    contents: (
+      <div>
+        No. By not listing a personal number online, sellers can avoid unwanted
+        calls from real estate agents and unqualified buyers. Sellers should
+        direct interested buyers to your Finding Spaces listing page where
+        buyers can communicate with them through their dashboard.
       </div>
     ),
   },

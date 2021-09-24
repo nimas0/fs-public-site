@@ -32,7 +32,7 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
     gtm.push({ event: 'page_view_home' });
     setTimeout(() => {
       setShowSignUp(true);
-    }, 10000)
+    }, 20000)
   }, []);
 
 
