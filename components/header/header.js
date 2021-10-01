@@ -60,7 +60,6 @@ export default function Header({
 
           <Link
             path='https://seller.findingspaces.com'
-            ml={4}
             label='Dashboard'
             sx={styles.headerBtn}
             variant='buttons.primary'
@@ -77,18 +76,22 @@ export default function Header({
 
 const styles = {
   headerBtn: {
-    backgroundColor: '#267000',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    letterSpacing: '-0.16px',
+    backgroundColor: 'transparent',
+    fontSize: '15px',
+    letterSpacing: '0.50px',
     borderRadius: '5px',
-    color: '#ffffff',
-    padding: '6.5px 24px',
+    color: '#589938',
+    py: '.5rem',
+    px: '2rem',
     display: ['none', null, null, null, 'inline-block'],
     ml: ['0', null, null, 'auto', '0'],
     mr: ['0', null, null, '20px', '0'],
+    '&:focus, &:hover, &:visited, &:link, &:active': {
+      textDecoration: 'none',
+    },
     '&:hover': {
-      color: '#fff',
+      color: '#267000',
+      backgroundColor: '#fff',
     },
   },
   profileButton: {
