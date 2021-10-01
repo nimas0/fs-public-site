@@ -77,7 +77,7 @@ export default function Header({
 const styles = {
   headerBtn: {
     backgroundColor: 'transparent',
-    fontSize: '15px',
+    fontSize: '16px',
     letterSpacing: '0.50px',
     borderRadius: '5px',
     color: '#589938',

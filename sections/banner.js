@@ -7,7 +7,7 @@ import YouTube from 'react-youtube';
 import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 import { Link } from '../components/link';
 import logoImage from '../public/assets/Family moving boxes no sidewalk.png';
-import bannerImage from '../public/assets/banner-mockup.png';
+import bannerImage from '../public/assets/banner3.png';
 import bannerIcon1 from '../public/assets/home@0.5x.png';
 import bannerIcon2 from '../public/assets/banner-icon-1-2.svg';
 import bannerIcon3 from '../public/assets/banner-icon-1-3.svg';
@@ -32,7 +32,12 @@ const Banner = () => {
 
   return (
     <Box as='section' id='banner' sx={styles.banner}>
-      <Container sx={styles.container}>
+      {/* <Container sx={styles.container}> */}
+      {/*  
+        
+        
+        
+        
         <Image
           sx={styles.bannerIcon1}
           className='bannerIcon'
@@ -74,125 +79,40 @@ const Banner = () => {
           className='bannerIcon'
           alt='banner icon'
           src={bannerIcon7}
-        />
+        /> */}
 
-        {/* <Image src={logoImage} alt='logo image' /> */}
+      {/* <Image src={logoImage} alt='logo image' /> */}
 
-        <Heading as='h2'>
-          <>
-            Sell Your Home
-            <span style={{ color: '#589938' }}> Yourself</span>
-            <br />
-            <h3
-              style={{
-                display: 'inline',
-                marginRight: '1rem',
-              }}
-            >
-              <b>No </b>
-              Real Estate Agent.
-            </h3>
-            <h3
-              style={{
-                display: 'inline',
-                marginRight: '1rem',
-              }}
-            >
-              <b>No </b> Commission.
-            </h3>
-            <h3
-              style={{
-                display: 'inline',
-                marginRight: '1rem',
-              }}
-            >
-              <b>No </b> MLS.
-            </h3>
-          </>
-        </Heading>
-
-        {showImage ? (
-          <div className='scrollalittle' sx={styles.overlay}>
-            <IconButton
-              sx={styles.playButton}
-              onClick={() => setShowImage(false)}
-              aria-label='Toggle dark mode'
-            >
-              <svg
-                version='1.1'
-                id='Layer_1'
-                xmlns='http://www.w3.org/2000/svg'
-                x='0px'
-                y='0px'
-                viewBox='0 0 512 512'
-                width={100}
-                height={100}
-                style={{
-                  enableBackground: 'new 0 0 512 512',
-                }}
-                xmlSpace='preserve'
-              >
-                <circle
-                  style={{ fill: '#366796', boxShadow: '5px 10px #888888' }}
-                  cx='256'
-                  cy='256'
-                  r='256'
-                />
-                <path
-                  style={{ fill: '#273B7A' }}
-                  d='M166.041,375.282l133.082,133.082c86.643-14.7,158.465-72.923,192.183-151.4L378.649,244.307
-	L166.041,375.282z'
-                />
-                <path
-                  style={{ fill: '#FDE085' }}
-                  d='M189.745,133.454l183.025,105.67c12.991,7.501,12.991,26.252,0,33.751l-183.025,105.67
-	c-12.991,7.501-29.229-1.876-29.229-16.875V150.331C160.516,135.33,176.755,125.954,189.745,133.454z'
-                />
-                <path
-                  style={{ fill: '#FFC91B' }}
-                  d='M160.516,256.862V361.67c0,15.001,16.239,24.376,29.229,16.875l183.025-105.67
-	c6.211-3.586,9.418-9.743,9.69-16.013H160.516z'
-                />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-                <g />
-              </svg>
-            </IconButton>
-
-            {/* <Heading as='h6' sx={styles.playText}>
-              {' '}
-              Replay
-            </Heading> */}
-
-            <Image src={bannerImage} sx={styles.bannerImage} alt='banner moc' />
-          </div>
-        ) : (
-          <YouTube
-            // autoPlay={false}
-            videoId='2prAwVk_RI0'
-            onEnd={handleEnding}
-            opts={{
-              height: breakpoints.xs ? 210 : 480,
-              width: breakpoints.xs ? '100%' : '73%',
-              playerVars: {
-                autoplay: 0,
-              },
-            }}
-          />
-        )}
-      </Container>
+      <Heading as='h2'>
+        <>
+          Sell Your Home
+          <span style={{ color: '#589938' }}> Yourself</span>
+          <h4> asdfasdf</h4>
+        </>
+      </Heading>
+      <h3>
+        <b>No </b>
+        Real Estate Agent.
+      </h3>
+      <h3>
+        <b>No </b> Commission.
+      </h3>
+      <h3>
+        <b>No </b> MLS.
+      </h3>
+      {/* </Container> */}
+      {/* <YouTube
+        // autoPlay={false}
+        videoId='2prAwVk_RI0'
+        onEnd={handleEnding}
+        opts={{
+          height: breakpoints.xs ? 210 : 480,
+          width: breakpoints.xs ? '100%' : '73%',
+          playerVars: {
+            autoplay: 0,
+          },
+        }}
+      /> */}
     </Box>
   );
 };
@@ -261,21 +181,51 @@ const bannerAnim3 = keyframes`
 const styles = {
   banner: {
     overflow: 'hidden',
-    backgroundColor: 'transparent',
+    height: ['700px', '700px', '900px', '800px', '800px', '940px'],
+    backgroundColor: '#F9F9F9',
+    backgroundImage: `url(${bannerImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: [
+      '80% 95%',
+      '80% 95%',
+      '75% 100%',
+      '90% 85%',
+      'bottom',
+      'bottom',
+    ],
+    backgroundSize: ['375%', '300%', '300%', '200%', '150%', '100%'],
     textAlign: 'center',
-    pt: ['110px', null, null, null, '110px'],
+    pt: ['30px', null, null, null, '110px'],
     h2: {
-      fontSize: ['24px', null, null, '32px', '38px', '48px', '64px'],
+      fontSize: ['34px', null, null, '32px', '38px', '48px', '64px'],
       lineHeight: 1.25,
       color: '#2b3b38',
       fontWeight: 700,
       width: '100%',
-      maxWidth: ['100%', null, null, '55%', '500px', '640px', '851px'],
+      maxWidth: ['100%', '100%', '100%', '55%', '500px', '640px', '851px'],
       mx: 'auto',
       mt: '30px',
-      mb: ['40px', null, null, '65px'],
+      mb: ['20px', '20px', '20px', '5px'],
+    },
+    h3: {
+      marginRight: '1rem',
+      // fontSize: 35,
+      fontSize: ['24px', null, null, '34px', '34px', '34px', '34px'],
+      color: '#2b3b38',
+      // fontWeight: 700,
+      display: ['block', 'block', 'inline', null, 'inline'],
+      textAlign: ['left', 'left', null, null],
+      ml: ['3.5rem', '3.5rem', 0, 0, 0],
+    },
+    h4: {
+      opacity: 0,
+      display: ['block'],
+      fontSize: ['24px', '14px'],
+
+      p: 0,
     },
   },
+
   logo: {
     display: 'block',
     borderRadius: '50%',
@@ -374,5 +324,9 @@ const styles = {
       borderColor: 'transparent transparent transparent #267000',
       backgroundColor: 'transparent',
     },
+  },
+  spacer: {
+    opacity: 0,
+    color: 'white',
   },
 };

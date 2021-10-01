@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Container, Button } from 'theme-ui';
 import { keyframes } from '@emotion/core';
+import { Link as ScrollLink, scroller } from 'react-scroll';
 import { AiFillDollarCircle, AiFillPieChart } from 'react-icons/ai';
 import { FaBriefcase, FaCog } from 'react-icons/fa';
+import YouTube from 'react-youtube';
+import useMediaBreakpoints from '@tywmick/use-media-breakpoints';
 import BlockTitle from '../components/block-title';
 import Image from '../components/image';
 import tabImage1 from '../public/assets/leads.gif';
@@ -12,6 +15,19 @@ const Featured = () => {
   const [tab, setTab] = useState({
     active: 'budget',
   });
+
+  const [showImage, setShowImage] = useState(false);
+  const breakpoints = useMediaBreakpoints();
+  const handleEnding = () => {
+    setShowImage(true);
+    scroller.scrollTo('scrollalittle', {
+      duration: 1500,
+      delay: 100,
+      smooth: true,
+      // containerId: 'scrollalittle',
+      offset: 50, // Scrolls to element + 50 pixels down the page
+    });
+  };
 
   const handleTab = (tab) => {
     if (tab === 'budget') {
@@ -43,19 +59,34 @@ const Featured = () => {
     <Box as='section' sx={styles.featured}>
       <Container sx={styles.container}>
         <BlockTitle
-          title='What the features of product'
-          text='Introducing all screen details'
+          title='How it works'
+          text='What this short explainer video to learn more.'
         />
-        <Box sx={styles.tabButtonTopWrapper}>
-          <Box sx={styles.tabButtonWrapper}>
-            <Button
+        <YouTube
+          // autoPlay={false}
+          videoId='2prAwVk_RI0'
+          onEnd={handleEnding}
+          opts={{
+            height: breakpoints.xs ? 210 : 580,
+            width: breakpoints.xs ? '100%' : '100%',
+            playerVars: {
+              autoplay: 0,
+            },
+          }}
+        />
+        <br />
+        <br />
+        <br />
+        {/* <Box sx={styles.tabButtonTopWrapper}>
+          <Box sx={styles.tabButtonWrapper}> */}
+        {/* <Button
               onClick={() => handleTab('budget')}
               className={`${tab.active === 'budget' ? 'active' : ''}`}
             >
               <AiFillDollarCircle />
               Negotiate Offers
-            </Button>
-            {/* <Button
+            </Button> */}
+        {/* <Button
               onClick={() => handleTab('adjust')}
               className={`${tab.active === 'adjust' ? 'active' : ''}`}
             >
@@ -76,10 +107,10 @@ const Featured = () => {
               <FaBriefcase />
               Publish Common Questions
             </Button> */}
-          </Box>
-        </Box>
-        <Box sx={styles.tabContent}>
-          {tab.active === 'budget' && (
+        {/* </Box>
+        </Box> */}
+        {/* <Box sx={styles.tabContent}> */}
+        {/* {tab.active === 'budget' && (
             <Image src={tabImage1} alt='tab image' className='tabImage' />
           )}
           {tab.active === 'create' && (
@@ -90,8 +121,8 @@ const Featured = () => {
           )}
           {tab.active === 'report' && (
             <Image src={tabImage1} alt='tab image' className='tabImage' />
-          )}
-        </Box>
+          )} */}
+        {/* </Box> */}
       </Container>
     </Box>
   );

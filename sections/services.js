@@ -13,43 +13,43 @@ const SERVICES_DATA = [
   {
     image: serviceImage1,
     text:
-      'Need help understanding the real estate process? Finding Spaces has your back! We’ve simplified the selling process into five manageable steps that anyone can understand.',
+      'From putting your home on the market to writing offers, glide through the real estate process using our dashboard to provide the education and tools needed along the way.',
     heading: 'Step by Step Guidance',
+    path: '#',
+  },
+  {
+    image: serviceImage6,
+    text:
+      'Buyers no longer need a real estate agent to find a home. We give you easy access to market their home on Zillow and social media platforms.',
+    heading: 'Marketing',
     path: '#',
   },
   {
     image: serviceImage2,
     text:
-      'Texts from random numbers can get annoying. Set your availability and allow buyers to book showings directly from your listing page.',
+      'Stop scheduling showings manually. After sellers set their availability, buyers can request a showing directly from the listing page.',
     heading: 'Scheduling',
     path: '#',
   },
   {
     image: serviceImage3,
     text:
-      "Show off your home's features! Buyers can chat with you, book showings and make offers.",
+      'This listing page is where buyers will spend the majority of their time. Buyers can communicate with sellers and make guided offers.',
     heading: 'Listing Website',
     path: '#',
   },
   {
     image: serviceImage4,
     text:
-      "This is your home's Identify. Buyers will scan and go directly to your listing page. Put your code on Zillow and order our yard sign to get maximum exposure.",
+      'Sellers can market their homes with a QR code to direct all buyers to their listing page. This prevents sellers from getting unwanted calls from real estate agents. ',
     heading: 'QR CODE',
     path: '#',
   },
   {
     image: serviceImage5,
     text:
-      'Stop worrying about all of the real estate documents and how to fill them out. We provide the disclosures and purchase agreements you will need. These documents have been professionally explicitly written for “For Sale by Owners.” (Limited locations)',
+      'Real estate documentation can be the tricky part. Our easy-fill documentation makes writing offers seem effortless.',
     heading: 'Documents',
-    path: '#',
-  },
-  {
-    image: serviceImage6,
-    text:
-      "Don't waste your time with buyers that aren't qualified. Have them submit offers on your dashboard, where you can verify if they are serious buyers and send counteroffers.",
-    heading: 'Negotiate Offers',
     path: '#',
   },
 ];
