@@ -13,7 +13,7 @@ const SERVICES_DATA = [
   {
     image: serviceImage1,
     text:
-      'From putting your home on the market to writing offers, glide through the real estate process using our dashboard to provide the education and tools needed along the way.',
+      'From putting your home on the market to writing offers, glide through the real estate process using finding spaces dashboard that provides the education and tools needed along the way.',
     heading: 'Step by Step Guidance',
     path: '#',
   },
@@ -58,7 +58,7 @@ const Services = () => (
     <Container>
       <BlockTitle
         title='What does this platform offer?'
-        text='Finding Spaces provides buyers and sellers with step-by-step guidance and the tools and resources needed to manage their real estate process.'
+        text='Buyers and sellers with little real estate experience can avoid hidden agents fees and work directly with each other.'
       />
       <Grid sx={styles.grid}>
         {SERVICES_DATA.map(({ image, text, heading, path }, index) => (
