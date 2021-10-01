@@ -79,8 +79,8 @@ const Banner = () => {
         {/* <Image src={logoImage} alt='logo image' /> */}
 
         <Heading as='h2'>
-          Sell Your Home For Sale By Owner.{' '}
-          <span style={{ color: '#589938' }}>It’s Commission Free</span>
+          Sell Your Home without a Realtor.{' '}
+          <span style={{ color: '#589938' }}>Commission Free</span>
         </Heading>
         {showImage ? (
           <div className='scrollalittle' sx={styles.overlay}>
