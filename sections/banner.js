@@ -79,7 +79,8 @@ const Banner = () => {
         {/* <Image src={logoImage} alt='logo image' /> */}
 
         <Heading as='h2'>
-          Sell Your Home For Sale By Owner. It’s Commission Free
+          Sell Your Home For Sale By Owner.{' '}
+          <span style={{ color: '#589938' }}>It’s Commission Free</span>
         </Heading>
         {showImage ? (
           <div className='scrollalittle' sx={styles.overlay}>
@@ -161,7 +162,7 @@ const Banner = () => {
               },
             }}
           />
-      )}
+        )}
       </Container>
     </Box>
   );
@@ -235,9 +236,9 @@ const styles = {
     textAlign: 'center',
     pt: ['110px', null, null, null, '110px'],
     h2: {
-      fontSize: ['28px', null, null, '32px', '38px', '48px', '64px'],
+      fontSize: ['24px', null, null, '32px', '38px', '48px', '64px'],
       lineHeight: 1.25,
-      color: '#02073E',
+      color: '#2b3b38',
       fontWeight: 700,
       width: '100%',
       maxWidth: ['100%', null, null, '55%', '500px', '640px', '851px'],

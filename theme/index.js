@@ -17,10 +17,10 @@ export default {
     accent: '#609', // a contrast color for emphasizing UI
   },
   fonts: {
-    body: 'DM Sans',
+    body: 'sans-serif',
     // body:
     //   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    heading: 'DM Sans',
+    heading: 'Roboto',
     // heading: 'Bree Serif',
     monospace: 'Menlo, monospace',
   },
