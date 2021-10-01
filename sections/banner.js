@@ -79,9 +79,38 @@ const Banner = () => {
         {/* <Image src={logoImage} alt='logo image' /> */}
 
         <Heading as='h2'>
-          Sell Your Home without a Realtor.{' '}
-          <span style={{ color: '#589938' }}>Commission Free</span>
+          <>
+            Sell Your Home
+            <span style={{ color: '#589938' }}> Yourself</span>
+            <br />
+            <h3
+              style={{
+                display: 'inline',
+                marginRight: '1rem',
+              }}
+            >
+              <b>No </b>
+              Real Estate Agent.
+            </h3>
+            <h3
+              style={{
+                display: 'inline',
+                marginRight: '1rem',
+              }}
+            >
+              <b>No </b> Commission.
+            </h3>
+            <h3
+              style={{
+                display: 'inline',
+                marginRight: '1rem',
+              }}
+            >
+              <b>No </b> MLS.
+            </h3>
+          </>
         </Heading>
+
         {showImage ? (
           <div className='scrollalittle' sx={styles.overlay}>
             <IconButton
