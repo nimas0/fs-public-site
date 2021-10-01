@@ -58,13 +58,13 @@ export default function Header({
             ))}
           </Flex>
 
-          {/* <Link
+          <Link
             path='https://seller.findingspaces.com'
             ml={4}
-            label='Get Started'
+            label='Dashboard'
             sx={styles.headerBtn}
             variant='buttons.primary'
-          /> */}
+          />
           <Box onClick={() => router.push('/search')} sx={styles.handler}>
             <FontAwesomeIcon icon={faSearch} color='white' size='lg' />
           </Box>
