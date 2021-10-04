@@ -362,13 +362,13 @@ const Resume = () => {
 
             <Row className='my-5 pt-3 pl-2 '>
               <h5>
-                <b>DEMOGRAPHIC SURVEY</b>
+                <b>Type of Application</b>
               </h5>
             </Row>
 
             <Form.Group as={Row} controlId='exampleForm.SelectCustomSizeSm'>
               <Form.Label column sm={3}>
-                What is your location?
+                What type of job are you applying for?
               </Form.Label>
               <Col sm={9}>
                 <Form.Control
@@ -381,7 +381,7 @@ const Resume = () => {
                   size='md'
                   custom
                 >
-                  <option value='' label='Choose Location' />
+                  <option value='' label='Choose Type' />
                   {countryList.map((option) => (
                     <option value={option} label={option} />
                   ))}
