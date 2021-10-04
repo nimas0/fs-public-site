@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Container, Button } from 'theme-ui';
+import { Box, Container, Button, Heading, Text } from 'theme-ui';
 import { keyframes } from '@emotion/core';
 import { Link as ScrollLink, scroller } from 'react-scroll';
 import { AiFillDollarCircle, AiFillPieChart } from 'react-icons/ai';
@@ -58,10 +58,11 @@ const Featured = () => {
   return (
     <Box as='section' sx={styles.featured}>
       <Container sx={styles.container}>
-        <BlockTitle
-          title='How it works'
-          text='What this short explainer video to learn more.'
-        />
+        <Box sx={styles.blockTitle} className='blockTitle'>
+          <Heading as='h3'>How it works</Heading>
+          <Text as='p'>Watch this short explainer video to learn more.</Text>
+        </Box>
+
         <YouTube
           // autoPlay={false}
           videoId='2prAwVk_RI0'
@@ -141,12 +142,11 @@ const fadeIn = keyframes`
 const styles = {
   featured: {
     pt: ['80px', null, null, null, '80px', null, '100px'],
-    backgroundColor: 'transparent',
+    backgroundColor: '#2b3b38',
+    color: 'white',
   },
   container: {
-    position: 'relative',
-    top: '150px',
-    mt: '-150px',
+    color: 'white',
   },
   tabButtonTopWrapper: {
     overflowY: ['hidden', null, null, null, null, 'inherit'],
@@ -221,6 +221,23 @@ const styles = {
     '.tabImage': {
       position: 'relative',
       animation: `${fadeIn} 0.8s linear`,
+    },
+  },
+  blockTitle: {
+    textAlign: 'center',
+    mb: ['60px', null, null, null, '60px', null, '80px'],
+    h3: {
+      color: '#fff',
+      fontSize: ['23px', null, null, '30px'],
+      fontWeight: 700,
+      letterSpacing: '-1.5px',
+      lineHeight: 1,
+      mb: '20px',
+    },
+    p: {
+      lineHeight: 1,
+      fontSize: '18px',
+      color: 'lightGrey',
     },
   },
 };

@@ -8,19 +8,20 @@ import serviceImage3 from '../public/assets/service-3.png';
 import serviceImage4 from '../public/assets/service-4.png';
 import serviceImage5 from '../public/assets/service-5.png';
 import serviceImage6 from '../public/assets/service-6.png';
+import serviceBackground from '../public/assets/services.jpeg';
 
 const SERVICES_DATA = [
   {
     image: serviceImage1,
     text:
-      'From putting your home on the market to writing offers, glide through the real estate process using finding spaces dashboard that provides the education and tools needed along the way.',
+      'From putting your home on the market to writing offers, glide through the real estate process using findingSpaces dashboard to provide the education and tools needed along the way.',
     heading: 'Step by Step Guidance',
     path: '#',
   },
   {
     image: serviceImage6,
     text:
-      'Buyers no longer need a real estate agent to find a home. We give you easy access to market their home on Zillow and social media platforms.',
+      'We give sellers easy access to market their home on Zillow and social media platforms. Buyers no longer need real estate agents to search for homes on the MLS',
     heading: 'Marketing',
     path: '#',
   },
@@ -34,7 +35,7 @@ const SERVICES_DATA = [
   {
     image: serviceImage3,
     text:
-      'This listing page is where buyers will spend the majority of their time. Buyers can communicate with sellers and make guided offers.',
+      'The listing page is where buyers will spend the majority of their time. Buyers can communicate with sellers and make guided offers.',
     heading: 'Listing Website',
     path: '#',
   },
@@ -80,6 +81,9 @@ export default Services;
 const styles = {
   services: {
     pt: ['80px', null, null, null, '80px', null, '100px'],
+    // backgroundImage: `url(${serviceBackground})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: ['100%'],
   },
   grid: {
     gridGap: '30px',

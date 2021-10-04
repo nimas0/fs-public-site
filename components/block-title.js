@@ -1,14 +1,12 @@
 import React from 'react';
 import { Box, Text, Heading } from 'theme-ui';
 
-const BlockTitle = ({ title, text }) => {
-  return (
-    <Box sx={styles.blockTitle} className="blockTitle">
-      <Heading as="h3">{title}</Heading>
-      <Text as="p">{text}</Text>
-    </Box>
-  );
-};
+const BlockTitle = ({ title, text }) => (
+  <Box sx={styles.blockTitle} className='blockTitle'>
+    <Heading as='h3'>{title}</Heading>
+    <Text as='p'>{text}</Text>
+  </Box>
+);
 
 export default BlockTitle;
 
