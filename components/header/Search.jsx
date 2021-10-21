@@ -58,7 +58,7 @@ console.log("hit.photos[0].src", hit.photos[0].src)
       <Col xs={12} lg={4}>
         <Card className='  mt-2 mb-5 mx-2 border-0 bg-info'>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: "hidden"}}>
-            <Card.Img style={{flexShrink: 0, minWidth: '100%', minHeight: '100%' }} variant="top" src={hit.photos[0].src || defaultPhoto} />
+            <Card.Img style={{flexShrink: 0, minWidth: '100%', minHeight: '100%' }} variant="top" src={hit.photos[0].source || defaultPhoto} />
           </div>
           <Card.Body>
             <Card.Title className='text-left text-white'>{hit.fullAddress}</Card.Title>

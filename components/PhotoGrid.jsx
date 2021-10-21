@@ -83,7 +83,7 @@ export default ({ photos, tilesWide, address }) => {
                   />
                 ) : (
                   <img
-                    src={photo.src}
+                    src={photo.source}
                     onClick={() => {
                       toggleLightbox(photo.index);
                     }}
@@ -136,7 +136,7 @@ export default ({ photos, tilesWide, address }) => {
                         />
                       ) : (
                         <img
-                          src={photo.src}
+                          src={photo.source}
                           onClick={() => {
                             toggleLightbox(photo.index);
                           }}

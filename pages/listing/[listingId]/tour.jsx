@@ -334,7 +334,7 @@ const Tour = ({
               {breakpoint.up.md && (
                 <Col md style={{ height: dateAndTimeHeight }}>
                   <Image
-                    src={listing.photos[0].src}
+                    src={listing.photos[0].source}
                     rounded
                     style={{
                       height: "100%",
