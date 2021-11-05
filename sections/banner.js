@@ -85,21 +85,13 @@ const Banner = () => {
 
       <Heading as='h2'>
         <>
-          Sell Your Home
-          <span style={{ color: '#589938' }}> Yourself</span>
+          Coming Soon.
+          {/* <span style={{ color: '#589938' }}> Yourself</span> */}
           <h4> asdfasdf</h4>
         </>
       </Heading>
-      <h3>
-        <b>No </b>
-        Real Estate Agent.
-      </h3>
-      <h3>
-        <b>No </b> Commission.
-      </h3>
-      <h3>
-        <b>No </b> MLS.
-      </h3>
+
+      <h3>A Peer to Peer Decentralized Marketplace for Real Estate</h3>
       {/* </Container> */}
       {/* <YouTube
         // autoPlay={false}

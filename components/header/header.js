@@ -58,15 +58,15 @@ export default function Header({
             ))}
           </Flex>
 
-          <Link
+          {/* <Link
             path='https://seller.findingspaces.com'
             label='Dashboard'
             sx={styles.headerBtn}
             variant='buttons.primary'
-          />
-          <Box onClick={() => router.push('/search')} sx={styles.handler}>
+          /> */}
+          {/* <Box onClick={() => router.push('/search')} sx={styles.handler}>
             <FontAwesomeIcon icon={faSearch} color='white' size='lg' />
-          </Box>
+          </Box> */}
           <UserDrawer AuthUser={auth} showLoginModal={showLoginModal} />
         </Container>
       </header>

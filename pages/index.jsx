@@ -42,7 +42,7 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
         <Layout auth={AuthUser} showLoginModal={showLoginModal}>
           <SEO title='Finding Spaces' />
           <Banner />
-          <div id='services'>
+          {/* <div id='services'>
             <Services />
             <Jackpot />
             <QrCode />
@@ -50,8 +50,8 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
             <Featured />
           </div>
           <Pricing />
-          {/* <Testimonials /> */}
-          {/* <Blogs /> */}
+    
+          <Blogs />
           <FAQ />
           <Subscribe />
 
@@ -72,7 +72,7 @@ const IndexPage = ({AuthUserInfo, showLoginModal}) => {
               </Button>
               <IoMdClose onClick={() => setShowSignUp(false)} style={{ cursor: 'pointer' }} size='24px' color='#fff' />
             </Container>
-          </Navbar>
+          </Navbar> */}
 
         </Layout>
       </StickyProvider>
